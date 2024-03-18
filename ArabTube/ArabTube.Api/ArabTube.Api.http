@@ -1,0 +1,6 @@
+@ArabTube.Api_HostAddress = http://localhost:5178
+
+GET {{ArabTube.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
