@@ -9,5 +9,6 @@ namespace ArabTube.Services.AuthServices
 {
     public class AuthService : IAuthService
     {
+
     }
 }
