@@ -262,3 +262,5 @@ E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Api\bin\Debug\
 E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Api\bin\Debug\net8.0\ArabTube.Services.dll
 E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Api\bin\Debug\net8.0\ArabTube.Services.pdb
 E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Api\bin\Debug\net8.0\ArabTube.Entities.pdb
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Api\bin\Debug\net8.0\AutoMapper.dll
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Api\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

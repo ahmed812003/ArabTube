@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "KJKgx+gXmEG3iL4ikPG3Qk2blVnOMS8h+oaGOk2JRcI1lqQJRpCyqgo8HtANTMMwml6uMAYBPmpekYJAcVBmxg==",
+  "dgSpecHash": "IU686N/O5WS9TOE6JaR4xpIKURMXTOKfszxrgyBd6OQ8/UfmrTiN0Gx+17kodJnqNJY7QnnRWE9Zhcs8x736mA==",
   "success": true,
   "projectFilePath": "E:\\Software Engineering\\مشروع التخرج\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\AHMD YASSER\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\AHMD YASSER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -17,6 +19,7 @@
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.5.0\\microsoft.codeanalysis.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.5.0\\microsoft.codeanalysis.csharp.workspaces.4.5.0.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.5.0\\microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
+    "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.5\\microsoft.data.sqlclient.5.1.5.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.1\\microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.3\\microsoft.entityframeworkcore.8.0.3.nupkg.sha512",

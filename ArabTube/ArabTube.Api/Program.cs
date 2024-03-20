@@ -9,6 +9,7 @@ using ArabTube.Entities.Models;
 using ArabTube.Services.AuthServices.Interfaces;
 using ArabTube.Services.AuthServices;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace ArabTube.Api
 {
@@ -22,8 +23,16 @@ namespace ArabTube.Api
                   builder.Configuration.GetConnectionString("DefultConnection")
                 ));
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            builder.Services.AddIdentity<AppUser, IdentityRole>(op => op.SignIn.RequireConfirmedEmail = true)
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
             builder.Services.AddScoped<IAuthService, AuthService>();
+            
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
