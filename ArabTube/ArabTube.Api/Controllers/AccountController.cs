@@ -12,6 +12,8 @@ using ArabTube.Entities.AuthModels;
 using Microsoft.CodeAnalysis.Elfie.Model.Strings;
 using AutoMapper;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using System.Drawing.Printing;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Shared;
 
 namespace ArabTube.Api.Controllers
 {
@@ -23,15 +25,36 @@ namespace ArabTube.Api.Controllers
         private readonly IAuthService _authService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender _emailSender;
-        private readonly IMapper _mapper;
 
-        public AccountController(IAuthService _authService, UserManager<AppUser> userManager, IEmailSender emailSender, IMapper mapper)
+        public AccountController(IAuthService _authService, UserManager<AppUser> userManager, IEmailSender emailSender)
         {
             this._authService = _authService;
             _userManager = userManager;
             _emailSender = emailSender;
-            _mapper = mapper;
         }
+
+        [Route("ConfirmEmail")]
+        [HttpGet()]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return BadRequest("Invalid Email");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userId}'.");
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            string statusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+
+            return Ok(statusMessage);
+        }
+
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -45,14 +68,14 @@ namespace ArabTube.Api.Controllers
                 if (!result.IsCreated)
                     return BadRequest(result.message);
 
-                var callbackUrl = await GenerateMailMessage(model.Email);
+                var callbackUrl = await GenerateConfirmEmailMessage(model.Email);
 
                 await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 return Ok("Please confirm your account");
             }
-            catch (Exception ex)
+            catch
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 var deleteResult = await _userManager.DeleteAsync(user);
@@ -63,25 +86,6 @@ namespace ArabTube.Api.Controllers
                 return BadRequest("Register Failed, Please Register Again!");
             }
         }
-
-        private async Task<String> GenerateMailMessage (string Email)
-        {
-            var user = await _userManager.FindByEmailAsync(Email);
-            var userId = await _userManager.GetUserIdAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
-                "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { userId = userId, code = code },
-                protocol: Request.Scheme);
-            return callbackUrl;
-        }
-
-
-
-
-
 
 
         [HttpPost("Login")]
@@ -98,6 +102,7 @@ namespace ArabTube.Api.Controllers
             return Ok(result);
         }
 
+
         [HttpPost("Addrole")]
         public async Task<IActionResult> AddRoleAsync([FromBody] RoleModel model)
         {
@@ -111,5 +116,17 @@ namespace ArabTube.Api.Controllers
 
             return Ok(model);
         }
+
+
+        private async Task<String> GenerateConfirmEmailMessage(string Email)
+        {
+            var user = await _userManager.FindByEmailAsync(Email);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Request.Scheme + "://" + Request.Host +
+                                    Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
+            return callbackUrl;
+        }
+
     }
 }

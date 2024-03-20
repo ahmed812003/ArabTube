@@ -64,7 +64,8 @@ namespace ArabTube.Services.AuthServices
             };
         }
 
-
+        // done 
+        // login user and get Token
         public async Task<AuthResult> GetTokenAsync(LoginModel model)
         {
             var authModel = new AuthResult();
@@ -74,6 +75,12 @@ namespace ArabTube.Services.AuthServices
             if (user is null || !await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 authModel.message = "Email or Password is incorrect!";
+                return authModel;
+            }
+
+            if (!user.EmailConfirmed)
+            {
+                authModel.message = "Email needed To be Comfirmed";
                 return authModel;
             }
 

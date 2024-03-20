@@ -14,7 +14,8 @@ namespace ArabTube.Services.AuthServices
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var fromMail = "arabtube72@gmail.com";
-            var fromPassword = "@arab_72"; // Replace with an app-specific password if using 2FA
+            //var fromPassword = "@arab_72"; // Replace with an app-specific password if using 2FA
+            var fromPassword = "kpux lzeb lmtn bcqy"; // Replace with an app-specific password if using 2FA
 
             var message = new MailMessage();
             message.From = new MailAddress(fromMail);

@@ -25,7 +25,7 @@ namespace ArabTube.Api
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>(op => op.SignIn.RequireConfirmedEmail = true)
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
