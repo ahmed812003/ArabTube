@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -36,13 +37,13 @@ namespace ArabTube.Services.AuthServices
 
         //done
         // Register new user without authentication
-        public async Task<RegisterResult> RegisterAsync(RegisterModel model)
+        public async Task<ProcessResult> RegisterAsync(RegisterModel model)
         {
             if (await _userManager.FindByEmailAsync(model.Email) != null)
-                return new RegisterResult { message = "This Email Already Registered!" };
+                return new ProcessResult { Message = "This Email Already Registered!" };
 
             if (await _userManager.FindByNameAsync(model.UserName) != null)
-                return new RegisterResult { message = "This Username Already Registered!" };
+                return new ProcessResult { Message = "This Username Already Registered!" };
 
             var user = _mapper.Map<AppUser>(model);
 
@@ -52,15 +53,14 @@ namespace ArabTube.Services.AuthServices
                 string Error = string.Empty;
                 foreach (var error in Result.Errors)
                     Error += $"{error.Description} , ";
-                return new RegisterResult { message = Error };
+                return new ProcessResult { Message = Error };
             }
 
             await _userManager.AddToRoleAsync(user, "User");
 
-            return new RegisterResult
+            return new ProcessResult
             {
-                Email = user.Email,
-                IsCreated = true
+                IsSuccesed = true
             };
         }
 
@@ -94,6 +94,54 @@ namespace ArabTube.Services.AuthServices
             authModel.ExpireOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
             return authModel;
+        }
+        
+        // done
+        public async Task<ProcessResult> EmailConfirmationAsync (string userId , string code)
+        {
+            if (userId == null || code == null)
+            {
+                return new ProcessResult { Message = "Invalid Email" };
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return new ProcessResult { Message = $"Unable to load user with ID '{userId}'."};
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            
+            var processResult = new ProcessResult();
+            processResult.Message = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            processResult.IsSuccesed = true;
+            
+            return(processResult);
+        }
+
+        //done
+        public async Task<ProcessResult> ResetPassword(string userId, string code, string newPassword)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(newPassword))
+            {
+                return new ProcessResult { Message = "Password or UserId cannot be Empty or Null" };
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return new ProcessResult { Message = $"Unable to load user with ID '{userId}'." };
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ResetPasswordAsync(user, code, newPassword);
+
+            var processResult = new ProcessResult();
+            processResult.Message = result.Succeeded ? "Password Reset Succesfully" : "Unable to reset password";
+            processResult.IsSuccesed = true;
+            
+            return processResult;
         }
 
         //done
@@ -144,6 +192,6 @@ namespace ArabTube.Services.AuthServices
 
             return jwtSecurityToken;
         }
-    
+
     }
 }

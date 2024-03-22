@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace ArabTube.Entities.AuthModels
 {
-    public class RegisterResult
+    public class ProcessResult
     {
-        public string message { get; set; }
+        public string Message { get; set; }
 
-        public bool IsCreated { get; set; }
-
-        public string Email { get; set; }
+        public bool IsSuccesed { get; set; }
     }
 }

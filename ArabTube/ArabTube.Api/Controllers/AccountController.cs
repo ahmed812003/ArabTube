@@ -1,6 +1,5 @@
 ﻿using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Services.AuthServices.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -8,12 +7,6 @@ using System.Text.Encodings.Web;
 using System.Text;
 using ArabTube.Entities.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using ArabTube.Entities.AuthModels;
-using Microsoft.CodeAnalysis.Elfie.Model.Strings;
-using AutoMapper;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using System.Drawing.Printing;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Shared;
 
 namespace ArabTube.Api.Controllers
 {
@@ -33,31 +26,21 @@ namespace ArabTube.Api.Controllers
             _emailSender = emailSender;
         }
 
-        [Route("ConfirmEmail")]
-        [HttpGet()]
+        [HttpGet("ConfirmEmail/{userId}&{code}")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null)
+            var result = await _authService.EmailConfirmationAsync(userId, code);
+
+            if (!result.IsSuccesed)
             {
-                return BadRequest("Invalid Email");
+                return BadRequest(result.Message);
             }
 
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{userId}'.");
-            }
-
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, code);
-            string statusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-
-            return Ok(statusMessage);
+            return Ok(result.Message);
         }
 
-
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register(RegisterModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -65,13 +48,13 @@ namespace ArabTube.Api.Controllers
             {
                 var result = await _authService.RegisterAsync(model);
 
-                if (!result.IsCreated)
-                    return BadRequest(result.message);
+                if (!result.IsSuccesed)
+                    return BadRequest(result.Message);
 
-                var callbackUrl = await GenerateConfirmEmailMessage(model.Email);
-
+                var callbackUrl = await GenerateConfirmEmailUrl(model.Email);
+                var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
                 await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    $"Please confirm your account by <a href='{encodedUrl}'>clicking here</a>.");
 
                 return Ok("Please confirm your account");
             }
@@ -87,7 +70,6 @@ namespace ArabTube.Api.Controllers
             }
         }
 
-
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -102,9 +84,39 @@ namespace ArabTube.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPost("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return BadRequest("Email Is Not Found");
+
+            var user =await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                return BadRequest("No User With This Email");
+
+            var callbackUrl = await GenerateResetPasswordUrl(user.Id);
+            var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
+            await _emailSender.SendEmailAsync(email, "Reset Password",
+                $"To Reset Password <a href='{encodedUrl}'>clicking here</a>.");
+
+            return Ok("Check Your Email To Reset Password"); 
+        }
+
+        [HttpPost("ResetPassword/{userId}&{code}")]
+        public async Task<IActionResult> ResetPassword (string userId,string code, string newPassword)
+        {
+            var result =await _authService.ResetPassword(userId, code, newPassword);
+
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Message);
+        }
 
         [HttpPost("Addrole")]
-        public async Task<IActionResult> AddRoleAsync([FromBody] RoleModel model)
+        public async Task<IActionResult> AddRoleAsync(RoleModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -117,14 +129,23 @@ namespace ArabTube.Api.Controllers
             return Ok(model);
         }
 
-
-        private async Task<String> GenerateConfirmEmailMessage(string Email)
+        private async Task<string> GenerateConfirmEmailUrl(string Email)
         {
             var user = await _userManager.FindByEmailAsync(Email);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var callbackUrl = Request.Scheme + "://" + Request.Host +
                                     Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
+            return callbackUrl;
+        }
+
+        private async Task<string> GenerateResetPasswordUrl(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Request.Scheme + "://" + Request.Host +
+                                    Url.Action("ResetPassword", "Account", new { userId = userId , code = code});
             return callbackUrl;
         }
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArabTube.Entities.AuthModels
+namespace ArabTube.Entities.DtoModels.UserDTOs
 {
     public class RoleModel
     {

@@ -64,12 +64,12 @@ namespace ArabTube.Api
                 o.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Version = "v1",
-                    Title = "test api",
-                    Description = "adasdsad",
+                    Title = "ArabTube api",
+                    Description = "Graduation Project",
                     Contact = new OpenApiContact()
                     {
-                        Name = "Ahmed Yaser",
-                        Email = "ay2309133@gmail.com",
+                        Name = "Arab Tube",
+                        Email = "arabtube72@gmail.com",
                         Url = new Uri("https://mydomain.com")
                     }
                 });
