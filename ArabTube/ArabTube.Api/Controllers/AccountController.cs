@@ -105,7 +105,7 @@ namespace ArabTube.Api.Controllers
         [HttpPost("ResetPassword/{userId}&{code}")]
         public async Task<IActionResult> ResetPassword (string userId,string code, string newPassword)
         {
-            var result =await _authService.ResetPassword(userId, code, newPassword);
+            var result =await _authService.ResetPasswordAsync(userId, code, newPassword);
 
             if (!result.IsSuccesed)
             {

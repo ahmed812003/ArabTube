@@ -121,7 +121,7 @@ namespace ArabTube.Services.AuthServices
         }
 
         //done
-        public async Task<ProcessResult> ResetPassword(string userId, string code, string newPassword)
+        public async Task<ProcessResult> ResetPasswordAsync(string userId, string code, string newPassword)
         {
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(newPassword))
             {

@@ -16,7 +16,7 @@ namespace ArabTube.Services.AuthServices.Interfaces
 
         Task<ProcessResult> EmailConfirmationAsync(string userId, string code);
 
-        Task<ProcessResult> ResetPassword(string userId, string code, string newPassword);
+        Task<ProcessResult> ResetPasswordAsync(string userId, string code, string newPassword);
 
         Task<AuthResult> GetTokenAsync(LoginModel model);
 
