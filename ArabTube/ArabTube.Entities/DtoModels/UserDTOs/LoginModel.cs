@@ -9,6 +9,7 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
 {
     public class LoginModel
     {
+        [EmailAddress]
         [Required , MaxLength(255)]
         public string Email { get; set; }
 

@@ -7,6 +7,7 @@ using System.Text.Encodings.Web;
 using System.Text;
 using ArabTube.Entities.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace ArabTube.Api.Controllers
 {
@@ -26,7 +27,7 @@ namespace ArabTube.Api.Controllers
             _emailSender = emailSender;
         }
 
-        [HttpGet("ConfirmEmail/{userId}&{code}")]
+        [HttpGet("ConfirmEmail/{userId}/{code}")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             var result = await _authService.EmailConfirmationAsync(userId, code);
@@ -43,7 +44,7 @@ namespace ArabTube.Api.Controllers
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(model);
+                return BadRequest(ModelState);
             try
             {
                 var result = await _authService.RegisterAsync(model);
@@ -74,7 +75,7 @@ namespace ArabTube.Api.Controllers
         public async Task<IActionResult> Login(LoginModel model)
         {
             if (!ModelState.IsValid)
-                return BadRequest(model);
+                return BadRequest(ModelState);
 
             var result = await _authService.GetTokenAsync(model);
 
@@ -85,16 +86,17 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("ForgetPassword")]
-        public async Task<IActionResult> ForgetPassword(string email)
+        public async Task<IActionResult> ForgetPassword([EmailAddress]string email)
         {
-            if (string.IsNullOrEmpty(email))
-                return BadRequest("Email Is Not Found");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _authService.ForgetPassword(email);
 
-            var user =await _userManager.FindByEmailAsync(email);
-            if (user == null)
-                return BadRequest("No User With This Email");
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-            var callbackUrl = await GenerateResetPasswordUrl(user.Id);
+            string userId = result.Message;
+            var callbackUrl = await GenerateResetPasswordUrl(userId);
             var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
             await _emailSender.SendEmailAsync(email, "Reset Password",
                 $"To Reset Password <a href='{encodedUrl}'>clicking here</a>.");
@@ -102,7 +104,7 @@ namespace ArabTube.Api.Controllers
             return Ok("Check Your Email To Reset Password"); 
         }
 
-        [HttpPost("ResetPassword/{userId}&{code}")]
+        [HttpPost("ResetPassword/{userId}/{code}")]
         public async Task<IActionResult> ResetPassword (string userId,string code, string newPassword)
         {
             var result =await _authService.ResetPasswordAsync(userId, code, newPassword);

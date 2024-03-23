@@ -6,6 +6,7 @@ using AutoMapper;
 using Azure.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -118,6 +119,27 @@ namespace ArabTube.Services.AuthServices
             processResult.IsSuccesed = true;
             
             return(processResult);
+        }
+
+        //done
+        public async Task<ProcessResult> ForgetPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return new ProcessResult { Message = "Email Is Not Found" };
+
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+                return new ProcessResult { Message = "No User With This Email" };
+
+            if (!user.EmailConfirmed)
+                return new ProcessResult { Message = "Please Confirm Email" };
+
+            return new ProcessResult
+            {
+                Message = user.Id,
+                IsSuccesed = true
+            };
         }
 
         //done

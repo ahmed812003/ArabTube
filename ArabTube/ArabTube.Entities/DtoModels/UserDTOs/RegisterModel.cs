@@ -17,7 +17,8 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
         
         [Required, MaxLength(20)]
         public string PhoneNumber { get; set; }
-        
+
+        [EmailAddress]
         [Required, MaxLength(255)]
         public string Email { get; set; }
 
