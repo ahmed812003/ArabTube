@@ -22,6 +22,6 @@ namespace ArabTube.Services.DataServices.Data
             base.OnModelCreating(builder);
         }
 
-        
+        DbSet<Video> Videos { get; set; }
     }
 }
