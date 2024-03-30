@@ -24,7 +24,7 @@ namespace ArabTube.Services.DataServices.Data
 
         DbSet<Video> Videos { get; set; }
 
-        DbSet<Comment> Comments { get; set; }
+        //DbSet<Comment> Comments { get; set; }
 
     }
 }
