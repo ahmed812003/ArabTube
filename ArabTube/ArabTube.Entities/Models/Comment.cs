@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace ArabTube.Entities.Models
 {
+    /// <summary>
+    /// self relationship => on delete restrict.
+    /// others => on delete cascade.
+    /// don't forget that when you implement delete comment endpoint
+    /// </summary>
     public class Comment
     {
-        /*public Comment()
+        public Comment()
         {
-            AppUser = new AppUser();    
-        }*/
+            AppUser = new AppUser();  
+            Video = new Video();
+            Childrens = new HashSet<Comment>();
+        }
 
         [Key]
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -25,9 +32,22 @@ namespace ArabTube.Entities.Models
 
         public bool IsUpdated { get; set; }
 
-        //public string UserId { get; set; }
+        [Required]
+        public string UserId { get; set; } = string.Empty;
 
-        //public AppUser AppUser { get; set; }
+        [Required]
+        public string VideoId { get; set; } = string.Empty;
+
+        [Required]
+        public string? ParentCommentId { get; set; } = string.Empty;
+
+        public virtual AppUser AppUser { get; set; }
+
+        public virtual Video Video { get; set; }
+
+        public virtual Comment ParentComment { get; set; }
+
+        public virtual ICollection<Comment> Childrens { get; set;}
 
     }
 }

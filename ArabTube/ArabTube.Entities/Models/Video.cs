@@ -9,6 +9,11 @@ namespace ArabTube.Entities.Models
 {
     public class Video
     {
+        public Video()
+        {
+            Comments = new List<Comment>();    
+        }
+
         [Key]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
@@ -33,6 +38,6 @@ namespace ArabTube.Entities.Models
 
         public DateTime UpdatedOn { get; set;} = DateTime.Now;
 
-
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

@@ -12,16 +12,24 @@ namespace ArabTube.Entities.Models
 {
     public class AppUser : IdentityUser
     {
-        [Required , MaxLength (250)]
-        public string FirstName { get; set; }
+        public AppUser()
+        {
+            Comments = new List<Comment>();
+        }
 
-        [Required , MaxLength(250)]
-        public string LastName { get; set; }
+        [Required , MaxLength (250)]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required, MaxLength(250)]
+        public string LastName { get; set; } = string.Empty;
 
         [Required]
         public bool Gender { get; set; }
 
         [Required]
         public DateTime BirthDate { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
     }
 }
