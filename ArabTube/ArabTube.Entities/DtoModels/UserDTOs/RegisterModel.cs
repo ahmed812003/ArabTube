@@ -27,5 +27,11 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
 
         [Required, MaxLength(50)]
         public string Password { get; set; }
+
+        [Required]
+        public bool Gender { get; set; }
+
+        [Required]
+        public DateTime BirthDate { get; set; }
     }
 }

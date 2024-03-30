@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ewsimMbMCe/Xc6xbx4DttCyY7RjVrM8ljPCfFsh9EgyKwk5RLKdJRKpxyBUiOvT7oKbdojEQLS7k2RY/4GrxOQ==",
+  "dgSpecHash": "BPWphHCQhbCVZCx4t8acrRGTDxJhnRuHTvFaBp7FvW3hBRGx6JU96l+xsJ9SD+PuYNbQ1T90IMzatJDlMFdGxQ==",
   "success": true,
-  "projectFilePath": "E:\\Software Engineering\\Final Project\\ArabTube\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj",
+  "projectFilePath": "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\AHMD YASSER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

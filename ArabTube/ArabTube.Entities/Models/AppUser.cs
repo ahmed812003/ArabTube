@@ -17,5 +17,11 @@ namespace ArabTube.Entities.Models
 
         [Required , MaxLength(250)]
         public string LastName { get; set; }
+
+        [Required]
+        public bool Gender { get; set; }
+
+        [Required]
+        public DateTime BirthDate { get; set; }
     }
 }
