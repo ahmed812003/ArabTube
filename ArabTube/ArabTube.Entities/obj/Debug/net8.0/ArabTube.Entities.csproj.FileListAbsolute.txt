@@ -1,0 +1,15 @@
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.deps.json
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.runtimeconfig.json
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.dll
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.pdb
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.csproj.AssemblyReference.cache
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.GeneratedMSBuildEditorConfig.editorconfig
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.AssemblyInfoInputs.cache
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.AssemblyInfo.cs
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.csproj.CoreCompileInputs.cache
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.sourcelink.json
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.dll
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\refint\ArabTube.Entities.dll
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.pdb
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.genruntimeconfig.cache
+E:\Software Engineering\مشروع التخرج\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ref\ArabTube.Entities.dll
