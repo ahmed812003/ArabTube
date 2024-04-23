@@ -116,7 +116,7 @@ namespace ArabTube.Services.AuthServices
             
             var processResult = new ProcessResult();
             processResult.Message = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-            processResult.IsSuccesed = true;
+            processResult.IsSuccesed = result.Succeeded;
             
             return(processResult);
         }
@@ -161,25 +161,28 @@ namespace ArabTube.Services.AuthServices
 
             var processResult = new ProcessResult();
             processResult.Message = result.Succeeded ? "Password Reset Succesfully" : "Unable to reset password";
-            processResult.IsSuccesed = true;
+            processResult.IsSuccesed = result.Succeeded;
             
             return processResult;
         }
 
         //done
-        public async Task<string> AddRoleAsync(RoleModel model)
+        public async Task<ProcessResult> AddRoleAsync(RoleModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
 
             if (user is null || !await _roleManager.RoleExistsAsync(model.RoleName))
-                return "Invalid username or Role";
+                return new ProcessResult { Message = "Invalid username or Role" };
 
             if (await _userManager.IsInRoleAsync(user, model.RoleName))
-                return "User already assigned to this role";
+                return new ProcessResult { Message = "User already assigned to this role" };
 
             var result = await _userManager.AddToRoleAsync(user, model.RoleName);
-
-            return result.Succeeded ? string.Empty : "Something went wrong";
+            var processResult = new ProcessResult();
+            processResult.Message = result.Succeeded ? string.Empty : "Something went wrong";
+            processResult.IsSuccesed = result.Succeeded ? true : false;
+            
+            return processResult;
         }
 
         //done

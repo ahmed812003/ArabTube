@@ -22,6 +22,6 @@ namespace ArabTube.Services.AuthServices.Interfaces
 
         Task<AuthResult> GetTokenAsync(LoginModel model);
 
-        Task<string> AddRoleAsync(RoleModel model);
+        Task<ProcessResult> AddRoleAsync(RoleModel model);
     }
 }

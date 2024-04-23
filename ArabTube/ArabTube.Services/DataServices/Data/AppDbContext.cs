@@ -21,16 +21,35 @@ namespace ArabTube.Services.DataServices.Data
         {
             base.OnModelCreating(builder);
 
+            // comment table relationships
             builder.Entity<AppUser>().HasMany(ap => ap.Comments).WithOne(c => c.AppUser).HasForeignKey(c => c.UserId);
             builder.Entity<Video>().HasMany(v => v.Comments).WithOne(c => c.Video).HasForeignKey(c => c.VideoId);
             builder.Entity<Comment>().HasMany(c => c.Childrens).WithOne(c => c.ParentComment).HasForeignKey(c => c.ParentCommentId);
 
 
+            // video table relationships
+
+
+            // user table relationships 
+
+
+            // playlist table relationships
+
+
+            // fav playlist table relationships
+
+
+
+
         }
 
-        DbSet<Video> Videos { get; set; }
+        public DbSet<Video> Videos { get; set; }
 
-        DbSet<Comment> Comments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        
+        /*public DbSet<FavPlaylist> FavPlaylists { get; set; }
+
+        public DbSet<Playlist> Playlists { get; set; }*/
 
     }
 }

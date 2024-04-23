@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace ArabTube.Api.Controllers
 {
@@ -30,7 +31,7 @@ namespace ArabTube.Api.Controllers
             _emailSender = emailSender;
         }
 
-        [HttpGet("ConfirmEmail/{userId}/{code}")]
+        [HttpGet("users/{userId}/ConfirmEmail/code = {code}")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             var result = await _authService.EmailConfirmationAsync(userId, code);
@@ -126,7 +127,7 @@ namespace ArabTube.Api.Controllers
             return Ok("Check Your Email To Reset Password"); 
         }
 
-        [HttpPost("ResetPassword/{userId}/{code}")]
+        [HttpGet("users/{userId}/ResetPasswor/code = {code}")]
         public async Task<IActionResult> ResetPassword (string userId,string code, string newPassword)
         {
             var result =await _authService.ResetPasswordAsync(userId, code, newPassword);
@@ -147,10 +148,10 @@ namespace ArabTube.Api.Controllers
 
             var result = await _authService.AddRoleAsync(model);
 
-            if (!string.IsNullOrEmpty(result))
+            if (!result.IsSuccesed)
                 return BadRequest(result);
 
-            return Ok(model);
+            return Ok(result);
         }
 
         private async Task<string> GenerateConfirmEmailUrl(string Email)
