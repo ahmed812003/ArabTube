@@ -73,7 +73,7 @@ namespace ArabTube.Api.Controllers
 
                 #region Upload To Cloud 
                 string blobName = $"{videoName}-{resolution.height}";
-                string containerClient = "videos";
+                string containerClient = "test";
                 string contentType = "video/mp4";
                 await UploadToCloud(blobName, containerClient, contentType, outputFilePath);
                 System.IO.File.Delete(outputFilePath);
@@ -84,14 +84,14 @@ namespace ArabTube.Api.Controllers
             #endregion
         }
 
-        private async Task<bool> UploadToCloud(string blobName, string containerClient,
+        private async Task<bool> UploadToCloud(string blobName, string containerName,
             string contentType, string outputFilePath)
         {
-            var BlobAccount = new BlobServiceClient(new Uri(_configuration["BlobStorage:ConnectionString"]),
+            var blobAccount = new BlobServiceClient(new Uri(_configuration["BlobStorage:ConnectionString"]),
                 new DefaultAzureCredential());
-            var ContainerClient = BlobAccount.GetBlobContainerClient(containerClient);
-            await ContainerClient.CreateIfNotExistsAsync();
-            var BlobClient = ContainerClient.GetBlobClient(blobName);
+            var containerClient = blobAccount.GetBlobContainerClient(containerName);
+            await containerClient.CreateIfNotExistsAsync(PublicAccessType.Blob);
+            var blobClient = containerClient.GetBlobClient(blobName);
 
             StorageTransferOptions transferOptions = new StorageTransferOptions
             {
@@ -108,7 +108,7 @@ namespace ArabTube.Api.Controllers
                 TransferOptions = transferOptions,
                 HttpHeaders = headers
             };
-            await BlobClient.UploadAsync(outputFilePath, blobUploadOptions);
+            await blobClient.UploadAsync(outputFilePath, blobUploadOptions);
             return true;
         }
 
