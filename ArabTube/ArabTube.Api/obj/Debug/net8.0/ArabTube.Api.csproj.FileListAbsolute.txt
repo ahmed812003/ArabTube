@@ -530,3 +530,7 @@ E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\obj\Debug\n
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.pdb
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.genruntimeconfig.cache
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\obj\Debug\net8.0\ref\ArabTube.Api.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\bin\Debug\net8.0\Azure.Storage.Common.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.IO.Hashing.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube.Api\bin\Debug\net8.0\FFmpeg.NET.dll

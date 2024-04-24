@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "Azure.Storage.Blobs": {
+              "target": "Package",
+              "version": "[12.19.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -87,6 +91,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[7.4.1, )"
+            },
+            "xFFmpeg.NET": {
+              "target": "Package",
+              "version": "[7.2.0, )"
             }
           },
           "imports": [

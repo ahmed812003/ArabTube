@@ -14,10 +14,10 @@ namespace ArabTube.Entities.Models
     {
         public AppUser()
         {
-            Comments = new List<Comment>();
+            Videos = new List<Video>();
         }
 
-        [Required , MaxLength (250)]
+        [Required, MaxLength(250)]
         public string FirstName { get; set; } = string.Empty;
 
         [Required, MaxLength(250)]
@@ -29,7 +29,7 @@ namespace ArabTube.Entities.Models
         [Required]
         public DateTime BirthDate { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
 
     }
 }

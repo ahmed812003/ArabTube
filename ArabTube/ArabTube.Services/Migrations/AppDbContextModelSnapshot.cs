@@ -103,44 +103,6 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsUpdated")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ParentCommentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("VideoId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCommentId");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("VideoId");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.Property<string>("Id")
@@ -162,21 +124,34 @@ namespace ArabTube.Services.Migrations
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
+                    b.Property<string>("ThumbnailUri")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Url")
+                    b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VideoUri")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("Views")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Videos");
                 });
@@ -314,31 +289,15 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
+            modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
-                    b.HasOne("ArabTube.Entities.Models.Comment", "ParentComment")
-                        .WithMany("Childrens")
-                        .HasForeignKey("ParentCommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ArabTube.Entities.Models.AppUser", "AppUser")
-                        .WithMany("Comments")
+                        .WithMany("Videos")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArabTube.Entities.Models.Video", "Video")
-                        .WithMany("Comments")
-                        .HasForeignKey("VideoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
-
-                    b.Navigation("ParentComment");
-
-                    b.Navigation("Video");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -394,17 +353,7 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.AppUser", b =>
                 {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
-                {
-                    b.Navigation("Childrens");
-                });
-
-            modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
-                {
-                    b.Navigation("Comments");
+                    b.Navigation("Videos");
                 });
 #pragma warning restore 612, 618
         }

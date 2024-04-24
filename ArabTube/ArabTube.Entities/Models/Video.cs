@@ -11,33 +11,40 @@ namespace ArabTube.Entities.Models
     {
         public Video()
         {
-            Comments = new List<Comment>();    
+            AppUser = new AppUser();
         }
 
         [Key]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        [Required]
+        [Required , MaxLength(256)]
         public string Title { get; set; } = string.Empty;
 
         [Required]
         public string Description { get; set; } = string.Empty;
 
-        [Required]
-        public string Url { get; set; } = string.Empty;
+        [Required , MaxLength(500)]
+        public string VideoUri { get; set; } = string.Empty;
 
         public int Likes { get; set; }
-        
+
         public int DisLikes { get; set; }
 
         public int Views { get; set; }
 
         public int Flags { get; set; }
 
+        [Required , MaxLength(500)]
+        public string ThumbnailUri { get; set; } = string.Empty;
+
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-        public DateTime UpdatedOn { get; set;} = DateTime.Now;
+        public DateTime UpdatedOn { get; set; } = DateTime.Now;
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        [Required]
+        public string UserId { get; set; } = string.Empty;
+
+        public virtual AppUser AppUser { get; set; }
+
     }
 }
