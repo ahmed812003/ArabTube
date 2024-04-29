@@ -32,4 +32,8 @@
     <ProjectReference Include="..\ArabTube.Services\ArabTube.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Videos\" />
+  </ItemGroup>
+
 </Project>

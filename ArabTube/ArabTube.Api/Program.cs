@@ -10,6 +10,12 @@ using ArabTube.Services.AuthServices.Interfaces;
 using ArabTube.Services.AuthServices;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using ArabTube.Services.CloudServices.ImplementationClasses;
+using ArabTube.Services.CloudServices.Interfaces;
+using ArabTube.Services.DataServices.Repositories.ImplementationClasses;
+using ArabTube.Services.DataServices.Repositories.Interfaces;
+using ArabTube.Services.VideoServices.ImplementationClasses;
+using ArabTube.Services.VideoServices.Interfaces;
 
 namespace ArabTube.Api
 {
@@ -30,7 +36,9 @@ namespace ArabTube.Api
                 .AddDefaultTokenProviders();
 
             builder.Services.AddScoped<IAuthService, AuthService>();
-            
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IVideoService, VideoService>();
+            builder.Services.AddScoped<ICloudService, CloudService>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
 
             builder.Services.AddAuthentication(options =>

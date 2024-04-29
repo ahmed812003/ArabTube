@@ -2057,11 +2057,13 @@
       "ArabTube.Services/1.0.0": {
         "dependencies": {
           "ArabTube.Entities": "1.0.0",
+          "Azure.Storage.Blobs": "12.19.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.3",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.3",
           "Microsoft.EntityFrameworkCore": "8.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.3",
-          "System.IdentityModel.Tokens.Jwt": "7.4.1"
+          "System.IdentityModel.Tokens.Jwt": "7.4.1",
+          "xFFmpeg.NET": "7.2.0"
         },
         "runtime": {
           "ArabTube.Services.dll": {}

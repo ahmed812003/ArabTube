@@ -20,7 +20,7 @@ namespace ArabTube.Entities.Models
         [Required , MaxLength(256)]
         public string Title { get; set; } = string.Empty;
 
-        [Required]
+        [Required , MaxLength(2000)]
         public string Description { get; set; } = string.Empty;
 
         [Required , MaxLength(500)]
@@ -34,8 +34,8 @@ namespace ArabTube.Entities.Models
 
         public int Flags { get; set; }
 
-        [Required , MaxLength(500)]
-        public string ThumbnailUri { get; set; } = string.Empty;
+        [Required]
+        public byte[] Thumbnail { get; set; }
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 

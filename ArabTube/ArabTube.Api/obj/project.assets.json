@@ -3005,11 +3005,13 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "ArabTube.Entities": "1.0.0",
+          "Azure.Storage.Blobs": "12.19.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.3",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.3",
           "Microsoft.EntityFrameworkCore": "8.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.3",
-          "System.IdentityModel.Tokens.Jwt": "7.4.1"
+          "System.IdentityModel.Tokens.Jwt": "7.4.1",
+          "xFFmpeg.NET": "7.2.0"
         },
         "compile": {
           "bin/placeholder/ArabTube.Services.dll": {}
@@ -8497,19 +8499,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AHMD YASSER\\.nuget\\packages\\": {}
+    "C:\\Users\\ahmed\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
+      "projectUniqueName": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
       "projectName": "ArabTube.Api",
-      "projectPath": "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
-      "packagesPath": "C:\\Users\\AHMD YASSER\\.nuget\\packages\\",
-      "outputPath": "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube.Api\\obj\\",
+      "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
+      "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
+      "outputPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\AHMD YASSER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8523,8 +8525,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj": {
-              "projectPath": "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj"
+            "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj": {
+              "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj"
             }
           }
         }
@@ -8533,6 +8535,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -8611,7 +8618,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

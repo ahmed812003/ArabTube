@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "Xd9HtoP/ZCCKHDD2NytaXOU2peFSf2ugK/gcs4LvA9U=",
+  "Hash": "zKNgjkx4etuH5DlkOzym0EaT+cJWbO6eTcnBq4+jpPA=",
   "Source": "ArabTube.Api",
   "BasePath": "_content/ArabTube.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ArabTube.Api\\wwwroot",
+      "Source": "ArabTube.Api",
+      "ContentRoot": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\wwwroot\\",
+      "BasePath": "_content/ArabTube.Api",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }
