@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj": {}
+    "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj": {}
   },
   "projects": {
-    "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj": {
+    "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj",
+        "projectUniqueName": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj",
         "projectName": "ArabTube.Entities",
-        "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj",
+        "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Entities\\ArabTube.Entities.csproj",
         "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-        "outputPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Entities\\obj\\",
+        "outputPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",

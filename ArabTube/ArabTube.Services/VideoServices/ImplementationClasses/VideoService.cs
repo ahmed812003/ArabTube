@@ -41,10 +41,10 @@ namespace ArabTube.Services.VideoServices.ImplementationClasses
             (int width, int height)[] resolutions = new (int, int)[]
             {
                 (256, 144),
-                /*(426, 240),
+                (426, 240),
                 (640, 360),
                 (854, 480),
-                (1280,720)*/
+                (1280,720)
             };
 
             List<VideoQuality> videoQualities = new List<VideoQuality>();

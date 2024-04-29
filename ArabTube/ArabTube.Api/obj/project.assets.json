@@ -8504,11 +8504,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
+      "projectUniqueName": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
       "projectName": "ArabTube.Api",
-      "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
+      "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
       "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-      "outputPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Api\\obj\\",
+      "outputPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8525,8 +8525,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj": {
-              "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj"
+            "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj": {
+              "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj"
             }
           }
         }
