@@ -25,5 +25,10 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
         {
             _context.Dispose();
         }
+
+        public async Task Complete()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

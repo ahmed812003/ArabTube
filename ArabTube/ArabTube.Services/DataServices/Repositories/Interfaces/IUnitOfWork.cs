@@ -9,5 +9,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IVideoRepository Video { get; }
+
+        Task Complete();
     }
 }
