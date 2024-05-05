@@ -14,9 +14,9 @@ namespace ArabTube.Entities.MappingProfiles
     {
         public UserMappingProfile() 
         {
-            CreateMap<RegisterModel, AppUser>().ReverseMap();
+            CreateMap<RegisterDto, AppUser>().ReverseMap();
 
-            CreateMap<LoginModel , AppUser>().ReverseMap();
+            CreateMap<LoginDto , AppUser>().ReverseMap();
         }
     }
 }

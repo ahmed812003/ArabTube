@@ -3,19 +3,14 @@ using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Entities.Models;
 using ArabTube.Services.AuthServices.Interfaces;
 using AutoMapper;
-using Azure.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Encodings.Web;
 
 namespace ArabTube.Services.AuthServices
 {
@@ -38,7 +33,7 @@ namespace ArabTube.Services.AuthServices
 
         //done
         // Register new user without authentication
-        public async Task<ProcessResult> RegisterAsync(RegisterModel model)
+        public async Task<ProcessResult> RegisterAsync(RegisterDto model)
         {
             if (await _userManager.FindByEmailAsync(model.Email) != null)
                 return new ProcessResult { Message = "This Email Already Registered!" };
@@ -67,7 +62,7 @@ namespace ArabTube.Services.AuthServices
 
         // done 
         // login user and get Token
-        public async Task<AuthResult> GetTokenAsync(LoginModel model)
+        public async Task<AuthResult> GetTokenAsync(LoginDto model)
         {
             var authModel = new AuthResult();
 
@@ -131,7 +126,7 @@ namespace ArabTube.Services.AuthServices
 
             if (user == null)
                 return new ProcessResult { Message = "No User With This Email" };
-
+         
             if (!user.EmailConfirmed)
                 return new ProcessResult { Message = "Please Confirm Email" };
 
@@ -143,7 +138,7 @@ namespace ArabTube.Services.AuthServices
         }
 
         //done
-        public async Task<ProcessResult> ResetPasswordAsync(string userId, string code, string newPassword)
+        public async Task<ProcessResult> ResetPasswordAsync(string userId, string newPassword)
         {
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(newPassword))
             {
@@ -156,7 +151,7 @@ namespace ArabTube.Services.AuthServices
                 return new ProcessResult { Message = $"Unable to load user with ID '{userId}'." };
             }
 
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
             var result = await _userManager.ResetPasswordAsync(user, code, newPassword);
 
             var processResult = new ProcessResult();
@@ -167,7 +162,7 @@ namespace ArabTube.Services.AuthServices
         }
 
         //done
-        public async Task<ProcessResult> AddRoleAsync(RoleModel model)
+        public async Task<ProcessResult> AddRoleAsync(RoleDto model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
 

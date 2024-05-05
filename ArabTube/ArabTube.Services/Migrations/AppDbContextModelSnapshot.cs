@@ -153,7 +153,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Videos");
+                    b.ToTable("Videos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
