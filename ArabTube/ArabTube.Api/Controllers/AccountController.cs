@@ -46,30 +46,18 @@ namespace ArabTube.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            try
-            {
-                var result = await _authService.RegisterAsync(model);
 
-                if (!result.IsSuccesed)
-                    return BadRequest(result.Message);
+            var result = await _authService.RegisterAsync(model);
 
-                var callbackUrl = await GenerateConfirmEmailUrl(model.Email);
-                var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
-                await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{encodedUrl}'>clicking here</a>.");
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-                return Ok("Please confirm your account");
-            }
-            catch
-            {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                var deleteResult = await _userManager.DeleteAsync(user);
-                if(!deleteResult.Succeeded)
-                {
-                    return BadRequest("Not Deleted");
-                }
-                return BadRequest("Register Failed, Please Register Again!");
-            }
+            var callbackUrl = await GenerateConfirmEmailUrl(model.Email);
+            var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
+            await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
+                $"Please confirm your account by <a href='{encodedUrl}'>clicking here</a>.");
+
+            return Ok("Please confirm your account");
         }
 
         [HttpPost("Login")]
