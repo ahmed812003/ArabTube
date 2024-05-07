@@ -82,30 +82,30 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("ResendEmailConfirmation")]
-        public async Task<IActionResult> ResendEmailConfirmation ([EmailAddress, Required] string email)
+        public async Task<IActionResult> ResendEmailConfirmation (ResendEmailConfirmationDto model)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (await _userManager.FindByEmailAsync(email) == null)
+            if (await _userManager.FindByEmailAsync(model.Email) == null)
             {
                 return BadRequest("No User With This Email");
             }
 
-            var callbackUrl = await GenerateConfirmEmailUrl(email);
+            var callbackUrl = await GenerateConfirmEmailUrl(model.Email);
             var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
-            await _emailSender.SendEmailAsync(email, "Confirm your email",
+            await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
                 $"Please confirm your account by <a href='{encodedUrl}'>clicking here</a>.");
             return Ok("Check Your E-mail");
         }
 
         [HttpPost("ForgetPassword")]
-        public async Task<IActionResult> ForgetPassword ([EmailAddress,Required]string email)
+        public async Task<IActionResult> ForgetPassword (ForgetPasswordDto model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _authService.ForgetPassword(email);
+            var result = await _authService.ForgetPassword(model.Email);
 
             if (!result.IsSuccesed)
                 return BadRequest(result.Message);
@@ -129,14 +129,14 @@ namespace ArabTube.Api.Controllers
 
             });
 
-            await _emailSender.SendEmailAsync(email, "Reset Password",
+            await _emailSender.SendEmailAsync(model.Email, "Reset Password",
                 $"Code To Reset Password {code}.");
 
             return Ok("Check Your Email To Reset Password"); 
         }
 
         [HttpPost("ResetPassword")]
-        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto model)
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
         {
             var userId = Request.Cookies["UserId"];
 

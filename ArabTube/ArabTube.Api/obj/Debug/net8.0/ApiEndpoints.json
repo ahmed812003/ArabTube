@@ -9,8 +9,29 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ArabTube.Entities.DtoModels.UserDTOs.RoleModel",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.RoleDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.AccountController",
+    "Method": "ConfirmEmail",
+    "RelativePath": "api/Account/ConfirmEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Code",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -41,7 +62,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ArabTube.Entities.DtoModels.UserDTOs.LoginModel",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.LoginDto",
         "IsRequired": true
       }
     ],
@@ -67,7 +88,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ArabTube.Entities.DtoModels.UserDTOs.RegisterModel",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.RegisterDto",
         "IsRequired": true
       }
     ],
@@ -91,19 +112,30 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.AccountController",
-    "Method": "ConfirmEmail",
-    "RelativePath": "api/Account/users/{userId}/ConfirmEmail/code = {code}",
-    "HttpMethod": "GET",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Account/ResetPassword",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.String",
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.ResetPasswordDto",
         "IsRequired": true
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "DislikeVideo",
+    "RelativePath": "api/Videos/Dislike/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "code",
+        "Name": "id",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -111,27 +143,64 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ArabTube.Api.Controllers.AccountController",
-    "Method": "ResetPassword",
-    "RelativePath": "api/Account/users/{userId}/ResetPasswor/code = {code}",
-    "HttpMethod": "GET",
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "FlagVideo",
+    "RelativePath": "api/Videos/Flag/{id}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "id",
         "Type": "System.String",
         "IsRequired": true
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "LikeVideo",
+    "RelativePath": "api/Videos/Like/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "code",
+        "Name": "id",
         "Type": "System.String",
         "IsRequired": true
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "UpdateVideo",
+    "RelativePath": "api/Videos/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "newPassword",
+        "Name": "Title",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Thumbnail",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -139,7 +208,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "UploadVideo",
-    "RelativePath": "api/Videos/Uploda",
+    "RelativePath": "api/Videos/Upload",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -163,6 +232,48 @@
         "Name": "Video",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "WatchVideo",
+    "RelativePath": "api/Videos/Video/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "PreviewVideo",
+    "RelativePath": "api/Videos/Videos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "ViewVideo",
+    "RelativePath": "api/Videos/View/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
