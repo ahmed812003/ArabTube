@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|f:\\software engineering\\graduation project\\arabtube\\arabtube\\arabtube.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|solutionrelative:arabtube.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|f:\\software engineering\\graduation project\\arabtube\\arabtube\\arabtube.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|solutionrelative:arabtube.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|f:\\software engineering\\graduation project\\arabtube\\arabtube\\arabtube.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|solutionrelative:arabtube.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "ArabTube.Api\\Controllers\\AccountController.cs",
-              "ToolTip": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "ArabTube.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAQwBcAAABMAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\Program.cs",
+              "RelativeDocumentMoniker": "ArabTube.Api\\Program.cs",
+              "ToolTip": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\Program.cs",
+              "RelativeToolTip": "ArabTube.Api\\Program.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAgwIAAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T18:51:19.574Z",
+              "WhenOpened": "2024-05-11T21:15:30.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "ArabTube.Api\\appsettings.json",
+              "ToolTip": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\appsettings.json",
+              "RelativeToolTip": "ArabTube.Api\\appsettings.json",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAmwCgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-11T21:15:23.254Z",
               "EditorCaption": ""
             }
           ]

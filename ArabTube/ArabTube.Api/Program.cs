@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System;
 using ArabTube.Services.DataServices.Data;
 using ArabTube.Entities.Models;
 using ArabTube.Services.AuthServices.Interfaces;
@@ -16,6 +15,7 @@ using ArabTube.Services.DataServices.Repositories.ImplementationClasses;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using ArabTube.Services.VideoServices.ImplementationClasses;
 using ArabTube.Services.VideoServices.Interfaces;
+using Serilog;
 
 namespace ArabTube.Api
 {
@@ -25,8 +25,12 @@ namespace ArabTube.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration)
+                .MinimumLevel.Debug()
+                .CreateLogger();
+
             builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(
-                  builder.Configuration.GetConnectionString("DefultConnection")
+                  builder.Configuration.GetConnectionString("ServerConnection")
                 ));
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -45,7 +49,7 @@ namespace ArabTube.Api
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })  
+            })
             .AddJwtBearer(o =>
             {
                 o.RequireHttpsMetadata = false;
@@ -109,6 +113,16 @@ namespace ArabTube.Api
                 });
             });
 
+            /*builder.Services.AddCors(Option =>
+            {
+                Option.AddPolicy("MyPlicy", option => {
+                    option.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                }
+                );
+            });*/
+
+            builder.Host.UseSerilog();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -118,8 +132,10 @@ namespace ArabTube.Api
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
 
+            app.UseHttpsRedirection();
+            //app.UseCors("MyPlicy");
+            app.UseSerilogRequestLogging();
             app.UseAuthentication();
             app.UseAuthorization();
 
