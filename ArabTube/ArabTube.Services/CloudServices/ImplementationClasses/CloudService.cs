@@ -1,5 +1,6 @@
 ﻿using ArabTube.Entities.VideoModels;
 using ArabTube.Services.CloudServices.Interfaces;
+using Azure.Core;
 using Azure.Identity;
 using Azure.Storage;
 using Azure.Storage.Blobs;
@@ -24,19 +25,30 @@ namespace ArabTube.Services.CloudServices.ImplementationClasses
 
         public async Task UploadToCloudAsync(IEnumerable<VideoQuality> videoQualities)
         {
-            foreach(var videoQuality in videoQualities)
+            foreach (var videoQuality in videoQualities)
             {
-                var blobAccount = new BlobServiceClient(new Uri(_configuration["BlobStorage:ConnectionString"]),
-                new DefaultAzureCredential());
+                var options = new BlobClientOptions
+                {
+                    Retry =
+                    {
+                        Mode = RetryMode.Exponential,
+                        MaxRetries = 3,
+                        Delay = TimeSpan.FromSeconds(10),
+                        MaxDelay = TimeSpan.FromSeconds(60),
+                        NetworkTimeout = TimeSpan.FromMinutes(5)
+                    }
+                };
+                var blobAccount = new BlobServiceClient(
+                    new Uri($"{_configuration["BlobStorage:ConnectionString"]}?{_configuration["BlobStorage:SAS"]}"), options);
                 var containerClient = blobAccount.GetBlobContainerClient(videoQuality.ContainerName);
                 await containerClient.CreateIfNotExistsAsync(PublicAccessType.Blob);
                 var blobClient = containerClient.GetBlobClient(videoQuality.BlobName);
 
                 StorageTransferOptions transferOptions = new StorageTransferOptions
                 {
-                    InitialTransferSize = 5 * 1024 * 1024,
-                    MaximumConcurrency = 20,
-                    MaximumTransferSize = 5 * 1024 * 1024
+                    InitialTransferSize = 10 * 1024 * 1024,
+                    MaximumConcurrency = 4,
+                    MaximumTransferSize = 10 * 1024 * 1024
                 };
                 var headers = new BlobHttpHeaders
                 {

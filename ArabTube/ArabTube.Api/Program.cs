@@ -6,7 +6,6 @@ using System.Text;
 using ArabTube.Services.DataServices.Data;
 using ArabTube.Entities.Models;
 using ArabTube.Services.AuthServices.Interfaces;
-using ArabTube.Services.AuthServices;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ArabTube.Services.CloudServices.ImplementationClasses;
@@ -16,6 +15,7 @@ using ArabTube.Services.DataServices.Repositories.Interfaces;
 using ArabTube.Services.VideoServices.ImplementationClasses;
 using ArabTube.Services.VideoServices.Interfaces;
 using Serilog;
+using ArabTube.Services.AuthServices.ImplementationClasses;
 
 namespace ArabTube.Api
 {

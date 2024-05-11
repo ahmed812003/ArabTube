@@ -5,6 +5,7 @@ using ArabTube.Entities.VideoModels;
 using ArabTube.Services.CloudServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using ArabTube.Services.VideoServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
@@ -51,7 +52,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpGet("Video/{id}")]
-        public async Task<IActionResult> WatchVideo([FromRoute] string id)
+        public async Task<IActionResult> WatchVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
@@ -79,6 +80,7 @@ namespace ArabTube.Api.Controllers
             return Ok(viewVideo);
         }
 
+        [Authorize]
         [HttpPost("Upload")]
         public async Task<IActionResult> UploadVideo([FromForm] UploadingVideoDto model)
         {
@@ -97,6 +99,7 @@ namespace ArabTube.Api.Controllers
             {
                 return Unauthorized();
             }
+
             var user = await _userManager.FindByNameAsync(userName);
 
             var processingVideo = new ProcessingVideo
@@ -132,7 +135,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("Like/{id}")]
-        public async Task<IActionResult> LikeVideo([FromRoute] string id)
+        public async Task<IActionResult> LikeVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
@@ -148,7 +151,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("Dislike/{id}")]
-        public async Task<IActionResult> DislikeVideo([FromRoute] string id)
+        public async Task<IActionResult> DislikeVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
@@ -164,7 +167,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("Flag/{id}")]
-        public async Task<IActionResult> FlagVideo([FromRoute] string id)
+        public async Task<IActionResult> FlagVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
@@ -180,7 +183,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("View/{id}")]
-        public async Task<IActionResult> ViewVideo([FromRoute] string id)
+        public async Task<IActionResult> ViewVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
@@ -196,7 +199,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPut("Update/{id}")]
-        public async Task<IActionResult> UpdateVideo(UpdatingVideoDto model, [FromRoute] string id)
+        public async Task<IActionResult> UpdateVideo(UpdatingVideoDto model, string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 

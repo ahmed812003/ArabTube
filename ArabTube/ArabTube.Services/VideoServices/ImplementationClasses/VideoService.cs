@@ -12,14 +12,12 @@ namespace ArabTube.Services.VideoServices.ImplementationClasses
     {
         private readonly IConfiguration _configuration;
         private readonly string _tempPath;
-        private readonly IHostingEnvironment _host;
         private readonly Engine _ffmpegEngine;
-        public VideoService(IConfiguration configuration, IHostingEnvironment host)
+        public VideoService(IConfiguration configuration)
         {
             this._configuration = configuration;
-            this._host = host;
-            this._tempPath = Path.Combine(_host.WebRootPath, "Videos");
-            this._ffmpegEngine = new Engine(_configuration["FFMPEG:EnginePath"]);
+            this._tempPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Videos");
+            this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
         }
 
         public async Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model)
@@ -30,12 +28,12 @@ namespace ArabTube.Services.VideoServices.ImplementationClasses
                 await model.Video.CopyToAsync(stream);
             }
 
-            var paths = await ProcessVideoQualityAsync(filePath , model.Title , model.Username);
+            var paths = await ProcessVideoQualityAsync(filePath, model.Title, model.Username);
             File.Delete(filePath);
             return paths;
         }
 
-        private async Task<IEnumerable<VideoQuality>> ProcessVideoQualityAsync(string filePath , string title , string username)
+        private async Task<IEnumerable<VideoQuality>> ProcessVideoQualityAsync(string filePath, string title, string username)
         {
             var inputFile = new InputFile(filePath);
             (int width, int height)[] resolutions = new (int, int)[]
@@ -59,16 +57,16 @@ namespace ArabTube.Services.VideoServices.ImplementationClasses
                     CustomHeight = resolution.height,
                     CustomWidth = resolution.width
                 }, default).ConfigureAwait(false);
-                
+
                 var videoQuality = new VideoQuality
                 {
                     BlobName = $"{title}-{resolution.height}",
-                    Path = outputFilePath, 
+                    Path = outputFilePath,
                     ContentType = "video/mp4",
                     ContainerName = username
                 };
                 videoQualities.Add(videoQuality);
-                
+
             }
 
             return videoQualities;

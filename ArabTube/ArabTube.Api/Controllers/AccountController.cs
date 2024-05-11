@@ -29,7 +29,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpGet("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail ([FromQuery]EmailConfirmationDto model)
+        public async Task<IActionResult> ConfirmEmail([FromQuery] EmailConfirmationDto model)
         {
             var result = await _authService.EmailConfirmationAsync(model.UserId, model.Code);
 
@@ -42,7 +42,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register (RegisterDto model)
+        public async Task<IActionResult> Register(RegisterDto model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,7 +61,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login (LoginDto model)
+        public async Task<IActionResult> Login(LoginDto model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -75,16 +75,16 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("Logout")]
-        public async Task<IActionResult> Logout ()
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             return Ok("You Logout Succesfully");
         }
 
         [HttpPost("ResendEmailConfirmation")]
-        public async Task<IActionResult> ResendEmailConfirmation (ResendEmailConfirmationDto model)
+        public async Task<IActionResult> ResendEmailConfirmation(ResendEmailConfirmationDto model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             if (await _userManager.FindByEmailAsync(model.Email) == null)
@@ -100,7 +100,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("ForgetPassword")]
-        public async Task<IActionResult> ForgetPassword (ForgetPasswordDto model)
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordDto model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -132,7 +132,7 @@ namespace ArabTube.Api.Controllers
             await _emailSender.SendEmailAsync(model.Email, "Reset Password",
                 $"Code To Reset Password {code}.");
 
-            return Ok("Check Your Email To Reset Password"); 
+            return Ok("Check Your Email To Reset Password");
         }
 
         [HttpPost("ResetPassword")]
