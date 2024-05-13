@@ -58,9 +58,18 @@ namespace ArabTube.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(string videoId)
         {
-            await _unitOfWork.WatchedVideo.DeleteWatchedVideoAsync(videoId);
-            await _unitOfWork.Complete();
-            return Ok("Video Removed Succesfully");    
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    await _unitOfWork.WatchedVideo.DeleteWatchedVideoAsync(videoId , user.Id);
+                    await _unitOfWork.Complete();
+                    return Ok("Video Removed Succesfully");
+                }
+            }
+            return Ok();    
         }
 
     }

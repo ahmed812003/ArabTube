@@ -13,6 +13,6 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
         Task<IEnumerable<WatchedVideo>?> GetWatchedVideosAsync(string userId);
         Task<bool> AddWatchedVideoToHistoryAsync(string userId, string videoId);
 
-        Task<bool> DeleteWatchedVideoAsync(string videoId);
+        Task<bool> DeleteWatchedVideoAsync(string videoId , string userId);
     }
 }

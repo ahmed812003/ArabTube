@@ -17,6 +17,8 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public IAppUserConnectionRepository AppUserConnection { get; }
 
+        public IPlaylistRepository Playlist { get; }
+
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -25,6 +27,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             Video = new VideoRepository(_context);
             WatchedVideo = new WatchedVideoRepository(_context);
             AppUserConnection = new AppUserConnectionRepository(_context);
+            Playlist = new PlaylistRepository(_context);
         }
 
         public void Dispose()

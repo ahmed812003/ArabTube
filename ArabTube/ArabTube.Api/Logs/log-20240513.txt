@@ -763,3 +763,31 @@ WHERE [s].[FollowerId] = @__id_0
 2024-05-13 17:55:35.340 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
 2024-05-13 17:55:35.340 +03:00 [INF] HTTP GET /api/Subscriptions responded 200 in 44.1235 ms
 2024-05-13 17:55:35.341 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Subscriptions - 200 null application/json; charset=utf-8 46.3063ms
+2024-05-13 23:04:53.458 +03:00 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-13 23:04:53.660 +03:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-13 23:04:53.665 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-13 23:04:53.666 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-13 23:04:53.716 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-05-13 23:04:53.755 +03:00 [INF] Applying migration '20240513200342_AddingPlaylistTabel'.
+2024-05-13 23:04:53.999 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Playlists] (
+    [Id] nvarchar(450) NOT NULL,
+    [Title] nvarchar(max) NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [IsPrivate] bit NOT NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_Playlists] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Playlists_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);
+2024-05-13 23:04:54.002 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Playlists_UserId] ON [Playlists] ([UserId]);
+2024-05-13 23:04:54.007 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240513200342_AddingPlaylistTabel', N'8.0.3');

@@ -38,9 +38,9 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return true;
         }
 
-        public async Task<bool> DeleteWatchedVideoAsync(string videoId)
+        public async Task<bool> DeleteWatchedVideoAsync(string videoId , string userId)
         {
-            var entity = await _dbSet.FirstOrDefaultAsync(wv => wv.VideoId == videoId);
+            var entity = await _dbSet.FirstOrDefaultAsync(wv => wv.VideoId == videoId && wv.UserId == userId);
             if(entity != null)
             {
                 _dbSet.Remove(entity);

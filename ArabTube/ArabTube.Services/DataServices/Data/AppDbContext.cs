@@ -56,11 +56,17 @@ namespace ArabTube.Services.DataServices.Data
                 .HasForeignKey(auc => auc.FollowingId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<AppUser>()
+                .HasMany(ap => ap.Playlists)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId);
+
         }
 
 
         public DbSet<Video> Videos { get; set; }
         public DbSet<AppUserConnection> Subscribers { get; set; }
         public DbSet<WatchedVideo> WatchedVideos { get; set; }
+        public DbSet<Playlist> Playlists { get; set; }
     }
 }

@@ -127,6 +127,70 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "Create",
+    "RelativePath": "api/Playlists",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.CreatePlaylistDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "Update",
+    "RelativePath": "api/Playlists",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.UpdatePlaylistDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "Delete",
+    "RelativePath": "api/Playlists/Delete/{playlistId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "Get",
+    "RelativePath": "api/Playlists/Get/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
     "Method": "Following",
     "RelativePath": "api/Subscriptions",
@@ -139,7 +203,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
     "Method": "Subscribe",
-    "RelativePath": "api/Subscriptions/Subscribe/{id}",
+    "RelativePath": "api/Subscriptions/Subscribe/{ownerId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -147,11 +211,6 @@
       {
         "Name": "ownerId",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],
@@ -160,7 +219,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
     "Method": "UnScbscribe",
-    "RelativePath": "api/Subscriptions/UnSubscribe/{id}",
+    "RelativePath": "api/Subscriptions/UnSubscribe/{ownerId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -168,11 +227,6 @@
       {
         "Name": "ownerId",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],

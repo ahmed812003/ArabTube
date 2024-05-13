@@ -9,6 +9,8 @@ using ArabTube.Entities.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
+using ArabTube.Entities.Enums;
+using ArabTube.Services.DataServices.Repositories.Interfaces;
 
 namespace ArabTube.Api.Controllers
 {
@@ -20,12 +22,14 @@ namespace ArabTube.Api.Controllers
         private readonly IAuthService _authService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AccountController(IAuthService _authService, UserManager<AppUser> userManager, IEmailSender emailSender)
+        public AccountController(IAuthService _authService, UserManager<AppUser> userManager, IEmailSender emailSender, IUnitOfWork unitOfWork)
         {
             this._authService = _authService;
             this._userManager = userManager;
             this._emailSender = emailSender;
+            this._unitOfWork = unitOfWork;
         }
 
         [HttpGet("ConfirmEmail")]
@@ -36,6 +40,18 @@ namespace ArabTube.Api.Controllers
             if (!result.IsSuccesed)
             {
                 return BadRequest(result.Message);
+            }
+
+            var playlistNames = PlaylistDefaultNames.PlaylistNames;
+            foreach (var playlistName in playlistNames)
+            {
+                var entity = new Playlist
+                {
+                    Title = playlistName,
+                    UserId = model.UserId
+                };
+                await _unitOfWork.Playlist.AddAsync(entity);
+                await _unitOfWork.Complete();
             }
 
             return Ok(result.Message);

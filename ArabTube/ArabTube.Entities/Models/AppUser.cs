@@ -17,6 +17,9 @@ namespace ArabTube.Entities.Models
             Videos = new List<Video>();
             History = new List<WatchedVideo>();
             WatchedVideos = new List<Video>();
+            Followers = new List<AppUserConnection>();
+            Following = new List<AppUserConnection>();
+            Playlists = new List<Playlist>();
         }
 
         [Required, MaxLength(250)]
@@ -36,8 +39,9 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<Video> WatchedVideos { get; set; }
         public virtual ICollection<WatchedVideo> History { get; set; }
 
-
         public virtual ICollection<AppUserConnection> Followers { get; set; } 
         public virtual ICollection<AppUserConnection> Following { get; set; } 
+
+        public virtual ICollection<Playlist> Playlists { get; set; }
     }
 }

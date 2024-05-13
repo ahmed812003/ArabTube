@@ -118,6 +118,33 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("Subscribers");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Playlists");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.Property<string>("Id")
@@ -341,6 +368,17 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Following");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "User")
+                        .WithMany("Playlists")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.AppUser", "AppUser")
@@ -429,6 +467,8 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Following");
 
                     b.Navigation("History");
+
+                    b.Navigation("Playlists");
 
                     b.Navigation("Videos");
                 });
