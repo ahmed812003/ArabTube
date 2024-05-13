@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,17 +22,45 @@ namespace ArabTube.Services.DataServices.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<AppUser>().HasMany(ap => ap.Videos).WithOne(c => c.AppUser).HasForeignKey(c => c.UserId);
+            builder.Entity<AppUser>()
+                .HasMany(ap => ap.Videos)
+                .WithOne(c => c.AppUser)
+                .HasForeignKey(c => c.UserId);
 
 
-            builder.Entity<AppUser>().HasMany(ap => ap.WatchedVideos).WithMany(v => v.Viewers).UsingEntity<WatchedVideo>();
-            builder.Entity<WatchedVideo>().HasOne(wv => wv.User).WithMany(ap => ap.History);
-            builder.Entity<WatchedVideo>().HasOne(wv => wv.Video).WithMany(v => v.History);
+            builder.Entity<AppUser>()
+                .HasMany(ap => ap.WatchedVideos)
+                .WithMany(v => v.Viewers)
+                .UsingEntity<WatchedVideo>();
+            
+            builder.Entity<WatchedVideo>()
+                .HasOne(wv => wv.User)
+                .WithMany(ap => ap.History);
+            
+            builder.Entity<WatchedVideo>()
+                .HasOne(wv => wv.Video)
+                .WithMany(v => v.History);
+
+            builder.Entity<AppUserConnection>()
+            .HasKey(auc => new { auc.FollowerId, auc.FollowingId });
+
+            builder.Entity<AppUserConnection>()
+                .HasOne(auc => auc.Follower)
+                .WithMany(au => au.Following)
+                .HasForeignKey(auc => auc.FollowerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<AppUserConnection>()
+                .HasOne(auc => auc.Following)
+                .WithMany(au => au.Followers)
+                .HasForeignKey(auc => auc.FollowingId)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
 
-        public DbSet<Video> Videos { get; set; }
 
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<AppUserConnection> Subscribers { get; set; }
         public DbSet<WatchedVideo> WatchedVideos { get; set; }
     }
 }

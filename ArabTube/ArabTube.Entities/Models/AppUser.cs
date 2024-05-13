@@ -37,6 +37,7 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<WatchedVideo> History { get; set; }
 
 
-
+        public virtual ICollection<AppUserConnection> Followers { get; set; } 
+        public virtual ICollection<AppUserConnection> Following { get; set; } 
     }
 }

@@ -103,6 +103,21 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.AppUserConnection", b =>
+                {
+                    b.Property<string>("FollowerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FollowingId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("FollowerId", "FollowingId");
+
+                    b.HasIndex("FollowingId");
+
+                    b.ToTable("Subscribers");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.Property<string>("Id")
@@ -307,6 +322,25 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.AppUserConnection", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "Follower")
+                        .WithMany("Following")
+                        .HasForeignKey("FollowerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "Following")
+                        .WithMany("Followers")
+                        .HasForeignKey("FollowingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Follower");
+
+                    b.Navigation("Following");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.AppUser", "AppUser")
@@ -390,6 +424,10 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.AppUser", b =>
                 {
+                    b.Navigation("Followers");
+
+                    b.Navigation("Following");
+
                     b.Navigation("History");
 
                     b.Navigation("Videos");

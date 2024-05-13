@@ -127,6 +127,58 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
+    "Method": "Following",
+    "RelativePath": "api/Subscriptions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
+    "Method": "Subscribe",
+    "RelativePath": "api/Subscriptions/Subscribe/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
+    "Method": "UnScbscribe",
+    "RelativePath": "api/Subscriptions/UnSubscribe/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "DislikeVideo",
     "RelativePath": "api/Videos/Dislike/{id}",
