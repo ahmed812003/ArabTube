@@ -13,12 +13,15 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public IVideoRepository Video { get; }
 
+        public IWatchedVideoRepository WatchedVideo { get; }
+
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
             Video = new VideoRepository(_context);
+            WatchedVideo = new WatchedVideoRepository(_context);
         }
 
         public void Dispose()

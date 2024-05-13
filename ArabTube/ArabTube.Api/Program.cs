@@ -30,7 +30,7 @@ namespace ArabTube.Api
                 .CreateLogger();
 
             builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(
-                  builder.Configuration.GetConnectionString("ServerConnection")
+                  builder.Configuration.GetConnectionString("DefultConnection")
                 ));
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

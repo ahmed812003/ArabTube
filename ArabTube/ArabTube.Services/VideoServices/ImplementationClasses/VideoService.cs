@@ -17,7 +17,7 @@ namespace ArabTube.Services.VideoServices.ImplementationClasses
         {
             this._configuration = configuration;
             this._tempPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Videos");
-            this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
+            //this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
         }
 
         public async Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model)

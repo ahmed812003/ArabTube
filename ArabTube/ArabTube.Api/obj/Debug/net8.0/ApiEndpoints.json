@@ -45,9 +45,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.ForgetPasswordDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -103,9 +103,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.ResendEmailConfirmationDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -274,6 +274,32 @@
         "Name": "id",
         "Type": "System.String",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.WatchedVideosController",
+    "Method": "WatchedVideos",
+    "RelativePath": "api/WatchedVideos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.WatchedVideosController",
+    "Method": "Delete",
+    "RelativePath": "api/WatchedVideos",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

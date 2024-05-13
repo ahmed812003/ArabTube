@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IVideoRepository Video { get; }
-
+        IWatchedVideoRepository WatchedVideo { get; }
         Task Complete();
     }
 }

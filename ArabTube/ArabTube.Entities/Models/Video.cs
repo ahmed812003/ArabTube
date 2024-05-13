@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,19 +12,20 @@ namespace ArabTube.Entities.Models
     {
         public Video()
         {
-            AppUser = new AppUser();
+            Viewers = new List<AppUser>();
+            History = new List<WatchedVideo>();
         }
 
         [Key]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        [Required , MaxLength(256)]
+        [Required, MaxLength(256)]
         public string Title { get; set; } = string.Empty;
 
-        [Required , MaxLength(2000)]
+        [Required, MaxLength(2000)]
         public string Description { get; set; } = string.Empty;
 
-        [Required , MaxLength(500)]
+        [Required, MaxLength(500)]
         public string VideoUri { get; set; } = string.Empty;
 
         public int Likes { get; set; }
@@ -45,6 +47,9 @@ namespace ArabTube.Entities.Models
         public string UserId { get; set; } = string.Empty;
 
         public virtual AppUser AppUser { get; set; }
+
+        public virtual ICollection<AppUser> Viewers { get; set; }
+        public virtual ICollection<WatchedVideo> History { get; set; }
 
     }
 }

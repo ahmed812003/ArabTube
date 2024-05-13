@@ -109,9 +109,9 @@ namespace ArabTube.Api.Controllers
                 Title = model.Title
             };
 
-            var encodedVideos = await _videoService.ProcessVideoAsync(processingVideo);
+            /*var encodedVideos = await _videoService.ProcessVideoAsync(processingVideo);
 
-            await _cloudService.UploadToCloudAsync(encodedVideos);
+            await _cloudService.UploadToCloudAsync(encodedVideos);*/
 
             using var stream = new MemoryStream();
             await model.Thumbnail.CopyToAsync(stream);
@@ -123,13 +123,12 @@ namespace ArabTube.Api.Controllers
                 Title = model.Title,
                 Description = model.Description,
                 Thumbnail = stream.ToArray(),
-                UserId = user.Id,
-                VideoUri = $"{uri}{userName}/{model.Title}-"
+                UserId = user.Id
             };
+            video.VideoUri = $"{uri}{userName}/{video.Id}-";
 
             await _unitOfWork.Video.AddAsync(video);
             await _unitOfWork.Complete();
-
 
             return Ok("Video Uploaded Sucessfully");
         }
@@ -193,6 +192,16 @@ namespace ArabTube.Api.Controllers
             }
 
             video.Views += 1;
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var isWatchedVideoAdded = await _unitOfWork.WatchedVideo.AddWatchedVideoToHistoryAsync(user.Id, id);
+                }
+            }
+
             await _unitOfWork.Complete();
 
             return Ok($"Video views = {video.Views}");
@@ -218,10 +227,6 @@ namespace ArabTube.Api.Controllers
                 await model.Thumbnail.CopyToAsync(stream);
                 video.Thumbnail = stream.ToArray();
             }
-
-            /*
-             think with awad about update uri and videos name in cloud or not
-            */
 
             await _unitOfWork.Complete();
             return Ok("Video Updated Sucessfully");
