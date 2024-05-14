@@ -118,6 +118,54 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("Subscribers");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisLikes")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsUpdated")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mention")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentCommentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VideoId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentCommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VideoId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.Property<string>("Id")
@@ -383,6 +431,33 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Following");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.Comment", "ParentComment")
+                        .WithMany("Childrens")
+                        .HasForeignKey("ParentCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.Video", "Video")
+                        .WithMany("Comments")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("ParentComment");
+
+                    b.Navigation("Video");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.AppUser", "User")
@@ -496,6 +571,8 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.AppUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Followers");
 
                     b.Navigation("Following");
@@ -507,6 +584,11 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Videos");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
+                {
+                    b.Navigation("Childrens");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.Navigation("PlaylistVideos");
@@ -514,6 +596,8 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("History");
 
                     b.Navigation("PlaylistVideos");

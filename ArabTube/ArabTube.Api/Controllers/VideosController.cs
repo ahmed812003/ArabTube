@@ -232,6 +232,18 @@ namespace ArabTube.Api.Controllers
             return Ok("Video Updated Sucessfully");
         }
 
-
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteVideo(string id)
+        {
+            var video = await _unitOfWork.Video.FindByIdAsync(id);
+            if(video == null)
+            {
+                return NotFound();
+            }
+            await _unitOfWork.Comment.DeleteVideoCommentsAsync(id);
+            await _unitOfWork.Video.DeleteAsync(id);
+            await _unitOfWork.Complete();
+            return Ok();
+        }
     }
 }

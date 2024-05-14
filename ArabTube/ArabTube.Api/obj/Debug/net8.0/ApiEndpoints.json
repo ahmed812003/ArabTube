@@ -127,6 +127,118 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "AddComment",
+    "RelativePath": "api/Comments/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.CommentDTOs.AddCommentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "GetComment",
+    "RelativePath": "api/Comments/Comment/{commentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "GetVideoComments",
+    "RelativePath": "api/Comments/Comments/{videoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "Delete",
+    "RelativePath": "api/Comments/Delete/{commentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "DislikeComment",
+    "RelativePath": "api/Comments/Dislike/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "LikeComment",
+    "RelativePath": "api/Comments/Like/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "UpdateComment",
+    "RelativePath": "api/Comments/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.CommentDTOs.UpdateCommentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
     "Method": "AddVideoToPlaylist",
     "RelativePath": "api/Playlists/AddVideo",
@@ -274,6 +386,22 @@
     "Parameters": [
       {
         "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "DeleteVideo",
+    "RelativePath": "api/Videos/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
         "Type": "System.String",
         "IsRequired": true
       }

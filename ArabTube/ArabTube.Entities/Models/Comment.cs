@@ -16,9 +16,7 @@ namespace ArabTube.Entities.Models
     {
         public Comment()
         {
-            AppUser = new AppUser();  
-            Video = new Video();
-            Childrens = new HashSet<Comment>();
+            Childrens = new List<Comment>();
         }
 
         [Key]
@@ -30,20 +28,24 @@ namespace ArabTube.Entities.Models
         [Required]
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
+        public string Mention { get; set; } = string.Empty;
+
         public bool IsUpdated { get; set; }
+
+        public int Likes { get; set; }
+
+        public int DisLikes { get; set; }
 
         [Required]
         public string UserId { get; set; } = string.Empty;
+        public virtual AppUser AppUser { get; set; }
 
         [Required]
         public string VideoId { get; set; } = string.Empty;
+        public virtual Video Video { get; set; }
 
         [Required]
         public string? ParentCommentId { get; set; } = string.Empty;
-
-        public virtual AppUser AppUser { get; set; }
-
-        public virtual Video Video { get; set; }
 
         public virtual Comment ParentComment { get; set; }
 

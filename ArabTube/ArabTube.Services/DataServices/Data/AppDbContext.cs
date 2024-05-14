@@ -74,6 +74,21 @@ namespace ArabTube.Services.DataServices.Data
                 .HasOne(plv => plv.Playlist)
                 .WithMany(v => v.PlaylistVideos);
 
+            builder.Entity<AppUser>()
+                .HasMany(ap => ap.Comments)
+                .WithOne(c => c.AppUser)
+                .HasForeignKey(c => c.UserId);
+
+            builder.Entity<Video>()
+                .HasMany(v => v.Comments)
+                .WithOne(c => c.Video)
+                .HasForeignKey(c => c.VideoId);
+
+            builder.Entity<Comment>()
+            .HasOne(c => c.ParentComment)
+            .WithMany(c => c.Childrens)
+            .HasForeignKey(c => c.ParentCommentId);
+            
         }
 
 
@@ -82,5 +97,6 @@ namespace ArabTube.Services.DataServices.Data
         public DbSet<WatchedVideo> WatchedVideos { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<PlaylistVideo> PlaylistVideos { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

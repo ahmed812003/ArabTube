@@ -151,9 +151,11 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    
                     var result = await _unitOfWork.Playlist.DeletePlaylistAsync(playlistId , user.Id);
                     if (!result)
                         return Unauthorized();
+                    await _unitOfWork.PlaylistVideo.DeleteVideosPlaylistAsync(playlistId);
                     await _unitOfWork.Complete();
                     return Ok("Playlist Deleted Successfully");
                 }

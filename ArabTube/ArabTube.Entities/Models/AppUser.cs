@@ -20,6 +20,7 @@ namespace ArabTube.Entities.Models
             Followers = new List<AppUserConnection>();
             Following = new List<AppUserConnection>();
             Playlists = new List<Playlist>();
+            Comments = new List<Comment>();
         }
 
         [Required, MaxLength(250)]
@@ -43,5 +44,7 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<AppUserConnection> Following { get; set; } 
 
         public virtual ICollection<Playlist> Playlists { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
