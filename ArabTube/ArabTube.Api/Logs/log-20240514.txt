@@ -876,3 +876,17 @@ WHERE [p].[PlaylistId] = @__playlistId_0
 2024-05-14 03:09:25.578 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api)'
 2024-05-14 03:09:25.578 +03:00 [INF] HTTP GET /api/Playlists/GetVideos/a108f49f-833d-45d6-8155-31b836fab414 responded 200 in 16.8168 ms
 2024-05-14 03:09:25.578 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Playlists/GetVideos/a108f49f-833d-45d6-8155-31b836fab414 - 200 null application/json; charset=utf-8 18.1491ms
+2024-05-14 03:13:51.543 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-14 03:13:53.249 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-14 03:13:53.255 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-14 03:13:53.586 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-14 03:13:53.589 +03:00 [INF] Hosting environment: Development
+2024-05-14 03:13:53.589 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-14 03:13:56.779 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-14 03:13:58.917 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 2182.8785ms
+2024-05-14 03:13:59.618 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-14 03:13:59.619 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-14 03:13:59.670 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 53.1843ms
+2024-05-14 03:13:59.991 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 373.0056ms
+2024-05-14 03:14:01.880 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-14 03:14:02.980 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1100.3726ms

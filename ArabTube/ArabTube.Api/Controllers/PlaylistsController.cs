@@ -169,7 +169,7 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            await _unitOfWork.PlaylistVideo.DeleteVideosPlaylistAsync(model.PlaylistID);
             await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(model.VideoID, model.PlaylistID);
             await _unitOfWork.Complete();
             return Ok("Video Removed Succesfully");
