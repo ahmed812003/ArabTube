@@ -14,6 +14,8 @@ namespace ArabTube.Entities.Models
         {
             Viewers = new List<AppUser>();
             History = new List<WatchedVideo>();
+            Playlists = new List<Playlist>();
+            PlaylistVideos = new List<PlaylistVideo>();
         }
 
         [Key]
@@ -50,6 +52,10 @@ namespace ArabTube.Entities.Models
 
         public virtual ICollection<AppUser> Viewers { get; set; }
         public virtual ICollection<WatchedVideo> History { get; set; }
+
+
+        public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; }
+        public virtual ICollection<Playlist> Playlists { get; set; }
 
     }
 }

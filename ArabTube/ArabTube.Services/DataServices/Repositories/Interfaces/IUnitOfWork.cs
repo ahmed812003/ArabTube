@@ -13,6 +13,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
         IWatchedVideoRepository WatchedVideo { get; }
         IAppUserConnectionRepository AppUserConnection { get; }
         IPlaylistRepository Playlist { get; }
+        IPlaylistVideoRepository PlaylistVideo { get; }
         Task Complete();
     }
 }

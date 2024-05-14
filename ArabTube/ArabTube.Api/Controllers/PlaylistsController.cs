@@ -1,11 +1,7 @@
 ﻿using ArabTube.Entities.DtoModels.PlaylistDTOs;
-using ArabTube.Entities.DtoModels.UserConnectionsDto;
 using ArabTube.Entities.Models;
-using ArabTube.Services.CloudServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.VideoServices.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -27,7 +23,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpGet("Get/{userId}")]
-        public async Task<IActionResult> Get(string userId)
+        public async Task<IActionResult> GetPlaylists(string userId)
         {
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
@@ -52,8 +48,29 @@ namespace ArabTube.Api.Controllers
             return Ok();
         }
 
+        [HttpGet("GetVideos/{playlistId}")]
+        public async Task<IActionResult> GetPlaylistVideos(string playlistId)
+        {
+            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(playlistId);
+            if (playlistVideos != null)
+            {
+                var videos = playlistVideos.Select(pv => new PlaylistVideoDto
+                {
+                    VideoId = pv.VideoId,
+                    Title = pv.Video.Title,
+                    Views = pv.Video.Views,
+                    CreatedTime =pv.Video.CreatedOn ,
+                    Username = pv.Video.AppUser.UserName,
+                    Thumbnail = pv.Video.Thumbnail,
+
+                });
+                return Ok(videos);
+            }
+            return Ok();
+        }
+
         [Authorize]
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<IActionResult> Create(CreatePlaylistDto model)
         {
             if (!ModelState.IsValid)
@@ -86,7 +103,21 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPut]
+        [HttpPost("AddVideo")]
+        public async Task<IActionResult> AddVideoToPlaylist(AddPlaylistVideoDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(model.VideoID, model.PlaylistID);
+            await _unitOfWork.Complete();
+            return Ok("Video Added Succesfully");
+        }
+
+        [Authorize]
+        [HttpPut("Update")]
         public async Task<IActionResult> Update(UpdatePlaylistDto model)
         {
             if (!ModelState.IsValid)
@@ -129,6 +160,20 @@ namespace ArabTube.Api.Controllers
             }
             return Ok();
         }
-    
+
+        [Authorize]
+        [HttpDelete("RemoveVideo")]
+        public async Task<IActionResult> RemoveideoFromPlaylist(RemovePlaylistVideoDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(model.VideoID, model.PlaylistID);
+            await _unitOfWork.Complete();
+            return Ok("Video Removed Succesfully");
+        }
+
     }
 }

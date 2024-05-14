@@ -128,15 +128,15 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "Create",
-    "RelativePath": "api/Playlists",
+    "Method": "AddVideoToPlaylist",
+    "RelativePath": "api/Playlists/AddVideo",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.CreatePlaylistDto",
+        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.AddPlaylistVideoDto",
         "IsRequired": true
       }
     ],
@@ -144,15 +144,15 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "Update",
-    "RelativePath": "api/Playlists",
-    "HttpMethod": "PUT",
+    "Method": "Create",
+    "RelativePath": "api/Playlists/Create",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "model",
-        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.UpdatePlaylistDto",
+        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.CreatePlaylistDto",
         "IsRequired": true
       }
     ],
@@ -176,7 +176,7 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "Get",
+    "Method": "GetPlaylists",
     "RelativePath": "api/Playlists/Get/{userId}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -185,6 +185,54 @@
       {
         "Name": "userId",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "GetPlaylistVideos",
+    "RelativePath": "api/Playlists/GetVideos/{playlistId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "RemoveideoFromPlaylist",
+    "RelativePath": "api/Playlists/RemoveVideo",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.RemovePlaylistVideoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "Update",
+    "RelativePath": "api/Playlists/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.UpdatePlaylistDto",
         "IsRequired": true
       }
     ],

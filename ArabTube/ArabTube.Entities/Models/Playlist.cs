@@ -8,6 +8,12 @@ namespace ArabTube.Entities.Models
 {
     public class Playlist
     {
+        public Playlist()
+        {
+            Videos = new List<Video>();
+            PlaylistVideos = new List<PlaylistVideo>();
+        }
+
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public string Title { get; set; } = string.Empty;
@@ -15,9 +21,13 @@ namespace ArabTube.Entities.Models
         public string Description { get; set; } = string.Empty;
 
         public bool IsPrivate { get; set; } = true;
-        
+
         public string UserId { get; set; }
 
-        public virtual AppUser User {get; set;}
+        public virtual AppUser User { get; set; }
+
+        public virtual ICollection<Video> Videos { get; set; }
+        public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; }
+
     }
 }

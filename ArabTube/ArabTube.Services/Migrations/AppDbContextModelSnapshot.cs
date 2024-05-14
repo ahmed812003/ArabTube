@@ -145,6 +145,21 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("Playlists");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.PlaylistVideo", b =>
+                {
+                    b.Property<string>("PlaylistId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VideoId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PlaylistId", "VideoId");
+
+                    b.HasIndex("VideoId");
+
+                    b.ToTable("PlaylistVideos");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.Property<string>("Id")
@@ -379,6 +394,25 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.PlaylistVideo", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.Playlist", "Playlist")
+                        .WithMany("PlaylistVideos")
+                        .HasForeignKey("PlaylistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.Video", "Video")
+                        .WithMany("PlaylistVideos")
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Playlist");
+
+                    b.Navigation("Video");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.AppUser", "AppUser")
@@ -473,9 +507,16 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Videos");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
+                {
+                    b.Navigation("PlaylistVideos");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
                 {
                     b.Navigation("History");
+
+                    b.Navigation("PlaylistVideos");
                 });
 #pragma warning restore 612, 618
         }
