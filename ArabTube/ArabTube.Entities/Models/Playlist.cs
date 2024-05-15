@@ -22,6 +22,8 @@ namespace ArabTube.Entities.Models
 
         public bool IsPrivate { get; set; } = true;
 
+        public bool IsDefult { get; set; } = false;
+
         public string UserId { get; set; }
 
         public virtual AppUser User { get; set; }

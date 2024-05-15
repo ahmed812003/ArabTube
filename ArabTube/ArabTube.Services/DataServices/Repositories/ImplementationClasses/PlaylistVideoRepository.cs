@@ -25,7 +25,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public async Task AddVideoToPlayListAsync(string videoId, string playlistId)
         {
-            var entity = await _dbSet.FindAsync(videoId, playlistId);
+            var entity = await _dbSet.FindAsync(playlistId , videoId);
 
             if(entity == null)
             {

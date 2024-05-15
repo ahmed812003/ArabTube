@@ -8,6 +8,7 @@ namespace ArabTube.Entities.DtoModels.PlaylistDTOs
 {
     public class GetPlaylistDto
     {
+        public string Id { get; set; }
         public string Title { get; set; }
 
         public bool IsPrivate { get; set; }

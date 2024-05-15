@@ -40,5 +40,11 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             _dbSet.Remove(entity);
             return true;
         }
+
+        public async Task<string> FindPlaylistByNameAsync(string title, bool IsDefult)
+        {
+            var playlist = await _dbSet.FirstOrDefaultAsync(p => p.Title == title && p.IsDefult == IsDefult);
+            return playlist.Id;
+        }
     }
 }

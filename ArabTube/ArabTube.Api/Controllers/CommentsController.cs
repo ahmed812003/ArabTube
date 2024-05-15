@@ -26,6 +26,12 @@ namespace ArabTube.Api.Controllers
         [HttpGet("Comments/{videoId}")]
         public async Task<IActionResult> GetVideoComments(string videoId)
         {
+            var video = await _unitOfWork.Video.FindByIdAsync(videoId);
+            if(video == null)
+            {
+                return NotFound();
+            }
+
             var comments = await _unitOfWork.Comment.GetVideoCommentsAsync(videoId);
             var commentsDto = comments.Select(c => new GetCommentDto
             {

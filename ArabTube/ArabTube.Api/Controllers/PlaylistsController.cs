@@ -34,6 +34,7 @@ namespace ArabTube.Api.Controllers
                     var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(userId, userId == user.Id);
                     var playlistsDto = playlists.Select(p => new GetPlaylistDto
                     {
+                        Id = p.Id,
                         Title = p.Title,
                         IsPrivate = p.IsPrivate
                     });
@@ -171,7 +172,6 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await _unitOfWork.PlaylistVideo.DeleteVideosPlaylistAsync(model.PlaylistID);
             await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(model.VideoID, model.PlaylistID);
             await _unitOfWork.Complete();
             return Ok("Video Removed Succesfully");

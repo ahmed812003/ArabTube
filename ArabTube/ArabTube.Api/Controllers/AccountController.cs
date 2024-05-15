@@ -48,7 +48,8 @@ namespace ArabTube.Api.Controllers
                 var entity = new Playlist
                 {
                     Title = playlistName,
-                    UserId = model.UserId
+                    UserId = model.UserId,
+                    IsDefult = true
                 };
                 await _unitOfWork.Playlist.AddAsync(entity);
                 await _unitOfWork.Complete();

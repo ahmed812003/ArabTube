@@ -2451,3 +2451,15 @@ VALUES (N'20240514125139_updateCommentTabel3', N'8.0.3');
 2024-05-14 16:15:16.637 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 304.5853ms
 2024-05-14 16:15:18.536 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
 2024-05-14 16:15:19.539 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1003.5641ms
+2024-05-14 23:59:54.490 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-14 23:59:55.487 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-14 23:59:55.489 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-14 23:59:55.587 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-14 23:59:55.588 +03:00 [INF] Hosting environment: Development
+2024-05-14 23:59:55.588 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-14 23:59:56.707 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-14 23:59:57.638 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 944.172ms
+2024-05-14 23:59:57.791 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-14 23:59:57.814 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 22.8611ms
+2024-05-14 23:59:57.898 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-14 23:59:58.106 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 208.4254ms

@@ -144,6 +144,8 @@ namespace ArabTube.Api.Controllers
             }
 
             video.Likes += 1;
+            var playlistId = await _unitOfWork.Playlist.FindPlaylistByNameAsync(PlaylistDefaultNames.PlaylistNames[0], true);
+            await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(id, playlistId);
             await _unitOfWork.Complete();
 
             return Ok($"Video Likes = {video.Likes}");
