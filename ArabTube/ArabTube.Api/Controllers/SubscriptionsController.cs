@@ -4,6 +4,7 @@ using ArabTube.Entities.Models;
 using ArabTube.Services.CloudServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using ArabTube.Services.VideoServices.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.Security.Claims;
 
 namespace ArabTube.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SubscriptionsController : ControllerBase

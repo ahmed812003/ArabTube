@@ -142,6 +142,7 @@ namespace ArabTube.Api.Controllers
             return Unauthorized();
         }
 
+        [Authorize]
         [HttpPost("Like/{id}")]
         public async Task<IActionResult> LikeComment(string id)
         {
@@ -158,6 +159,7 @@ namespace ArabTube.Api.Controllers
             return Ok($"Comment Likes = {comment.Likes}");
         }
 
+        [Authorize]
         [HttpPost("Dislike/{id}")]
         public async Task<IActionResult> DislikeComment(string id)
         {

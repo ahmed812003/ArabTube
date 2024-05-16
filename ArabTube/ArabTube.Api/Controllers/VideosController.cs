@@ -133,6 +133,7 @@ namespace ArabTube.Api.Controllers
             return Ok("Video Uploaded Sucessfully");
         }
 
+        [Authorize]
         [HttpPost("Like/{id}")]
         public async Task<IActionResult> LikeVideo(string id)
         {
@@ -151,6 +152,7 @@ namespace ArabTube.Api.Controllers
             return Ok($"Video Likes = {video.Likes}");
         }
 
+        [Authorize]
         [HttpPost("Dislike/{id}")]
         public async Task<IActionResult> DislikeVideo(string id)
         {
@@ -167,6 +169,7 @@ namespace ArabTube.Api.Controllers
             return Ok($"Video Dislikes = {video.DisLikes}");
         }
 
+        [Authorize]
         [HttpPost("Flag/{id}")]
         public async Task<IActionResult> FlagVideo(string id)
         {
@@ -183,6 +186,7 @@ namespace ArabTube.Api.Controllers
             return Ok($"Video Flags = {video.Flags}");
         }
 
+        [Authorize]
         [HttpPost("View/{id}")]
         public async Task<IActionResult> ViewVideo(string id)
         {
@@ -209,6 +213,7 @@ namespace ArabTube.Api.Controllers
             return Ok($"Video views = {video.Views}");
         }
 
+        [Authorize]
         [HttpPut("Update/{id}")]
         public async Task<IActionResult> UpdateVideo(UpdatingVideoDto model, string id)
         {
@@ -234,6 +239,7 @@ namespace ArabTube.Api.Controllers
             return Ok("Video Updated Sucessfully");
         }
 
+        [Authorize]
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteVideo(string id)
         {

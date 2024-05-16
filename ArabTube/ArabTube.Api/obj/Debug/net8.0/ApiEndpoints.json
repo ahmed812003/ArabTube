@@ -19,7 +19,7 @@
     "ContainingType": "ArabTube.Api.Controllers.AccountController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/Account/ConfirmEmail",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [

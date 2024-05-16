@@ -1,0 +1,44 @@
+2024-05-16 21:22:18.401 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-16 21:22:21.169 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-16 21:22:21.180 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-16 21:22:21.591 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-16 21:22:21.594 +03:00 [INF] Hosting environment: Development
+2024-05-16 21:22:21.594 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-16 21:22:24.301 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 21:22:26.642 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 2377.1716ms
+2024-05-16 21:22:27.408 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 21:22:27.408 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 21:22:27.500 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 93.2693ms
+2024-05-16 21:22:27.819 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 412.218ms
+2024-05-16 21:22:30.417 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 21:22:31.495 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1078.7595ms
+2024-05-16 21:23:00.677 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/WatchedVideos - null null
+2024-05-16 21:23:02.581 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 21:23:02.703 +03:00 [INF] Route matched with {action = "WatchedVideos", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WatchedVideos() on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 21:23:13.831 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2024-05-16 21:23:13.868 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api) in 11127.6274ms
+2024-05-16 21:23:13.869 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 21:23:13.885 +03:00 [INF] HTTP GET /api/WatchedVideos responded 200 in 13153.5373 ms
+2024-05-16 21:23:13.953 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/WatchedVideos - 200 0 null 13276.4555ms
+2024-05-16 21:25:00.394 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-16 21:25:01.881 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-16 21:25:01.918 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-16 21:25:03.377 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-16 21:25:03.379 +03:00 [INF] Hosting environment: Development
+2024-05-16 21:25:03.380 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-16 21:25:05.173 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 21:25:07.565 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 2445.5114ms
+2024-05-16 21:25:08.324 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 21:25:08.324 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 21:25:08.367 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 43.5313ms
+2024-05-16 21:25:08.637 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 314.3057ms
+2024-05-16 21:25:11.922 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 21:25:12.946 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1025.6546ms
+2024-05-16 21:25:34.454 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Subscriptions - null null
+2024-05-16 21:25:34.912 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 21:25:35.079 +03:00 [INF] Route matched with {action = "Following", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Following() on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 21:25:46.198 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2024-05-16 21:25:46.218 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api) in 11117.7663ms
+2024-05-16 21:25:46.219 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 21:25:46.233 +03:00 [INF] HTTP GET /api/Subscriptions responded 200 in 11705.5897 ms
+2024-05-16 21:25:46.277 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Subscriptions - 200 0 null 11823.3584ms
