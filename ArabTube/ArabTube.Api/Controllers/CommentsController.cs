@@ -104,6 +104,13 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
+            var parentComment = await _unitOfWork.Comment.FindByIdAsync(model.ParentCommentId);
+            if(parentComment == null)
+            {
+                return NotFound();
+            }
+
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
             {
@@ -121,7 +128,7 @@ namespace ArabTube.Api.Controllers
                     if (string.IsNullOrEmpty(model.ParentCommentId))
                         comment.ParentCommentId = comment.Id;
                     else
-                        comment.ParentCommentId = model.ParentCommentId;
+                        comment.ParentCommentId = parentComment.ParentCommentId;
 
                     await _unitOfWork.Comment.AddAsync(comment);
                     await _unitOfWork.Complete();

@@ -32,7 +32,7 @@ namespace ArabTube.Api.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-        [HttpGet("ConfirmEmail")]
+        [HttpPost("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail([FromQuery] EmailConfirmationDto model)
         {
             var result = await _authService.EmailConfirmationAsync(model.UserId, model.Code);

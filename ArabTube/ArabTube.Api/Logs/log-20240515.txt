@@ -2303,3 +2303,122 @@ WHERE [p].[PlaylistId] = @__p_0 AND [p].[VideoId] = @__p_1
 2024-05-15 19:21:40.567 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.AddVideoToPlaylist (ArabTube.Api)'
 2024-05-15 19:21:40.567 +03:00 [INF] HTTP POST /api/Playlists/AddVideo responded 200 in 44.8379 ms
 2024-05-15 19:21:40.567 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Playlists/AddVideo - 200 null text/plain; charset=utf-8 45.6967ms
+2024-05-15 19:26:04.689 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-15 19:26:05.931 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-15 19:26:05.937 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-15 19:26:06.249 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-15 19:26:06.251 +03:00 [INF] Hosting environment: Development
+2024-05-15 19:26:06.251 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-15 19:26:09.957 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-15 19:26:13.472 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 3559.5328ms
+2024-05-15 19:26:14.114 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-15 19:26:14.114 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-15 19:26:14.164 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 50.3701ms
+2024-05-15 19:26:14.556 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 442.7153ms
+2024-05-15 19:26:16.884 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-15 19:26:18.088 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1204.3224ms
+2024-05-15 19:26:58.584 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Login - application/json 65
+2024-05-15 19:26:58.734 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-05-15 19:26:58.799 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ArabTube.Entities.DtoModels.UserDTOs.LoginDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-15 19:27:05.137 +03:00 [INF] Executed DbCommand (157ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-15 19:27:06.025 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-05-15 19:27:06.101 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-05-15 19:27:06.134 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-05-15 19:27:06.227 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.AuthModels.AuthResult'.
+2024-05-15 19:27:06.268 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api) in 7456.397ms
+2024-05-15 19:27:06.270 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-05-15 19:27:06.281 +03:00 [INF] HTTP POST /api/Account/Login responded 200 in 7662.5957 ms
+2024-05-15 19:27:06.314 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Login - 200 null application/json; charset=utf-8 7730.1096ms
+2024-05-15 19:27:37.648 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Playlists/Get/307306e1-524e-46ca-882a-d4bfaaf91a76 - null null
+2024-05-15 19:27:37.841 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylists (ArabTube.Api)'
+2024-05-15 19:27:37.855 +03:00 [INF] Route matched with {action = "GetPlaylists", controller = "Playlists"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPlaylists(System.String) on controller ArabTube.Api.Controllers.PlaylistsController (ArabTube.Api).
+2024-05-15 19:27:38.145 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-15 19:27:38.179 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Description], [p].[IsDefult], [p].[IsPrivate], [p].[Title], [p].[UserId]
+FROM [Playlists] AS [p]
+WHERE [p].[UserId] = @__userId_0
+2024-05-15 19:27:38.327 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.Playlist, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.PlaylistDTOs.GetPlaylistDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-15 19:27:38.337 +03:00 [INF] Executed action ArabTube.Api.Controllers.PlaylistsController.GetPlaylists (ArabTube.Api) in 481.8715ms
+2024-05-15 19:27:38.338 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylists (ArabTube.Api)'
+2024-05-15 19:27:38.338 +03:00 [INF] HTTP GET /api/Playlists/Get/307306e1-524e-46ca-882a-d4bfaaf91a76 responded 200 in 672.6783 ms
+2024-05-15 19:27:38.339 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Playlists/Get/307306e1-524e-46ca-882a-d4bfaaf91a76 - 200 null application/json; charset=utf-8 690.8491ms
+2024-05-15 19:28:13.175 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Playlists/AddVideo - application/json 111
+2024-05-15 19:28:13.217 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.PlaylistsController.AddVideoToPlaylist (ArabTube.Api)'
+2024-05-15 19:28:13.227 +03:00 [INF] Route matched with {action = "AddVideoToPlaylist", controller = "Playlists"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddVideoToPlaylist(ArabTube.Entities.DtoModels.PlaylistDTOs.AddPlaylistVideoDto) on controller ArabTube.Api.Controllers.PlaylistsController (ArabTube.Api).
+2024-05-15 19:28:13.432 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PlaylistId], [p].[VideoId]
+FROM [PlaylistVideos] AS [p]
+WHERE [p].[PlaylistId] = @__p_0 AND [p].[VideoId] = @__p_1
+2024-05-15 19:28:14.028 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [PlaylistVideos] ([PlaylistId], [VideoId])
+VALUES (@p0, @p1);
+2024-05-15 19:28:14.070 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-15 19:28:14.070 +03:00 [INF] Executed action ArabTube.Api.Controllers.PlaylistsController.AddVideoToPlaylist (ArabTube.Api) in 843.1156ms
+2024-05-15 19:28:14.071 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.AddVideoToPlaylist (ArabTube.Api)'
+2024-05-15 19:28:14.071 +03:00 [INF] HTTP POST /api/Playlists/AddVideo responded 200 in 881.0451 ms
+2024-05-15 19:28:14.071 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Playlists/AddVideo - 200 null text/plain; charset=utf-8 896.5792ms
+2024-05-15 19:28:27.687 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Playlists/GetVideos/2f072632-c429-42c7-89ea-8b8fba400467 - null null
+2024-05-15 19:28:27.689 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api)'
+2024-05-15 19:28:27.703 +03:00 [INF] Route matched with {action = "GetPlaylistVideos", controller = "Playlists"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPlaylistVideos(System.String) on controller ArabTube.Api.Controllers.PlaylistsController (ArabTube.Api).
+2024-05-15 19:28:27.810 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__playlistId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PlaylistId], [p].[VideoId], [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [PlaylistVideos] AS [p]
+INNER JOIN [Videos] AS [v] ON [p].[VideoId] = [v].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [p].[PlaylistId] = @__playlistId_0
+2024-05-15 19:28:27.930 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.PlaylistVideo, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.PlaylistDTOs.PlaylistVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-15 19:28:27.973 +03:00 [INF] Executed action ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api) in 269.8538ms
+2024-05-15 19:28:27.973 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api)'
+2024-05-15 19:28:27.973 +03:00 [INF] HTTP GET /api/Playlists/GetVideos/2f072632-c429-42c7-89ea-8b8fba400467 responded 200 in 285.0723 ms
+2024-05-15 19:28:27.974 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Playlists/GetVideos/2f072632-c429-42c7-89ea-8b8fba400467 - 200 null application/json; charset=utf-8 286.8108ms
+2024-05-15 19:28:53.624 +03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7204/api/Playlists/RemoveVideo - application/json 111
+2024-05-15 19:28:53.641 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.PlaylistsController.RemoveideoFromPlaylist (ArabTube.Api)'
+2024-05-15 19:28:53.650 +03:00 [INF] Route matched with {action = "RemoveideoFromPlaylist", controller = "Playlists"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RemoveideoFromPlaylist(ArabTube.Entities.DtoModels.PlaylistDTOs.RemovePlaylistVideoDto) on controller ArabTube.Api.Controllers.PlaylistsController (ArabTube.Api).
+2024-05-15 19:28:53.670 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[PlaylistId], [p].[VideoId]
+FROM [PlaylistVideos] AS [p]
+WHERE [p].[PlaylistId] = @__p_0 AND [p].[VideoId] = @__p_1
+2024-05-15 19:28:53.752 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [PlaylistVideos]
+OUTPUT 1
+WHERE [PlaylistId] = @p0 AND [VideoId] = @p1;
+2024-05-15 19:28:53.771 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-15 19:28:53.771 +03:00 [INF] Executed action ArabTube.Api.Controllers.PlaylistsController.RemoveideoFromPlaylist (ArabTube.Api) in 121.2151ms
+2024-05-15 19:28:53.772 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.RemoveideoFromPlaylist (ArabTube.Api)'
+2024-05-15 19:28:53.772 +03:00 [INF] HTTP DELETE /api/Playlists/RemoveVideo responded 200 in 145.7220 ms
+2024-05-15 19:28:53.772 +03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7204/api/Playlists/RemoveVideo - 200 null text/plain; charset=utf-8 148.3099ms
+2024-05-15 19:28:58.760 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Playlists/GetVideos/2f072632-c429-42c7-89ea-8b8fba400467 - null null
+2024-05-15 19:28:58.762 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api)'
+2024-05-15 19:28:58.762 +03:00 [INF] Route matched with {action = "GetPlaylistVideos", controller = "Playlists"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPlaylistVideos(System.String) on controller ArabTube.Api.Controllers.PlaylistsController (ArabTube.Api).
+2024-05-15 19:28:58.774 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__playlistId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PlaylistId], [p].[VideoId], [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [PlaylistVideos] AS [p]
+INNER JOIN [Videos] AS [v] ON [p].[VideoId] = [v].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [p].[PlaylistId] = @__playlistId_0
+2024-05-15 19:28:58.777 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.PlaylistVideo, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.PlaylistDTOs.PlaylistVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-15 19:28:58.782 +03:00 [INF] Executed action ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api) in 19.6948ms
+2024-05-15 19:28:58.782 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetPlaylistVideos (ArabTube.Api)'
+2024-05-15 19:28:58.782 +03:00 [INF] HTTP GET /api/Playlists/GetVideos/2f072632-c429-42c7-89ea-8b8fba400467 responded 200 in 21.0463 ms
+2024-05-15 19:28:58.783 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Playlists/GetVideos/2f072632-c429-42c7-89ea-8b8fba400467 - 200 null application/json; charset=utf-8 22.7018ms
