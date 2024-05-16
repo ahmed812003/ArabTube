@@ -16,14 +16,23 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
         {
         }
 
-        public async Task<IEnumerable<PlaylistVideo>?> GetPlaylistVideosAsync(string playlistId)
+        public async Task<IEnumerable<PlaylistVideo>> GetPlaylistVideosAsync(string playlistId)
         {
-            var playlistVideos = await _dbSet.Where(p => p.PlaylistId == playlistId).Include(p => p.Video)
+            var playlistVideos = new List<PlaylistVideo>(); 
+            playlistVideos = await _dbSet.Where(p => p.PlaylistId == playlistId).Include(p => p.Video)
                 .ThenInclude(v => v.AppUser).ToListAsync();
             return playlistVideos;
         }
 
-        public async Task AddVideoToPlayListAsync(string videoId, string playlistId)
+        public async Task<bool> FindVideoInPlaylist (string videoId , string playlistId)
+        {
+            var entity = await _dbSet.FindAsync(playlistId, videoId);
+            if (entity == null)
+                return false;
+            else 
+                return true;
+        }
+        public async Task<bool> AddVideoToPlayListAsync(string videoId, string playlistId)
         {
             var entity = await _dbSet.FindAsync(playlistId , videoId);
 
@@ -35,20 +44,24 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
                     PlaylistId = playlistId,
                 };
                 await _dbSet.AddAsync(newPlaylistVideo);
+                return true;
             }
+            return false;
         }
 
-        public async Task RemoveVideoFromPlayListAsync(string videoId, string playlistId)
+        public async Task<bool> RemoveVideoFromPlayListAsync(string videoId, string playlistId)
         {
             var entity = await _dbSet.FindAsync(playlistId , videoId);
 
             if (entity != null)
             {
                 _dbSet.Remove(entity);
+                return true;
             }
+            return false;
         }
     
-        public async Task DeleteVideosPlaylistAsync(string playlistId)
+        public async Task DeletePlaylistVideosAsync(string playlistId)
         {
             var playlistVideos = await _dbSet.Where(pv => pv.PlaylistId == playlistId).ToListAsync();
             _dbSet.RemoveRange(playlistVideos);

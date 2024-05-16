@@ -45,10 +45,10 @@ namespace ArabTube.Api.Controllers
                     }
                 }
             }
-            return Ok();
+            return Unauthorized();
         }
 
-        [HttpPost("Subscribe/{ownerId}")]
+        [HttpPost("Subscribe")]
         public async Task<IActionResult> Subscribe(string ownerId)
         {
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -57,14 +57,23 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    await _unitOfWork.AppUserConnection.SubscribeAsync(ownerId, user.Id);
+                    var owner = await _userManager.FindByIdAsync(ownerId);
+                    if (owner == null)
+                        return NotFound($"No User With Id = {ownerId}");
+                    var result = await _unitOfWork.AppUserConnection.SubscribeAsync(ownerId, user.Id);
+                    if (!result)
+                    {
+                        return Ok("You Already Subscriber To This User");
+                    }
+
                     await _unitOfWork.Complete();
+                    return Ok("Subscribe Succesfully");
                 }
             }
-            return Ok("Subscribe Succesfully");
+            return Unauthorized();
         }
 
-        [HttpDelete("UnSubscribe/{ownerId}")]
+        [HttpDelete("UnSubscribe")]
         public async Task<IActionResult> UnScbscribe(string ownerId)
         {
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -73,11 +82,23 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    await _unitOfWork.AppUserConnection.UnSubscribeAsync(ownerId, user.Id);
+                    var owner = await _userManager.FindByIdAsync(ownerId);
+                    if (owner == null)
+                    {
+                        return NotFound($"No User With Id = {ownerId}");
+                    }
+                        
+                    var result = await _unitOfWork.AppUserConnection.UnSubscribeAsync(ownerId, user.Id);
+                    if (!result)
+                    {
+                        return NotFound($"You Already Not A Follower To User With Id = {ownerId}");
+                    }
+                        
                     await _unitOfWork.Complete();
+                    return Ok("UnSubscribe Successfully");
                 }
             }
-            return Ok("UnSubscribe Successfully");
+            return Unauthorized();
         }
 
     }

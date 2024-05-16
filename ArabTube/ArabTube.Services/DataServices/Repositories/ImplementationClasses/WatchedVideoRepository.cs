@@ -44,8 +44,10 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             if(entity != null)
             {
                 _dbSet.Remove(entity);
+                return true;
             }
-            return true;
+            else
+                return false;
         }
 
         

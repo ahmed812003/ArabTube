@@ -30,9 +30,9 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return playlists;
         }
 
-        public async Task<bool> DeletePlaylistAsync(string playlistId, string userId)
+        public async Task<bool> DeletePlaylistAsync(string playlistId)
         {
-            var entity = await _dbSet.FirstOrDefaultAsync(p => p.UserId == userId && p.Id == playlistId);
+            var entity = await _dbSet.FirstOrDefaultAsync(p => p.Id == playlistId);
             if (entity == null)
             {
                 return false;

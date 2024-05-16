@@ -51,7 +51,7 @@ namespace ArabTube.Api.Controllers
             return Ok(viewVideos);
         }
 
-        [HttpGet("Video/{id}")]
+        [HttpGet("Video")]
         public async Task<IActionResult> WatchVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
@@ -134,14 +134,14 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPost("Like/{id}")]
+        [HttpPost("Like")]
         public async Task<IActionResult> LikeVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
             if (video == null)
             {
-                return BadRequest($"Video With id {id} does not exist!");
+                return NotFound($"Video With id {id} does not exist!");
             }
 
             video.Likes += 1;
@@ -153,31 +153,37 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPost("Dislike/{id}")]
+        [HttpPost("Dislike")]
         public async Task<IActionResult> DislikeVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
             if (video == null)
             {
-                return BadRequest($"Video With id {id} does not exist!");
+                return NotFound($"Video With id {id} does not exist!");
             }
 
             video.DisLikes += 1;
-            await _unitOfWork.Complete();
+            var playlistId = await _unitOfWork.Playlist.FindPlaylistByNameAsync(PlaylistDefaultNames.PlaylistNames[0], true);
+            var result = await _unitOfWork.PlaylistVideo.FindVideoInPlaylist(id, playlistId);
+            if (result)
+            {
+                await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(id, playlistId);
+            }
 
+            await _unitOfWork.Complete();
             return Ok($"Video Dislikes = {video.DisLikes}");
         }
 
         [Authorize]
-        [HttpPost("Flag/{id}")]
+        [HttpPost("Flag")]
         public async Task<IActionResult> FlagVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
             if (video == null)
             {
-                return BadRequest($"Video With id {id} does not exist!");
+                return NotFound($"Video With id {id} does not exist!");
             }
 
             video.Flags += 1;
@@ -187,14 +193,14 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPost("View/{id}")]
+        [HttpPost("View")]
         public async Task<IActionResult> ViewVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
             if (video == null)
             {
-                return BadRequest($"Video With id {id} does not exist!");
+                return NotFound($"Video With id {id} does not exist!");
             }
 
             video.Views += 1;
@@ -214,14 +220,14 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update")]
         public async Task<IActionResult> UpdateVideo(UpdatingVideoDto model, string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
 
             if (video == null)
             {
-                return BadRequest($"Video With id {id} does not exist!");
+                return NotFound($"Video With id {id} does not exist!");
             }
 
             if (!string.IsNullOrEmpty(model.Title))
@@ -240,18 +246,18 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteVideo(string id)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
             if(video == null)
             {
-                return NotFound();
+                return NotFound($"Video With id {id} does not exist!");
             }
             await _unitOfWork.Comment.DeleteVideoCommentsAsync(id);
             await _unitOfWork.Video.DeleteAsync(id);
             await _unitOfWork.Complete();
-            return Ok();
+            return Ok("Video Deleted Successfully");
         }
     }
 }

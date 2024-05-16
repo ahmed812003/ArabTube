@@ -4,9 +4,10 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
 {
     public interface IPlaylistVideoRepository:IGenericRepository<PlaylistVideo>
     {
-        Task<IEnumerable<PlaylistVideo>?> GetPlaylistVideosAsync(string playlistId);
-        Task AddVideoToPlayListAsync(string videoId, string playlistId);
-        Task DeleteVideosPlaylistAsync(string playlistId);
-        Task RemoveVideoFromPlayListAsync(string videoId, string playlistId);
+        Task<IEnumerable<PlaylistVideo>> GetPlaylistVideosAsync(string playlistId);
+        Task<bool> FindVideoInPlaylist(string videoId, string playlistId);
+        Task<bool> AddVideoToPlayListAsync(string videoId, string playlistId);
+        Task DeletePlaylistVideosAsync(string playlistId);
+        Task<bool> RemoveVideoFromPlayListAsync(string videoId, string playlistId);
     }
 }

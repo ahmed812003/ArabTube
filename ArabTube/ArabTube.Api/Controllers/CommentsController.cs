@@ -23,16 +23,16 @@ namespace ArabTube.Api.Controllers
             this._userManager = userManager;
         }
 
-        [HttpGet("Comments/{videoId}")]
-        public async Task<IActionResult> GetVideoComments(string videoId)
+        [HttpGet("Comments")]
+        public async Task<IActionResult> GetVideoComments(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(videoId);
+            var video = await _unitOfWork.Video.FindByIdAsync(id);
             if(video == null)
             {
                 return NotFound();
             }
 
-            var comments = await _unitOfWork.Comment.GetVideoCommentsAsync(videoId);
+            var comments = await _unitOfWork.Comment.GetVideoCommentsAsync(id);
             var commentsDto = comments.Select(c => new GetCommentDto
             {
                 commentId = c.Id,
@@ -59,16 +59,16 @@ namespace ArabTube.Api.Controllers
             return Ok(commentsDto);
         }
 
-        [HttpGet("Comment/{commentId}")]
-        public async Task<IActionResult> GetComment(string commentId)
+        [HttpGet("Comment")]
+        public async Task<IActionResult> GetComment(string id)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
+            var comment = await _unitOfWork.Comment.FindByIdAsync(id);
             if(comment == null || comment.Id != comment.ParentCommentId)
             {
                 return NotFound();
             }
 
-            var comments = await _unitOfWork.Comment.GetCommentAsync(commentId);
+            var comments = await _unitOfWork.Comment.GetCommentAsync(id);
             
             var commentsDto = comments.Select(c => new GetCommentDto
             {
@@ -105,18 +105,18 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var parentComment = await _unitOfWork.Comment.FindByIdAsync(model.ParentCommentId);
-            if(parentComment == null)
-            {
-                return NotFound();
-            }
-
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
             {
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    var parentComment = await _unitOfWork.Comment.FindByIdAsync(model.ParentCommentId);
+                    if (!string.IsNullOrEmpty(model.ParentCommentId) && parentComment == null)
+                    {
+                        return NotFound($"No Comment Wiht Id = {model.ParentCommentId}");
+                    }
+
                     var comment = new Comment
                     {
                         Content = model.Content,
@@ -134,23 +134,19 @@ namespace ArabTube.Api.Controllers
                     await _unitOfWork.Complete();
                     return Ok("Comment Added Succesfully");
                 }
-                else
-                {
-                    return Unauthorized();
-                }
             }
             return Unauthorized();
         }
 
         [Authorize]
-        [HttpPost("Like/{id}")]
+        [HttpPost("Like")]
         public async Task<IActionResult> LikeComment(string id)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(id);
 
             if (comment == null)
             {
-                return BadRequest($"Comment With id {id} does not exist!");
+                return NotFound($"Comment With id {id} does not exist!");
             }
 
             comment.Likes += 1;
@@ -167,7 +163,7 @@ namespace ArabTube.Api.Controllers
 
             if (comment == null)
             {
-                return BadRequest($"Comment With id {id} does not exist!");
+                return NotFound($"Comment With id {id} does not exist!");
             }
 
             comment.DisLikes += 1;
@@ -192,16 +188,16 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpDelete("Delete/{commentId}")]
-        public async Task<IActionResult> Delete(string commentId)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(string id)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
+            var comment = await _unitOfWork.Comment.FindByIdAsync(id);
             if (comment == null)
             {
-                return NotFound();
+                return NotFound($"Comment With id {id} does not exist!");
             }
 
-            if (comment.ParentCommentId == commentId)
+            if (comment.ParentCommentId == id)
             {
                 await _unitOfWork.Comment.DeleteCommentAsync(comment.Id);
             }
@@ -212,7 +208,6 @@ namespace ArabTube.Api.Controllers
             await _unitOfWork.Complete();
             return Ok("Comment Deleted Successfully");
         }
-
 
     }
 }

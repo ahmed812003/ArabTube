@@ -10,7 +10,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
     public interface IAppUserConnectionRepository : IGenericRepository<AppUserConnection>
     {
         Task<IEnumerable<AppUserConnection>> GetFollowingAsync(string id);
-        Task SubscribeAsync(string ownerId, string userId);
-        Task UnSubscribeAsync(string ownerId, string userId);
+        Task<bool> SubscribeAsync(string ownerId, string userId);
+        Task<bool> UnSubscribeAsync(string ownerId, string userId);
     }
 }

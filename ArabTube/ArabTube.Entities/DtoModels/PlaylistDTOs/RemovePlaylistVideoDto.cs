@@ -10,8 +10,8 @@ namespace ArabTube.Entities.DtoModels.PlaylistDTOs
     public class RemovePlaylistVideoDto
     {
         [Required]
-        public string VideoID { get; set; }
+        public string VideoId { get; set; }
         [Required]
-        public string PlaylistID { get; set; }
+        public string PlaylistId { get; set; }
     }
 }

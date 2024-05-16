@@ -23,24 +23,30 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return appUserConnections;
         }
 
-        public async Task SubscribeAsync(string ownerId, string userId)
+        public async Task<bool> SubscribeAsync(string ownerId, string userId)
         {
-            await _dbSet.AddAsync(new AppUserConnection
-                  {
+            var entity = await _dbSet.FindAsync(userId, ownerId);
+            if (entity == null)
+            {
+                await _dbSet.AddAsync(new AppUserConnection
+                {
                     FollowerId = userId,
-                    FollowingId = ownerId 
-                  });
-            return;
+                    FollowingId = ownerId
+                });
+                return true;
+            }
+            return false;
         }
 
-        public async Task UnSubscribeAsync(string ownerId, string userId)
+        public async Task<bool> UnSubscribeAsync(string ownerId, string userId)
         {
             var entity = await _dbSet.FindAsync(userId , ownerId);
             if(entity != null)
             {
                 _dbSet.Remove(entity);
+                return true;
             }
-            return;
+            return false;
         }
 
 

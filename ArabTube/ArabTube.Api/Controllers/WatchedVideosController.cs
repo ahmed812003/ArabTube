@@ -52,7 +52,7 @@ namespace ArabTube.Api.Controllers
                     }
                 }
             }
-            return Ok();
+            return Unauthorized();
         }
 
 
@@ -65,12 +65,17 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    await _unitOfWork.WatchedVideo.DeleteWatchedVideoAsync(videoId , user.Id);
+                    var result = await _unitOfWork.WatchedVideo.DeleteWatchedVideoAsync(videoId , user.Id);
+                    if (!result)
+                    {
+                        return NotFound($"No Video With Id = {videoId}");
+                    }
+                        
                     await _unitOfWork.Complete();
                     return Ok("Video Removed Succesfully");
                 }
             }
-            return Ok();    
+            return Unauthorized();    
         }
 
     }

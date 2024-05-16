@@ -42,3 +42,1111 @@
 2024-05-16 21:25:46.219 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
 2024-05-16 21:25:46.233 +03:00 [INF] HTTP GET /api/Subscriptions responded 200 in 11705.5897 ms
 2024-05-16 21:25:46.277 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Subscriptions - 200 0 null 11823.3584ms
+2024-05-16 21:40:36.367 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-16 21:40:38.466 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-16 21:40:38.467 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-16 21:40:38.824 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-16 21:40:38.826 +03:00 [INF] Hosting environment: Development
+2024-05-16 21:40:38.826 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-16 21:40:43.278 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 21:40:45.669 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 2423.8198ms
+2024-05-16 21:40:46.450 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 21:40:46.450 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 21:40:46.492 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 42.2127ms
+2024-05-16 21:40:47.003 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 553.9049ms
+2024-05-16 21:40:48.864 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 21:40:50.068 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1203.6624ms
+2024-05-16 21:41:38.086 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/WatchedVideos - null null
+2024-05-16 21:41:38.572 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-05-16 21:41:38.587 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-05-16 21:41:38.592 +03:00 [INF] HTTP GET /api/WatchedVideos responded 401 in 479.6795 ms
+2024-05-16 21:41:38.594 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/WatchedVideos - 401 0 null 507.934ms
+2024-05-16 21:51:26.265 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Login - application/json 65
+2024-05-16 21:51:26.279 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-05-16 21:51:26.354 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ArabTube.Entities.DtoModels.UserDTOs.LoginDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-16 21:51:48.286 +03:00 [INF] Executed DbCommand (585ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-16 21:51:50.499 +03:00 [INF] Executed DbCommand (68ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-05-16 21:51:50.658 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-05-16 21:51:50.767 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-05-16 21:51:51.124 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.AuthModels.AuthResult'.
+2024-05-16 21:51:51.250 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api) in 24850.0108ms
+2024-05-16 21:51:51.256 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-05-16 21:51:51.269 +03:00 [INF] HTTP POST /api/Account/Login responded 200 in 25000.1288 ms
+2024-05-16 21:51:51.346 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Login - 200 null application/json; charset=utf-8 25080.7809ms
+2024-05-16 21:52:01.642 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 21:52:01.832 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 191.9538ms
+2024-05-16 21:52:02.469 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 21:52:02.479 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 10.8186ms
+2024-05-16 21:52:02.790 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 21:52:02.867 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 77.1709ms
+2024-05-16 21:52:05.304 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 21:52:05.375 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 70.3928ms
+2024-05-16 21:53:01.051 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Videos/View/752bd549-2b0e-47f3-b962-c1d222c9c52e - null 0
+2024-05-16 21:53:01.630 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api)'
+2024-05-16 21:53:01.679 +03:00 [INF] Route matched with {action = "ViewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ViewVideo(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-05-16 21:53:02.530 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views]
+FROM [Videos] AS [v]
+WHERE [v].[Id] = @__p_0
+2024-05-16 21:53:02.976 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:53:03.097 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[UserId] = @__p_0 AND [w].[VideoId] = @__p_1
+2024-05-16 21:53:04.802 +03:00 [INF] Executed DbCommand (62ms) [Parameters=[@p1='?' (Size = 450), @p0='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (Size = 450), @p4='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Videos] SET [Views] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [WatchedVideos] ([UserId], [VideoId], [WatchedTime])
+VALUES (@p2, @p3, @p4);
+2024-05-16 21:53:05.000 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 21:53:05.001 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api) in 3321.1411ms
+2024-05-16 21:53:05.001 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api)'
+2024-05-16 21:53:05.002 +03:00 [INF] HTTP POST /api/Videos/View/752bd549-2b0e-47f3-b962-c1d222c9c52e responded 200 in 3907.5224 ms
+2024-05-16 21:53:05.004 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Videos/View/752bd549-2b0e-47f3-b962-c1d222c9c52e - 200 null text/plain; charset=utf-8 3953.8673ms
+2024-05-16 21:53:34.456 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Videos/View/fdf5f7d3-a256-489d-acd4-890cd9947c91 - null 0
+2024-05-16 21:53:34.492 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api)'
+2024-05-16 21:53:34.493 +03:00 [INF] Route matched with {action = "ViewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ViewVideo(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-05-16 21:53:34.690 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views]
+FROM [Videos] AS [v]
+WHERE [v].[Id] = @__p_0
+2024-05-16 21:53:34.719 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:53:34.755 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[UserId] = @__p_0 AND [w].[VideoId] = @__p_1
+2024-05-16 21:53:34.797 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[@p1='?' (Size = 450), @p0='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (Size = 450), @p4='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Videos] SET [Views] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [WatchedVideos] ([UserId], [VideoId], [WatchedTime])
+VALUES (@p2, @p3, @p4);
+2024-05-16 21:53:34.802 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 21:53:34.802 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api) in 309.3572ms
+2024-05-16 21:53:34.803 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api)'
+2024-05-16 21:53:34.803 +03:00 [INF] HTTP POST /api/Videos/View/fdf5f7d3-a256-489d-acd4-890cd9947c91 responded 200 in 331.6588 ms
+2024-05-16 21:53:34.804 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Videos/View/fdf5f7d3-a256-489d-acd4-890cd9947c91 - 200 null text/plain; charset=utf-8 351.7752ms
+2024-05-16 21:53:47.761 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Videos/View/fdf5f7d3-a256-489d-acd4-890cd9947c91 - null 0
+2024-05-16 21:53:47.765 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api)'
+2024-05-16 21:53:47.765 +03:00 [INF] Route matched with {action = "ViewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ViewVideo(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-05-16 21:53:47.779 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views]
+FROM [Videos] AS [v]
+WHERE [v].[Id] = @__p_0
+2024-05-16 21:53:47.789 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:53:47.793 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[UserId] = @__p_0 AND [w].[VideoId] = @__p_1
+2024-05-16 21:53:47.807 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p1='?' (Size = 450), @p0='?' (DbType = Int32), @p3='?' (Size = 450), @p4='?' (Size = 450), @p2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Videos] SET [Views] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+UPDATE [WatchedVideos] SET [WatchedTime] = @p2
+OUTPUT 1
+WHERE [UserId] = @p3 AND [VideoId] = @p4;
+2024-05-16 21:53:47.808 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 21:53:47.808 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api) in 43.1584ms
+2024-05-16 21:53:47.809 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.ViewVideo (ArabTube.Api)'
+2024-05-16 21:53:47.809 +03:00 [INF] HTTP POST /api/Videos/View/fdf5f7d3-a256-489d-acd4-890cd9947c91 responded 200 in 45.9739 ms
+2024-05-16 21:53:47.809 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Videos/View/fdf5f7d3-a256-489d-acd4-890cd9947c91 - 200 null text/plain; charset=utf-8 48.0112ms
+2024-05-16 21:54:12.955 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/WatchedVideos - null null
+2024-05-16 21:54:12.957 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 21:54:12.969 +03:00 [INF] Route matched with {action = "WatchedVideos", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WatchedVideos() on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 21:54:12.984 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:54:13.373 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[UserId], [w].[VideoId], [w].[WatchedTime], [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [WatchedVideos] AS [w]
+INNER JOIN [Videos] AS [v] ON [w].[VideoId] = [v].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [w].[UserId] = @__userId_0
+ORDER BY [w].[WatchedTime] DESC
+2024-05-16 21:54:13.397 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.WatchedVideo, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.WatchedVideoDto.HistoryVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 21:54:13.430 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api) in 461.383ms
+2024-05-16 21:54:13.430 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 21:54:13.430 +03:00 [INF] HTTP GET /api/WatchedVideos responded 200 in 475.1530 ms
+2024-05-16 21:54:13.431 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/WatchedVideos - 200 null application/json; charset=utf-8 476.1055ms
+2024-05-16 21:55:37.567 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/WatchedVideos - null null
+2024-05-16 21:55:37.569 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 21:55:37.569 +03:00 [INF] Route matched with {action = "WatchedVideos", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WatchedVideos() on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 21:55:37.578 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:55:37.590 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[UserId], [w].[VideoId], [w].[WatchedTime], [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [WatchedVideos] AS [w]
+INNER JOIN [Videos] AS [v] ON [w].[VideoId] = [v].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [w].[UserId] = @__userId_0
+ORDER BY [w].[WatchedTime] DESC
+2024-05-16 21:55:37.595 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.WatchedVideo, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.WatchedVideoDto.HistoryVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 21:55:37.604 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api) in 34.5556ms
+2024-05-16 21:55:37.604 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 21:55:37.604 +03:00 [INF] HTTP GET /api/WatchedVideos responded 200 in 35.9756 ms
+2024-05-16 21:55:37.605 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/WatchedVideos - 200 null application/json; charset=utf-8 37.9812ms
+2024-05-16 21:58:49.541 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 21:58:49.542 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-05-16 21:58:49.543 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-05-16 21:58:49.543 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 401 in 1.4832 ms
+2024-05-16 21:58:49.543 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 401 0 null 2.9175ms
+2024-05-16 21:59:03.550 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 21:59:03.551 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 21:59:03.564 +03:00 [INF] Route matched with {action = "Delete", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String) on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 21:59:03.601 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:59:03.627 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__videoId_0='?' (Size = 450), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[VideoId] = @__videoId_0 AND [w].[UserId] = @__userId_1
+2024-05-16 21:59:03.653 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [WatchedVideos]
+OUTPUT 1
+WHERE [UserId] = @p0 AND [VideoId] = @p1;
+2024-05-16 21:59:03.667 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 21:59:03.668 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api) in 104.098ms
+2024-05-16 21:59:03.668 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 21:59:03.668 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 200 in 117.7910 ms
+2024-05-16 21:59:03.669 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 200 null text/plain; charset=utf-8 118.5799ms
+2024-05-16 21:59:55.805 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 21:59:55.813 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 21:59:55.815 +03:00 [INF] Route matched with {action = "Delete", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String) on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 21:59:55.827 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 21:59:55.840 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__videoId_0='?' (Size = 450), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[VideoId] = @__videoId_0 AND [w].[UserId] = @__userId_1
+2024-05-16 21:59:55.842 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 21:59:55.843 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api) in 27.9072ms
+2024-05-16 21:59:55.843 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 21:59:55.843 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 200 in 36.0933 ms
+2024-05-16 21:59:55.843 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 200 null text/plain; charset=utf-8 38.4069ms
+2024-05-16 22:00:02.179 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 22:00:02.182 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:00:02.182 +03:00 [INF] Route matched with {action = "Delete", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String) on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 22:00:02.207 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:00:02.219 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__videoId_0='?' (Size = 450), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[VideoId] = @__videoId_0 AND [w].[UserId] = @__userId_1
+2024-05-16 22:00:02.221 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:00:02.221 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api) in 39.2472ms
+2024-05-16 22:00:02.222 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:00:02.222 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 200 in 42.0754 ms
+2024-05-16 22:00:02.223 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 200 null text/plain; charset=utf-8 44.1941ms
+2024-05-16 22:04:01.124 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 22:04:01.232 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 107.9048ms
+2024-05-16 22:04:03.293 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 22:04:03.300 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 7.2742ms
+2024-05-16 22:04:03.403 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 22:04:03.470 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 67.6869ms
+2024-05-16 22:04:07.723 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 22:04:07.805 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 82.6849ms
+2024-05-16 22:04:10.854 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 22:04:10.917 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 64.0432ms
+2024-05-16 22:04:11.421 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 22:04:11.428 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 7.2585ms
+2024-05-16 22:04:11.688 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 22:04:11.762 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 74.0919ms
+2024-05-16 22:04:15.302 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 22:04:15.383 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 80.6143ms
+2024-05-16 22:04:34.677 +03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 22:04:34.680 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:04:34.718 +03:00 [INF] Route matched with {action = "Delete", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String) on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 22:04:34.782 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:04:34.795 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__videoId_0='?' (Size = 450), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[VideoId] = @__videoId_0 AND [w].[UserId] = @__userId_1
+2024-05-16 22:04:34.801 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2024-05-16 22:04:34.916 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api) in 197.769ms
+2024-05-16 22:04:34.916 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:04:34.916 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 404 in 237.9348 ms
+2024-05-16 22:04:34.917 +03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 404 null application/problem+json; charset=utf-8 240.0918ms
+2024-05-16 22:04:47.627 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 22:04:47.633 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:04:47.634 +03:00 [INF] Route matched with {action = "Delete", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String) on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 22:04:47.651 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:04:47.658 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__videoId_0='?' (Size = 450), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[VideoId] = @__videoId_0 AND [w].[UserId] = @__userId_1
+2024-05-16 22:04:47.660 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2024-05-16 22:04:47.660 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api) in 26.216ms
+2024-05-16 22:04:47.660 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:04:47.660 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 404 in 27.9443 ms
+2024-05-16 22:04:47.661 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 404 null application/problem+json; charset=utf-8 34.9594ms
+2024-05-16 22:08:20.458 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null null
+2024-05-16 22:08:20.463 +03:00 [INF] HTTP GET /api/Subscriptions/Subscribe responded 404 in 2.9453 ms
+2024-05-16 22:08:20.471 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 0 null 12.9705ms
+2024-05-16 22:08:20.472 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:08:26.633 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:08:26.636 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 0.5199 ms
+2024-05-16 22:08:26.637 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 0 null 3.4781ms
+2024-05-16 22:08:26.637 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:08:50.328 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:08:50.332 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:08:50.363 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:08:50.658 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:08:50.712 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:08:50.747 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Subscribers] ([FollowerId], [FollowingId])
+VALUES (@p0, @p1);
+2024-05-16 22:08:50.748 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:08:50.748 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 385.5604ms
+2024-05-16 22:08:50.749 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:08:50.749 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 419.6924 ms
+2024-05-16 22:08:50.749 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 423.1697ms
+2024-05-16 22:09:13.004 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:09:13.005 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 0.9469 ms
+2024-05-16 22:09:13.006 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 0 null 2.0662ms
+2024-05-16 22:09:13.006 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:09:25.845 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:09:25.847 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 1.1491 ms
+2024-05-16 22:09:25.847 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 0 null 2.5504ms
+2024-05-16 22:09:25.848 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:09:38.537 +03:00 [INF] Request starting HTTP/2 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - null null
+2024-05-16 22:09:38.547 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:09:38.571 +03:00 [INF] Route matched with {action = "UnScbscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UnScbscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:09:38.611 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:09:38.630 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:09:38.652 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Subscribers]
+OUTPUT 1
+WHERE [FollowerId] = @p0 AND [FollowingId] = @p1;
+2024-05-16 22:09:38.654 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:09:38.655 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api) in 83.6802ms
+2024-05-16 22:09:38.655 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:09:38.655 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 111.8282 ms
+2024-05-16 22:09:38.656 +03:00 [INF] Request finished HTTP/2 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 118.5627ms
+2024-05-16 22:09:57.270 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:09:57.271 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 1.0820 ms
+2024-05-16 22:09:57.272 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 0 null 2.0957ms
+2024-05-16 22:09:57.272 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:11:18.511 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe - null 0
+2024-05-16 22:11:18.515 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 3.1030 ms
+2024-05-16 22:11:18.516 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe - 404 0 null 4.5588ms
+2024-05-16 22:11:18.523 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:13:18.119 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe - application/json 1774
+2024-05-16 22:13:18.135 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 11.2038 ms
+2024-05-16 22:13:18.135 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe - 404 0 null 15.8274ms
+2024-05-16 22:13:18.172 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:13:18.210 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe - application/json 1774
+2024-05-16 22:13:18.211 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 1.0518 ms
+2024-05-16 22:13:18.212 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe - 404 0 null 2.052ms
+2024-05-16 22:13:18.212 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:14:00.517 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 12
+2024-05-16 22:14:00.540 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 16.6767 ms
+2024-05-16 22:14:00.540 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 0 null 23.7096ms
+2024-05-16 22:14:00.544 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST https://localhost:7204/api/Subscriptions/Subscribe, Response status code: 404
+2024-05-16 22:14:47.736 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 1774
+2024-05-16 22:14:47.755 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:47.759 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:47.904 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:47.917 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 1774
+2024-05-16 22:14:47.917 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 1774
+2024-05-16 22:14:47.918 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:47.919 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:47.919 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:47.919 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:47.929 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:47.964 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:47.969 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:47.978 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:47.990 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:48.002 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Subscribers] ([FollowerId], [FollowingId])
+VALUES (@p0, @p1);
+2024-05-16 22:14:48.005 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:14:48.005 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 246.4498ms
+2024-05-16 22:14:48.005 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:48.006 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 268.5918 ms
+2024-05-16 22:14:48.007 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 271.5386ms
+2024-05-16 22:14:48.058 +03:00 [ERR] Failed executing DbCommand (47ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Subscribers] ([FollowerId], [FollowingId])
+VALUES (@p0, @p1);
+2024-05-16 22:14:48.058 +03:00 [ERR] Failed executing DbCommand (55ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Subscribers] ([FollowerId], [FollowingId])
+VALUES (@p0, @p1);
+2024-05-16 22:14:48.091 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 1774
+2024-05-16 22:14:48.092 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:48.092 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:48.100 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:48.107 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:48.111 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:14:48.111 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 18.7355ms
+2024-05-16 22:14:48.112 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:48.112 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 20.5419 ms
+2024-05-16 22:14:48.112 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 21.6118ms
+2024-05-16 22:14:48.505 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'ArabTube.Services.DataServices.Data.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:1251c0da-5f24-4173-8ebd-eb091c73ff83
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:1251c0da-5f24-4173-8ebd-eb091c73ff83
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2024-05-16 22:14:48.505 +03:00 [ERR] An exception occurred in the database while saving changes for context type 'ArabTube.Services.DataServices.Data.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:7b1856c0-d455-4822-a34f-612e520aa406
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:7b1856c0-d455-4822-a34f-612e520aa406
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2024-05-16 22:14:49.793 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 1873.4594ms
+2024-05-16 22:14:49.793 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 1873.7126ms
+2024-05-16 22:14:49.804 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:49.804 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:49.816 +03:00 [ERR] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 500 in 1898.5780 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:7b1856c0-d455-4822-a34f-612e520aa406
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ArabTube.Services.DataServices.Repositories.ImplementationClasses.UnitOfWork.Complete()
+   at ArabTube.Api.Controllers.SubscriptionsController.Subscribe(String ownerId)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2024-05-16 22:14:49.816 +03:00 [ERR] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 500 in 1898.6878 ms
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:1251c0da-5f24-4173-8ebd-eb091c73ff83
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ArabTube.Services.DataServices.Repositories.ImplementationClasses.UnitOfWork.Complete()
+   at ArabTube.Api.Controllers.SubscriptionsController.Subscribe(String ownerId)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2024-05-16 22:14:49.876 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:7b1856c0-d455-4822-a34f-612e520aa406
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ArabTube.Services.DataServices.Repositories.ImplementationClasses.UnitOfWork.Complete()
+   at ArabTube.Api.Controllers.SubscriptionsController.Subscribe(String ownerId)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-16 22:14:49.876 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Violation of PRIMARY KEY constraint 'PK_Subscribers'. Cannot insert duplicate key in object 'dbo.Subscribers'. The duplicate key value is (307306e1-524e-46ca-882a-d4bfaaf91a76, a27daa4f-a53f-4fdd-ba20-923a048eeede).
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:1251c0da-5f24-4173-8ebd-eb091c73ff83
+Error Number:2627,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at ArabTube.Services.DataServices.Repositories.ImplementationClasses.UnitOfWork.Complete()
+   at ArabTube.Api.Controllers.SubscriptionsController.Subscribe(String ownerId)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-16 22:14:49.924 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 500 null text/plain; charset=utf-8 2007.2721ms
+2024-05-16 22:14:49.924 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 500 null text/plain; charset=utf-8 2007.2399ms
+2024-05-16 22:14:50.009 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 1774
+2024-05-16 22:14:50.010 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:50.010 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:50.011 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - application/json 1774
+2024-05-16 22:14:50.012 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:50.013 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:50.033 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:50.036 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:50.045 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:50.046 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:50.046 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:14:50.047 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 34.1787ms
+2024-05-16 22:14:50.047 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:50.047 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:14:50.047 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 35.6154 ms
+2024-05-16 22:14:50.048 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 36.8938ms
+2024-05-16 22:14:50.048 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:50.048 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 36.5742ms
+2024-05-16 22:14:50.048 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 38.4987 ms
+2024-05-16 22:14:50.048 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 39.3775ms
+2024-05-16 22:14:59.210 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:14:59.213 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:59.214 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:14:59.235 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:14:59.245 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:14:59.247 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:14:59.247 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 33.5883ms
+2024-05-16 22:14:59.248 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:14:59.248 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede responded 200 in 36.5738 ms
+2024-05-16 22:14:59.249 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe/a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 38.5877ms
+2024-05-16 22:16:50.649 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 22:16:50.730 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 81.0763ms
+2024-05-16 22:16:51.465 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 22:16:51.468 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 3.0271ms
+2024-05-16 22:16:51.511 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 22:16:51.548 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.2505ms
+2024-05-16 22:16:55.834 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 22:16:55.920 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 86.5286ms
+2024-05-16 22:17:15.745 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:17:15.750 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:17:15.788 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:17:15.896 +03:00 [INF] Executed DbCommand (85ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:17:15.909 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:17:15.911 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:17:15.912 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 123.3094ms
+2024-05-16 22:17:15.912 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:17:15.913 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 200 in 164.1200 ms
+2024-05-16 22:17:15.913 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 168.5052ms
+2024-05-16 22:23:42.744 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-16 22:23:44.690 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-16 22:23:44.695 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-16 22:23:45.385 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-16 22:23:45.388 +03:00 [INF] Hosting environment: Development
+2024-05-16 22:23:45.388 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-16 22:23:47.609 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 22:23:49.672 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 2108.0371ms
+2024-05-16 22:23:50.376 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 22:23:50.376 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 22:23:50.434 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 59.1701ms
+2024-05-16 22:23:50.725 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 350.3184ms
+2024-05-16 22:23:52.971 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 22:23:54.215 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1245.7852ms
+2024-05-16 22:23:58.566 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:24:01.930 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:24:02.125 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:24:20.440 +03:00 [INF] Executed DbCommand (416ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:24:21.824 +03:00 [INF] Executed DbCommand (55ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:24:21.903 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:24:22.192 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:24:22.238 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 20082.098ms
+2024-05-16 22:24:22.243 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:24:22.281 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 200 in 23669.1650 ms
+2024-05-16 22:24:22.348 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 23783.1065ms
+2024-05-16 22:25:07.950 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - null 0
+2024-05-16 22:25:08.016 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:25:08.018 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:25:09.023 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:25:09.123 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:25:09.132 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2024-05-16 22:25:09.266 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 1247.2925ms
+2024-05-16 22:25:09.266 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:25:09.266 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 1302.4840 ms
+2024-05-16 22:25:09.269 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - 404 null application/problem+json; charset=utf-8 1318.6593ms
+2024-05-16 22:25:57.643 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null 0
+2024-05-16 22:25:57.685 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:25:57.685 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:25:57.799 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:25:57.819 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:25:57.825 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:25:57.827 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:25:57.828 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 142.248ms
+2024-05-16 22:25:57.828 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:25:57.828 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 200 in 184.6400 ms
+2024-05-16 22:25:57.829 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 186.6837ms
+2024-05-16 22:26:51.295 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/Subscriptions/Subscribe - null null
+2024-05-16 22:26:51.299 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2024-05-16 22:26:51.299 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2024-05-16 22:26:51.299 +03:00 [INF] HTTP GET /api/Subscriptions/Subscribe responded 405 in 1.3575 ms
+2024-05-16 22:26:51.300 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/Subscriptions/Subscribe - 405 0 null 11.6367ms
+2024-05-16 22:27:32.026 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/Subscriptions - null null
+2024-05-16 22:27:32.048 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 22:27:32.076 +03:00 [INF] Route matched with {action = "Following", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Following() on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:27:32.106 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:27:32.534 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[FollowerId], [s].[FollowingId], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Subscribers] AS [s]
+INNER JOIN [AspNetUsers] AS [a] ON [s].[FollowingId] = [a].[Id]
+WHERE [s].[FollowerId] = @__id_0
+2024-05-16 22:27:32.561 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.AppUserConnection, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.UserConnectionsDto.FollowingDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 22:27:32.572 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api) in 496.6169ms
+2024-05-16 22:27:32.573 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 22:27:32.574 +03:00 [INF] HTTP GET /api/Subscriptions responded 200 in 544.3164 ms
+2024-05-16 22:27:32.574 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/Subscriptions - 200 null application/json; charset=utf-8 548.6734ms
+2024-05-16 22:28:23.578 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/Subscriptions - null null
+2024-05-16 22:28:23.590 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 22:28:23.590 +03:00 [INF] Route matched with {action = "Following", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Following() on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:28:23.604 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:28:23.615 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[FollowerId], [s].[FollowingId], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Subscribers] AS [s]
+INNER JOIN [AspNetUsers] AS [a] ON [s].[FollowingId] = [a].[Id]
+WHERE [s].[FollowerId] = @__id_0
+2024-05-16 22:28:23.616 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.AppUserConnection, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.UserConnectionsDto.FollowingDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 22:28:23.617 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api) in 26.7602ms
+2024-05-16 22:28:23.617 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 22:28:23.617 +03:00 [INF] HTTP GET /api/Subscriptions responded 200 in 37.1019 ms
+2024-05-16 22:28:23.618 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/Subscriptions - 200 null application/json; charset=utf-8 40.2924ms
+2024-05-16 22:28:57.982 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/WatchedVideos - null null
+2024-05-16 22:28:57.987 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 22:28:57.997 +03:00 [INF] Route matched with {action = "WatchedVideos", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WatchedVideos() on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 22:28:58.006 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:28:58.347 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[UserId], [w].[VideoId], [w].[WatchedTime], [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [WatchedVideos] AS [w]
+INNER JOIN [Videos] AS [v] ON [w].[VideoId] = [v].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [w].[UserId] = @__userId_0
+ORDER BY [w].[WatchedTime] DESC
+2024-05-16 22:28:58.475 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.WatchedVideo, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.WatchedVideoDto.HistoryVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 22:28:58.503 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api) in 506.0924ms
+2024-05-16 22:28:58.503 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 22:28:58.503 +03:00 [INF] HTTP GET /api/WatchedVideos responded 200 in 520.3137 ms
+2024-05-16 22:28:58.503 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/WatchedVideos - 200 null application/json; charset=utf-8 521.9092ms
+2024-05-16 22:29:51.232 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null null
+2024-05-16 22:29:51.240 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2024-05-16 22:29:51.250 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-05-16 22:29:51.250 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe responded 401 in 16.2942 ms
+2024-05-16 22:29:51.250 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 401 0 null 17.7212ms
+2024-05-16 22:30:00.531 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null null
+2024-05-16 22:30:00.532 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:30:00.543 +03:00 [INF] Route matched with {action = "UnScbscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UnScbscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:30:00.556 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:30:00.563 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:30:00.927 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Subscribers]
+OUTPUT 1
+WHERE [FollowerId] = @p0 AND [FollowingId] = @p1;
+2024-05-16 22:30:00.962 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-16 22:30:00.962 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api) in 419.247ms
+2024-05-16 22:30:00.962 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:30:00.962 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe responded 200 in 430.5584 ms
+2024-05-16 22:30:00.962 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 200 null text/plain; charset=utf-8 431.0864ms
+2024-05-16 22:31:13.026 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/Subscriptions - null null
+2024-05-16 22:31:13.034 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 22:31:13.034 +03:00 [INF] Route matched with {action = "Following", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Following() on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:31:13.053 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:31:13.070 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[FollowerId], [s].[FollowingId], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Subscribers] AS [s]
+INNER JOIN [AspNetUsers] AS [a] ON [s].[FollowingId] = [a].[Id]
+WHERE [s].[FollowerId] = @__id_0
+2024-05-16 22:31:13.071 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.AppUserConnection, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.UserConnectionsDto.FollowingDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 22:31:13.071 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api) in 36.786ms
+2024-05-16 22:31:13.071 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Following (ArabTube.Api)'
+2024-05-16 22:31:13.071 +03:00 [INF] HTTP GET /api/Subscriptions responded 200 in 39.8899 ms
+2024-05-16 22:31:13.072 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/Subscriptions - 200 null application/json; charset=utf-8 46.0435ms
+2024-05-16 22:35:16.347 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-16 22:35:17.544 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-16 22:35:17.549 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-16 22:35:17.854 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-16 22:35:17.856 +03:00 [INF] Hosting environment: Development
+2024-05-16 22:35:17.857 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-16 22:35:19.436 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 22:35:21.136 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1734.654ms
+2024-05-16 22:35:21.813 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 22:35:21.813 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 22:35:21.855 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 41.2807ms
+2024-05-16 22:35:22.215 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 403.0803ms
+2024-05-16 22:35:24.549 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 22:35:25.606 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1057.9636ms
+2024-05-16 22:35:30.788 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null null
+2024-05-16 22:35:31.793 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:35:31.996 +03:00 [INF] Route matched with {action = "UnScbscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UnScbscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:35:46.235 +03:00 [INF] Executed DbCommand (394ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:35:47.485 +03:00 [INF] Executed DbCommand (31ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:35:47.541 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:35:47.615 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2024-05-16 22:35:47.735 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api) in 15715.8221ms
+2024-05-16 22:35:47.740 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:35:47.760 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe responded 404 in 16933.2638 ms
+2024-05-16 22:35:47.830 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 null application/problem+json; charset=utf-8 17042.9359ms
+2024-05-16 22:36:41.327 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - null null
+2024-05-16 22:36:41.357 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:36:41.358 +03:00 [INF] Route matched with {action = "UnScbscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UnScbscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:36:41.818 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:36:41.879 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:36:41.883 +03:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2024-05-16 22:36:41.885 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api) in 525.8566ms
+2024-05-16 22:36:41.885 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:36:41.885 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe responded 404 in 546.9791 ms
+2024-05-16 22:36:41.887 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - 404 null application/problem+json; charset=utf-8 559.6702ms
+2024-05-16 22:45:33.614 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-16 22:45:34.858 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-16 22:45:34.868 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-16 22:45:35.277 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-16 22:45:35.279 +03:00 [INF] Hosting environment: Development
+2024-05-16 22:45:35.279 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-16 22:45:36.673 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-16 22:45:37.814 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:7204/api/WatchedVideos - null null
+2024-05-16 22:45:39.136 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 2507.1337ms
+2024-05-16 22:45:39.511 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-16 22:45:39.555 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 46.4414ms
+2024-05-16 22:45:39.586 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 22:45:39.769 +03:00 [INF] Route matched with {action = "WatchedVideos", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WatchedVideos() on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 22:45:39.869 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-16 22:45:40.421 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 552.4583ms
+2024-05-16 22:45:43.364 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-16 22:45:44.215 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 851.0139ms
+2024-05-16 22:45:56.171 +03:00 [INF] Executed DbCommand (419ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:45:58.485 +03:00 [INF] Executed DbCommand (60ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [w].[UserId], [w].[VideoId], [w].[WatchedTime], [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [WatchedVideos] AS [w]
+INNER JOIN [Videos] AS [v] ON [w].[VideoId] = [v].[Id]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [w].[UserId] = @__userId_0
+ORDER BY [w].[WatchedTime] DESC
+2024-05-16 22:45:59.082 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.WatchedVideo, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.WatchedVideoDto.HistoryVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-16 22:45:59.232 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api) in 19429.1437ms
+2024-05-16 22:45:59.238 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.WatchedVideos (ArabTube.Api)'
+2024-05-16 22:45:59.268 +03:00 [INF] HTTP GET /api/WatchedVideos responded 200 in 21163.2083 ms
+2024-05-16 22:45:59.331 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7204/api/WatchedVideos - 200 null application/json; charset=utf-8 21517.9101ms
+2024-05-16 22:46:37.129 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - null null
+2024-05-16 22:46:37.156 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:46:37.235 +03:00 [INF] Route matched with {action = "Delete", controller = "WatchedVideos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.String) on controller ArabTube.Api.Controllers.WatchedVideosController (ArabTube.Api).
+2024-05-16 22:46:37.843 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:46:37.909 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__videoId_0='?' (Size = 450), @__userId_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [w].[UserId], [w].[VideoId], [w].[WatchedTime]
+FROM [WatchedVideos] AS [w]
+WHERE [w].[VideoId] = @__videoId_0 AND [w].[UserId] = @__userId_1
+2024-05-16 22:46:37.918 +03:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2024-05-16 22:46:37.921 +03:00 [INF] Executed action ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api) in 684.9789ms
+2024-05-16 22:46:37.922 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.WatchedVideosController.Delete (ArabTube.Api)'
+2024-05-16 22:46:37.922 +03:00 [INF] HTTP DELETE /api/WatchedVideos responded 404 in 786.7111 ms
+2024-05-16 22:46:37.924 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/WatchedVideos?videoId=fdf5f7d3-a256-489d-acd4-890cd9947c91 - 404 null text/plain; charset=utf-8 795.8297ms
+2024-05-16 22:47:57.075 +03:00 [INF] Request starting HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - null 0
+2024-05-16 22:47:57.122 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:47:57.149 +03:00 [INF] Route matched with {action = "Subscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Subscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:47:57.324 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:47:57.466 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:47:57.666 +03:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2024-05-16 22:47:57.667 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api) in 518.3644ms
+2024-05-16 22:47:57.668 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.Subscribe (ArabTube.Api)'
+2024-05-16 22:47:57.668 +03:00 [INF] HTTP POST /api/Subscriptions/Subscribe responded 404 in 591.1752 ms
+2024-05-16 22:47:57.669 +03:00 [INF] Request finished HTTP/1.1 POST https://localhost:7204/api/Subscriptions/Subscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - 404 null text/plain; charset=utf-8 594.8401ms
+2024-05-16 22:49:02.021 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - null null
+2024-05-16 22:49:02.026 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:49:02.032 +03:00 [INF] Route matched with {action = "UnScbscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UnScbscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:49:02.050 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:49:02.062 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:49:02.077 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[FollowerId], [s].[FollowingId]
+FROM [Subscribers] AS [s]
+WHERE [s].[FollowerId] = @__p_0 AND [s].[FollowingId] = @__p_1
+2024-05-16 22:49:02.079 +03:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2024-05-16 22:49:02.079 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api) in 46.6397ms
+2024-05-16 22:49:02.079 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:49:02.079 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe responded 404 in 54.3954 ms
+2024-05-16 22:49:02.080 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeede - 404 null text/plain; charset=utf-8 85.4855ms
+2024-05-16 22:49:40.871 +03:00 [INF] Request starting HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - null null
+2024-05-16 22:49:40.877 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:49:40.877 +03:00 [INF] Route matched with {action = "UnScbscribe", controller = "Subscriptions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UnScbscribe(System.String) on controller ArabTube.Api.Controllers.SubscriptionsController (ArabTube.Api).
+2024-05-16 22:49:40.884 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-16 22:49:40.895 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-16 22:49:40.895 +03:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2024-05-16 22:49:40.896 +03:00 [INF] Executed action ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api) in 18.6662ms
+2024-05-16 22:49:40.896 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.SubscriptionsController.UnScbscribe (ArabTube.Api)'
+2024-05-16 22:49:40.896 +03:00 [INF] HTTP DELETE /api/Subscriptions/UnSubscribe responded 404 in 24.4504 ms
+2024-05-16 22:49:40.896 +03:00 [INF] Request finished HTTP/1.1 DELETE https://localhost:7204/api/Subscriptions/UnSubscribe?ownerId=a27daa4f-a53f-4fdd-ba20-923a048eeece - 404 null text/plain; charset=utf-8 26.5786ms

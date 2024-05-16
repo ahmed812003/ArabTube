@@ -22,8 +22,9 @@ namespace ArabTube.Api.Controllers
             this._userManager = userManager;
         }
 
-        [HttpGet("Get/{userId}")]
-        public async Task<IActionResult> GetPlaylists(string userId)
+        [Authorize]
+        [HttpGet("MyPlaylist")]
+        public async Task<IActionResult> GetMyPlaylists()
         {
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
@@ -31,43 +32,60 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(userId, userId == user.Id);
+                    var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(user.Id, true);
                     var playlistsDto = playlists.Select(p => new GetPlaylistDto
                     {
                         Id = p.Id,
                         Title = p.Title,
                         IsPrivate = p.IsPrivate
                     });
-
                     return Ok(playlistsDto);
                 }
-                else
-                {
-                    return Unauthorized();
-                }
             }
-            return Ok();
+            return Unauthorized();
         }
 
-        [HttpGet("GetVideos/{playlistId}")]
+        [HttpGet("Playlist")]
+        public async Task<IActionResult> GetPlaylists(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"No User With Id = {userId}");
+            }
+
+            var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(userId, false);
+            var playlistsDto = playlists.Select(p => new GetPlaylistDto
+            {
+                Id = p.Id,
+                Title = p.Title,
+                IsPrivate = p.IsPrivate
+            });
+
+            return Ok(playlistsDto);
+        }
+
+        [HttpGet("Video")]
         public async Task<IActionResult> GetPlaylistVideos(string playlistId)
         {
-            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(playlistId);
-            if (playlistVideos != null)
+            var playlist = await _unitOfWork.Playlist.FindByIdAsync(playlistId);
+            if(playlist == null)
             {
-                var videos = playlistVideos.Select(pv => new PlaylistVideoDto
-                {
-                    VideoId = pv.VideoId,
-                    Title = pv.Video.Title,
-                    Views = pv.Video.Views,
-                    CreatedTime =pv.Video.CreatedOn ,
-                    Username = pv.Video.AppUser.UserName,
-                    Thumbnail = pv.Video.Thumbnail,
-
-                });
-                return Ok(videos);
+                return NotFound($"No Playlist With Id = {playlistId}");
             }
-            return Ok();
+
+            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(playlistId);
+            var videos = playlistVideos.Select(pv => new PlaylistVideoDto
+            {
+                VideoId = pv.VideoId,
+                Title = pv.Video.Title,
+                Views = pv.Video.Views,
+                CreatedTime =pv.Video.CreatedOn ,
+                Username = pv.Video.AppUser.UserName,
+                Thumbnail = pv.Video.Thumbnail,
+
+            });
+            return Ok(videos);
         }
 
         [Authorize]
@@ -78,6 +96,7 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
             {
@@ -94,13 +113,10 @@ namespace ArabTube.Api.Controllers
 
                     await _unitOfWork.Playlist.AddAsync(playlist);
                     await _unitOfWork.Complete();
-                }
-                else
-                {
-                    return Unauthorized();
-                }
+                    return Ok("Playlist Created Succesfully");
+                }  
             }
-            return Ok("Playlist Created Succesfully");
+            return Unauthorized();
         }
 
         [Authorize]
@@ -112,7 +128,24 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(model.VideoID, model.PlaylistID);
+            var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
+            if(video == null)
+            {
+                return NotFound($"No Video With Id = {model.VideoId}");
+            }
+
+            var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
+            if(playlist == null)
+            {
+                return NotFound($"No Playlist With Id = {model.PlaylistId}");
+            }
+
+            var result = await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(model.VideoId, model.PlaylistId);
+            if (!result)
+            {
+                return Ok("The Video Is Already In The Playlist");
+            }
+                
             await _unitOfWork.Complete();
             return Ok("Video Added Succesfully");
         }
@@ -143,8 +176,8 @@ namespace ArabTube.Api.Controllers
         }
         
         [Authorize]
-        [HttpDelete("Delete/{playlistId}")]
-        public async Task<IActionResult> Delete(string playlistId)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(string id)
         {
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
@@ -152,30 +185,57 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    
-                    var result = await _unitOfWork.Playlist.DeletePlaylistAsync(playlistId , user.Id);
-                    if (!result)
-                        return Unauthorized();
-                    await _unitOfWork.PlaylistVideo.DeleteVideosPlaylistAsync(playlistId);
+                    var playlist = await _unitOfWork.Playlist.FindByIdAsync(id);
+                    if(playlist == null)
+                    {
+                        return NotFound($"No Playlist With Id = {id}");
+                    }
+
+                    if (playlist.IsDefult)
+                    {
+                        return BadRequest("Can't Delete Defult Playlists");
+                    }
+
+                    await _unitOfWork.PlaylistVideo.DeletePlaylistVideosAsync(id);
+                    await _unitOfWork.Playlist.DeletePlaylistAsync(id);
                     await _unitOfWork.Complete();
                     return Ok("Playlist Deleted Successfully");
                 }
             }
-            return Ok();
+            return Unauthorized();
         }
 
         [Authorize]
         [HttpDelete("RemoveVideo")]
-        public async Task<IActionResult> RemoveideoFromPlaylist(RemovePlaylistVideoDto model)
+        public async Task<IActionResult> RemoveVideoFromPlaylist(RemovePlaylistVideoDto model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(model.VideoID, model.PlaylistID);
+
+            var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
+            if (video == null)
+            {
+                return NotFound($"No Video With Id = {model.VideoId}");
+            }
+
+            var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
+            if (playlist == null)
+            {
+                return NotFound($"No Playlist With Id = {model.PlaylistId}");
+            }
+
+            var result = await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(model.VideoId, model.PlaylistId);
+            if (!result)
+            {
+                return NotFound("The Video Is Already Not In The Playlist");
+            }
+
             await _unitOfWork.Complete();
             return Ok("Video Removed Succesfully");
         }
+
 
     }
 }

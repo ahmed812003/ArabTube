@@ -363,7 +363,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
     "Method": "Subscribe",
-    "RelativePath": "api/Subscriptions/Subscribe/{ownerId}",
+    "RelativePath": "api/Subscriptions/Subscribe",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -371,7 +371,7 @@
       {
         "Name": "ownerId",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -379,7 +379,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
     "Method": "UnScbscribe",
-    "RelativePath": "api/Subscriptions/UnSubscribe/{ownerId}",
+    "RelativePath": "api/Subscriptions/UnSubscribe",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -387,7 +387,7 @@
       {
         "Name": "ownerId",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
