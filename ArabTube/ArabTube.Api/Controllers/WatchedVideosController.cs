@@ -37,19 +37,21 @@ namespace ArabTube.Api.Controllers
                 if (user != null)
                 {
                     var watchedVideos = await _unitOfWork.WatchedVideo.GetWatchedVideosAsync(user.Id);
-                    if (watchedVideos != null)
+
+                    if (watchedVideos == null || !watchedVideos.Any())
+                        return NotFound("The Current Login User Dosn't Watch Any Video");
+
+                    var HistoryVideos = watchedVideos.Select(wv => new HistoryVideoDto
                     {
-                        var HistoryVideos = watchedVideos.Select(wv => new HistoryVideoDto
-                        {
-                            VideoId = wv.VideoId,
-                            Title = wv.Video.Title,
-                            Views = wv.Video.Views,
-                            WatchedTime = wv.WatchedTime,
-                            Username = wv.Video.AppUser.UserName,
-                            Thumbnail = wv.Video.Thumbnail
-                        });
-                        return Ok(HistoryVideos);
-                    }
+                        VideoId = wv.VideoId,
+                        Title = wv.Video.Title,
+                        Views = wv.Video.Views,
+                        WatchedTime = wv.WatchedTime,
+                        Username = wv.Video.AppUser.UserName,
+                        Thumbnail = wv.Video.Thumbnail
+                    });
+                    return Ok(HistoryVideos);
+
                 }
             }
             return Unauthorized();

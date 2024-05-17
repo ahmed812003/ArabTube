@@ -16,5 +16,19 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
         {
 
         }
+
+        public async Task<IEnumerable<Video>> SearchVideoAsync(string query)
+        {
+            var videos = await _dbSet.Where(v => v.Title.Contains(query) || v.Description.Contains(query))
+                                     .ToListAsync();
+            return videos;
+        }
+
+        public async Task<IEnumerable<string>> SearchVideoTitlesAsync(string query)
+        {
+            var titles = await _dbSet.Where(v => v.Title.Contains(query)).Select(v => v.Title)
+                                     .ToListAsync();
+            return titles;
+        }
     }
 }

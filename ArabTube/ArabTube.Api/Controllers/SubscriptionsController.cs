@@ -35,14 +35,14 @@ namespace ArabTube.Api.Controllers
                 if (user != null)
                 {
                     var appUserConnections = await _unitOfWork.AppUserConnection.GetFollowingAsync(user.Id);
-                    if(appUserConnections != null)
+                    if (appUserConnections == null || !appUserConnections.Any())
+                        return NotFound("The Current Login User Has No Following");
+                  
+                    var following = appUserConnections.Select(auc => new FollowingDto
                     {
-                        var following = appUserConnections.Select(auc => new FollowingDto
-                        {
-                            Username = auc.Following.UserName
-                        });
-                        return Ok(following);
-                    }
+                        Username = auc.Following.UserName
+                    });
+                    return Ok(following);
                 }
             }
             return Unauthorized();

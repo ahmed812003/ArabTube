@@ -33,6 +33,10 @@ namespace ArabTube.Api.Controllers
             }
 
             var comments = await _unitOfWork.Comment.GetVideoCommentsAsync(id);
+            
+            if (!comments.Any())
+                return NotFound($"The Video With Id = {id} Dosn't Has Any Comments");
+
             var commentsDto = comments.Select(c => new GetCommentDto
             {
                 commentId = c.Id,

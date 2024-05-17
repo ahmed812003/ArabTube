@@ -33,6 +33,44 @@ namespace ArabTube.Api.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet("searchTitles")]
+        public async Task<IActionResult> SearchVideoTitles(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query Cannot Be Empty");
+
+            var titles = await _unitOfWork.Video.SearchVideoTitlesAsync(query);
+
+            if (!titles.Any())
+                return NotFound("No Titles Found Matching The Search Query");
+
+            return Ok(titles);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchVideos(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query Cannot Be Empty");
+
+            var videos = await _unitOfWork.Video.SearchVideoAsync(query);
+
+            if (!videos.Any())
+                return NotFound("No Videos Found Matching The Search Query");
+
+            var viewVideos = videos.Select(v => new VideoPreviewDto
+            {
+                Id = v.Id,
+                Title = v.Title,
+                Likes = v.Likes,
+                DisLikes = v.DisLikes,
+                Views = v.Views,
+                CreatedOn = v.CreatedOn,
+                Thumbnail = v.Thumbnail
+            });
+
+            return Ok(viewVideos);
+        }
 
         [HttpGet("Videos")]
         public async Task<IActionResult> PreviewVideo()

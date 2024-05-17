@@ -16,6 +16,20 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
         {
         }
 
+        public async Task<IEnumerable<Playlist>> SearchPlaylistAsync(string query)
+        {
+            var playlists = await _dbSet.Where(p => (p.Title.Contains(query) || p.Description.Contains(query)) && !p.IsPrivate)
+                                     .ToListAsync();
+            return playlists;
+        }
+
+        public async Task<IEnumerable<string>> SearchPlaylistTitlesAsync(string query)
+        {
+            var titles = await _dbSet.Where(p => p.Title.Contains(query) && !p.IsPrivate).Select(p => p.Title)
+                                     .ToListAsync();
+            return titles;
+        }
+
         public async Task<IEnumerable<Playlist>> GetPlaylistsAsync(string userId, bool includePrivate)
         {
             List<Playlist> playlists = new List<Playlist>(); 

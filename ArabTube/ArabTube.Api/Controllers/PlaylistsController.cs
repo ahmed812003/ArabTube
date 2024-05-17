@@ -1,4 +1,5 @@
 ﻿using ArabTube.Entities.DtoModels.PlaylistDTOs;
+using ArabTube.Entities.DtoModels.VideoDTOs;
 using ArabTube.Entities.Models;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -22,6 +23,41 @@ namespace ArabTube.Api.Controllers
             this._userManager = userManager;
         }
 
+        [HttpGet("searchTitles")]
+        public async Task<IActionResult> SearchVideoTitles(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query Cannot Be Empty");
+
+            var titles = await _unitOfWork.Playlist.SearchPlaylistTitlesAsync(query);
+
+            if (!titles.Any())
+                return NotFound("No Titles Found Matching The Search Query");
+
+            return Ok(titles);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchVideos(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query Cannot Be Empty");
+
+            var playlists = await _unitOfWork.Playlist.SearchPlaylistAsync(query);
+
+            if (!playlists.Any())
+                return NotFound("No Videos Found Matching The Search Query");
+
+            var playlistsDto = playlists.Select(p => new GetPlaylistDto
+            {
+                Id = p.Id,
+                Title = p.Title,
+                IsPrivate = p.IsPrivate
+            });
+
+            return Ok(playlistsDto);
+        }
+
         [Authorize]
         [HttpGet("MyPlaylist")]
         public async Task<IActionResult> GetMyPlaylists()
@@ -33,6 +69,10 @@ namespace ArabTube.Api.Controllers
                 if (user != null)
                 {
                     var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(user.Id, true);
+
+                    if (!playlists.Any())
+                        return NotFound("You Don't Have Any Playlist");
+
                     var playlistsDto = playlists.Select(p => new GetPlaylistDto
                     {
                         Id = p.Id,
@@ -55,6 +95,10 @@ namespace ArabTube.Api.Controllers
             }
 
             var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(id, false);
+            
+            if (!playlists.Any())
+                return NotFound($"The User With Id = {id} Dosn't Has Any Playlist");
+            
             var playlistsDto = playlists.Select(p => new GetPlaylistDto
             {
                 Id = p.Id,
@@ -75,6 +119,10 @@ namespace ArabTube.Api.Controllers
             }
 
             var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(id);
+
+            if (!playlistVideos.Any())
+                return NotFound("The Playlist With Id = {id} Dosn't Has Any Videos");
+
             var videos = playlistVideos.Select(pv => new PlaylistVideoDto
             {
                 VideoId = pv.VideoId,
