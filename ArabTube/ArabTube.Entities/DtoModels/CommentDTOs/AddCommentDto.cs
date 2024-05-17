@@ -14,9 +14,9 @@ namespace ArabTube.Entities.DtoModels.CommentDTOs
 
         [Required]
         public string Content { get; set; }
-        [Required]
-        public string Mention { get; set; } = string.Empty;
-        [Required]
-        public string ParentCommentId { get; set; } = string.Empty;
+        
+        public string? Mention { get; set; } = string.Empty;
+        
+        public string? ParentCommentId { get; set; } = string.Empty;
     }
 }

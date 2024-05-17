@@ -46,15 +46,15 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpGet("Playlist")]
-        public async Task<IActionResult> GetPlaylists(string userId)
+        public async Task<IActionResult> GetPlaylists(string id)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return NotFound($"No User With Id = {userId}");
+                return NotFound($"No User With Id = {id}");
             }
 
-            var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(userId, false);
+            var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(id, false);
             var playlistsDto = playlists.Select(p => new GetPlaylistDto
             {
                 Id = p.Id,
@@ -66,15 +66,15 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpGet("Video")]
-        public async Task<IActionResult> GetPlaylistVideos(string playlistId)
+        public async Task<IActionResult> GetPlaylistVideos(string id)
         {
-            var playlist = await _unitOfWork.Playlist.FindByIdAsync(playlistId);
+            var playlist = await _unitOfWork.Playlist.FindByIdAsync(id);
             if(playlist == null)
             {
-                return NotFound($"No Playlist With Id = {playlistId}");
+                return NotFound($"No Playlist With Id = {id}");
             }
 
-            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(playlistId);
+            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(id);
             var videos = playlistVideos.Select(pv => new PlaylistVideoDto
             {
                 VideoId = pv.VideoId,
@@ -162,7 +162,11 @@ namespace ArabTube.Api.Controllers
             var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
             if(playlist == null)
             {
-                return NotFound();
+                return NotFound($"No Playlist With Id = {model.PlaylistId}");
+            }
+            if (playlist.IsDefult)
+            {
+                return BadRequest("Can't Delete Defult Playlists");
             }
 
             if (!string.IsNullOrEmpty(model.Title))

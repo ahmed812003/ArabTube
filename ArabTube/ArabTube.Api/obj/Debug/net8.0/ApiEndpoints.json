@@ -145,15 +145,15 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "GetComment",
-    "RelativePath": "api/Comments/Comment/{commentId}",
+    "RelativePath": "api/Comments/Comment",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "commentId",
+        "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -161,15 +161,15 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "GetVideoComments",
-    "RelativePath": "api/Comments/Comments/{videoId}",
+    "RelativePath": "api/Comments/Comments",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "videoId",
+        "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -177,15 +177,15 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "Delete",
-    "RelativePath": "api/Comments/Delete/{commentId}",
+    "RelativePath": "api/Comments/Delete",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "commentId",
+        "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -193,7 +193,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "DislikeComment",
-    "RelativePath": "api/Comments/Dislike/{id}",
+    "RelativePath": "api/Comments/Dislike",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -201,7 +201,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -209,7 +209,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "LikeComment",
-    "RelativePath": "api/Comments/Like/{id}",
+    "RelativePath": "api/Comments/Like",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -217,7 +217,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -225,7 +225,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "UpdateComment",
-    "RelativePath": "api/Comments/update",
+    "RelativePath": "api/Comments/Update",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -273,54 +273,48 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
     "Method": "Delete",
-    "RelativePath": "api/Playlists/Delete/{playlistId}",
+    "RelativePath": "api/Playlists/Delete",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "playlistId",
+        "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "GetMyPlaylists",
+    "RelativePath": "api/Playlists/MyPlaylist",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
     "Method": "GetPlaylists",
-    "RelativePath": "api/Playlists/Get/{userId}",
+    "RelativePath": "api/Playlists/Playlist",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "GetPlaylistVideos",
-    "RelativePath": "api/Playlists/GetVideos/{playlistId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "playlistId",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "RemoveideoFromPlaylist",
+    "Method": "RemoveVideoFromPlaylist",
     "RelativePath": "api/Playlists/RemoveVideo",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -346,6 +340,22 @@
         "Name": "model",
         "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.UpdatePlaylistDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "GetPlaylistVideos",
+    "RelativePath": "api/Playlists/Video",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -395,7 +405,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "DeleteVideo",
-    "RelativePath": "api/Videos/Delete/{id}",
+    "RelativePath": "api/Videos/Delete",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -403,7 +413,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -411,7 +421,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "DislikeVideo",
-    "RelativePath": "api/Videos/Dislike/{id}",
+    "RelativePath": "api/Videos/Dislike",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -419,7 +429,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -427,7 +437,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "FlagVideo",
-    "RelativePath": "api/Videos/Flag/{id}",
+    "RelativePath": "api/Videos/Flag",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -435,7 +445,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -443,7 +453,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "LikeVideo",
-    "RelativePath": "api/Videos/Like/{id}",
+    "RelativePath": "api/Videos/Like",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -451,7 +461,39 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "GetVideosTitleBySearch",
+    "RelativePath": "api/Videos/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "GetVideosBySearch",
+    "RelativePath": "api/Videos/SearchResult",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -459,7 +501,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "UpdateVideo",
-    "RelativePath": "api/Videos/Update/{id}",
+    "RelativePath": "api/Videos/Update",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -482,7 +524,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -521,7 +563,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "WatchVideo",
-    "RelativePath": "api/Videos/Video/{id}",
+    "RelativePath": "api/Videos/Video",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -529,7 +571,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -547,7 +589,7 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.VideosController",
     "Method": "ViewVideo",
-    "RelativePath": "api/Videos/View/{id}",
+    "RelativePath": "api/Videos/View",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -555,7 +597,7 @@
       {
         "Name": "id",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

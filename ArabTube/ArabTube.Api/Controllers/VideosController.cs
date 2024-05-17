@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace ArabTube.Api.Controllers
@@ -31,6 +32,7 @@ namespace ArabTube.Api.Controllers
             _userManager = userManager;
             _configuration = configuration;
         }
+
 
         [HttpGet("Videos")]
         public async Task<IActionResult> PreviewVideo()

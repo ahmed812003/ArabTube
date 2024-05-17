@@ -65,7 +65,7 @@ namespace ArabTube.Api.Controllers
             var comment = await _unitOfWork.Comment.FindByIdAsync(id);
             if(comment == null || comment.Id != comment.ParentCommentId)
             {
-                return NotFound();
+                return NotFound("Invalid Comment Id ");
             }
 
             var comments = await _unitOfWork.Comment.GetCommentAsync(id);
@@ -111,6 +111,12 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
+                    if(video == null)
+                    {
+                        return NotFound($"No Video Wiht Id = {model.VideoId}");
+                    }
+
                     var parentComment = await _unitOfWork.Comment.FindByIdAsync(model.ParentCommentId);
                     if (!string.IsNullOrEmpty(model.ParentCommentId) && parentComment == null)
                     {
@@ -156,7 +162,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPost("Dislike/{id}")]
+        [HttpPost("Dislike")]
         public async Task<IActionResult> DislikeComment(string id)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(id);
@@ -173,13 +179,13 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
-        [HttpPut("update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> UpdateComment(UpdateCommentDto model)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(model.CommentId);
             if(comment == null)
             {
-                return NotFound();
+                return NotFound($"Comment With id {model.CommentId} does not exist!");
             }
             comment.Content = model.Content;
             comment.IsUpdated = true;
