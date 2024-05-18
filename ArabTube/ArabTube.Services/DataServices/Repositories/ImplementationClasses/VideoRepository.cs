@@ -16,6 +16,17 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
         {
 
         }
+        public override async Task<IEnumerable<Video>> GetAllAsync()
+        {
+            var videos = await _dbSet.Include(v => v.AppUser).ToListAsync();
+            return videos;
+        }
+
+        public override async Task<Video?> FindByIdAsync(string id)
+        {
+            var video = await _dbSet.Include(v => v.AppUser).FirstOrDefaultAsync(v => v.Id == id);
+            return video;
+        }
 
         public async Task<IEnumerable<Video>> SearchVideoAsync(string query)
         {

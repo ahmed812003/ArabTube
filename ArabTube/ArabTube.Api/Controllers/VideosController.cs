@@ -85,6 +85,9 @@ namespace ArabTube.Api.Controllers
                 DisLikes = v.DisLikes,
                 Views = v.Views,
                 CreatedOn = v.CreatedOn,
+                ChannelTitle = $"{v.AppUser.FirstName} {v.AppUser.LastName}",
+                UserId = v.AppUser.Id, 
+                Username = v.AppUser.UserName,
                 Thumbnail = v.Thumbnail
             });
 
@@ -110,6 +113,9 @@ namespace ArabTube.Api.Controllers
                 Views = video.Views,
                 Flags = video.Flags,
                 UpdatedOn = video.UpdatedOn,
+                ChannelTitle = $"{video.AppUser.FirstName} {video.AppUser.LastName}",
+                UserId = video.AppUser.Id,
+                Username = video.AppUser.UserName,
                 Thumbnail = video.Thumbnail
             };
             var resolutions = Enum.GetValues(typeof(VideoResolutions));

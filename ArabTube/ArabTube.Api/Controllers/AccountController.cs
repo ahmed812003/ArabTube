@@ -33,7 +33,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpPost("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail([FromQuery] EmailConfirmationDto model)
+        public async Task<IActionResult> ConfirmEmail(EmailConfirmationDto model)
         {
             var userId = Request.Cookies["UserId"];
             var validCode = Request.Cookies["Code"];

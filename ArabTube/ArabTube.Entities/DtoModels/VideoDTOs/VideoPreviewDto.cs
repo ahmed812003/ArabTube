@@ -19,8 +19,14 @@ namespace ArabTube.Entities.DtoModels.VideoDTOs
 
         public int Views { get; set; }
 
-        public byte[] Thumbnail { get; set; }
+        public string ChannelTitle { get; set; }
+
+        public string UserId { get; set; }
+
+        public string Username { get; set; }
 
         public DateTime CreatedOn { get; set; }
+        
+        public byte[] Thumbnail { get; set; }
     }
 }
