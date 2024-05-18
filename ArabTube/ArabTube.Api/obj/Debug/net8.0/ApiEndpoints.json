@@ -24,14 +24,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "UserId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Code",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "model",
+        "Type": "ArabTube.Entities.DtoModels.UserDTOs.EmailConfirmationDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -122,6 +117,38 @@
         "Name": "model",
         "Type": "ArabTube.Entities.DtoModels.UserDTOs.ResetPasswordDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.AccountController",
+    "Method": "SearchVideos",
+    "RelativePath": "api/Account/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.AccountController",
+    "Method": "SearchVideoTitles",
+    "RelativePath": "api/Account/searchNames",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

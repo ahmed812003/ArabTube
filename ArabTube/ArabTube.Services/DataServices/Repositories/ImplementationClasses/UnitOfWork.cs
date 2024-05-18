@@ -23,6 +23,8 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public ICommentRepository Comment { get; }
 
+        public IAppUserRepository AppUser { get; }
+
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -34,6 +36,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             Playlist = new PlaylistRepository(_context);
             PlaylistVideo = new PlaylistVideoRepository(_context);
             Comment = new CommentRepository(_context);
+            AppUser = new AppUserRepository(_context);
         }
 
         public void Dispose()

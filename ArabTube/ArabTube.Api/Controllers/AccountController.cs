@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
 using ArabTube.Entities.Enums;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
+using ArabTube.Entities.DtoModels.VideoDTOs;
 
 namespace ArabTube.Api.Controllers
 {
@@ -31,6 +32,41 @@ namespace ArabTube.Api.Controllers
             this._emailSender = emailSender;
             this._unitOfWork = unitOfWork;
         }
+
+        [HttpGet("searchNames")]
+        public async Task<IActionResult> SearchVideoTitles(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query Cannot Be Empty");
+
+            var names = await _unitOfWork.AppUser.SearchUsersNamesAsync(query);
+
+            if (!names.Any())
+                return NotFound("No name Found Matching The Search Query");
+
+            return Ok(names);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchVideos(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return BadRequest("Query Cannot Be Empty");
+
+            var users = await _unitOfWork.AppUser.SearchUsersAsync(query);
+
+            if (!users.Any())
+                return NotFound("No users Found Matching The Search Query");
+
+            var usersView = users.Select(u => new UserViewDto
+            {
+                UserId = u.Id,
+                UserName = u.UserName,
+                ChannelTitle = $"{u.FirstName} {u.LastName}"
+            });
+            return Ok(usersView);
+        }
+
 
         [HttpPost("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(EmailConfirmationDto model)
