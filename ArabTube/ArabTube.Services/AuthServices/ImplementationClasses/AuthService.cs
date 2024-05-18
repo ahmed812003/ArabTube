@@ -59,6 +59,7 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
 
             return new ProcessResult
             {
+                Message = user.Id,
                 IsSuccesed = true
             };
         }
@@ -96,9 +97,9 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
         }
 
         // done
-        public async Task<ProcessResult> EmailConfirmationAsync(string userId, string code)
+        public async Task<ProcessResult> EmailConfirmationAsync(string userId)
         {
-            if (userId == null || code == null)
+            if (userId == null)
             {
                 return new ProcessResult { Message = "Invalid Email" };
             }
@@ -109,7 +110,7 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
                 return new ProcessResult { Message = $"Unable to load user with ID '{userId}'." };
             }
 
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var result = await _userManager.ConfirmEmailAsync(user, code);
 
             var processResult = new ProcessResult();
@@ -120,7 +121,7 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
         }
 
         //done
-        public async Task<ProcessResult> ForgetPassword(string email)
+        public async Task<ProcessResult> ForgetPasswordAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
                 return new ProcessResult { Message = "Email Is Not Found" };

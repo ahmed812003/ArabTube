@@ -11,5 +11,7 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
     {
         [Required, MaxLength(50)]
         public string newPassword { get; set; }
+
+        public string UserCode { get; set; }
     }
 }

@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|f:\\software engineering\\graduation project\\arabtube\\arabtube\\arabtube.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4AA000C-D4EC-4F0D-B820-B660BA378E6C}|ArabTube.Api\\ArabTube.Api.csproj|solutionrelative:arabtube.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "ArabTube.Api\\Controllers\\AccountController.cs",
+              "ToolTip": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "ArabTube.Api\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAiwE4AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T09:05:11.01Z",
+              "EditorCaption": ""
             }
           ]
         }

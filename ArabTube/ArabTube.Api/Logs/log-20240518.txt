@@ -1,0 +1,348 @@
+2024-05-18 11:41:12.063 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-18 11:41:13.174 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-18 11:41:13.174 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-18 11:41:13.312 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-18 11:41:13.319 +03:00 [INF] Hosting environment: Development
+2024-05-18 11:41:13.319 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-18 11:41:14.775 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger - null null
+2024-05-18 11:41:15.330 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger - 301 0 null 595.1177ms
+2024-05-18 11:41:15.354 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-18 11:41:15.543 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 189.3845ms
+2024-05-18 11:41:15.794 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/swagger-ui-standalone-preset.js - null null
+2024-05-18 11:41:15.797 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/swagger-ui-bundle.js - null null
+2024-05-18 11:41:15.799 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-18 11:41:15.799 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/swagger-ui.css - null null
+2024-05-18 11:41:15.816 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 17.7496ms
+2024-05-18 11:41:15.920 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-05-18 11:41:15.920 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-05-18 11:41:15.920 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/swagger-ui.css - 200 143943 text/css 128.1471ms
+2024-05-18 11:41:15.921 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 126.5136ms
+2024-05-18 11:41:15.952 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-05-18 11:41:15.953 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 155.1224ms
+2024-05-18 11:41:15.995 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-18 11:41:16.189 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 194.16ms
+2024-05-18 11:41:17.547 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-18 11:41:17.920 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 373.2996ms
+2024-05-18 11:42:46.652 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Register - application/json 218
+2024-05-18 11:42:47.286 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Register (ArabTube.Api)'
+2024-05-18 11:42:47.336 +03:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ArabTube.Entities.DtoModels.UserDTOs.RegisterDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 11:42:59.086 +03:00 [INF] Executed DbCommand (566ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-18 11:42:59.356 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 11:43:00.640 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 11:43:01.733 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 250), @p7='?' (DbType = Boolean), @p8='?' (Size = 250), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [BirthDate], [ConcurrencyStamp], [Email], [EmailConfirmed], [FirstName], [Gender], [LastName], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2024-05-18 11:43:01.799 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2024-05-18 11:43:01.963 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2024-05-18 11:43:01.975 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2024-05-18 11:43:02.015 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 11:43:02.157 +03:00 [INF] Executed DbCommand (45ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p20='?' (Size = 450), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000), @p21='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (DbType = Boolean), @p7='?' (Size = 250), @p8='?' (DbType = Boolean), @p9='?' (Size = 250), @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTimeOffset), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 4000), @p18='?' (DbType = Boolean), @p19='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([RoleId], [UserId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [BirthDate] = @p3, [ConcurrencyStamp] = @p4, [Email] = @p5, [EmailConfirmed] = @p6, [FirstName] = @p7, [Gender] = @p8, [LastName] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TwoFactorEnabled] = @p18, [UserName] = @p19
+OUTPUT 1
+WHERE [Id] = @p20 AND [ConcurrencyStamp] = @p21;
+2024-05-18 11:43:02.201 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-18 11:43:22.287 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Register (ArabTube.Api) in 34945.721ms
+2024-05-18 11:43:22.289 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Register (ArabTube.Api)'
+2024-05-18 11:43:22.295 +03:00 [ERR] HTTP POST /api/Account/Register responded 500 in 35632.2998 ms
+System.Net.Mail.SmtpException: Failure sending mail.
+ ---> System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at System.Net.Mail.SmtpConnection.ConnectAndHandshakeAsyncResult.TlsStreamAuthenticateCallback(IAsyncResult result)
+--- End of stack trace from previous location ---
+   at System.Net.Mail.SmtpClient.ConnectCallback(IAsyncResult result)
+   --- End of inner exception stack trace ---
+   at ArabTube.Services.AuthServices.ImplementationClasses.EmailSender.SendEmailAsync(String email, String subject, String htmlMessage) in F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Services\AuthServices\ImplementationClasses\EmailSender.cs:line 33
+   at ArabTube.Api.Controllers.AccountController.Register(RegisterDto model) in F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\Controllers\AccountController.cs:line 74
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2024-05-18 11:43:22.342 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Mail.SmtpException: Failure sending mail.
+ ---> System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at System.Threading.Tasks.TaskToAsyncResult.End(IAsyncResult asyncResult)
+   at System.Net.Mail.SmtpConnection.ConnectAndHandshakeAsyncResult.TlsStreamAuthenticateCallback(IAsyncResult result)
+--- End of stack trace from previous location ---
+   at System.Net.Mail.SmtpClient.ConnectCallback(IAsyncResult result)
+   --- End of inner exception stack trace ---
+   at ArabTube.Services.AuthServices.ImplementationClasses.EmailSender.SendEmailAsync(String email, String subject, String htmlMessage) in F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Services\AuthServices\ImplementationClasses\EmailSender.cs:line 33
+   at ArabTube.Api.Controllers.AccountController.Register(RegisterDto model) in F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\Controllers\AccountController.cs:line 74
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-18 11:43:22.373 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Register - 500 null text/plain; charset=utf-8 35721.4448ms
+2024-05-18 11:43:33.280 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Register - application/json 218
+2024-05-18 11:43:33.290 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Register (ArabTube.Api)'
+2024-05-18 11:43:33.290 +03:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ArabTube.Entities.DtoModels.UserDTOs.RegisterDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 11:43:33.384 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-18 11:43:33.391 +03:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2024-05-18 11:43:33.392 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Register (ArabTube.Api) in 101.7375ms
+2024-05-18 11:43:33.392 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Register (ArabTube.Api)'
+2024-05-18 11:43:33.392 +03:00 [INF] HTTP POST /api/Account/Register responded 400 in 104.5780 ms
+2024-05-18 11:43:33.393 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Register - 400 null text/plain; charset=utf-8 112.4526ms
+2024-05-18 11:43:52.589 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/ResendEmailConfirmation - application/json 36
+2024-05-18 11:43:52.595 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.ResendEmailConfirmation (ArabTube.Api)'
+2024-05-18 11:43:52.609 +03:00 [INF] Route matched with {action = "ResendEmailConfirmation", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ResendEmailConfirmation(ArabTube.Entities.DtoModels.UserDTOs.ResendEmailConfirmationDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 11:43:52.653 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-18 11:43:52.657 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-18 11:44:00.447 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-18 11:44:00.448 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.ResendEmailConfirmation (ArabTube.Api) in 7838.9178ms
+2024-05-18 11:44:00.448 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.ResendEmailConfirmation (ArabTube.Api)'
+2024-05-18 11:44:00.448 +03:00 [INF] HTTP POST /api/Account/ResendEmailConfirmation responded 200 in 7857.9136 ms
+2024-05-18 11:44:00.448 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/ResendEmailConfirmation - 200 null text/plain; charset=utf-8 7859.0359ms
+2024-05-18 11:46:10.184 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 11:46:10.212 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:46:10.213 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:46:10.213 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 405 in 0.6298 ms
+2024-05-18 11:46:10.213 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 405 0 null 29.5931ms
+2024-05-18 11:46:45.025 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 11:46:45.035 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:46:45.035 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:46:45.035 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 405 in 0.4386 ms
+2024-05-18 11:46:45.035 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 405 0 null 13.8378ms
+2024-05-18 11:47:32.673 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 11:47:32.692 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:47:32.693 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:47:32.693 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 405 in 0.7033 ms
+2024-05-18 11:47:32.693 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 405 0 null 20.8396ms
+2024-05-18 11:47:33.311 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-18 11:47:33.336 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 25.2916ms
+2024-05-18 11:47:33.710 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-18 11:47:33.711 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 1.999ms
+2024-05-18 11:47:33.740 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-18 11:47:33.768 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 28.1686ms
+2024-05-18 11:47:34.028 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 11:47:34.032 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 11:47:34.054 +03:00 [INF] Route matched with {action = "ConfirmEmail", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ConfirmEmail(ArabTube.Entities.DtoModels.UserDTOs.EmailConfirmationDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 11:47:34.468 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-18 11:47:34.492 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 11:47:34.511 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@p18='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p19='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 250), @p6='?' (DbType = Boolean), @p7='?' (Size = 250), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [BirthDate] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [LastName] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+OUTPUT 1
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+2024-05-18 11:47:34.655 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 11:47:34.661 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 11:47:34.667 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-18 11:47:34.668 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api) in 613.8789ms
+2024-05-18 11:47:34.668 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 11:47:34.668 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 200 in 635.7220 ms
+2024-05-18 11:47:34.668 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 200 null text/plain; charset=utf-8 641.2046ms
+2024-05-18 11:47:35.953 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/favicon.ico - null null
+2024-05-18 11:47:35.954 +03:00 [INF] HTTP GET /favicon.ico responded 404 in 0.4157 ms
+2024-05-18 11:47:35.954 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/favicon.ico - 404 0 null 1.4439ms
+2024-05-18 11:47:35.956 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7204/favicon.ico, Response status code: 404
+2024-05-18 11:47:36.027 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-18 11:47:36.073 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 45.9195ms
+2024-05-18 11:47:36.090 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/favicon-32x32.png - null null
+2024-05-18 11:47:36.091 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-05-18 11:47:36.091 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/favicon-32x32.png - 200 628 image/png 1.4672ms
+2024-05-18 11:47:42.841 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 11:47:42.852 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 11:47:42.852 +03:00 [INF] Route matched with {action = "ConfirmEmail", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ConfirmEmail(ArabTube.Entities.DtoModels.UserDTOs.EmailConfirmationDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 11:47:42.858 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-18 11:47:42.863 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 11:47:42.867 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p18='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p19='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 250), @p6='?' (DbType = Boolean), @p7='?' (Size = 250), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [BirthDate] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [LastName] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+OUTPUT 1
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+2024-05-18 11:47:42.870 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 11:47:42.873 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 11:47:42.873 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-18 11:47:42.874 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api) in 21.7745ms
+2024-05-18 11:47:42.874 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 11:47:42.874 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 200 in 22.3696 ms
+2024-05-18 11:47:42.874 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 200 null text/plain; charset=utf-8 33.0724ms
+2024-05-18 11:48:44.056 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-18 11:48:44.091 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 35.3864ms
+2024-05-18 11:48:44.274 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-18 11:48:44.274 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-18 11:48:44.276 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 3.3401ms
+2024-05-18 11:48:44.312 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.5363ms
+2024-05-18 11:48:45.952 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-18 11:48:46.021 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 69.988ms
+2024-05-18 11:48:48.589 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 11:48:48.597 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:48:48.597 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2024-05-18 11:48:48.597 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 405 in 0.7199 ms
+2024-05-18 11:48:48.598 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?userId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 405 0 null 8.8346ms
+2024-05-18 11:51:20.332 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/ConfirmEmail?UserId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&Code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null 0
+2024-05-18 11:51:20.340 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 11:51:20.347 +03:00 [INF] Route matched with {action = "ConfirmEmail", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ConfirmEmail(ArabTube.Entities.DtoModels.UserDTOs.EmailConfirmationDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 11:51:20.355 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-18 11:51:20.359 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 11:51:20.367 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p18='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p19='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 250), @p6='?' (DbType = Boolean), @p7='?' (Size = 250), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [BirthDate] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [LastName] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+OUTPUT 1
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+2024-05-18 11:51:20.372 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 11:51:20.375 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 11:51:20.376 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-18 11:51:20.379 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api) in 29.6827ms
+2024-05-18 11:51:20.380 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 11:51:20.381 +03:00 [INF] HTTP POST /api/Account/ConfirmEmail responded 200 in 40.7317 ms
+2024-05-18 11:51:20.381 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/ConfirmEmail?UserId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&Code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 200 null text/plain; charset=utf-8 49.5716ms
+2024-05-18 12:07:11.086 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-18 12:07:12.032 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-18 12:07:12.033 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-18 12:07:12.257 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-18 12:07:12.259 +03:00 [INF] Hosting environment: Development
+2024-05-18 12:07:12.260 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-18 12:07:13.548 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-18 12:07:14.593 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1069.3454ms
+2024-05-18 12:07:15.403 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-18 12:07:15.403 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-18 12:07:15.430 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 25.8797ms
+2024-05-18 12:07:15.618 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 215.6997ms
+2024-05-18 12:07:17.880 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-18 12:07:18.666 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 785.5062ms
+2024-05-18 12:07:35.336 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/ConfirmEmail?UserId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&Code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null 0
+2024-05-18 12:07:35.445 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 12:07:35.494 +03:00 [INF] Route matched with {action = "ConfirmEmail", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ConfirmEmail(ArabTube.Entities.DtoModels.UserDTOs.EmailConfirmationDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-18 12:07:39.500 +03:00 [INF] Executed DbCommand (112ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-05-18 12:07:39.850 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-18 12:07:40.134 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@p18='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p19='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 250), @p6='?' (DbType = Boolean), @p7='?' (Size = 250), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [BirthDate] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [Gender] = @p6, [LastName] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+OUTPUT 1
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+2024-05-18 12:07:40.313 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 12:07:40.319 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Playlists] ([Id], [Description], [IsDefult], [IsPrivate], [Title], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2024-05-18 12:07:40.609 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-05-18 12:07:40.619 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api) in 5116.8014ms
+2024-05-18 12:07:40.621 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.ConfirmEmail (ArabTube.Api)'
+2024-05-18 12:07:40.626 +03:00 [INF] HTTP POST /api/Account/ConfirmEmail responded 200 in 5279.0035 ms
+2024-05-18 12:07:40.639 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/ConfirmEmail?UserId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&Code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 200 null text/plain; charset=utf-8 5303.4677ms
+2024-05-18 12:07:52.286 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?UserId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&Code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - null null
+2024-05-18 12:07:52.304 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2024-05-18 12:07:52.304 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2024-05-18 12:07:52.304 +03:00 [INF] HTTP GET /api/Account/ConfirmEmail responded 405 in 2.7119 ms
+2024-05-18 12:07:52.304 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Account/ConfirmEmail?UserId=c274adc4-29f1-4f77-9071-a3ffd372f5dc&Code=Q2ZESjhLckxmZ1IvMWNKR2lRRGVUczRMM2h4V2xzbFJsbFVVZmdKY2dsUFZXVEo2M3h1WW9LempOcXpNblFSYkRMci8zTk9FVVJ1RllOeTRjZGVBdTkzSjVaa245aFhhVzMzMW05eDJWMHhaN1hKMkFUeTFVQi9iUG9LVkhOaFlzMUIvZkJna25EbVZNYUxnQjcvcUNad291amt4Mm5nT0F6K3Fhbys1UmlpckZOQjdudXVUUTZyVnd0NncyV0I5R1VQRWVNRkdUVjNoQ0ttSUxKV3c4aTB4TU5yM0NUN2gwWWJ1aEFON1VhWWJlU29qb1RaQ1BCeHh0T2FnejZaS0liNUIrUT09 - 405 0 null 19.1165ms

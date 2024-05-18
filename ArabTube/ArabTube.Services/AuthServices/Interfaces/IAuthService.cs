@@ -7,9 +7,9 @@ namespace ArabTube.Services.AuthServices.Interfaces
     {
         Task<ProcessResult> RegisterAsync(RegisterDto model);
 
-        Task<ProcessResult> EmailConfirmationAsync(string userId, string code);
+        Task<ProcessResult> EmailConfirmationAsync(string userId);
 
-        Task<ProcessResult> ForgetPassword(string email);
+        Task<ProcessResult> ForgetPasswordAsync(string email);
 
         Task<ProcessResult> ResetPasswordAsync(string userId, string newPassword);
 

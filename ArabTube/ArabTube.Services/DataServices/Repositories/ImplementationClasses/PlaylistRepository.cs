@@ -30,6 +30,16 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return titles;
         }
 
+        public async Task<bool> CheckDefultPlaylistsAsync(string userId)
+        {
+            var playlists = await _dbSet.FirstOrDefaultAsync(p => p.UserId == userId && p.IsDefult);
+            if(playlists == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public async Task<IEnumerable<Playlist>> GetPlaylistsAsync(string userId, bool includePrivate)
         {
             List<Playlist> playlists = new List<Playlist>(); 

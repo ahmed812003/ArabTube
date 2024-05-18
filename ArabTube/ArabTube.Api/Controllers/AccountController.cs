@@ -35,24 +35,42 @@ namespace ArabTube.Api.Controllers
         [HttpPost("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail([FromQuery] EmailConfirmationDto model)
         {
-            var result = await _authService.EmailConfirmationAsync(model.UserId, model.Code);
+            var userId = Request.Cookies["UserId"];
+            var validCode = Request.Cookies["Code"];
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest("Invalid User Id");
+            }
+
+            if (string.IsNullOrEmpty(validCode) || validCode != model.UserCode)
+            {
+                return BadRequest("Invalid Code");
+            }
+
+
+            var result = await _authService.EmailConfirmationAsync(userId);
 
             if (!result.IsSuccesed)
             {
                 return BadRequest(result.Message);
             }
 
-            var playlistNames = PlaylistDefaultNames.PlaylistNames;
-            foreach (var playlistName in playlistNames)
+            var IsHasDefultPlaylists = await _unitOfWork.Playlist.CheckDefultPlaylistsAsync(userId);
+            if (!IsHasDefultPlaylists)
             {
-                var entity = new Playlist
+                var playlistNames = PlaylistDefaultNames.PlaylistNames;
+                foreach (var playlistName in playlistNames)
                 {
-                    Title = playlistName,
-                    UserId = model.UserId,
-                    IsDefult = true
-                };
-                await _unitOfWork.Playlist.AddAsync(entity);
-                await _unitOfWork.Complete();
+                    var entity = new Playlist
+                    {
+                        Title = playlistName,
+                        UserId = userId,
+                        IsDefult = true
+                    };
+                    await _unitOfWork.Playlist.AddAsync(entity);
+                    await _unitOfWork.Complete();
+                }
             }
 
             return Ok(result.Message);
@@ -69,10 +87,27 @@ namespace ArabTube.Api.Controllers
             if (!result.IsSuccesed)
                 return BadRequest(result.Message);
 
-            var callbackUrl = await GenerateConfirmEmailUrl(model.Email);
-            var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
+            string userId = result.Message;
+            var code = GenerateOTP();
+
+            Response.Cookies.Append("UserId", userId, new CookieOptions
+            {
+                Secure = true,
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
+
+            });
+
+            Response.Cookies.Append("Code", code, new CookieOptions
+            {
+                Secure = true,
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
+
+            });
+
             await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
-                $"Please confirm your account by <a href='{encodedUrl}'>clicking here</a>.");
+                $"Code To confirm your account {code}.");
 
             return Ok("Please confirm your account");
         }
@@ -104,15 +139,33 @@ namespace ArabTube.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (await _userManager.FindByEmailAsync(model.Email) == null)
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if ( user == null)
             {
                 return BadRequest("No User With This Email");
             }
 
-            var callbackUrl = await GenerateConfirmEmailUrl(model.Email);
-            var encodedUrl = HtmlEncoder.Default.Encode(callbackUrl);
+            var code = GenerateOTP();
+
+            Response.Cookies.Append("UserId", user.Id, new CookieOptions
+            {
+                Secure = true,
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
+
+            });
+
+            Response.Cookies.Append("Code", code, new CookieOptions
+            {
+                Secure = true,
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
+
+            });
+
             await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
-                $"Please confirm your account by <a href='{encodedUrl}'>clicking here</a>.");
+                $"Code To confirm your account {code}.");
+
             return Ok("Check Your E-mail");
         }
 
@@ -122,7 +175,7 @@ namespace ArabTube.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _authService.ForgetPassword(model.Email);
+            var result = await _authService.ForgetPasswordAsync(model.Email);
 
             if (!result.IsSuccesed)
                 return BadRequest(result.Message);
@@ -156,10 +209,16 @@ namespace ArabTube.Api.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
         {
             var userId = Request.Cookies["UserId"];
+            var validCode = Request.Cookies["Code"];
 
             if (string.IsNullOrEmpty(userId))
             {
                 return BadRequest("Invalid User Id");
+            }
+
+            if (string.IsNullOrEmpty(validCode) || validCode != model.UserCode)
+            {
+                return BadRequest("Invalid Code");
             }
 
             var result = await _authService.ResetPasswordAsync(userId, model.newPassword);

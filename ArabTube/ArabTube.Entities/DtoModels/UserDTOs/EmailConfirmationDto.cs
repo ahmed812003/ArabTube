@@ -10,8 +10,7 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
     public class EmailConfirmationDto
     {
         [Required]
-        public string UserId { get; set; }
-        [Required]
-        public string Code { get; set; }
+        public string UserCode { get; set; }
+
     }
 }
