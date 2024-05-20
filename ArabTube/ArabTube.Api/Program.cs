@@ -16,6 +16,10 @@ using ArabTube.Services.VideoServices.ImplementationClasses;
 using ArabTube.Services.VideoServices.Interfaces;
 using Serilog;
 using ArabTube.Services.AuthServices.ImplementationClasses;
+using ArabTube.Services.UserServices.Interfaces;
+using ArabTube.Services.UserServices.ImplementationClasses;
+using ArabTube.Services.PlaylistServices.Interfaces;
+using ArabTube.Services.PlaylistServices.ImplementationClasses;
 
 namespace ArabTube.Api
 {
@@ -42,6 +46,8 @@ namespace ArabTube.Api
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IVideoService, VideoService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPlaylistService, PlaylistService>();
             builder.Services.AddScoped<ICloudService, CloudService>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
 

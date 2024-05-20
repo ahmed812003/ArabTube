@@ -1,14 +1,14 @@
-﻿using ArabTube.Entities.DtoModels.UserDTOs;
-using ArabTube.Entities.Enums;
+﻿using ArabTube.Entities.AuthModels;
+using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Entities.Models;
 using ArabTube.Services.AuthServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
+using ArabTube.Services.PlaylistServices.Interfaces;
+using ArabTube.Services.UserServices.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text;
 
 namespace ArabTube.Api.Controllers
 {
@@ -18,25 +18,30 @@ namespace ArabTube.Api.Controllers
     {
 
         private readonly IAuthService _authService;
+        private readonly IUserService _userService;
+        private readonly IPlaylistService _playlistService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AccountController(IAuthService _authService, UserManager<AppUser> userManager, IEmailSender emailSender, IUnitOfWork unitOfWork)
+        public AccountController(IAuthService _authService, UserManager<AppUser> userManager,
+                                 IEmailSender emailSender, IUnitOfWork unitOfWork, IPlaylistService playlistService)
         {
             this._authService = _authService;
             this._userManager = userManager;
             this._emailSender = emailSender;
             this._unitOfWork = unitOfWork;
+            _playlistService = playlistService;
         }
 
+        //AutoMapped
         [HttpGet("searchNames")]
         public async Task<IActionResult> SearchChannels(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Query Cannot Be Empty");
 
-            var names = await _unitOfWork.AppUser.SearchUsersNamesAsync(query);
+            var names = await _userService.GetChannelsName(query);
 
             if (!names.Any())
                 return NotFound("No name Found Matching The Search Query");
@@ -44,27 +49,22 @@ namespace ArabTube.Api.Controllers
             return Ok(names);
         }
 
+        //AutoMapped
         [HttpGet("search")]
         public async Task<IActionResult> SearchVideos(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Query Cannot Be Empty");
 
-            var users = await _unitOfWork.AppUser.SearchUsersAsync(query);
+            var usersView = await _userService.GetUsersAsync(query);
 
-            if (!users.Any())
+            if (!usersView.Any())
                 return NotFound("No users Found Matching The Search Query");
 
-            var usersView = users.Select(u => new UserViewDto
-            {
-                UserId = u.Id,
-                UserName = u.UserName,
-                ChannelTitle = $"{u.FirstName} {u.LastName}"
-            });
             return Ok(usersView);
         }
 
-
+        //AutoMapped
         [HttpPost("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(EmailConfirmationDto model)
         {
@@ -81,7 +81,6 @@ namespace ArabTube.Api.Controllers
                 return BadRequest("Invalid Code");
             }
 
-
             var result = await _authService.EmailConfirmationAsync(userId);
 
             if (!result.IsSuccesed)
@@ -89,26 +88,20 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(result.Message);
             }
 
-            var IsHasDefultPlaylists = await _unitOfWork.Playlist.CheckDefultPlaylistsAsync(userId);
-            if (!IsHasDefultPlaylists)
+            var isHasDefultPlaylists = await _playlistService.CheckDefultPlaylistsAsync(userId);
+            if (!isHasDefultPlaylists)
             {
-                var playlistNames = PlaylistDefaultNames.PlaylistNames;
-                foreach (var playlistName in playlistNames)
+                var isDefaultPlaylistsCreated = await _playlistService.CreateDefaultPlaylists(userId);
+                if (!isDefaultPlaylistsCreated)
                 {
-                    var entity = new Playlist
-                    {
-                        Title = playlistName,
-                        UserId = userId,
-                        IsDefult = true
-                    };
-                    await _unitOfWork.Playlist.AddAsync(entity);
-                    await _unitOfWork.Complete();
+                    return BadRequest("Failed To Create Default Playlists");
                 }
             }
 
             return Ok(result.Message);
         }
 
+        //AutoMapped
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDto model)
         {
@@ -139,12 +132,13 @@ namespace ArabTube.Api.Controllers
 
             });
 
-            await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
-                $"Code To confirm your account {code}.");
+            await _emailSender.SendEmailAsync(model.Email, EmailConfirmation.Subject,
+                $"{EmailConfirmation.HtmlMessage}{code}.");
 
             return Ok("Please confirm your account");
         }
-
+        
+        //AutoMapped
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDto model)
         {
@@ -159,6 +153,7 @@ namespace ArabTube.Api.Controllers
             return Ok(result);
         }
 
+        //AutoMapped
         [HttpPost("Logout")]
         public async Task<IActionResult> Logout()
         {
@@ -166,6 +161,7 @@ namespace ArabTube.Api.Controllers
             return Ok("You Logout Succesfully");
         }
 
+        //AutoMapped 
         [HttpPost("ResendEmailConfirmation")]
         public async Task<IActionResult> ResendEmailConfirmation(ResendEmailConfirmationDto model)
         {
@@ -196,8 +192,8 @@ namespace ArabTube.Api.Controllers
 
             });
 
-            await _emailSender.SendEmailAsync(model.Email, "Confirm your email",
-                $"Code To confirm your account {code}.");
+            await _emailSender.SendEmailAsync(model.Email, EmailConfirmation.Subject,
+               $"{EmailConfirmation.HtmlMessage}{code}.");
 
             return Ok("Check Your E-mail");
         }
@@ -278,15 +274,15 @@ namespace ArabTube.Api.Controllers
             return Ok(result);
         }
 
-        private async Task<string> GenerateConfirmEmailUrl(string Email)
-        {
-            var user = await _userManager.FindByEmailAsync(Email);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Request.Scheme + "://" + Request.Host +
-                                    Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
-            return callbackUrl;
-        }
+        //private async Task<string> GenerateConfirmEmailUrl(string Email)
+        //{
+        //    var user = await _userManager.FindByEmailAsync(Email);
+        //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        //    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+        //    var callbackUrl = Request.Scheme + "://" + Request.Host +
+        //                            Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code });
+        //    return callbackUrl;
+        //}
 
 
     }

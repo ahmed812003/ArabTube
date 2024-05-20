@@ -28,8 +28,4 @@
     <ProjectReference Include="..\ArabTube.Entities\ArabTube.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UserServices\Interfaces\" />
-  </ItemGroup>
-
 </Project>

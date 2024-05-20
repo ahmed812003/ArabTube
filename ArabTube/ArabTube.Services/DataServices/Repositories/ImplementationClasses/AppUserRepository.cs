@@ -24,7 +24,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return users;
         }
 
-        public async Task<IEnumerable<string>> SearchUsersNamesAsync(string query)
+        public async Task<IEnumerable<string>> SearchChannelsAsync(string query)
         {
             var names = await _dbSet.Where(ap => ap.FirstName.Contains(query) || ap.LastName.Contains(query)
                                     || ap.UserName.Contains(query)).Select(ap => $"{ap.FirstName} {ap.LastName}" )
