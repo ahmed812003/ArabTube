@@ -54,3 +54,16 @@
 2024-05-20 13:27:26.091 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 1002.6112ms
 2024-05-20 13:27:26.284 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
 2024-05-20 13:27:27.436 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1152.2976ms
+2024-05-20 21:44:43.933 +03:00 [INF] User profile is available. Using 'C:\Users\hamza\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-20 21:44:44.944 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-20 21:44:44.945 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-20 21:44:44.948 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-20 21:44:44.949 +03:00 [INF] Hosting environment: Development
+2024-05-20 21:44:44.949 +03:00 [INF] Content root path: C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api
+2024-05-20 21:44:51.192 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-20 21:44:52.398 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1228.8088ms
+2024-05-20 21:44:52.848 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-20 21:44:52.874 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-20 21:44:52.919 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 71.3394ms
+2024-05-20 21:44:53.470 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 595.7144ms
+2024-05-20 21:44:53.695 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null

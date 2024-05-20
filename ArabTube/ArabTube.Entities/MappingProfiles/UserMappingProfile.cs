@@ -8,9 +8,9 @@ namespace ArabTube.Entities.MappingProfiles
     {
         public UserMappingProfile()
         {
-            CreateMap<RegisterDto, AppUser>().ReverseMap();
+            CreateMap<RegisterDto, AppUser>();
 
-            CreateMap<LoginDto, AppUser>().ReverseMap();
+            CreateMap<LoginDto, AppUser>();
 
             CreateMap<AppUser, UserViewDto>()
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))

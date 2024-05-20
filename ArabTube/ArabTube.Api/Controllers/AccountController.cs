@@ -22,16 +22,14 @@ namespace ArabTube.Api.Controllers
         private readonly IPlaylistService _playlistService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmailSender _emailSender;
-        private readonly IUnitOfWork _unitOfWork;
-
+      
         public AccountController(IAuthService _authService, UserManager<AppUser> userManager,
-                                 IEmailSender emailSender, IUnitOfWork unitOfWork, IPlaylistService playlistService)
+                                 IEmailSender emailSender, IPlaylistService playlistService)
         {
             this._authService = _authService;
             this._userManager = userManager;
             this._emailSender = emailSender;
-            this._unitOfWork = unitOfWork;
-            _playlistService = playlistService;
+            this._playlistService = playlistService;
         }
 
         //AutoMapped

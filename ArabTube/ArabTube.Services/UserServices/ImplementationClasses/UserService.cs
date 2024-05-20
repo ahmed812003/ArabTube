@@ -21,8 +21,7 @@ namespace ArabTube.Services.UserServices.ImplementationClasses
         }
         public async Task<IEnumerable<string>> GetChannelsName(string query)
         {
-            var channelNames = await _unitOfWork.AppUser.SearchChannelsAsync(query);
-            return channelNames;
+            return await _unitOfWork.AppUser.SearchChannelsAsync(query);
         }
 
         public async Task<IEnumerable<UserViewDto>> GetUsersAsync(string query)

@@ -47,7 +47,7 @@ namespace ArabTube.Services.CloudServices.ImplementationClasses
                 StorageTransferOptions transferOptions = new StorageTransferOptions
                 {
                     InitialTransferSize = 10 * 1024 * 1024,
-                    MaximumConcurrency = 4,
+                    MaximumConcurrency = 10,
                     MaximumTransferSize = 10 * 1024 * 1024
                 };
                 var headers = new BlobHttpHeaders

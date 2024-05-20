@@ -32,14 +32,14 @@ namespace ArabTube.Api.Controllers
             _userManager = userManager;
             _configuration = configuration;
         }
-
+        // AutoMapped
         [HttpGet("searchTitles")]
         public async Task<IActionResult> SearchVideoTitles(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Query Cannot Be Empty");
 
-            var titles = await _unitOfWork.Video.SearchVideoTitlesAsync(query);
+            var titles = await _videoService.SearchVideoTitlesAsync(query);
 
             if (!titles.Any())
                 return NotFound("No Titles Found Matching The Search Query");
@@ -47,82 +47,43 @@ namespace ArabTube.Api.Controllers
             return Ok(titles);
         }
 
+        // AutoMapped
         [HttpGet("search")]
         public async Task<IActionResult> SearchVideos(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Query Cannot Be Empty");
 
-            var videos = await _unitOfWork.Video.SearchVideoAsync(query);
+            var viewVideos = await _videoService.SearchVideoAsync(query);
 
-            if (!videos.Any())
+            if (!viewVideos.Any())
                 return NotFound("No Videos Found Matching The Search Query");
-
-            var viewVideos = videos.Select(v => new VideoPreviewDto
-            {
-                Id = v.Id,
-                Title = v.Title,
-                Likes = v.Likes,
-                DisLikes = v.DisLikes,
-                Views = v.Views,
-                CreatedOn = v.CreatedOn,
-                Thumbnail = v.Thumbnail
-            });
 
             return Ok(viewVideos);
         }
-
+        // AutoMapped
         [HttpGet("Videos")]
         public async Task<IActionResult> PreviewVideo()
         {
-            var videos = await _unitOfWork.Video.GetAllAsync();
-
-            var viewVideos = videos.Select(v => new VideoPreviewDto
-            {
-                Id = v.Id,
-                Title = v.Title,
-                Likes = v.Likes,
-                DisLikes = v.DisLikes,
-                Views = v.Views,
-                CreatedOn = v.CreatedOn,
-                ChannelTitle = $"{v.AppUser.FirstName} {v.AppUser.LastName}",
-                UserId = v.AppUser.Id, 
-                Username = v.AppUser.UserName,
-                Thumbnail = v.Thumbnail
-            });
+            var viewVideos = await _videoService.GetAllAsync();
+         
+            if (!viewVideos.Any())
+                return NotFound("No Videos Found Matching The Search Query");
 
             return Ok(viewVideos);
         }
 
+        // AutoMapped
         [HttpGet("Video")]
         public async Task<IActionResult> WatchVideo(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
+            var viewVideo = await _videoService.FindByIdAsync(id);
 
-            if (video == null)
+            if (viewVideo == null)
             {
                 return BadRequest($"Video With id {id} does not exist!");
             }
 
-            var viewVideo = new ViewVideoDto
-            {
-                Title = video.Title,
-                Description = video.Description,
-                Likes = video.Likes,
-                DisLikes = video.DisLikes,
-                Views = video.Views,
-                Flags = video.Flags,
-                UpdatedOn = video.UpdatedOn,
-                ChannelTitle = $"{video.AppUser.FirstName} {video.AppUser.LastName}",
-                UserId = video.AppUser.Id,
-                Username = video.AppUser.UserName,
-                Thumbnail = video.Thumbnail
-            };
-            var resolutions = Enum.GetValues(typeof(VideoResolutions));
-            foreach (var resolution in resolutions)
-            {
-                viewVideo.VideoUriList.Add($"{video.VideoUri}{(int)resolution}");
-            }
             return Ok(viewVideo);
         }
 
@@ -150,32 +111,19 @@ namespace ArabTube.Api.Controllers
 
             var processingVideo = new ProcessingVideo
             {
-                Username = userName,
+                Username = userName, 
                 Video = model.Video,
                 Title = model.Title
             };
 
-            /*var encodedVideos = await _videoService.ProcessVideoAsync(processingVideo);
+           /*var encodedVideos = await _videoService.ProcessVideoAsync(processingVideo);
+             await _cloudService.UploadToCloudAsync(encodedVideos);*/
 
-            await _cloudService.UploadToCloudAsync(encodedVideos);*/
-
-            using var stream = new MemoryStream();
-            await model.Thumbnail.CopyToAsync(stream);
-
-            string uri = new Uri(_configuration["BlobStorage:ConnectionString"]).ToString();
-
-            var video = new Video
+            var result = await _videoService.AddAsync(model,userName);
+            if (!result)
             {
-                Title = model.Title,
-                Description = model.Description,
-                Thumbnail = stream.ToArray(),
-                UserId = user.Id
-            };
-            video.VideoUri = $"{uri}{userName}/{video.Id}-";
-
-            await _unitOfWork.Video.AddAsync(video);
-            await _unitOfWork.Complete();
-
+                return BadRequest("Failed to Add ");
+            }
             return Ok("Video Uploaded Sucessfully");
         }
 

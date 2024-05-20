@@ -2,11 +2,6 @@
 using ArabTube.Services.DataServices.Data;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 {
@@ -30,8 +25,8 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public async Task<IEnumerable<Video>> SearchVideoAsync(string query)
         {
-            var videos = await _dbSet.Where(v => v.Title.Contains(query) || v.Description.Contains(query))
-                                     .ToListAsync();
+            var videos = await _dbSet.Where(v => v.Title.Contains(query)   || v.Description.Contains(query))
+                                     .Include(v => v.AppUser).ToListAsync();
             return videos;
         }
 
