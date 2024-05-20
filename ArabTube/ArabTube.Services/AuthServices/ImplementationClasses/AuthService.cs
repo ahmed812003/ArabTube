@@ -22,7 +22,8 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
         private readonly IMapper _mapper;
         private readonly IEmailSender _emailSender;
 
-        public AuthService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMapper mapper, IEmailSender emailSender)
+        public AuthService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, 
+                          IConfiguration configuration, IMapper mapper, IEmailSender emailSender)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -215,6 +216,13 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
                 signingCredentials: signingCredentials);
 
             return jwtSecurityToken;
+        }
+
+        public string GenerateOTP()
+        {
+            var random = new Random();
+            var code = random.Next(0, 1000000).ToString();
+            return code;
         }
 
     }

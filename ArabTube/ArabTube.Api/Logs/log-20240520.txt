@@ -1,0 +1,28 @@
+2024-05-20 10:14:31.828 +03:00 [INF] User profile is available. Using 'C:\Users\hamza\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-20 10:14:33.737 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-20 10:14:33.738 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-20 10:14:33.741 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-20 10:14:33.743 +03:00 [INF] Hosting environment: Development
+2024-05-20 10:14:33.744 +03:00 [INF] Content root path: C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api
+2024-05-20 10:14:38.547 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-20 10:14:39.583 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1048.902ms
+2024-05-20 10:14:40.990 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-20 10:14:41.025 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 35.7831ms
+2024-05-20 10:14:41.111 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-20 10:14:41.355 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 243.9277ms
+2024-05-20 10:14:41.639 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-20 10:14:42.676 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1036.549ms
+2024-05-20 11:34:34.287 +03:00 [INF] User profile is available. Using 'C:\Users\hamza\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-20 11:34:35.253 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-20 11:34:35.282 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-20 11:34:35.286 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-20 11:34:35.287 +03:00 [INF] Hosting environment: Development
+2024-05-20 11:34:35.287 +03:00 [INF] Content root path: C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api
+2024-05-20 11:34:39.873 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-20 11:34:41.222 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1366.3356ms
+2024-05-20 11:34:41.866 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-20 11:34:41.889 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-20 11:34:41.919 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 52.9273ms
+2024-05-20 11:34:42.144 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 255.7361ms
+2024-05-20 11:34:43.884 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-20 11:34:44.402 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 518.6773ms

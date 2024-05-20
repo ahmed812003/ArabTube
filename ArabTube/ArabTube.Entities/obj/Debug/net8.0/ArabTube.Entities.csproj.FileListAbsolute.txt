@@ -73,3 +73,18 @@ E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Entiti
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.pdb
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.genruntimeconfig.cache
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ref\ArabTube.Entities.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.deps.json
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.runtimeconfig.json
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\bin\Debug\net8.0\ArabTube.Entities.pdb
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.csproj.AssemblyReference.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.AssemblyInfoInputs.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.AssemblyInfo.cs
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.csproj.CoreCompileInputs.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.sourcelink.json
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\refint\ArabTube.Entities.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.pdb
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ArabTube.Entities.genruntimeconfig.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Entities\obj\Debug\net8.0\ref\ArabTube.Entities.dll

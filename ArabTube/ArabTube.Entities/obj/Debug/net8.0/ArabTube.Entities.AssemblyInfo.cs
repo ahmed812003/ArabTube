@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArabTube.Entities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45e4aad86d8a02cbfdc8974a64bbe3ed7f3a1afc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d03f599ad8d3b159d93b54c7e5ba3c30cd2cf07")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArabTube.Entities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArabTube.Entities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

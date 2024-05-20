@@ -88,3 +88,21 @@ E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Servic
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.pdb
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.genruntimeconfig.cache
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ref\ArabTube.Services.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\bin\Debug\net8.0\ArabTube.Services.deps.json
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\bin\Debug\net8.0\ArabTube.Services.runtimeconfig.json
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\bin\Debug\net8.0\ArabTube.Services.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\bin\Debug\net8.0\ArabTube.Services.pdb
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\bin\Debug\net8.0\ArabTube.Entities.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\bin\Debug\net8.0\ArabTube.Entities.pdb
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.csproj.AssemblyReference.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.AssemblyInfoInputs.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.AssemblyInfo.cs
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.csproj.CoreCompileInputs.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.sourcelink.json
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.csproj.CopyComplete
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\refint\ArabTube.Services.dll
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.pdb
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ArabTube.Services.genruntimeconfig.cache
+C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Services\obj\Debug\net8.0\ref\ArabTube.Services.dll

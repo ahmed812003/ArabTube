@@ -33,5 +33,6 @@ namespace ArabTube.Services.AuthServices.ImplementationClasses
                 await smtpClient.SendMailAsync(message);
             }
         }
+
     }
 }

@@ -1,17 +1,14 @@
 ﻿using ArabTube.Entities.DtoModels.UserDTOs;
+using ArabTube.Entities.Enums;
+using ArabTube.Entities.Models;
 using ArabTube.Services.AuthServices.Interfaces;
+using ArabTube.Services.DataServices.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Text.Encodings.Web;
 using System.Text;
-using ArabTube.Entities.Models;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Authentication;
-using ArabTube.Entities.Enums;
-using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Entities.DtoModels.VideoDTOs;
 
 namespace ArabTube.Api.Controllers
 {
@@ -34,7 +31,7 @@ namespace ArabTube.Api.Controllers
         }
 
         [HttpGet("searchNames")]
-        public async Task<IActionResult> SearchVideoTitles(string query)
+        public async Task<IActionResult> SearchChannels(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Query Cannot Be Empty");
@@ -124,7 +121,7 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(result.Message);
 
             string userId = result.Message;
-            var code = GenerateOTP();
+            var code = _authService.GenerateOTP();
 
             Response.Cookies.Append("UserId", userId, new CookieOptions
             {
@@ -181,7 +178,7 @@ namespace ArabTube.Api.Controllers
                 return BadRequest("No User With This Email");
             }
 
-            var code = GenerateOTP();
+            var code = _authService.GenerateOTP();
 
             Response.Cookies.Append("UserId", user.Id, new CookieOptions
             {
@@ -217,7 +214,7 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(result.Message);
 
             string userId = result.Message;
-            var code = GenerateOTP();
+            var code = _authService.GenerateOTP();
 
             Response.Cookies.Append("UserId", userId, new CookieOptions
             {
@@ -291,12 +288,6 @@ namespace ArabTube.Api.Controllers
             return callbackUrl;
         }
 
-        private string GenerateOTP()
-        {
-            var random = new Random();
-            var code = random.Next(0, 1000000).ToString();
-            return code;
-        }
 
     }
 }

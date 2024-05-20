@@ -16,5 +16,7 @@ namespace ArabTube.Services.AuthServices.Interfaces
         Task<AuthResult> GetTokenAsync(LoginDto model);
 
         Task<ProcessResult> AddRoleAsync(RoleDto model);
+        string GenerateOTP();
+
     }
 }
