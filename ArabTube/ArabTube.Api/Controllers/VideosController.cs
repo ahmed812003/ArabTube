@@ -2,43 +2,60 @@
 using ArabTube.Entities.Enums;
 using ArabTube.Entities.Models;
 using ArabTube.Entities.VideoModels;
-using ArabTube.Services.CloudServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.VideoServices.Interfaces;
+using ArabTube.Services.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using static FFmpeg.NET.MetaData;
 
 namespace ArabTube.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class VideosController : ControllerBase
-    {
-        private readonly IVideoService _videoService;
-        private readonly ICloudService _cloudService;
+    {   
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IVideoService _videoService;
+        private readonly IPlaylistService _playlistService;
+        private readonly ICommentService _commentService;
+        private readonly IPlaylistVideoService _playlistVideoService;
+        private readonly IWatchedVideoService _watchedVideoService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public VideosController(IVideoService videoService, IUnitOfWork unitOfWork, ICloudService cloudService,
-            UserManager<AppUser> userManager, IConfiguration configuration)
+
+
+        public VideosController(IUnitOfWork unitOfWork, IVideoService videoService, IPlaylistService playlistService, 
+                                ICommentService commentService, IPlaylistVideoService playlistVideoService, 
+                                IWatchedVideoService watchedVideoService, UserManager<AppUser> userManager, 
+                                IMapper mapper, IConfiguration configuration)
         {
-            _videoService = videoService;
             _unitOfWork = unitOfWork;
-            _cloudService = cloudService;
+            _videoService = videoService;
+            _playlistService = playlistService;
+            _commentService = commentService;
+            _playlistVideoService = playlistVideoService;
+            _watchedVideoService = watchedVideoService;
             _userManager = userManager;
+            _mapper = mapper;
             _configuration = configuration;
         }
+
+
+
+
         // AutoMapped
         [HttpGet("searchTitles")]
         public async Task<IActionResult> SearchVideoTitles(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
                 return BadRequest("Query Cannot Be Empty");
-
+            
             var titles = await _videoService.SearchVideoTitlesAsync(query);
 
             if (!titles.Any())
@@ -61,6 +78,7 @@ namespace ArabTube.Api.Controllers
 
             return Ok(viewVideos);
         }
+      
         // AutoMapped
         [HttpGet("Videos")]
         public async Task<IActionResult> PreviewVideo()
@@ -87,6 +105,7 @@ namespace ArabTube.Api.Controllers
             return Ok(viewVideo);
         }
 
+        // AutoMapped
         [Authorize]
         [HttpPost("Upload")]
         public async Task<IActionResult> UploadVideo([FromForm] UploadingVideoDto model)
@@ -122,117 +141,121 @@ namespace ArabTube.Api.Controllers
             var result = await _videoService.AddAsync(model,userName);
             if (!result)
             {
-                return BadRequest("Failed to Add ");
+                return BadRequest("Failed to Upload video");
             }
+            await _unitOfWork.Complete();
             return Ok("Video Uploaded Sucessfully");
         }
 
+        // AutoMapped
+        // dont forget to handle Save changes 
         [Authorize]
         [HttpPost("Like")]
         public async Task<IActionResult> LikeVideo(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
+            var likeVideo = await _videoService.LikeVideo(id);
 
-            if (video == null)
+            if (likeVideo == false)
             {
-                return NotFound($"Video With id {id} does not exist!");
+                return BadRequest($"Failed to like video With id {id}!");
             }
-
-            video.Likes += 1;
-            var playlistId = await _unitOfWork.Playlist.FindPlaylistByNameAsync(PlaylistDefaultNames.PlaylistNames[0], true);
-            await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(id, playlistId);
+     
+            var playlistId = await _playlistService.GetPlaylistId
+                                          (PlaylistDefaultNames.PlaylistNames[0], true);
+         
+            var isVideoAdded = await _playlistVideoService.AddVideoToPlayListAsync(id, playlistId);
+            if (!isVideoAdded)
+            {
+                return BadRequest($"Failed to add video With id {id} to the Liked Playlist!");
+            }
             await _unitOfWork.Complete();
 
-            return Ok($"Video Likes = {video.Likes}");
+            return Ok($"User has Liked Video successfully!");
         }
 
+        // dont forget to handle Save changes 
         [Authorize]
         [HttpPost("Dislike")]
-        public async Task<IActionResult> DislikeVideo(string id)
+        public async Task<IActionResult> DislikeVideo(string videoId)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
+            var dislikeVideo = await _videoService.DislikeVideo(videoId);
 
-            if (video == null)
+            if (dislikeVideo == false)
             {
-                return NotFound($"Video With id {id} does not exist!");
+                return NotFound($"Failed to Dislike video With id {videoId}!");
             }
 
-            video.DisLikes += 1;
-            var playlistId = await _unitOfWork.Playlist.FindPlaylistByNameAsync(PlaylistDefaultNames.PlaylistNames[0], true);
-            var result = await _unitOfWork.PlaylistVideo.FindVideoInPlaylist(id, playlistId);
-            if (result)
+            // remove video from LikedPlaylist
+            var playlistId = await _playlistService.GetPlaylistId
+                                            (PlaylistDefaultNames.PlaylistNames[0], true);
+         
+            var result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(videoId, playlistId);
+            if (!result)
             {
-                await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(id, playlistId);
+                return BadRequest($"Failed to remove video With id {videoId} from Liked Playlist!");
             }
 
             await _unitOfWork.Complete();
-            return Ok($"Video Dislikes = {video.DisLikes}");
+            return Ok($"Video has Disliked successfully ");
         }
 
+        // dont forget to handle Save changes 
         [Authorize]
         [HttpPost("Flag")]
         public async Task<IActionResult> FlagVideo(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
-
-            if (video == null)
+            var video = await _videoService.FlagVideo(id);
+            if (video == false)
             {
                 return NotFound($"Video With id {id} does not exist!");
             }
 
-            video.Flags += 1;
             await _unitOfWork.Complete();
 
-            return Ok($"Video Flags = {video.Flags}");
+            return Ok("User Flaged video successfully");
         }
 
         [Authorize]
         [HttpPost("View")]
         public async Task<IActionResult> ViewVideo(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
-
-            if (video == null)
+            var video = await _videoService.ViewVideo(id);
+            if (video == false)
             {
                 return NotFound($"Video With id {id} does not exist!");
             }
 
-            video.Views += 1;
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
             {
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var isWatchedVideoAdded = await _unitOfWork.WatchedVideo.AddWatchedVideoToHistoryAsync(user.Id, id);
+                    var isWatchedVideoAdded = await _watchedVideoService.AddWatchedVideoToHistoryAsync(user.Id, id);
+                    if(!isWatchedVideoAdded)
+                    {
+                        return BadRequest("View Video Request Failed");
+                    }
                 }
             }
 
             await _unitOfWork.Complete();
 
-            return Ok($"Video views = {video.Views}");
+            return Ok("User has watched video successfully");
         }
 
         [Authorize]
         [HttpPut("Update")]
         public async Task<IActionResult> UpdateVideo(UpdatingVideoDto model, string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
-
-            if (video == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound($"Video With id {id} does not exist!");
+                return BadRequest(ModelState);
             }
-
-            if (!string.IsNullOrEmpty(model.Title))
-                video.Title = model.Title;
-            if (!string.IsNullOrEmpty(model.Description))
-                video.Description = model.Description;
-            if (model.Thumbnail != null)
+            var result = await _videoService.UpdateVideo(model, id);
+            if (!result)
             {
-                using var stream = new MemoryStream();
-                await model.Thumbnail.CopyToAsync(stream);
-                video.Thumbnail = stream.ToArray();
+                return BadRequest("Failed To Update the Video");
             }
 
             await _unitOfWork.Complete();
@@ -243,15 +266,12 @@ namespace ArabTube.Api.Controllers
         [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteVideo(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
-            if(video == null)
-            {
-                return NotFound($"Video With id {id} does not exist!");
-            }
-            await _unitOfWork.Comment.DeleteVideoCommentsAsync(id);
-            await _unitOfWork.Video.DeleteAsync(id);
+            await _commentService.DeleteVideoCommentsAsync(id);
+            await _videoService.DeleteAsync(id);
+
             await _unitOfWork.Complete();
             return Ok("Video Deleted Successfully");
         }
     }
 }
+  

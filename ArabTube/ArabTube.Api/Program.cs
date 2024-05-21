@@ -1,25 +1,17 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using ArabTube.Services.DataServices.Data;
 using ArabTube.Entities.Models;
-using ArabTube.Services.AuthServices.Interfaces;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using ArabTube.Services.CloudServices.ImplementationClasses;
-using ArabTube.Services.CloudServices.Interfaces;
+using ArabTube.Services.DataServices.Data;
 using ArabTube.Services.DataServices.Repositories.ImplementationClasses;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.VideoServices.ImplementationClasses;
-using ArabTube.Services.VideoServices.Interfaces;
+using ArabTube.Services.ImplementationClasses;
+using ArabTube.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
-using ArabTube.Services.AuthServices.ImplementationClasses;
-using ArabTube.Services.UserServices.Interfaces;
-using ArabTube.Services.UserServices.ImplementationClasses;
-using ArabTube.Services.PlaylistServices.Interfaces;
-using ArabTube.Services.PlaylistServices.ImplementationClasses;
+using System.Text;
 
 namespace ArabTube.Api
 {
@@ -43,14 +35,18 @@ namespace ArabTube.Api
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddScoped<IAuthService, AuthService>();
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddScoped<IVideoService, VideoService>();
-            builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<IPlaylistService, PlaylistService>();
-            builder.Services.AddScoped<ICloudService, CloudService>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
-
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IVideoService, VideoService>();
+            builder.Services.AddScoped<ICloudService, CloudService>();
+            builder.Services.AddScoped<IPlaylistService, PlaylistService>();
+            builder.Services.AddScoped<IPlaylistVideoService, PlaylistVideoService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<IWatchedVideoService, WatchedVideoService>();
+            builder.Services.AddScoped<IUnitOfService, UnitOfService>();
+            
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

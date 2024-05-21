@@ -1,13 +1,13 @@
 ﻿using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Entities.Models;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.UserServices.Interfaces;
+using ArabTube.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 
-namespace ArabTube.Services.UserServices.ImplementationClasses
+namespace ArabTube.Services.ImplementationClasses
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;

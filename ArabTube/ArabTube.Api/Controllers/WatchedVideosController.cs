@@ -1,14 +1,10 @@
 ﻿using ArabTube.Entities.DtoModels.WatchedVideoDto;
 using ArabTube.Entities.Models;
-using ArabTube.Services.CloudServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.VideoServices.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using static FFmpeg.NET.MetaData;
 
 namespace ArabTube.Api.Controllers
 {

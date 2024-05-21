@@ -1,10 +1,8 @@
 ﻿using ArabTube.Entities.AuthModels;
 using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Entities.Models;
-using ArabTube.Services.AuthServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.PlaylistServices.Interfaces;
-using ArabTube.Services.UserServices.Interfaces;
+using ArabTube.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -15,8 +13,7 @@ namespace ArabTube.Api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
-    {
-
+    {   
         private readonly IAuthService _authService;
         private readonly IUserService _userService;
         private readonly IPlaylistService _playlistService;

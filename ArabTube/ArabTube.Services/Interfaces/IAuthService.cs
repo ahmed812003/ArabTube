@@ -1,7 +1,7 @@
 ﻿using ArabTube.Entities.AuthModels;
 using ArabTube.Entities.DtoModels.UserDTOs;
 
-namespace ArabTube.Services.AuthServices.Interfaces
+namespace ArabTube.Services.Interfaces
 {
     public interface IAuthService
     {

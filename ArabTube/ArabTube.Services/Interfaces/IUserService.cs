@@ -1,6 +1,6 @@
 ﻿using ArabTube.Entities.DtoModels.UserDTOs;
 
-namespace ArabTube.Services.UserServices.Interfaces
+namespace ArabTube.Services.Interfaces
 {
     public interface IUserService
     {

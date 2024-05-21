@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArabTube.Services.CloudServices.Interfaces
+namespace ArabTube.Services.Interfaces
 {
     public interface ICloudService
     {

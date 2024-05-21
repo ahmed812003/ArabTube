@@ -1,5 +1,5 @@
 ﻿using ArabTube.Entities.VideoModels;
-using ArabTube.Services.CloudServices.Interfaces;
+using ArabTube.Services.Interfaces;
 using Azure.Core;
 using Azure.Identity;
 using Azure.Storage;
@@ -13,14 +13,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArabTube.Services.CloudServices.ImplementationClasses
+namespace ArabTube.Services.ImplementationClasses
 {
     public class CloudService : ICloudService
     {
         private readonly IConfiguration _configuration;
         public CloudService(IConfiguration configuration)
         {
-            this._configuration = configuration;
+            _configuration = configuration;
         }
 
         public async Task UploadToCloudAsync(IEnumerable<VideoQuality> videoQualities)

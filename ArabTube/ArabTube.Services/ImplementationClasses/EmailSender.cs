@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArabTube.Services.AuthServices.ImplementationClasses
+namespace ArabTube.Services.ImplementationClasses
 {
     public class EmailSender : IEmailSender
     {

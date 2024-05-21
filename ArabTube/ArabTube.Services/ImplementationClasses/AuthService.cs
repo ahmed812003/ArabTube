@@ -1,35 +1,33 @@
 ﻿using ArabTube.Entities.AuthModels;
 using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Entities.Models;
-using ArabTube.Services.AuthServices.Interfaces;
+using ArabTube.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ArabTube.Services.AuthServices.ImplementationClasses
+namespace ArabTube.Services.ImplementationClasses
 {
     public class AuthService : IAuthService
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailSender _emailSender;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
-        private readonly IEmailSender _emailSender;
 
-        public AuthService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, 
-                          IConfiguration configuration, IMapper mapper, IEmailSender emailSender)
+        public AuthService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager,
+                           IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _mapper = mapper;
-            _emailSender = emailSender;
         }
 
         //done

@@ -26,6 +26,14 @@ namespace ArabTube.Entities.MappingProfiles
                     await src.Thumbnail.CopyToAsync(stream);
                     dest.Thumbnail = stream.ToArray();
                 });
+                
+            CreateMap<UpdatingVideoDto, Video>()
+                .AfterMap(async (src, dest) =>
+                {
+                    using var stream = new MemoryStream();
+                    await src.Thumbnail.CopyToAsync(stream);
+                    dest.Thumbnail = stream.ToArray();
+                });
         }
     }
     public class VideoUriListResolver : IValueResolver<Video, ViewVideoDto, List<string>>
