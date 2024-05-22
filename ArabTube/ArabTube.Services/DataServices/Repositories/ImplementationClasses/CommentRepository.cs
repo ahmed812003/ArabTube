@@ -24,11 +24,11 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return comments;
         }
 
-        public async Task<IEnumerable<Comment>> GetCommentAsync(string commentId)
+        public async Task<Comment> GetCommentAsync(string commentId)
         {
-            var comments = await _dbSet.Where(c => c.Id == commentId)
-                                    .Include(c => c.Childrens).ThenInclude(c => c.AppUser).ToListAsync();
-            return comments;
+            var comment = await _dbSet.Include(c => c.Childrens).ThenInclude(c => c.AppUser)
+                                        .FirstOrDefaultAsync(c => c.Id == commentId);
+            return comment;
         }
 
         public void DeleteComment(Comment comment)

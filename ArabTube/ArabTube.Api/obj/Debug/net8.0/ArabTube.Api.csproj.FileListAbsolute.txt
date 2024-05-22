@@ -1059,7 +1059,6 @@ F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\De
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.AssemblyInfoInputs.cache
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.AssemblyInfo.cs
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.csproj.CoreCompileInputs.cache
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.MvcApplicationPartsAssemblyInfo.cs
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.MvcApplicationPartsAssemblyInfo.cache
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.sourcelink.json
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\staticwebassets.build.json

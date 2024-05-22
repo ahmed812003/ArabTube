@@ -139,7 +139,7 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.AccountController",
-    "Method": "SearchVideoTitles",
+    "Method": "SearchChannels",
     "RelativePath": "api/Account/searchNames",
     "HttpMethod": "GET",
     "IsController": true,
@@ -357,7 +357,7 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "SearchVideos",
+    "Method": "SearchPlaylists",
     "RelativePath": "api/Playlists/search",
     "HttpMethod": "GET",
     "IsController": true,
@@ -373,7 +373,7 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
-    "Method": "SearchVideoTitles",
+    "Method": "SearchPlaylistsTitles",
     "RelativePath": "api/Playlists/searchTitles",
     "HttpMethod": "GET",
     "IsController": true,
@@ -486,7 +486,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "videoId",
         "Type": "System.String",
         "IsRequired": false
       }

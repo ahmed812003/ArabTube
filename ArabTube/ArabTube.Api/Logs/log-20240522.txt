@@ -1,0 +1,161 @@
+2024-05-22 01:38:45.915 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-22 01:38:47.109 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-22 01:38:47.110 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-22 01:38:47.248 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-22 01:38:47.250 +03:00 [INF] Hosting environment: Development
+2024-05-22 01:38:47.250 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-22 01:38:49.288 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-22 01:38:50.192 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 923.0097ms
+2024-05-22 01:38:50.399 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-22 01:38:50.418 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 18.6052ms
+2024-05-22 01:38:50.589 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-22 01:38:50.863 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 274.8537ms
+2024-05-22 01:38:51.814 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-22 01:38:52.283 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 469.1688ms
+2024-05-22 05:56:44.194 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-22 05:56:46.225 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-22 05:56:46.227 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-22 05:56:46.426 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-22 05:56:46.428 +03:00 [INF] Hosting environment: Development
+2024-05-22 05:56:46.428 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-22 05:56:51.230 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-22 05:56:52.958 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1762.9174ms
+2024-05-22 05:56:53.957 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-22 05:56:53.957 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-22 05:56:54.004 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 37.8489ms
+2024-05-22 05:56:54.330 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 372.9791ms
+2024-05-22 05:56:56.638 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-22 05:56:57.764 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1126.1758ms
+2024-05-22 05:57:07.649 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/searchTitles?query=v - null null
+2024-05-22 05:57:09.959 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.SearchVideoTitles (ArabTube.Api)'
+2024-05-22 05:57:10.089 +03:00 [INF] Route matched with {action = "SearchVideoTitles", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchVideoTitles(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-05-22 05:57:18.128 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.SearchVideoTitles (ArabTube.Api) in 8019.711ms
+2024-05-22 05:57:18.133 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.SearchVideoTitles (ArabTube.Api)'
+2024-05-22 05:57:18.144 +03:00 [ERR] HTTP GET /api/Videos/searchTitles responded 500 in 10449.3590 ms
+System.InvalidOperationException: Unable to resolve service for type 'ArabTube.Services.ControllersServices.CommentServices.Interfaces.ICommentService' while attempting to activate 'ArabTube.Api.Controllers.VideosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2024-05-22 05:57:18.322 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'ArabTube.Services.ControllersServices.CommentServices.Interfaces.ICommentService' while attempting to activate 'ArabTube.Api.Controllers.VideosController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-05-22 05:57:18.554 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/searchTitles?query=v - 500 null text/plain; charset=utf-8 10904.8156ms
+2024-05-22 05:58:54.307 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-22 05:58:55.344 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-22 05:58:55.344 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-22 05:58:55.531 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-22 05:58:55.532 +03:00 [INF] Hosting environment: Development
+2024-05-22 05:58:55.533 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-22 05:58:57.575 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-22 05:58:58.703 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1166.9805ms
+2024-05-22 05:58:58.960 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-22 05:58:58.995 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 35.4659ms
+2024-05-22 05:58:59.370 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-22 05:58:59.633 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 264.6676ms
+2024-05-22 05:59:02.076 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-22 05:59:02.846 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 770.1908ms
+2024-05-22 05:59:15.035 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/searchTitles?query=v - null null
+2024-05-22 05:59:15.377 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.SearchVideoTitles (ArabTube.Api)'
+2024-05-22 05:59:15.526 +03:00 [INF] Route matched with {action = "SearchVideoTitles", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SearchVideoTitles(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-05-22 05:59:31.616 +03:00 [INF] Executed DbCommand (495ms) [Parameters=[@__query_0_contains='?' (Size = 256), @__query_0_contains_1='?' (Size = 2000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Title]
+FROM [Videos] AS [v]
+WHERE [v].[Title] LIKE @__query_0_contains ESCAPE N'\' OR [v].[Description] LIKE @__query_0_contains_1 ESCAPE N'\'
+2024-05-22 05:59:31.793 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-05-22 05:59:31.818 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.SearchVideoTitles (ArabTube.Api) in 16275.7068ms
+2024-05-22 05:59:31.820 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.SearchVideoTitles (ArabTube.Api)'
+2024-05-22 05:59:31.831 +03:00 [INF] HTTP GET /api/Videos/searchTitles responded 200 in 16742.3360 ms
+2024-05-22 05:59:31.856 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/searchTitles?query=v - 200 null application/json; charset=utf-8 16820.9678ms
+2024-05-22 05:59:43.947 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/Videos - null null
+2024-05-22 05:59:43.979 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-05-22 05:59:44.018 +03:00 [INF] Route matched with {action = "PreviewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PreviewVideo() on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-05-22 05:59:44.968 +03:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+2024-05-22 05:59:45.686 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.VideoDTOs.VideoPreviewDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-22 05:59:45.736 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api) in 1717.665ms
+2024-05-22 05:59:45.737 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-05-22 05:59:45.737 +03:00 [INF] HTTP GET /api/Videos/Videos responded 200 in 1765.3419 ms
+2024-05-22 05:59:45.739 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/Videos - 200 null application/json; charset=utf-8 1793.3874ms
+2024-05-22 06:03:53.896 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-22 06:03:55.029 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-22 06:03:55.030 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-22 06:03:55.351 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-22 06:03:55.353 +03:00 [INF] Hosting environment: Development
+2024-05-22 06:03:55.354 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-22 06:03:57.222 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-22 06:03:58.663 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1438.0117ms
+2024-05-22 06:03:59.587 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-22 06:03:59.587 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-22 06:03:59.612 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 25.6021ms
+2024-05-22 06:03:59.819 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 233.1821ms
+2024-05-22 06:04:02.066 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-22 06:04:02.939 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 873.1513ms
+2024-05-22 06:04:38.515 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Login - application/json 65
+2024-05-22 06:04:38.873 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-05-22 06:04:38.996 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ArabTube.Entities.DtoModels.UserDTOs.LoginDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-05-22 06:04:50.148 +03:00 [INF] Executed DbCommand (319ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-05-22 06:04:53.012 +03:00 [INF] Executed DbCommand (27ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-05-22 06:04:53.182 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-05-22 06:04:53.240 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-05-22 06:04:53.594 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.AuthModels.AuthResult'.
+2024-05-22 06:04:53.671 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api) in 14653.294ms
+2024-05-22 06:04:53.674 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-05-22 06:04:53.686 +03:00 [INF] HTTP POST /api/Account/Login responded 200 in 15142.5108 ms
+2024-05-22 06:04:53.720 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Login - 200 null application/json; charset=utf-8 15205.1452ms
+2024-05-22 06:05:14.017 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Playlists/MyPlaylist - null null
+2024-05-22 06:05:14.438 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetMyPlaylists (ArabTube.Api)'
+2024-05-22 06:05:14.462 +03:00 [INF] Route matched with {action = "GetMyPlaylists", controller = "Playlists"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyPlaylists() on controller ArabTube.Api.Controllers.PlaylistsController (ArabTube.Api).
+2024-05-22 06:05:14.864 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[BirthDate], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Gender], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-05-22 06:05:14.934 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Description], [p].[IsDefult], [p].[IsPrivate], [p].[Title], [p].[UserId]
+FROM [Playlists] AS [p]
+WHERE [p].[UserId] = @__userId_0
+2024-05-22 06:05:15.059 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[ArabTube.Entities.Models.Playlist, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[ArabTube.Entities.DtoModels.PlaylistDTOs.GetPlaylistDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-05-22 06:05:15.069 +03:00 [INF] Executed action ArabTube.Api.Controllers.PlaylistsController.GetMyPlaylists (ArabTube.Api) in 606.7172ms
+2024-05-22 06:05:15.070 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetMyPlaylists (ArabTube.Api)'
+2024-05-22 06:05:15.070 +03:00 [INF] HTTP GET /api/Playlists/MyPlaylist responded 200 in 1041.9774 ms
+2024-05-22 06:05:15.072 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Playlists/MyPlaylist - 200 null application/json; charset=utf-8 1055.7341ms

@@ -1,6 +1,8 @@
 ﻿using ArabTube.Entities.DtoModels.PlaylistDTOs;
 using ArabTube.Entities.DtoModels.VideoDTOs;
 using ArabTube.Entities.Models;
+using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
+using ArabTube.Services.ControllersServices.PlaylistVideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,48 +16,37 @@ namespace ArabTube.Api.Controllers
     [ApiController]
     public class PlaylistsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IPlaylistService _playlistService;
+        private readonly IPlaylistVideoService _playlistVideoService;
 
-        public PlaylistsController(IUnitOfWork unitOfWork, UserManager<AppUser> userManager)
+        public PlaylistsController(UserManager<AppUser> userManager, IPlaylistService playlistService, IPlaylistVideoService playlistVideoService)
         {
-            this._unitOfWork = unitOfWork;
             this._userManager = userManager;
+            this._playlistService = playlistService;
+            this._playlistVideoService = playlistVideoService;
         }
 
         [HttpGet("searchTitles")]
-        public async Task<IActionResult> SearchVideoTitles(string query)
+        public async Task<IActionResult> SearchPlaylistsTitles(string query)
         {
-            if (string.IsNullOrWhiteSpace(query))
-                return BadRequest("Query Cannot Be Empty");
+            var result = await _playlistService.SearchPlaylistsTitlesAsync(query);
 
-            var titles = await _unitOfWork.Playlist.SearchPlaylistTitlesAsync(query);
-
-            if (!titles.Any())
-                return NotFound("No Titles Found Matching The Search Query");
-
-            return Ok(titles);
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
+            
+            return Ok(result.Titles);
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchVideos(string query)
+        public async Task<IActionResult> SearchPlaylists(string query)
         {
-            if (string.IsNullOrWhiteSpace(query))
-                return BadRequest("Query Cannot Be Empty");
+            var result = await _playlistService.SearchPlaylistsAsync(query);
 
-            var playlists = await _unitOfWork.Playlist.SearchPlaylistAsync(query);
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-            if (!playlists.Any())
-                return NotFound("No Videos Found Matching The Search Query");
-
-            var playlistsDto = playlists.Select(p => new GetPlaylistDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                IsPrivate = p.IsPrivate
-            });
-
-            return Ok(playlistsDto);
+            return Ok(result.Playlists);
         }
 
         [Authorize]
@@ -68,18 +59,11 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(user.Id, true);
+                    var result = await _playlistService.GetMyPlaylistsAsync(user.Id);
 
-                    if (!playlists.Any())
-                        return NotFound("You Don't Have Any Playlist");
-
-                    var playlistsDto = playlists.Select(p => new GetPlaylistDto
-                    {
-                        Id = p.Id,
-                        Title = p.Title,
-                        IsPrivate = p.IsPrivate
-                    });
-                    return Ok(playlistsDto);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
+                    return Ok(result.Playlists);
                 }
             }
             return Unauthorized();
@@ -88,52 +72,23 @@ namespace ArabTube.Api.Controllers
         [HttpGet("Playlist")]
         public async Task<IActionResult> GetPlaylists(string id)
         {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound($"No User With Id = {id}");
-            }
+            var result = await _playlistService.GetPlaylistsAsync(id);
 
-            var playlists = await _unitOfWork.Playlist.GetPlaylistsAsync(id, false);
-            
-            if (!playlists.Any())
-                return NotFound($"The User With Id = {id} Dosn't Has Any Playlist");
-            
-            var playlistsDto = playlists.Select(p => new GetPlaylistDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                IsPrivate = p.IsPrivate
-            });
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-            return Ok(playlistsDto);
+            return Ok(result.Playlists);
         }
 
         [HttpGet("Video")]
         public async Task<IActionResult> GetPlaylistVideos(string id)
         {
-            var playlist = await _unitOfWork.Playlist.FindByIdAsync(id);
-            if(playlist == null)
-            {
-                return NotFound($"No Playlist With Id = {id}");
-            }
+            var result = await _playlistVideoService.GetPlaylistVideosAsync(id);
 
-            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(id);
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-            if (!playlistVideos.Any())
-                return NotFound("The Playlist With Id = {id} Dosn't Has Any Videos");
-
-            var videos = playlistVideos.Select(pv => new PlaylistVideoDto
-            {
-                VideoId = pv.VideoId,
-                Title = pv.Video.Title,
-                Views = pv.Video.Views,
-                CreatedTime =pv.Video.CreatedOn ,
-                Username = pv.Video.AppUser.UserName,
-                Thumbnail = pv.Video.Thumbnail,
-
-            });
-            return Ok(videos);
+            return Ok(result.Videos);
         }
 
         [Authorize]
@@ -151,16 +106,13 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var playlist = new Playlist
+                    var result = await _playlistService.CreatePlaylistAsync(model, user.Id);
+                    
+                    if (!result.IsSuccesed)
                     {
-                        UserId = user.Id,
-                        Title = model.Title,
-                        Description = model.Description,
-                        IsPrivate = model.IsPrivate
-                    };
+                        return BadRequest(result.Message);
+                    }
 
-                    await _unitOfWork.Playlist.AddAsync(playlist);
-                    await _unitOfWork.Complete();
                     return Ok("Playlist Created Succesfully");
                 }  
             }
@@ -176,26 +128,14 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
-            if(video == null)
-            {
-                return NotFound($"No Video With Id = {model.VideoId}");
-            }
+            var result = await _playlistVideoService.AddVideoToPlayListAsync(model.VideoId , model.PlaylistId);
 
-            var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
-            if(playlist == null)
+            if (!result.IsSuccesed)
             {
-                return NotFound($"No Playlist With Id = {model.PlaylistId}");
+                return BadRequest(result.Message);
             }
-
-            var result = await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(model.VideoId, model.PlaylistId);
-            if (!result)
-            {
-                return Ok("The Video Is Already In The Playlist");
-            }
-                
-            await _unitOfWork.Complete();
-            return Ok("Video Added Succesfully");
+           
+            return Ok(result.Message);
         }
 
         [Authorize]
@@ -207,22 +147,10 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
-            if(playlist == null)
-            {
-                return NotFound($"No Playlist With Id = {model.PlaylistId}");
-            }
-            if (playlist.IsDefult)
-            {
-                return BadRequest("Can't Delete Defult Playlists");
-            }
+            var result = await _playlistService.UpdatePlaylistAsync(model);
 
-            if (!string.IsNullOrEmpty(model.Title))
-                playlist.Title = model.Title;
-
-            if (!string.IsNullOrEmpty(model.Description))
-                playlist.Title = model.Description;
-            await _unitOfWork.Complete();
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
             return Ok("playlist Updated Successfully");
         }
@@ -237,20 +165,13 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var playlist = await _unitOfWork.Playlist.FindByIdAsync(id);
-                    if(playlist == null)
+                    var result = await _playlistService.DeletePlaylistAsync(id);
+                    
+                    if (!result.IsSuccesed)
                     {
-                        return NotFound($"No Playlist With Id = {id}");
+                        return BadRequest(result.Message);
                     }
 
-                    if (playlist.IsDefult)
-                    {
-                        return BadRequest("Can't Delete Defult Playlists");
-                    }
-
-                    await _unitOfWork.PlaylistVideo.DeletePlaylistVideosAsync(id);
-                    await _unitOfWork.Playlist.DeletePlaylistAsync(id);
-                    await _unitOfWork.Complete();
                     return Ok("Playlist Deleted Successfully");
                 }
             }
@@ -266,25 +187,13 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
-            if (video == null)
+            var result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(model.VideoId , model.PlaylistId);
+
+            if (!result.IsSuccesed)
             {
-                return NotFound($"No Video With Id = {model.VideoId}");
+                return BadRequest(result.Message);
             }
 
-            var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
-            if (playlist == null)
-            {
-                return NotFound($"No Playlist With Id = {model.PlaylistId}");
-            }
-
-            var result = await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(model.VideoId, model.PlaylistId);
-            if (!result)
-            {
-                return NotFound("The Video Is Already Not In The Playlist");
-            }
-
-            await _unitOfWork.Complete();
             return Ok("Video Removed Succesfully");
         }
 

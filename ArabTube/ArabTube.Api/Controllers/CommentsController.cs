@@ -1,9 +1,10 @@
 ﻿using ArabTube.Entities.DtoModels.CommentDTOs;
 using ArabTube.Entities.DtoModels.PlaylistDTOs;
 using ArabTube.Entities.Models;
+using ArabTube.Services.ControllersServices;
+using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -14,90 +15,39 @@ namespace ArabTube.Api.Controllers
     [ApiController]
     public class CommentsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
+        private readonly ICommentService _commentService;
 
-        public CommentsController(IUnitOfWork unitOfWork, UserManager<AppUser> userManager)
+        public CommentsController(UserManager<AppUser> userManager, ICommentService commentService)
         {
-            this._unitOfWork = unitOfWork;
             this._userManager = userManager;
+            this._commentService = commentService;
         }
 
         [HttpGet("Comments")]
         public async Task<IActionResult> GetVideoComments(string id)
         {
-            var video = await _unitOfWork.Video.FindByIdAsync(id);
-            if(video == null)
+            var result = await _commentService.GetVideoCommentsAsync(id);
+            
+            if (!result.IsSuccesed)
             {
-                return NotFound();
+                return BadRequest(result.Message);
             }
 
-            var comments = await _unitOfWork.Comment.GetVideoCommentsAsync(id);
-            
-            if (!comments.Any())
-                return NotFound($"The Video With Id = {id} Dosn't Has Any Comments");
-
-            var commentsDto = comments.Select(c => new GetCommentDto
-            {
-                commentId = c.Id,
-                Username = c.AppUser.UserName,
-                Content = c.Content,
-                CreatedOn = c.CreatedOn,
-                IsUpdated = c.IsUpdated,
-                Mention = c.Mention,
-                Likes = c.Likes,
-                DisLike = c.DisLikes,
-                childrens = c.Childrens.Where(cc => cc.Id != c.Id).Select(cc => new GetCommentDto
-                {
-                    commentId = cc.Id,
-                    Username = cc.AppUser.UserName,
-                    Content = cc.Content,
-                    CreatedOn = cc.CreatedOn,
-                    IsUpdated = cc.IsUpdated,
-                    Mention = cc.Mention,
-                    Likes = cc.Likes,
-                    DisLike = cc.DisLikes,
-                }).OrderBy(cc => cc.CreatedOn).ToList()
-            }).OrderBy(c => c.CreatedOn);
-
-            return Ok(commentsDto);
+            return Ok(result.Comments);
         }
 
         [HttpGet("Comment")]
         public async Task<IActionResult> GetComment(string id)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(id);
-            if(comment == null || comment.Id != comment.ParentCommentId)
+            var result = await _commentService.GetCommentAsync(id);
+
+            if (!result.IsSuccesed)
             {
-                return NotFound("Invalid Comment Id ");
+                return BadRequest(result.Message);
             }
 
-            var comments = await _unitOfWork.Comment.GetCommentAsync(id);
-            
-            var commentsDto = comments.Select(c => new GetCommentDto
-            {
-                commentId = c.Id,
-                Username = c.AppUser.UserName,
-                Content = c.Content,
-                CreatedOn = c.CreatedOn,
-                IsUpdated = c.IsUpdated,
-                Mention = c.Mention,
-                Likes = c.Likes,
-                DisLike = c.DisLikes,
-                childrens = c.Childrens.Where(cc => cc.Id != c.Id).Select(cc => new GetCommentDto
-                {
-                    commentId = cc.Id,
-                    Username = cc.AppUser.UserName,
-                    Content = cc.Content,
-                    CreatedOn = cc.CreatedOn,
-                    IsUpdated = cc.IsUpdated,
-                    Mention = cc.Mention,
-                    Likes = cc.Likes,
-                    DisLike = cc.DisLikes
-                }).OrderBy(cc => cc.CreatedOn).ToList()
-            }).OrderBy(c => c.CreatedOn);
-
-            return Ok(commentsDto);
+            return Ok(result.Comment);
         }
 
         [Authorize]
@@ -115,33 +65,11 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
-                    if(video == null)
-                    {
-                        return NotFound($"No Video Wiht Id = {model.VideoId}");
-                    }
+                    var result = await _commentService.AddCommentAsync(model, user.Id);
+                    
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
 
-                    var parentComment = await _unitOfWork.Comment.FindByIdAsync(model.ParentCommentId);
-                    if (!string.IsNullOrEmpty(model.ParentCommentId) && parentComment == null)
-                    {
-                        return NotFound($"No Comment Wiht Id = {model.ParentCommentId}");
-                    }
-
-                    var comment = new Comment
-                    {
-                        Content = model.Content,
-                        CreatedOn = DateTime.Now,
-                        Mention = model.Mention,
-                        UserId = user.Id,
-                        VideoId = model.VideoId
-                    };
-                    if (string.IsNullOrEmpty(model.ParentCommentId))
-                        comment.ParentCommentId = comment.Id;
-                    else
-                        comment.ParentCommentId = parentComment.ParentCommentId;
-
-                    await _unitOfWork.Comment.AddAsync(comment);
-                    await _unitOfWork.Complete();
                     return Ok("Comment Added Succesfully");
                 }
             }
@@ -152,48 +80,31 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Like")]
         public async Task<IActionResult> LikeComment(string id)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(id);
+            var result = await _commentService.LikeCommentAsync(id);
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-            if (comment == null)
-            {
-                return NotFound($"Comment With id {id} does not exist!");
-            }
-
-            comment.Likes += 1;
-            await _unitOfWork.Complete();
-
-            return Ok($"Comment Likes = {comment.Likes}");
+            return Ok(result.Message);
         }
 
         [Authorize]
         [HttpPost("Dislike")]
         public async Task<IActionResult> DislikeComment(string id)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(id);
+            var result = await _commentService.DislikeCommentAsync(id);
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
 
-            if (comment == null)
-            {
-                return NotFound($"Comment With id {id} does not exist!");
-            }
-
-            comment.DisLikes += 1;
-            await _unitOfWork.Complete();
-
-            return Ok($"Comment Dislikes = {comment.DisLikes}");
+            return Ok(result.Message);
         }
 
         [Authorize]
         [HttpPut("Update")]
         public async Task<IActionResult> UpdateComment(UpdateCommentDto model)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(model.CommentId);
-            if(comment == null)
-            {
-                return NotFound($"Comment With id {model.CommentId} does not exist!");
-            }
-            comment.Content = model.Content;
-            comment.IsUpdated = true;
-            await _unitOfWork.Complete();
+            var result = await _commentService.UpdateCommentAsync(model);
+            if (!result.IsSuccesed)
+                return BadRequest(result.Message);
             return Ok("Comment Updated Successfully");
         }
 
@@ -201,21 +112,9 @@ namespace ArabTube.Api.Controllers
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string id)
         {
-            var comment = await _unitOfWork.Comment.FindByIdAsync(id);
-            if (comment == null)
-            {
-                return NotFound($"Comment With id {id} does not exist!");
-            }
-
-            if (comment.ParentCommentId == id)
-            {
-                await _unitOfWork.Comment.DeleteCommentAsync(comment.Id);
-            }
-            else
-            {
-                _unitOfWork.Comment.DeleteComment(comment);
-            }
-            await _unitOfWork.Complete();
+            var result = await _commentService.DeleteCommentAsync(id);
+            if (!result.IsSuccesed)
+                return BadRequest(result.IsSuccesed);
             return Ok("Comment Deleted Successfully");
         }
 

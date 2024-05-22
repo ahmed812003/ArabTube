@@ -1,5 +1,6 @@
 ﻿using ArabTube.Entities.DtoModels.WatchedVideoDto;
 using ArabTube.Entities.Models;
+using ArabTube.Services.ControllersServices.WatchedVideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,13 +15,13 @@ namespace ArabTube.Api.Controllers
     public class WatchedVideosController : ControllerBase
     {
 
-        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IWatchedVideoService _watchedVideoService;
 
-        public WatchedVideosController(IUnitOfWork unitOfWork, UserManager<AppUser> userManager)
+        public WatchedVideosController(UserManager<AppUser> userManager, IWatchedVideoService watchedVideoService)
         {
-            _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _watchedVideoService = watchedVideoService;
         }
 
         [HttpGet]
@@ -32,21 +33,12 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var watchedVideos = await _unitOfWork.WatchedVideo.GetWatchedVideosAsync(user.Id);
-
-                    if (watchedVideos == null || !watchedVideos.Any())
-                        return NotFound("The Current Login User Dosn't Watch Any Video");
-
-                    var HistoryVideos = watchedVideos.Select(wv => new HistoryVideoDto
+                    var result = await _watchedVideoService.GetWatchedVideosAsync(user.Id);
+                    if (!result.IsSuccesed)
                     {
-                        VideoId = wv.VideoId,
-                        Title = wv.Video.Title,
-                        Views = wv.Video.Views,
-                        WatchedTime = wv.WatchedTime,
-                        Username = wv.Video.AppUser.UserName,
-                        Thumbnail = wv.Video.Thumbnail
-                    });
-                    return Ok(HistoryVideos);
+                        return BadRequest(result.Message);
+                    }
+                    return Ok(result.Videos);
 
                 }
             }
@@ -63,13 +55,11 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _unitOfWork.WatchedVideo.DeleteWatchedVideoAsync(videoId , user.Id);
-                    if (!result)
+                    var result = await _watchedVideoService.RemoveFromHistoryAsync(videoId, user.Id);
+                    if (!result.IsSuccesed)
                     {
-                        return NotFound($"No Video With Id = {videoId}");
+                        return BadRequest(result.Message);
                     }
-                        
-                    await _unitOfWork.Complete();
                     return Ok("Video Removed Succesfully");
                 }
             }

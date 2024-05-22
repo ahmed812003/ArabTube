@@ -24,7 +24,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return playlistVideos;
         }
 
-        public async Task<bool> FindVideoInPlaylist (string videoId , string playlistId)
+        public async Task<bool> FindVideoInPlaylistAsync (string videoId , string playlistId)
         {
             var entity = await _dbSet.FindAsync(playlistId, videoId);
             if (entity == null)

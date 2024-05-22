@@ -2,8 +2,12 @@
 using ArabTube.Entities.Enums;
 using ArabTube.Entities.Models;
 using ArabTube.Entities.VideoModels;
+using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
+using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
+using ArabTube.Services.ControllersServices.PlaylistVideoServices.Interfaces;
+using ArabTube.Services.ControllersServices.VideoServices.Interfaces;
+using ArabTube.Services.ControllersServices.WatchedVideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +15,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using static FFmpeg.NET.MetaData;
 
 namespace ArabTube.Api.Controllers
 {
@@ -53,56 +56,54 @@ namespace ArabTube.Api.Controllers
         [HttpGet("searchTitles")]
         public async Task<IActionResult> SearchVideoTitles(string query)
         {
-            if (string.IsNullOrWhiteSpace(query))
-                return BadRequest("Query Cannot Be Empty");
-            
-            var titles = await _videoService.SearchVideoTitlesAsync(query);
+            var result = await _videoService.SearchVideoTitlesAsync(query);
 
-            if (!titles.Any())
-                return NotFound("No Titles Found Matching The Search Query");
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
 
-            return Ok(titles);
+            return Ok(result.Titles);
         }
 
         // AutoMapped
         [HttpGet("search")]
         public async Task<IActionResult> SearchVideos(string query)
         {
-            if (string.IsNullOrWhiteSpace(query))
-                return BadRequest("Query Cannot Be Empty");
-
-            var viewVideos = await _videoService.SearchVideoAsync(query);
-
-            if (!viewVideos.Any())
-                return NotFound("No Videos Found Matching The Search Query");
-
-            return Ok(viewVideos);
+            var result = await _videoService.SearchVideoAsync(query);
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+            return Ok(result.Videos);
         }
       
         // AutoMapped
         [HttpGet("Videos")]
         public async Task<IActionResult> PreviewVideo()
         {
-            var viewVideos = await _videoService.GetAllAsync();
-         
-            if (!viewVideos.Any())
-                return NotFound("No Videos Found Matching The Search Query");
+            var result = await _videoService.PreviewVideoAsync();
 
-            return Ok(viewVideos);
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Videos);
         }
 
         // AutoMapped
         [HttpGet("Video")]
         public async Task<IActionResult> WatchVideo(string id)
         {
-            var viewVideo = await _videoService.FindByIdAsync(id);
+            var result = await _videoService.WatchVideoAsync(id);
 
-            if (viewVideo == null)
+            if (!result.IsSuccesed)
             {
-                return BadRequest($"Video With id {id} does not exist!");
+                return BadRequest(result.Message);
             }
 
-            return Ok(viewVideo);
+            return Ok(result.Video);
         }
 
         // AutoMapped
@@ -115,34 +116,18 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(model);
             }
 
-            if (model.Video.ContentType != "video/mp4")
-            {
-                return BadRequest("Video Type is Not Mp4");
-            }
-
             string? userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName == null)
             {
                 return Unauthorized();
             }
 
-            var user = await _userManager.FindByNameAsync(userName);
-
-            var processingVideo = new ProcessingVideo
+            var result = await _videoService.UploadVideoAsync(model,userName);
+            if (!result.IsSuccesed)
             {
-                Username = userName, 
-                Video = model.Video,
-                Title = model.Title
-            };
-
-           /*var encodedVideos = await _videoService.ProcessVideoAsync(processingVideo);
-             await _cloudService.UploadToCloudAsync(encodedVideos);*/
-
-            var result = await _videoService.AddAsync(model,userName);
-            if (!result)
-            {
-                return BadRequest("Failed to Upload video");
+                return BadRequest(result.Message);
             }
+
             await _unitOfWork.Complete();
             return Ok("Video Uploaded Sucessfully");
         }
@@ -153,22 +138,20 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Like")]
         public async Task<IActionResult> LikeVideo(string id)
         {
-            var likeVideo = await _videoService.LikeVideo(id);
+            var result = await _videoService.LikeVideoAsync(id);
 
-            if (likeVideo == false)
+            if (!result.IsSuccesed)
             {
-                return BadRequest($"Failed to like video With id {id}!");
+                return BadRequest(result.Message);
             }
      
-            var playlistId = await _playlistService.GetPlaylistId
-                                          (PlaylistDefaultNames.PlaylistNames[0], true);
-         
+            var playlistId = await _playlistService.GetPlaylistIdAsync(PlaylistDefaultNames.PlaylistNames[0], true);
+
             var isVideoAdded = await _playlistVideoService.AddVideoToPlayListAsync(id, playlistId);
-            if (!isVideoAdded)
+            if (!isVideoAdded.IsSuccesed)
             {
-                return BadRequest($"Failed to add video With id {id} to the Liked Playlist!");
+                return BadRequest(isVideoAdded.Message);
             }
-            await _unitOfWork.Complete();
 
             return Ok($"User has Liked Video successfully!");
         }
@@ -178,24 +161,20 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Dislike")]
         public async Task<IActionResult> DislikeVideo(string videoId)
         {
-            var dislikeVideo = await _videoService.DislikeVideo(videoId);
+            var result = await _videoService.DislikeVideoAsync(videoId);
 
-            if (dislikeVideo == false)
+            if (!result.IsSuccesed)
             {
-                return NotFound($"Failed to Dislike video With id {videoId}!");
+                return BadRequest(result.Message);
             }
 
-            // remove video from LikedPlaylist
-            var playlistId = await _playlistService.GetPlaylistId
-                                            (PlaylistDefaultNames.PlaylistNames[0], true);
-         
-            var result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(videoId, playlistId);
-            if (!result)
+            var playlistId = await _playlistService.GetPlaylistIdAsync(PlaylistDefaultNames.PlaylistNames[0], true);
+            result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(videoId, playlistId);
+            if (!result.IsSuccesed)
             {
-                return BadRequest($"Failed to remove video With id {videoId} from Liked Playlist!");
+                return BadRequest(result.Message);
             }
 
-            await _unitOfWork.Complete();
             return Ok($"Video has Disliked successfully ");
         }
 
@@ -204,44 +183,40 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Flag")]
         public async Task<IActionResult> FlagVideo(string id)
         {
-            var video = await _videoService.FlagVideo(id);
-            if (video == false)
+            var result = await _videoService.FlagVideoAsync(id);
+            if (!result.IsSuccesed)
             {
-                return NotFound($"Video With id {id} does not exist!");
+                return BadRequest(result.Message);
             }
-
-            await _unitOfWork.Complete();
-
             return Ok("User Flaged video successfully");
         }
 
         [Authorize]
         [HttpPost("View")]
         public async Task<IActionResult> ViewVideo(string id)
-        {
-            var video = await _videoService.ViewVideo(id);
-            if (video == false)
-            {
-                return NotFound($"Video With id {id} does not exist!");
-            }
-
+        {            
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userName != null)
             {
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var isWatchedVideoAdded = await _watchedVideoService.AddWatchedVideoToHistoryAsync(user.Id, id);
-                    if(!isWatchedVideoAdded)
+                    var result = await _videoService.ViewVideoAsync(id);
+                    if (!result.IsSuccesed)
                     {
-                        return BadRequest("View Video Request Failed");
+                        return BadRequest(result.Message);
                     }
+
+                    var isWatchedVideoAdded = await _watchedVideoService.AddWatchedVideoToHistoryAsync(user.Id, id);
+                    if(!isWatchedVideoAdded.IsSuccesed)
+                    {
+                        return BadRequest(isWatchedVideoAdded.Message);
+                    }
+
+                    return Ok("User has watched video successfully");
                 }
             }
-
-            await _unitOfWork.Complete();
-
-            return Ok("User has watched video successfully");
+            return Unauthorized();
         }
 
         [Authorize]
@@ -252,13 +227,11 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = await _videoService.UpdateVideo(model, id);
-            if (!result)
+            var result = await _videoService.UpdateVideoAsync(model, id);
+            if (!result.IsSuccesed)
             {
-                return BadRequest("Failed To Update the Video");
+                return BadRequest(result.Message);
             }
-
-            await _unitOfWork.Complete();
             return Ok("Video Updated Sucessfully");
         }
 
@@ -266,12 +239,19 @@ namespace ArabTube.Api.Controllers
         [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteVideo(string id)
         {
-            await _commentService.DeleteVideoCommentsAsync(id);
-            await _videoService.DeleteAsync(id);
-
-            await _unitOfWork.Complete();
+            var result = await _commentService.DeleteVideoCommentsAsync(id);
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+            result = await _videoService.DeleteAsync(id);
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
             return Ok("Video Deleted Successfully");
         }
+    
     }
 }
   

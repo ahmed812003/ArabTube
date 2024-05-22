@@ -9097,19 +9097,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hamza\\.nuget\\packages\\": {}
+    "C:\\Users\\ahmed\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hamza\\source\\repos\\ArabTube\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
+      "projectUniqueName": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
       "projectName": "ArabTube.Api",
-      "projectPath": "C:\\Users\\hamza\\source\\repos\\ArabTube\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
-      "packagesPath": "C:\\Users\\hamza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hamza\\source\\repos\\ArabTube\\ArabTube\\ArabTube.Api\\obj\\",
+      "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\ArabTube.Api.csproj",
+      "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
+      "outputPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hamza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9123,8 +9123,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hamza\\source\\repos\\ArabTube\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj": {
-              "projectPath": "C:\\Users\\hamza\\source\\repos\\ArabTube\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj"
+            "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj": {
+              "projectPath": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Services\\ArabTube.Services.csproj"
             }
           }
         }
@@ -9133,6 +9133,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -9223,7 +9228,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

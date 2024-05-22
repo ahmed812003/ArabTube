@@ -1,9 +1,25 @@
 using ArabTube.Entities.Models;
+using ArabTube.Services.ControllersServices;
+using ArabTube.Services.ControllersServices.AuthServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.AuthServices.Interfaces;
+using ArabTube.Services.ControllersServices.CloudServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.CloudServices.Interfaces;
+using ArabTube.Services.ControllersServices.CommentServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
+using ArabTube.Services.ControllersServices.EmailServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.PlaylistServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
+using ArabTube.Services.ControllersServices.PlaylistVideoServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.PlaylistVideoServices.Interfaces;
+using ArabTube.Services.ControllersServices.UserServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.UserServices.Interfaces;
+using ArabTube.Services.ControllersServices.VideoServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.VideoServices.Interfaces;
+using ArabTube.Services.ControllersServices.WatchedVideoServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.WatchedVideoServices.Interfaces;
 using ArabTube.Services.DataServices.Data;
 using ArabTube.Services.DataServices.Repositories.ImplementationClasses;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using ArabTube.Services.ImplementationClasses;
-using ArabTube.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -43,9 +59,8 @@ namespace ArabTube.Api
             builder.Services.AddScoped<ICloudService, CloudService>();
             builder.Services.AddScoped<IPlaylistService, PlaylistService>();
             builder.Services.AddScoped<IPlaylistVideoService, PlaylistVideoService>();
-            builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IWatchedVideoService, WatchedVideoService>();
-            builder.Services.AddScoped<IUnitOfService, UnitOfService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
             
             builder.Services.AddAuthentication(options =>
             {

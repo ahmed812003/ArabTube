@@ -1,5 +1,6 @@
 ﻿using ArabTube.Entities.DtoModels.UserConnectionsDto;
 using ArabTube.Entities.Models;
+using ArabTube.Services.ControllersServices.SubscriptionServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,12 +14,12 @@ namespace ArabTube.Api.Controllers
     [ApiController]
     public class SubscriptionsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
-        public SubscriptionsController(IUnitOfWork unitOfWork,UserManager<AppUser> userManager)
+        private readonly ISubscriptionService _subscriptionService;
+        public SubscriptionsController(UserManager<AppUser> userManager, ISubscriptionService subscriptionService)
         {
-            _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _subscriptionService = subscriptionService;
         }
 
         [HttpGet()]
@@ -30,15 +31,14 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var appUserConnections = await _unitOfWork.AppUserConnection.GetFollowingAsync(user.Id);
-                    if (appUserConnections == null || !appUserConnections.Any())
-                        return NotFound("The Current Login User Has No Following");
-                  
-                    var following = appUserConnections.Select(auc => new FollowingDto
+                    var result = await _subscriptionService.GetFollowingAsync(user.Id);
+
+                    if (!result.IsSuccesed)
                     {
-                        Username = auc.Following.UserName
-                    });
-                    return Ok(following);
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok(result.Followings);
                 }
             }
             return Unauthorized();
@@ -53,17 +53,14 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var owner = await _userManager.FindByIdAsync(ownerId);
-                    if (owner == null)
-                        return NotFound($"No User With Id = {ownerId}");
-                    var result = await _unitOfWork.AppUserConnection.SubscribeAsync(ownerId, user.Id);
-                    if (!result)
+                    var result = await _subscriptionService.SubscribeAsync(ownerId, user.Id);
+
+                    if (!result.IsSuccesed)
                     {
-                        return Ok("You Already Subscriber To This User");
+                        return BadRequest(result.Message);
                     }
 
-                    await _unitOfWork.Complete();
-                    return Ok("Subscribe Succesfully");
+                    return Ok(result.Message);
                 }
             }
             return Unauthorized();
@@ -78,19 +75,13 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var owner = await _userManager.FindByIdAsync(ownerId);
-                    if (owner == null)
+                    var result = await _subscriptionService.UnScbscribeAsync(ownerId, user.Id);
+
+                    if (!result.IsSuccesed)
                     {
-                        return NotFound($"No User With Id = {ownerId}");
+                        return BadRequest(result.Message);
                     }
-                        
-                    var result = await _unitOfWork.AppUserConnection.UnSubscribeAsync(ownerId, user.Id);
-                    if (!result)
-                    {
-                        return NotFound($"You Already Not A Follower To User With Id = {ownerId}");
-                    }
-                        
-                    await _unitOfWork.Complete();
+
                     return Ok("UnSubscribe Successfully");
                 }
             }
