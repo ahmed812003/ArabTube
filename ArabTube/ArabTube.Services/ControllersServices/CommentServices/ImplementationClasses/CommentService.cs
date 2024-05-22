@@ -4,16 +4,20 @@ using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.Models;
 using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
+using AutoMapper;
+using System.Xml.Linq;
 
 namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationClasses
 {
     public class CommentService : ICommentService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public CommentService(IUnitOfWork unitOfWork)
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<GetVideoCommentsResult> GetVideoCommentsAsync(string videoId)
@@ -29,28 +33,8 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             if (!comments.Any())
                 return new GetVideoCommentsResult { Message = $"The Video With Id = {videoId} Dosn't Has Any Comments" };
 
-            var commentsDto = comments.Select(c => new GetCommentDto
-            {
-                commentId = c.Id,
-                Username = c.AppUser.UserName,
-                Content = c.Content,
-                CreatedOn = c.CreatedOn,
-                IsUpdated = c.IsUpdated,
-                Mention = c.Mention,
-                Likes = c.Likes,
-                DisLike = c.DisLikes,
-                childrens = c.Childrens.Where(cc => cc.Id != c.Id).Select(cc => new GetCommentDto
-                {
-                    commentId = cc.Id,
-                    Username = cc.AppUser.UserName,
-                    Content = cc.Content,
-                    CreatedOn = cc.CreatedOn,
-                    IsUpdated = cc.IsUpdated,
-                    Mention = cc.Mention,
-                    Likes = cc.Likes,
-                    DisLike = cc.DisLikes,
-                }).OrderBy(cc => cc.CreatedOn).ToList()
-            }).OrderBy(c => c.CreatedOn);
+            var commentsDto = _mapper.Map<IEnumerable<GetCommentDto>>(comments)
+                                   .OrderBy(c => c.CreatedOn);
 
             return new GetVideoCommentsResult
             {
@@ -69,29 +53,8 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
 
             comment = await _unitOfWork.Comment.GetCommentAsync(commentId);
 
-            var commentDto = new GetCommentDto
-            {
-                commentId = comment.Id,
-                Username = comment.AppUser.UserName,
-                Content = comment.Content,
-                CreatedOn = comment.CreatedOn,
-                IsUpdated = comment.IsUpdated,
-                Mention = comment.Mention,
-                Likes = comment.Likes,
-                DisLike = comment.DisLikes,
-                childrens = comment.Childrens.Where(cc => cc.Id != comment.Id).Select(cc => new GetCommentDto
-                {
-                    commentId = cc.Id,
-                    Username = cc.AppUser.UserName,
-                    Content = cc.Content,
-                    CreatedOn = cc.CreatedOn,
-                    IsUpdated = cc.IsUpdated,
-                    Mention = cc.Mention,
-                    Likes = cc.Likes,
-                    DisLike = cc.DisLikes
-                }).OrderBy(cc => cc.CreatedOn).ToList()
-            };
-
+            var commentDto = _mapper.Map<GetCommentDto>(comment);
+                               
             return new GetCommentResult
             {
                 IsSuccesed = true,
@@ -113,15 +76,9 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                 return new ProcessResult { Message = $"No Comment Wiht Id = {model.ParentCommentId}" };
             }
 
-            var comment = new Comment
-            {
-                Content = model.Content,
-                CreatedOn = DateTime.Now,
-                Mention = model.Mention,
-                UserId = userId,
-                VideoId = model.VideoId
-            };
-
+            var comment = _mapper.Map<Comment>(model);
+            comment.UserId = userId;
+            
             if (string.IsNullOrEmpty(model.ParentCommentId))
                 comment.ParentCommentId = comment.Id;
             else

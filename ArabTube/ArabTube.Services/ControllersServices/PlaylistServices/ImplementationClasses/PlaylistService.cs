@@ -15,10 +15,11 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
-        public PlaylistService(IUnitOfWork unitOfWork, UserManager<AppUser> userManager)
+        public PlaylistService(IUnitOfWork unitOfWork, UserManager<AppUser> userManager, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         public async Task<SearchPlaylistsTitlesResult> SearchPlaylistsTitlesAsync(string query)

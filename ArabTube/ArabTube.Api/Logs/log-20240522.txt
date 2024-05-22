@@ -159,3 +159,11 @@ WHERE [p].[UserId] = @__userId_0
 2024-05-22 06:05:15.070 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.PlaylistsController.GetMyPlaylists (ArabTube.Api)'
 2024-05-22 06:05:15.070 +03:00 [INF] HTTP GET /api/Playlists/MyPlaylist responded 200 in 1041.9774 ms
 2024-05-22 06:05:15.072 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Playlists/MyPlaylist - 200 null application/json; charset=utf-8 1055.7341ms
+2024-05-22 13:36:59.088 +03:00 [INF] User profile is available. Using 'C:\Users\hamza\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-22 13:37:00.307 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-22 13:37:00.308 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-22 13:37:00.312 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-22 13:37:00.314 +03:00 [INF] Hosting environment: Development
+2024-05-22 13:37:00.314 +03:00 [INF] Content root path: C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api
+2024-05-22 13:37:05.918 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-22 13:37:07.339 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 1438.8614ms

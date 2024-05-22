@@ -2,12 +2,6 @@
 using ArabTube.Services.DataServices.Data;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static FFmpeg.NET.MetaData;
 
 namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 {

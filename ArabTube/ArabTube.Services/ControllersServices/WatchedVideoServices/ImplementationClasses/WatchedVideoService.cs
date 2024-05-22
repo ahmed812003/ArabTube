@@ -3,17 +3,18 @@ using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.HistoryModels;
 using ArabTube.Services.ControllersServices.WatchedVideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
-using Microsoft.Identity.Client;
-using System.Reflection.Metadata.Ecma335;
+using AutoMapper;
 
 namespace ArabTube.Services.ControllersServices.WatchedVideoServices.ImplementationClasses
 {
     public class WatchedVideoService : IWatchedVideoService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public WatchedVideoService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public WatchedVideoService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<GetWatchedVideosResult> GetWatchedVideosAsync(string userId)
@@ -25,15 +26,7 @@ namespace ArabTube.Services.ControllersServices.WatchedVideoServices.Implementat
                 return new GetWatchedVideosResult { Message = "The Current Login User Dosn't Watch Any Video" };
             }
                 
-            var HistoryVideos = watchedVideos.Select(wv => new HistoryVideoDto
-            {
-                VideoId = wv.VideoId,
-                Title = wv.Video.Title,
-                Views = wv.Video.Views,
-                WatchedTime = wv.WatchedTime,
-                Username = wv.Video.AppUser.UserName,
-                Thumbnail = wv.Video.Thumbnail
-            });
+            var HistoryVideos = _mapper.Map<IEnumerable<HistoryVideoDto>>(watchedVideos);
 
             return new GetWatchedVideosResult
             {

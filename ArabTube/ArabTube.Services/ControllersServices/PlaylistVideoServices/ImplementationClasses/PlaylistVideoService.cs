@@ -3,18 +3,21 @@ using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.PlaylistModels;
 using ArabTube.Services.ControllersServices.PlaylistVideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
+using AutoMapper;
 
 namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.ImplementationClasses
 {
     public class PlaylistVideoService : IPlaylistVideoService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public PlaylistVideoService(IUnitOfWork unitOfWork)
+        public PlaylistVideoService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        
+
         public async Task<ProcessResult> AddVideoToPlayListAsync(string videoId, string playlistId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(videoId);
@@ -52,16 +55,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
             if (!playlistVideos.Any())
                 return new GetPlaylistVideosResult { Message = $"The Playlist With Id = {playlistId} Dosn't Has Any Videos" };
 
-            var videos = playlistVideos.Select(pv => new PlaylistVideoDto
-            {
-                VideoId = pv.VideoId,
-                Title = pv.Video.Title,
-                Views = pv.Video.Views,
-                CreatedTime = pv.Video.CreatedOn,
-                Username = pv.Video.AppUser.UserName,
-                Thumbnail = pv.Video.Thumbnail,
-
-            });
+            var videos = _mapper.Map<IEnumerable<PlaylistVideoDto>>(playlistVideos);
 
             return new GetPlaylistVideosResult
             {
