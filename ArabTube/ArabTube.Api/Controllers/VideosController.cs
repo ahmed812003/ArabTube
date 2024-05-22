@@ -49,9 +49,6 @@ namespace ArabTube.Api.Controllers
             _configuration = configuration;
         }
 
-
-
-
         // AutoMapped
         [HttpGet("searchTitles")]
         public async Task<IActionResult> SearchVideoTitles(string query)

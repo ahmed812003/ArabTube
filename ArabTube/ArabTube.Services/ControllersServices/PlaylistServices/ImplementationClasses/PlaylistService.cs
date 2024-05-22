@@ -5,6 +5,7 @@ using ArabTube.Entities.Models;
 using ArabTube.Entities.PlaylistModels;
 using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 
 namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationClasses
@@ -13,6 +14,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IMapper _mapper;
         public PlaylistService(IUnitOfWork unitOfWork, UserManager<AppUser> userManager)
         {
             _unitOfWork = unitOfWork;
@@ -45,14 +47,9 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
 
             if (!playlists.Any())
                 return new GetPlaylistsResult { Message = "No Videos Found Matching The Search Query" };
-
-            var playlistsDto = playlists.Select(p => new GetPlaylistDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                IsPrivate = p.IsPrivate
-            });
-
+            
+            IEnumerable<GetPlaylistDto> playlistsDto = _mapper.Map<IEnumerable<GetPlaylistDto>>(playlists);
+           
             return new GetPlaylistsResult
             {
                 IsSuccesed = true,
@@ -67,13 +64,9 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             if (!playlists.Any())
                 return new GetPlaylistsResult { Message = "You Don't Have Any Playlist" };
 
-            var playlistsDto = playlists.Select(p => new GetPlaylistDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                IsPrivate = p.IsPrivate
-            });
-
+             
+            IEnumerable<GetPlaylistDto> playlistsDto = _mapper.Map<IEnumerable<GetPlaylistDto>>(playlists);
+           
             return new GetPlaylistsResult
             {
                 IsSuccesed = true,
@@ -94,12 +87,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             if (!playlists.Any())
                 return new GetPlaylistsResult { Message = $"The User With Id = {userId} Dosn't Has Any Playlist" };
 
-            var playlistsDto = playlists.Select(p => new GetPlaylistDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                IsPrivate = p.IsPrivate
-            });
+            IEnumerable<GetPlaylistDto> playlistsDto = _mapper.Map<IEnumerable<GetPlaylistDto>>(playlists);
 
             return new GetPlaylistsResult
             {
@@ -110,13 +98,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
 
         public async Task<ProcessResult> CreatePlaylistAsync(CreatePlaylistDto model, string userId)
         {
-            var playlist = new Playlist
-            {
-                UserId = userId,
-                Title = model.Title,
-                Description = model.Description,
-                IsPrivate = model.IsPrivate
-            };
+            Playlist playlist = _mapper.Map<Playlist>(model);
 
             var result = await _unitOfWork.Playlist.AddAsync(playlist);
             if (!result)
@@ -139,11 +121,8 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
                 return new ProcessResult { Message = "Can't Update Defult Playlists" };
             }
 
-            if (!string.IsNullOrEmpty(model.Title))
-                playlist.Title = model.Title;
-
-            if (!string.IsNullOrEmpty(model.Description))
-                playlist.Title = model.Description;
+            _mapper.Map(model, playlist);
+         
             await _unitOfWork.Complete();
 
             return new ProcessResult { IsSuccesed = true };
