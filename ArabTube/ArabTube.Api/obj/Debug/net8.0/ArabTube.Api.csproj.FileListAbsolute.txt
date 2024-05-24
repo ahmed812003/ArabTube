@@ -1635,3 +1635,12 @@ C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\refi
 C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.pdb
 C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.genruntimeconfig.cache
 C:\Users\hamza\source\repos\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ref\ArabTube.Api.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.AspNetCore.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Sinks.File.dll

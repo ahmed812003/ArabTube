@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ArabTube.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c37d30963e124a6afce7799159acb85727c3496a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e261333aee11a2a0c6b41b9da7474b87b4bc067e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ArabTube.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ArabTube.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -127,15 +127,23 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var result = await _playlistVideoService.AddVideoToPlayListAsync(model.VideoId , model.PlaylistId);
-
-            if (!result.IsSuccesed)
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _playlistVideoService.AddVideoToPlayListAsync(model.VideoId, model.PlaylistId , user.Id);
+
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok(result.Message);
+                }
             }
-           
-            return Ok(result.Message);
+            return Unauthorized();        
         }
 
         [Authorize]
@@ -147,12 +155,21 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await _playlistService.UpdatePlaylistAsync(model);
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _playlistService.UpdatePlaylistAsync(model , user.Id);
 
-            if (!result.IsSuccesed)
-                return BadRequest(result.Message);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
 
-            return Ok("playlist Updated Successfully");
+                    return Ok("playlist Updated Successfully");
+                }
+            }
+            return Unauthorized();        
         }
         
         [Authorize]
@@ -165,7 +182,7 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _playlistService.DeletePlaylistAsync(id);
+                    var result = await _playlistService.DeletePlaylistAsync(id , user.Id);
                     
                     if (!result.IsSuccesed)
                     {
@@ -187,14 +204,23 @@ namespace ArabTube.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(model.VideoId , model.PlaylistId);
-
-            if (!result.IsSuccesed)
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
-            }
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(model.VideoId, model.PlaylistId , user.Id);
 
-            return Ok("Video Removed Succesfully");
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok("Video Removed Succesfully");
+                }
+            }
+            return Unauthorized();       
         }
 
 

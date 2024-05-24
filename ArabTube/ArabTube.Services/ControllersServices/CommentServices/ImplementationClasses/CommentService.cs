@@ -128,13 +128,19 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
-        public async Task<ProcessResult> UpdateCommentAsync(UpdateCommentDto model)
+        public async Task<ProcessResult> UpdateCommentAsync(UpdateCommentDto model , string userId)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(model.CommentId);
             if (comment == null)
             {
                 return new ProcessResult { Message = $"Comment With id {model.CommentId} does not exist!" };
             }
+
+            if(comment.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to update this comment" };
+            }
+
             comment.Content = model.Content;
             comment.IsUpdated = true;
             await _unitOfWork.Complete();
@@ -144,12 +150,17 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
-        public async Task<ProcessResult> DeleteCommentAsync(string commentId)
+        public async Task<ProcessResult> DeleteCommentAsync(string commentId , string userId)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
             if (comment == null)
             {
                 return new ProcessResult { Message = $"Comment With id {commentId} does not exist!" };
+            }
+
+            if (comment.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to delete this comment" };
             }
 
             if (comment.ParentCommentId == commentId)
@@ -164,12 +175,17 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             return new ProcessResult { IsSuccesed = true};
         }
 
-        public async Task<ProcessResult> DeleteVideoCommentsAsync(string videoId)
+        public async Task<ProcessResult> DeleteVideoCommentsAsync(string videoId , string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(videoId);
             if(video == null)
             {
                 return new ProcessResult { Message = $"No video Exists wiht id {videoId}" };
+            }
+
+            if(video.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to delete comments of this video" };
             }
 
             await _unitOfWork.Comment.DeleteVideoCommentsAsync(videoId);

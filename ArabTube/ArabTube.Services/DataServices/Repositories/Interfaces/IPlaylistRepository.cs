@@ -13,7 +13,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
         Task<IEnumerable<string>> SearchPlaylistTitlesAsync(string query);
         Task<bool> CheckDefultPlaylistsAsync(string userId);
         Task<IEnumerable<Playlist>> GetPlaylistsAsync(string userId , bool includePrivate);
-        Task<string> FindPlaylistByNameAsync(string title, bool IsDefult);
+        Task<string> FindPlaylistByNameAsync(string title, bool IsDefult , string userId);
         Task<bool> DeletePlaylistAsync(string playlistId);
     }
 }

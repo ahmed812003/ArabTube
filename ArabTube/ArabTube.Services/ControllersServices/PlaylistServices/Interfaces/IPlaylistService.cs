@@ -11,10 +11,10 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.Interfaces
         Task<GetPlaylistsResult> GetMyPlaylistsAsync(string userId);
         Task<GetPlaylistsResult> GetPlaylistsAsync(string userId);
         Task<ProcessResult> CreatePlaylistAsync(CreatePlaylistDto model, string userId);
-        Task<ProcessResult> UpdatePlaylistAsync(UpdatePlaylistDto model);
-        Task<ProcessResult> DeletePlaylistAsync(string playlistId);
+        Task<ProcessResult> UpdatePlaylistAsync(UpdatePlaylistDto model , string userId);
+        Task<ProcessResult> DeletePlaylistAsync(string playlistId , string userId);
         Task<ProcessResult> CreateDefultPlaylistsAsync(string userId);
-        Task<string> GetPlaylistIdAsync(string playlistTitle, bool isDefaultPlaylist);
+        Task<string> GetPlaylistIdAsync(string playlistTitle, bool isDefaultPlaylist, string userId);
 
     }
 }

@@ -109,12 +109,17 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             return new ProcessResult { IsSuccesed = true };
         }
 
-        public async Task<ProcessResult> UpdatePlaylistAsync(UpdatePlaylistDto model)
+        public async Task<ProcessResult> UpdatePlaylistAsync(UpdatePlaylistDto model , string userId)
         {
             var playlist = await _unitOfWork.Playlist.FindByIdAsync(model.PlaylistId);
             if (playlist == null)
             {
                 return new ProcessResult { Message = $"No Playlist With Id = {model.PlaylistId}" };
+            }
+
+            if(playlist.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to update this playlist" };
             }
 
             if (playlist.IsDefult)
@@ -129,12 +134,17 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             return new ProcessResult { IsSuccesed = true };
         }
 
-        public async Task<ProcessResult> DeletePlaylistAsync(string playlistId)
+        public async Task<ProcessResult> DeletePlaylistAsync(string playlistId , string userId)
         {
             var playlist = await _unitOfWork.Playlist.FindByIdAsync(playlistId);
             if (playlist == null)
             {
                 return new ProcessResult { Message = $"No Playlist With Id = {playlist}" };
+            }
+
+            if(playlist.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to delete this playlist" };
             }
 
             if (playlist.IsDefult)
@@ -175,10 +185,10 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             return new ProcessResult { IsSuccesed = true };
         }
 
-        public async Task<string> GetPlaylistIdAsync(string playlistTitle, bool isDefaultPlaylist)
+        public async Task<string> GetPlaylistIdAsync(string playlistTitle, bool isDefaultPlaylist , string userId)
         {
             return await _unitOfWork.Playlist.FindPlaylistByNameAsync
-                                              (PlaylistDefaultNames.PlaylistNames[0], true);
+                                              (PlaylistDefaultNames.PlaylistNames[0], true , userId);
         }
 
     }

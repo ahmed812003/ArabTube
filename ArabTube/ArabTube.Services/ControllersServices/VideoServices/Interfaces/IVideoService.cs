@@ -6,7 +6,6 @@ namespace ArabTube.Services.ControllersServices.VideoServices.Interfaces
 {
     public interface IVideoService
     {
-        Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model);
         Task<SearchVideoTitlesResult> SearchVideoTitlesAsync(string query);
         Task<GetVideoResult> SearchVideoAsync(string query);
         Task<GetVideoResult> PreviewVideoAsync();
@@ -16,7 +15,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.Interfaces
         Task<ProcessResult> DislikeVideoAsync(string id);
         Task<ProcessResult> FlagVideoAsync(string id);
         Task<ProcessResult> ViewVideoAsync(string id);
-        Task<ProcessResult> UpdateVideoAsync(UpdatingVideoDto updateDto, string videoId);
-        Task<ProcessResult> DeleteAsync(string id);
+        Task<ProcessResult> UpdateVideoAsync(UpdatingVideoDto updateDto, string videoId , string userId);
+        Task<ProcessResult> DeleteAsync(string id , string userId);
     }
 }

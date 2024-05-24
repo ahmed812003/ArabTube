@@ -2,6 +2,7 @@
 using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.Models;
 using ArabTube.Entities.VideoModels;
+using ArabTube.Services.ControllersServices.CloudServices.Interfaces;
 using ArabTube.Services.ControllersServices.VideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using AutoMapper;
@@ -17,69 +18,17 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
         private readonly IConfiguration _configuration;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-
+        private readonly ICloudService _cloudService;
         private readonly string _tempPath;
         private readonly Engine _ffmpegEngine;
-        public VideoService(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper)
+        public VideoService(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper, ICloudService cloudService)
         {
             _configuration = configuration;
             _tempPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Videos");
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _cloudService = cloudService;
             //this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
-        }
-
-        public async Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model)
-        {
-            var filePath = Path.Combine(_tempPath, model.Title + Path.GetExtension(model.Video.FileName));
-            await using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await model.Video.CopyToAsync(stream);
-            }
-
-            var paths = await ProcessVideoQualityAsync(filePath, model.Title, model.Username);
-            File.Delete(filePath);
-            return paths;
-        }
-
-
-        private async Task<IEnumerable<VideoQuality>> ProcessVideoQualityAsync(string filePath, string title, string username)
-        {
-            var inputFile = new InputFile(filePath);
-            (int width, int height)[] resolutions = new (int, int)[]
-            {
-                (256, 144),
-                (426, 240),
-                (640, 360),
-                (854, 480),
-                (1280,720)
-            };
-
-            List<VideoQuality> videoQualities = new List<VideoQuality>();
-
-            foreach (var resolution in resolutions)
-            {
-                var outputFilePath = Path.Combine(_tempPath, Guid.NewGuid().ToString() + ".mp4");
-                var outputFile = new OutputFile(outputFilePath);
-                var output = await _ffmpegEngine.ConvertAsync(inputFile, outputFile, new ConversionOptions
-                {
-                    VideoSize = VideoSize.Custom,
-                    CustomHeight = resolution.height,
-                    CustomWidth = resolution.width
-                }, default).ConfigureAwait(false);
-
-                var videoQuality = new VideoQuality
-                {
-                    BlobName = $"{title}-{resolution.height}",
-                    Path = outputFilePath,
-                    ContentType = "video/mp4",
-                    ContainerName = username
-                };
-                videoQualities.Add(videoQuality);
-
-            }
-
-            return videoQualities;
         }
 
         public async Task<SearchVideoTitlesResult> SearchVideoTitlesAsync(string query)
@@ -156,8 +105,8 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 Title = model.Title
             };
 
-            /*var encodedVideos = await _videoService.ProcessVideoAsync(processingVideo);
-             await _cloudService.UploadToCloudAsync(encodedVideos);*/
+            //var encodedVideos = await ProcessVideoAsync(processingVideo);
+            //await _cloudService.UploadToCloudAsync(encodedVideos);
 
             var video = _mapper.Map<Video>(model);
 
@@ -219,26 +168,37 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
         }
-        
-        public async Task<ProcessResult> UpdateVideoAsync(UpdatingVideoDto updateDto, string videoId)
+
+        public async Task<ProcessResult> UpdateVideoAsync(UpdatingVideoDto updateDto, string videoId, string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(videoId);
             if (video == null)
             {
                 return new ProcessResult { Message = $"No Video exists with id = {videoId}" };
             }
+
+            if (video.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to update this video" };
+            }
+
             var updatedVideo = _mapper.Map<Video>(updateDto);
             _unitOfWork.Video.Update(updatedVideo);
             await _unitOfWork.Complete();
             return new ProcessResult{ IsSuccesed = true};
         }
         
-        public async Task<ProcessResult> DeleteAsync(string id)
+        public async Task<ProcessResult> DeleteAsync(string id, string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
             if (video == null)
             {
                 return new ProcessResult { Message = $"No Video exists with id = {id}" };
+            }
+
+            if(video.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to delete this video" };
             }
 
             var isDeleted = await _unitOfWork.Video.DeleteAsync(id);
@@ -248,6 +208,59 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             }
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
+        }
+
+
+        private async Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model)
+        {
+            var filePath = Path.Combine(_tempPath, model.Title + Path.GetExtension(model.Video.FileName));
+            await using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.Video.CopyToAsync(stream);
+            }
+
+            var paths = await ProcessVideoQualityAsync(filePath, model.Title, model.Username);
+            File.Delete(filePath);
+            return paths;
+        }
+
+        private async Task<IEnumerable<VideoQuality>> ProcessVideoQualityAsync(string filePath, string title, string username)
+        {
+            var inputFile = new InputFile(filePath);
+            (int width, int height)[] resolutions = new (int, int)[]
+            {
+                (256, 144),
+                (426, 240),
+                (640, 360),
+                (854, 480),
+                (1280,720)
+            };
+
+            List<VideoQuality> videoQualities = new List<VideoQuality>();
+
+            foreach (var resolution in resolutions)
+            {
+                var outputFilePath = Path.Combine(_tempPath, Guid.NewGuid().ToString() + ".mp4");
+                var outputFile = new OutputFile(outputFilePath);
+                var output = await _ffmpegEngine.ConvertAsync(inputFile, outputFile, new ConversionOptions
+                {
+                    VideoSize = VideoSize.Custom,
+                    CustomHeight = resolution.height,
+                    CustomWidth = resolution.width
+                }, default).ConfigureAwait(false);
+
+                var videoQuality = new VideoQuality
+                {
+                    BlobName = $"{title}-{resolution.height}",
+                    Path = outputFilePath,
+                    ContentType = "video/mp4",
+                    ContainerName = username
+                };
+                videoQualities.Add(videoQuality);
+
+            }
+
+            return videoQualities;
         }
     }
 }

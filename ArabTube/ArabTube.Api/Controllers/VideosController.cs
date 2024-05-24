@@ -12,8 +12,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace ArabTube.Api.Controllers
@@ -29,14 +27,13 @@ namespace ArabTube.Api.Controllers
         private readonly IPlaylistVideoService _playlistVideoService;
         private readonly IWatchedVideoService _watchedVideoService;
         private readonly UserManager<AppUser> _userManager;
-        private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
 
         public VideosController(IUnitOfWork unitOfWork, IVideoService videoService, IPlaylistService playlistService, 
                                 ICommentService commentService, IPlaylistVideoService playlistVideoService, 
                                 IWatchedVideoService watchedVideoService, UserManager<AppUser> userManager, 
-                                IMapper mapper, IConfiguration configuration)
+                                IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _videoService = videoService;
@@ -45,7 +42,6 @@ namespace ArabTube.Api.Controllers
             _playlistVideoService = playlistVideoService;
             _watchedVideoService = watchedVideoService;
             _userManager = userManager;
-            _mapper = mapper;
             _configuration = configuration;
         }
 
@@ -118,6 +114,11 @@ namespace ArabTube.Api.Controllers
             {
                 return Unauthorized();
             }
+            var user = await _userManager.FindByNameAsync(userName);
+            if(user == null)
+            {
+                return Unauthorized();
+            }
 
             var result = await _videoService.UploadVideoAsync(model,userName);
             if (!result.IsSuccesed)
@@ -135,22 +136,32 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Like")]
         public async Task<IActionResult> LikeVideo(string id)
         {
-            var result = await _videoService.LikeVideoAsync(id);
 
-            if (!result.IsSuccesed)
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
-            }
-     
-            var playlistId = await _playlistService.GetPlaylistIdAsync(PlaylistDefaultNames.PlaylistNames[0], true);
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _videoService.LikeVideoAsync(id);
 
-            var isVideoAdded = await _playlistVideoService.AddVideoToPlayListAsync(id, playlistId);
-            if (!isVideoAdded.IsSuccesed)
-            {
-                return BadRequest(isVideoAdded.Message);
-            }
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
 
-            return Ok($"User has Liked Video successfully!");
+                    var playlistId = await _playlistService.GetPlaylistIdAsync(PlaylistDefaultNames.PlaylistNames[0], true , user.Id);
+
+                    var isVideoAdded = await _playlistVideoService.AddVideoToPlayListAsync(id, playlistId , user.Id);
+                    if (!isVideoAdded.IsSuccesed)
+                    {
+                        return BadRequest(isVideoAdded.Message);
+                    }
+
+                    return Ok($"User has Liked Video successfully!");
+                }
+            }
+            return Unauthorized();        
         }
 
         // dont forget to handle Save changes 
@@ -158,21 +169,30 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Dislike")]
         public async Task<IActionResult> DislikeVideo(string videoId)
         {
-            var result = await _videoService.DislikeVideoAsync(videoId);
-
-            if (!result.IsSuccesed)
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
-            }
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _videoService.DislikeVideoAsync(videoId);
 
-            var playlistId = await _playlistService.GetPlaylistIdAsync(PlaylistDefaultNames.PlaylistNames[0], true);
-            result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(videoId, playlistId);
-            if (!result.IsSuccesed)
-            {
-                return BadRequest(result.Message);
-            }
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
 
-            return Ok($"Video has Disliked successfully ");
+                    var playlistId = await _playlistService.GetPlaylistIdAsync(PlaylistDefaultNames.PlaylistNames[0], true , user.Id);
+                    result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(videoId, playlistId, user.Id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok($"Video has Disliked successfully ");
+                }
+            }
+            return Unauthorized();        
         }
 
         // dont forget to handle Save changes 
@@ -180,12 +200,21 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Flag")]
         public async Task<IActionResult> FlagVideo(string id)
         {
-            var result = await _videoService.FlagVideoAsync(id);
-            if (!result.IsSuccesed)
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _videoService.FlagVideoAsync(id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+                    return Ok("User Flaged video successfully");
+                }
             }
-            return Ok("User Flaged video successfully");
+            return Unauthorized();        
         }
 
         [Authorize]
@@ -204,7 +233,7 @@ namespace ArabTube.Api.Controllers
                         return BadRequest(result.Message);
                     }
 
-                    var isWatchedVideoAdded = await _watchedVideoService.AddWatchedVideoToHistoryAsync(user.Id, id);
+                    var isWatchedVideoAdded = await _watchedVideoService.AddWatchedVideoToHistoryAsync(user.Id , id);
                     if(!isWatchedVideoAdded.IsSuccesed)
                     {
                         return BadRequest(isWatchedVideoAdded.Message);
@@ -224,29 +253,51 @@ namespace ArabTube.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = await _videoService.UpdateVideoAsync(model, id);
-            if (!result.IsSuccesed)
+
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _videoService.UpdateVideoAsync(model, id , user.Id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+                    return Ok("Video Updated Sucessfully");
+                }
             }
-            return Ok("Video Updated Sucessfully");
+            return Unauthorized();
+                    
         }
 
         [Authorize]
         [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteVideo(string id)
         {
-            var result = await _commentService.DeleteVideoCommentsAsync(id);
-            if (!result.IsSuccesed)
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
             {
-                return BadRequest(result.Message);
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.DeleteVideoCommentsAsync(id , user.Id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    result = await _videoService.DeleteAsync(id , user.Id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok("Video Deleted Successfully");
+                }
             }
-            result = await _videoService.DeleteAsync(id);
-            if (!result.IsSuccesed)
-            {
-                return BadRequest(result.Message);
-            }
-            return Ok("Video Deleted Successfully");
+            return Unauthorized();
         }
     
     }

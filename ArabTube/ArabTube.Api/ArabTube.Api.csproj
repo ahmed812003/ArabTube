@@ -38,7 +38,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\ffmpeg\" />
     <Folder Include="wwwroot\Videos\" />
-    <Folder Include="wwwroot\Videos\" />
   </ItemGroup>
 
 </Project>

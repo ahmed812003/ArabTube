@@ -65,9 +65,9 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return true;
         }
 
-        public async Task<string> FindPlaylistByNameAsync(string title, bool IsDefult)
+        public async Task<string> FindPlaylistByNameAsync(string title, bool IsDefult , string userId)
         {
-            var playlist = await _dbSet.FirstOrDefaultAsync(p => p.Title == title && p.IsDefult == IsDefult);
+            var playlist = await _dbSet.FirstOrDefaultAsync(p => p.Title == title && p.IsDefult == IsDefult && p.UserId == userId);
             return playlist.Id;
         }
     }

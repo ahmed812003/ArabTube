@@ -80,42 +80,77 @@ namespace ArabTube.Api.Controllers
         [HttpPost("Like")]
         public async Task<IActionResult> LikeComment(string id)
         {
-            var result = await _commentService.LikeCommentAsync(id);
-            if (!result.IsSuccesed)
-                return BadRequest(result.Message);
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.LikeCommentAsync(id);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
 
-            return Ok(result.Message);
+                    return Ok(result.Message);
+                }
+            }
+            return Unauthorized();   
         }
 
         [Authorize]
         [HttpPost("Dislike")]
         public async Task<IActionResult> DislikeComment(string id)
         {
-            var result = await _commentService.DislikeCommentAsync(id);
-            if (!result.IsSuccesed)
-                return BadRequest(result.Message);
-
-            return Ok(result.Message);
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.DislikeCommentAsync(id);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
+                    return Ok(result.Message);
+                }
+            }
+            return Unauthorized();
         }
 
         [Authorize]
         [HttpPut("Update")]
         public async Task<IActionResult> UpdateComment(UpdateCommentDto model)
         {
-            var result = await _commentService.UpdateCommentAsync(model);
-            if (!result.IsSuccesed)
-                return BadRequest(result.Message);
-            return Ok("Comment Updated Successfully");
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.UpdateCommentAsync(model , user.Id);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
+                    return Ok("Comment Updated Successfully");
+                }
+            }
+            return Unauthorized();        
         }
 
         [Authorize]
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string id)
         {
-            var result = await _commentService.DeleteCommentAsync(id);
-            if (!result.IsSuccesed)
-                return BadRequest(result.IsSuccesed);
-            return Ok("Comment Deleted Successfully");
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.DeleteCommentAsync(id , user.Id);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.IsSuccesed);
+                    return Ok("Comment Deleted Successfully");
+                }
+            }
+            return Unauthorized();    
         }
 
     }

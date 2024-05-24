@@ -46,7 +46,7 @@ namespace ArabTube.Api.Controllers
 
         //AutoMapped
         [HttpGet("search")]
-        public async Task<IActionResult> SearchVideos(string query)
+        public async Task<IActionResult> SearchUsers(string query)
         {
             var result = await _userService.GetUsersAsync(query);
 

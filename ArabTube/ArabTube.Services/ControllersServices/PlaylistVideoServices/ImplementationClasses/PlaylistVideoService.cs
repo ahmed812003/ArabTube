@@ -18,7 +18,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
             _mapper = mapper;
         }
 
-        public async Task<ProcessResult> AddVideoToPlayListAsync(string videoId, string playlistId)
+        public async Task<ProcessResult> AddVideoToPlayListAsync(string videoId, string playlistId , string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(videoId);
             if (video == null)
@@ -30,6 +30,11 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
             if (playlist == null)
             {
                 return new ProcessResult { Message = $"No Playlist With Id = {playlistId}" };
+            }
+
+            if(playlist.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to Add videos to this playlist" };
             }
 
             var result = await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(videoId, playlistId);
@@ -69,7 +74,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
             return await _unitOfWork.PlaylistVideo.FindVideoInPlaylistAsync(videoId, playlistId);
         }
 
-        public async Task<ProcessResult> RemoveVideoFromPlaylistAsync(string videoId, string playlistId)
+        public async Task<ProcessResult> RemoveVideoFromPlaylistAsync(string videoId, string playlistId , string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(videoId);
             if (video == null)
@@ -81,6 +86,11 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
             if (playlist == null)
             {
                 return new ProcessResult { Message = $"No Playlist With Id = {playlistId}" };
+            }
+
+            if(playlist.UserId != userId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to remove videos from this playlist" };
             }
 
             var result = await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(videoId, playlistId);
