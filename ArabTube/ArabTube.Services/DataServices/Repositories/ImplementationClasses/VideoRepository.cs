@@ -36,5 +36,11 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
                                      .ToListAsync();
             return titles;
         }
+
+        public async Task<IEnumerable<Video>> GetUserVideos(string userId)
+        {
+            var videos = await _dbSet.Where(v => v.UserId == userId).ToListAsync();
+            return videos;
+        }
     }
 }

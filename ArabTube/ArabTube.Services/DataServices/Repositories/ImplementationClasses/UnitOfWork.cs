@@ -20,6 +20,12 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public IAppUserRepository AppUser { get; }
 
+        public IVideoLikeRepository VideoLike { get; }
+
+        public IVideoDislikeRepository VideoDislike { get; }
+
+        public IVideoFlagRepository VideoFlag { get; } 
+
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -32,6 +38,9 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             PlaylistVideo = new PlaylistVideoRepository(_context);
             Comment = new CommentRepository(_context);
             AppUser = new AppUserRepository(_context);
+            VideoLike = new VideoLikeRepository(_context);
+            VideoDislike = new VideoDislikeRepository(_context);
+            VideoFlag = new VideoFlagRepository(_context);
         }
 
         public void Dispose()

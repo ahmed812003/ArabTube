@@ -12,5 +12,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
         Task<IEnumerable<string>> SearchVideoTitlesAsync(string query);
 
         Task<IEnumerable<Video>> SearchVideoAsync(string query);
+
+        Task<IEnumerable<Video>> GetUserVideos(string userId);
     }
 }

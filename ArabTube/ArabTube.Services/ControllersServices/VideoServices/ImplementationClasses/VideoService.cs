@@ -9,6 +9,7 @@ using AutoMapper;
 using FFmpeg.NET;
 using FFmpeg.NET.Enums;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
 namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClasses
@@ -21,13 +22,15 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
         private readonly ICloudService _cloudService;
         private readonly string _tempPath;
         private readonly Engine _ffmpegEngine;
-        public VideoService(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper, ICloudService cloudService)
+        private readonly UserManager<AppUser> _userManager;
+        public VideoService(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper, ICloudService cloudService, UserManager<AppUser> userManager)
         {
             _configuration = configuration;
             _tempPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Videos");
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cloudService = cloudService;
+            _userManager = userManager;
             //this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
         }
 
@@ -91,6 +94,71 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             return new WatchVideoResult { IsSuccesed = true , Video = viewVideo};
         }
 
+        public async Task<GetVideoResult> UserVideosAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if(user == null)
+            {
+                return new GetVideoResult { Message = $"No user exist with id = {userId}" };
+            }
+            var videos = await _unitOfWork.Video.GetUserVideos(userId);
+            if (videos.Any())
+            {
+                return new GetVideoResult { Message = "User Dosn't upload any videos" };
+            }
+            IEnumerable<VideoPreviewDto> viewVideosDtoList = _mapper.Map<IEnumerable<VideoPreviewDto>>(videos);
+            return new GetVideoResult
+            {
+                IsSuccesed = true,
+                Videos = viewVideosDtoList
+            };
+        }
+        
+        public async Task<ProcessResult> IsUserLikeVideoAsync(string videoId , string userId)
+        {
+            var video = await _unitOfWork.Video.FindByIdAsync(videoId);
+            if(video == null)
+            {
+                return new ProcessResult { Message = $"No video exists with id = {videoId}" };
+            }
+            var isUserLike = await _unitOfWork.VideoLike.CheckUserLikeVideoOrNotAsync(userId, videoId);
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = isUserLike ? "YES" : "NO"
+            };
+        }
+
+        public async Task<ProcessResult> IsUserDisLikeVideoAsync(string videoId, string userId)
+        {
+            var video = await _unitOfWork.Video.FindByIdAsync(videoId);
+            if (video == null)
+            {
+                return new ProcessResult { Message = $"No video exists with id = {videoId}" };
+            }
+            var isUserDisLike = await _unitOfWork.VideoDislike.CheckUserDislikeVideoOrNotAsync(userId, videoId);
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = isUserDisLike ? "YES" : "NO"
+            };
+        }
+
+        public async Task<ProcessResult> IsUserFlagVideoAsync(string videoId, string userId)
+        {
+            var video = await _unitOfWork.Video.FindByIdAsync(videoId);
+            if (video == null)
+            {
+                return new ProcessResult { Message = $"No video exists with id = {videoId}" };
+            }
+            var isUserFlag = await _unitOfWork.VideoFlag.CheckUserFlagVideoOrNotAsync(userId, videoId);
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = isUserFlag ? "YES" : "NO"
+            };
+        }
+
         public async Task<ProcessResult> UploadVideoAsync(UploadingVideoDto model, string userName)
         {
             if (model.Video.ContentType != "video/mp4")
@@ -121,38 +189,113 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             return new ProcessResult { IsSuccesed = true };
         }
 
-        public async Task<ProcessResult> LikeVideoAsync(string id)
+        public async Task<ProcessResult> LikeVideoAsync(string id, string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
             if (video == null)
             {
                 return new ProcessResult { Message = $"Failed to like video With id {id}!" };
             }
-            video.Likes += 1;
+            // user first like => increase Likes with 1 , Add video to likes playlist , add {user.id , video.id} to videosLikes 
+            // user second Like => mean that he erase the like so, decrease likes , remove video from likes playlist , remove {user.id , video.id} from videosLikes
+            var IsUserLikeVideo = await _unitOfWork.VideoLike.CheckUserLikeVideoOrNotAsync(userId, id);
+            if (IsUserLikeVideo)
+            {
+                var isLikeRemoved = await _unitOfWork.VideoLike.RemoveUserVideoLikeAsync(userId, id);
+                if(!isLikeRemoved)
+                {
+                    return new ProcessResult { Message = $"Failed to remove like video With id {id}!" };
+                }
+                video.Likes -= 1;
+            }
+            else
+            {
+                var videoLike = new VideoLike
+                {
+                    UserId = userId,
+                    VideoId = id,
+                };
+                var isLikeAdded = await _unitOfWork.VideoLike.AddAsync(videoLike);
+                if(!isLikeAdded)
+                {
+                    return new ProcessResult { Message = $"Failed to add like video With id {id}!" };
+                }
+                video.Likes += 1;
+            }
             await _unitOfWork.Complete();
-            return new ProcessResult { IsSuccesed = true };
+            return new ProcessResult 
+            { 
+                IsSuccesed = true,
+                Message = IsUserLikeVideo ? "Remove" : "Add"
+            };
         }
 
-        public async Task<ProcessResult> DislikeVideoAsync(string id)
+        public async Task<ProcessResult> DislikeVideoAsync(string id, string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
             if (video == null)
             {
                 return new ProcessResult { Message = $"Failed to Dislike video With id {id}!" };
             }
-            video.DisLikes += 1;
+            var IsUserDislikeVideo = await _unitOfWork.VideoDislike.CheckUserDislikeVideoOrNotAsync(userId , id);
+            if (IsUserDislikeVideo)
+            {
+                var isDislikeRemoved = await _unitOfWork.VideoDislike.RemoveUserVideoDislikeAsync(userId , id);
+                if (!isDislikeRemoved)
+                {
+                    return new ProcessResult { Message = $"Failed to remove Dislike video With id {id}!" };
+                }
+                video.DisLikes -= 1;
+            }
+            else
+            {
+                var videoDislike = new VideoDislike
+                {
+                    UserId = userId,
+                    VideoId = id,
+                };
+                var isDislikeAdded = await _unitOfWork.VideoDislike.AddAsync(videoDislike);
+                if(!isDislikeAdded)
+                {
+                    return new ProcessResult { Message = $"Failed to Dislike video With id {id}!" };
+                }
+                video.DisLikes += 1;
+            }
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }
 
-        public async Task<ProcessResult> FlagVideoAsync(string id)
+        public async Task<ProcessResult> FlagVideoAsync(string id , string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
             if (video == null)
             {
                 return new ProcessResult { Message = $"Video With id {id} does not exist!" };
             }
-            video.Flags += 1;
+            var isuserFlagVideo = await _unitOfWork.VideoFlag.CheckUserFlagVideoOrNotAsync(userId, id);
+            if(isuserFlagVideo)
+            {
+                var IsFlagRemoved = await _unitOfWork.VideoFlag.RemoveUserVideoFlagAsync(userId, id);
+                if (!IsFlagRemoved)
+                {
+                    return new ProcessResult { Message = $"Failed to remove flag video With id {id}!" };
+                }
+                video.Flags -= 1;
+            }
+            else
+            {
+                var videoFlag = new VideoFlag
+                {
+                    UserId = userId,
+                    VideoId = id,
+                };
+                var isFlagAdded = await _unitOfWork.VideoFlag.AddAsync(videoFlag);
+                if(!isFlagAdded)
+                {
+                    return new ProcessResult { Message = $"Failed to flag video With id {id}!" };
+                }
+                video.Flags += 1;
+            }
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
         }
@@ -209,7 +352,6 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
         }
-
 
         private async Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model)
         {

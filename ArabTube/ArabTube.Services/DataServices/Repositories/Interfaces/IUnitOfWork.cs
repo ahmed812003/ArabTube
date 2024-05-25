@@ -9,6 +9,9 @@
         IPlaylistRepository Playlist { get; }
         IPlaylistVideoRepository PlaylistVideo { get; }
         ICommentRepository Comment { get; }
+        IVideoLikeRepository VideoLike { get; }
+        IVideoDislikeRepository VideoDislike { get; }
+        IVideoFlagRepository VideoFlag { get; }
         Task Complete();
     }
 }

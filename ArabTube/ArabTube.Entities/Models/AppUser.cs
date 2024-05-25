@@ -1,12 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArabTube.Entities.Models
 {
@@ -21,6 +14,12 @@ namespace ArabTube.Entities.Models
             Following = new List<AppUserConnection>();
             Playlists = new List<Playlist>();
             Comments = new List<Comment>();
+            VideosLikes = new List<VideoLike>();
+            LikedVideos = new List<Video>();
+            VideosDislikes = new List<VideoDislike>();
+            DislikedVideos = new List<Video>();
+            VideosFlags = new List<VideoFlag>();
+            FlagedVideos = new List<Video>();
         }
 
         [Required, MaxLength(250)]
@@ -46,5 +45,15 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<Playlist> Playlists { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<VideoLike> VideosLikes { get; set; }
+        public virtual ICollection<Video> LikedVideos { get; set; }
+
+        public virtual ICollection<VideoDislike> VideosDislikes { get; set; }
+        public virtual ICollection<Video> DislikedVideos { get; set; }
+
+        public virtual ICollection<VideoFlag> VideosFlags { get; set; }
+        public virtual ICollection<Video> FlagedVideos { get; set; }
+
     }
 }

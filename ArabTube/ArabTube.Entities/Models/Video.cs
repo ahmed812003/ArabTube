@@ -17,6 +17,12 @@ namespace ArabTube.Entities.Models
             Playlists = new List<Playlist>();
             PlaylistVideos = new List<PlaylistVideo>();
             Comments = new List<Comment>();
+            VideosLikes = new List<VideoLike>();
+            UsersLikedVideo = new List<AppUser>();
+            VideosDislikes = new List<VideoDislike>();
+            UsersDislikedVideo = new List<AppUser>();
+            VideosFlags = new List<VideoFlag>();
+            UsersFlagedVideo = new List<AppUser>();
         }
 
         [Key]
@@ -55,11 +61,19 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<AppUser> Viewers { get; set; }
         public virtual ICollection<WatchedVideo> History { get; set; }
 
-
         public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; }
         public virtual ICollection<Playlist> Playlists { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<VideoLike> VideosLikes { get; set; }
+        public virtual ICollection<AppUser> UsersLikedVideo { get; set; }
+
+        public virtual ICollection<VideoDislike> VideosDislikes { get; set; }
+        public virtual ICollection<AppUser> UsersDislikedVideo { get; set; }
+
+        public virtual ICollection<VideoFlag> VideosFlags { get; set; }
+        public virtual ICollection<AppUser> UsersFlagedVideo { get; set; }
 
     }
 }

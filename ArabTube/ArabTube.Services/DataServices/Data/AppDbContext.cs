@@ -88,7 +88,49 @@ namespace ArabTube.Services.DataServices.Data
             .HasOne(c => c.ParentComment)
             .WithMany(c => c.Childrens)
             .HasForeignKey(c => c.ParentCommentId);
-            
+
+
+            builder.Entity<Video>()
+            .HasMany(v => v.UsersLikedVideo)
+            .WithMany(u => u.LikedVideos)
+            .UsingEntity<VideoLike>();
+
+            builder.Entity<VideoLike>()
+                .HasOne(vl => vl.AppUser)
+                .WithMany(u => u.VideosLikes);
+
+            builder.Entity<VideoLike>()
+                .HasOne(vl => vl.Video)
+                .WithMany(v => v.VideosLikes);
+
+
+            builder.Entity<Video>()
+            .HasMany(v => v.UsersDislikedVideo)
+            .WithMany(u => u.DislikedVideos)
+            .UsingEntity<VideoDislike>();
+
+            builder.Entity<VideoDislike>()
+                .HasOne(vdl => vdl.User)
+                .WithMany(u => u.VideosDislikes);
+
+            builder.Entity<VideoDislike>()
+                .HasOne(vdl => vdl.Video)
+                .WithMany(v => v.VideosDislikes);
+
+
+            builder.Entity<Video>()
+            .HasMany(v => v.UsersFlagedVideo)
+            .WithMany(u => u.FlagedVideos)
+            .UsingEntity<VideoFlag>();
+
+            builder.Entity<VideoFlag>()
+                .HasOne(vf => vf.User)
+                .WithMany(u => u.VideosFlags);
+
+            builder.Entity<VideoFlag>()
+                .HasOne(vf => vf.Video)
+                .WithMany(v => v.VideosFlags);
+
         }
 
 
@@ -98,5 +140,8 @@ namespace ArabTube.Services.DataServices.Data
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<PlaylistVideo> PlaylistVideos { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<VideoLike> VideosLikes { get; set; }
+        public DbSet<VideoDislike> VideosDislikes { get; set; }
+        public DbSet<VideoFlag> VideosFlags { get; set; }
     }
 }
