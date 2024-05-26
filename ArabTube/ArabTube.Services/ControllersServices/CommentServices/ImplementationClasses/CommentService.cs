@@ -5,6 +5,7 @@ using ArabTube.Entities.Models;
 using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using AutoMapper;
+using System.ComponentModel.Design;
 using System.Xml.Linq;
 
 namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationClasses
@@ -62,6 +63,36 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
+        public async Task<ProcessResult> IsUserLikeCommentAsync(string commentId, string userId)
+        {
+            var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
+            if(comment == null)
+            {
+                return new ProcessResult { Message = $"No comment exists wiht id = {commentId}" };
+            }
+            var isUserLikeComment = await _unitOfWork.CommentLike.CheckUserLikeCommentOrNotAsync(commentId, userId);
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = isUserLikeComment ? "Yes" : "No"
+            };
+        }
+
+        public async Task<ProcessResult> IsUserDislikeCommentAsync(string commentId, string userId)
+        {
+            var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
+            if (comment == null)
+            {
+                return new ProcessResult { Message = $"No comment exists wiht id = {commentId}" };
+            }
+            var isUserDislikeComment = await _unitOfWork.CommentDislike.CheckUserDislikeCommentOrNotAsync(commentId, userId);
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = isUserDislikeComment ? "Yes" : "No"
+            };
+        }
+
         public async Task<ProcessResult> AddCommentAsync(AddCommentDto model , string userId)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
@@ -90,7 +121,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             return new ProcessResult { IsSuccesed = true};
         }
 
-        public async Task<ProcessResult> LikeCommentAsync(string commentId)
+        public async Task<ProcessResult> LikeCommentAsync(string commentId , string userId)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
 
@@ -99,7 +130,31 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                 return new ProcessResult { Message = $"Comment With id {commentId} does not exist!" };
             }
 
-            comment.Likes += 1;
+            var isUserLikeComment = await _unitOfWork.CommentLike.CheckUserLikeCommentOrNotAsync(commentId , userId);
+            if (isUserLikeComment)
+            {   
+                var isRemovedLike = await _unitOfWork.CommentLike.RemoveUserCommentLikeAsync(commentId , userId);
+                if(!isRemovedLike)
+                {
+                    return new ProcessResult { Message = $"Cannot remove like comment with id = {commentId}" };
+                }
+                comment.Likes -= 1;
+            }
+            else
+            {
+                var commentLike = new CommentLike
+                {
+                    UserId = userId,
+                    CommentId = commentId,
+                };
+                var isLikeAdded = await _unitOfWork.CommentLike.AddAsync(commentLike);
+                if (!isLikeAdded)
+                {
+                    return new ProcessResult { Message = $"Cannot add like comment with id = {commentId}" };
+                }
+                comment.Likes += 1;
+            }
+
             await _unitOfWork.Complete();
 
             return new ProcessResult
@@ -109,7 +164,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
-        public async Task<ProcessResult> DislikeCommentAsync(string commentId)
+        public async Task<ProcessResult> DislikeCommentAsync(string commentId, string userId)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
 
@@ -118,7 +173,31 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                 return new ProcessResult { Message = $"Comment With id {commentId} does not exist!" };
             }
 
-            comment.DisLikes += 1;
+            var isUserDislikeComment = await _unitOfWork.CommentDislike.CheckUserDislikeCommentOrNotAsync(commentId, userId);
+            if (isUserDislikeComment)
+            {
+                var isRemovedDislike = await _unitOfWork.CommentDislike.RemoveUserCommentDislikeAsync(commentId, userId);
+                if (!isRemovedDislike)
+                {
+                    return new ProcessResult { Message = $"Cannot remove Dislike comment with id = {commentId}" };
+                }
+                comment.DisLikes -= 1;
+            }
+            else
+            {
+                var commentDislike = new CommentDislike
+                {
+                    UserId = userId,
+                    CommentId = commentId,
+                };
+                var isDislikeAdded = await _unitOfWork.CommentDislike.AddAsync(commentDislike);
+                if (!isDislikeAdded)
+                {
+                    return new ProcessResult { Message = $"Cannot add Dislike comment with id = {commentId}" };
+                }
+                comment.DisLikes += 1;
+            }
+
             await _unitOfWork.Complete();
 
             return new ProcessResult

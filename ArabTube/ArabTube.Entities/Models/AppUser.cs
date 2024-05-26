@@ -20,6 +20,10 @@ namespace ArabTube.Entities.Models
             DislikedVideos = new List<Video>();
             VideosFlags = new List<VideoFlag>();
             FlagedVideos = new List<Video>();
+            CommentsLikes = new List<CommentLike>();
+            LikedComments = new List<Comment>();
+            CommentsDislikes = new List<CommentDislike>();
+            DislikedComments = new List<Comment>();
         }
 
         [Required, MaxLength(250)]
@@ -55,5 +59,10 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<VideoFlag> VideosFlags { get; set; }
         public virtual ICollection<Video> FlagedVideos { get; set; }
 
+        public virtual ICollection<CommentLike> CommentsLikes { get; set; }
+        public virtual ICollection<Comment> LikedComments { get; set; }
+
+        public virtual ICollection<CommentDislike> CommentsDislikes { get; set; }
+        public virtual ICollection<Comment> DislikedComments { get; set; }
     }
 }

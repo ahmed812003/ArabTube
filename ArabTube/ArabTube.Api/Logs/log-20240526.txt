@@ -172,3 +172,83 @@ VALUES (N'20240525223413_AddingVideosFlagsTable', N'8.0.3');
 2024-05-26 02:01:51.287 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 67.5456ms
 2024-05-26 02:01:51.551 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
 2024-05-26 02:01:51.671 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 119.6918ms
+2024-05-26 15:37:51.241 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-26 15:37:51.314 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-26 15:37:51.315 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-26 15:37:51.316 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-26 15:37:51.339 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-05-26 15:37:51.349 +03:00 [INF] Applying migration '20240526123722_AddingCommentsLikesTable'.
+2024-05-26 15:37:51.438 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CommentsLikes] (
+    [UserId] nvarchar(450) NOT NULL,
+    [CommentId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_CommentsLikes] PRIMARY KEY ([CommentId], [UserId]),
+    CONSTRAINT [FK_CommentsLikes_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_CommentsLikes_Comments_CommentId] FOREIGN KEY ([CommentId]) REFERENCES [Comments] ([Id]) ON DELETE CASCADE
+);
+2024-05-26 15:37:51.440 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CommentsLikes_UserId] ON [CommentsLikes] ([UserId]);
+2024-05-26 15:37:51.441 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240526123722_AddingCommentsLikesTable', N'8.0.3');
+2024-05-26 15:52:42.290 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-26 15:52:42.326 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-26 15:52:42.327 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-26 15:52:42.328 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-26 15:52:42.337 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-05-26 15:52:42.346 +03:00 [INF] Applying migration '20240526125224_AddingCommentsDislikesTable'.
+2024-05-26 15:52:42.412 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CommentsDislikes] (
+    [UserId] nvarchar(450) NOT NULL,
+    [CommentId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_CommentsDislikes] PRIMARY KEY ([CommentId], [UserId]),
+    CONSTRAINT [FK_CommentsDislikes_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]),
+    CONSTRAINT [FK_CommentsDislikes_Comments_CommentId] FOREIGN KEY ([CommentId]) REFERENCES [Comments] ([Id]) ON DELETE CASCADE
+);
+2024-05-26 15:52:42.413 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CommentsDislikes_UserId] ON [CommentsDislikes] ([UserId]);
+2024-05-26 15:52:42.415 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240526125224_AddingCommentsDislikesTable', N'8.0.3');
+2024-05-26 15:59:52.142 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-26 15:59:52.376 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-26 15:59:52.376 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-26 15:59:52.377 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-26 15:59:52.377 +03:00 [INF] Hosting environment: Development
+2024-05-26 15:59:52.377 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-26 15:59:56.136 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-26 15:59:56.431 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 300.7808ms
+2024-05-26 15:59:56.487 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-26 15:59:56.491 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.5352ms
+2024-05-26 15:59:56.529 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-26 15:59:56.591 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 63.0168ms
+2024-05-26 15:59:56.846 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-26 15:59:57.003 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 157.4963ms
+2024-05-26 16:07:47.156 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-26 16:07:47.317 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-26 16:07:47.317 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-26 16:07:47.318 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-26 16:07:47.318 +03:00 [INF] Hosting environment: Development
+2024-05-26 16:07:47.319 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-26 16:07:47.656 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-26 16:07:47.815 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 163.4568ms
+2024-05-26 16:07:47.847 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-26 16:07:47.851 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.0999ms
+2024-05-26 16:07:47.897 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-26 16:07:47.926 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.5926ms
+2024-05-26 16:07:48.211 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-26 16:07:48.322 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 110.8952ms

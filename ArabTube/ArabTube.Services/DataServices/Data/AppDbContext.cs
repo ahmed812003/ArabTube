@@ -131,6 +131,34 @@ namespace ArabTube.Services.DataServices.Data
                 .HasOne(vf => vf.Video)
                 .WithMany(v => v.VideosFlags);
 
+
+            builder.Entity<AppUser>()
+            .HasMany(u => u.LikedComments)
+            .WithMany(c => c.UsersLikedComment)
+            .UsingEntity<CommentLike>();
+
+            builder.Entity<CommentLike>()
+                .HasOne(cl => cl.User)
+                .WithMany(u => u.CommentsLikes);
+
+            builder.Entity<CommentLike>()
+                .HasOne(cl => cl.Comment)
+                .WithMany(c => c.CommentsLikes);
+
+
+            builder.Entity<AppUser>()
+            .HasMany(u => u.DislikedComments)
+            .WithMany(c => c.UsersDislikedComment)
+            .UsingEntity<CommentDislike>();
+
+            builder.Entity<CommentDislike>()
+                .HasOne(cl => cl.User)
+                .WithMany(u => u.CommentsDislikes);
+
+            builder.Entity<CommentDislike>()
+                .HasOne(cl => cl.Comment)
+                .WithMany(c => c.CommentsDislikes);
+
         }
 
 
@@ -143,5 +171,7 @@ namespace ArabTube.Services.DataServices.Data
         public DbSet<VideoLike> VideosLikes { get; set; }
         public DbSet<VideoDislike> VideosDislikes { get; set; }
         public DbSet<VideoFlag> VideosFlags { get; set; }
+        public DbSet<CommentLike> CommentsLikes { get; set; }
+        public DbSet<CommentDislike> CommentsDislikes { get; set; }
     }
 }

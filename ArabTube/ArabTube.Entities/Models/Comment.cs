@@ -17,6 +17,10 @@ namespace ArabTube.Entities.Models
         public Comment()
         {
             Childrens = new List<Comment>();
+            CommentsLikes = new  List<CommentLike>();
+            UsersLikedComment = new List<AppUser>();
+            CommentsDislikes = new List<CommentDislike>();
+            UsersDislikedComment = new List<AppUser>();
         }
 
         [Key]
@@ -50,6 +54,12 @@ namespace ArabTube.Entities.Models
         public virtual Comment ParentComment { get; set; }
 
         public virtual ICollection<Comment> Childrens { get; set;}
+
+        public virtual ICollection<CommentLike> CommentsLikes { get; set; }
+        public virtual ICollection<AppUser> UsersLikedComment { get; set; }
+
+        public virtual ICollection<CommentDislike> CommentsDislikes { get; set; }
+        public virtual ICollection<AppUser> UsersDislikedComment { get; set; }
 
     }
 }

@@ -18,7 +18,6 @@ namespace ArabTube.Services.ControllersServices.AuthServices.ImplementationClass
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IEmailSender _emailSender;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
 

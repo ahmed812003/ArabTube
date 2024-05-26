@@ -12,6 +12,8 @@
         IVideoLikeRepository VideoLike { get; }
         IVideoDislikeRepository VideoDislike { get; }
         IVideoFlagRepository VideoFlag { get; }
+        ICommentLikeRepository CommentLike { get; }
+        IcommentDislikeRepository CommentDislike { get; }
         Task Complete();
     }
 }

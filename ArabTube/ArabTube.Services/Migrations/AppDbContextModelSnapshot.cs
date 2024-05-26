@@ -166,6 +166,36 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.CommentDislike", b =>
+                {
+                    b.Property<string>("CommentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CommentId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CommentsDislikes");
+                });
+
+            modelBuilder.Entity("ArabTube.Entities.Models.CommentLike", b =>
+                {
+                    b.Property<string>("CommentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CommentId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CommentsLikes");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.Property<string>("Id")
@@ -510,6 +540,44 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Video");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.CommentDislike", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.Comment", "Comment")
+                        .WithMany("CommentsDislikes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "User")
+                        .WithMany("CommentsDislikes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ArabTube.Entities.Models.CommentLike", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.Comment", "Comment")
+                        .WithMany("CommentsLikes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "User")
+                        .WithMany("CommentsLikes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.AppUser", "User")
@@ -682,6 +750,10 @@ namespace ArabTube.Services.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("CommentsDislikes");
+
+                    b.Navigation("CommentsLikes");
+
                     b.Navigation("Followers");
 
                     b.Navigation("Following");
@@ -702,6 +774,10 @@ namespace ArabTube.Services.Migrations
             modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
                 {
                     b.Navigation("Childrens");
+
+                    b.Navigation("CommentsDislikes");
+
+                    b.Navigation("CommentsLikes");
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
