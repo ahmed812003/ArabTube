@@ -14,7 +14,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.Interfaces
         Task<ProcessResult> IsUserLikeVideoAsync(string videoId, string userId);
         Task<ProcessResult> IsUserDisLikeVideoAsync(string videoId, string userId);
         Task<ProcessResult> IsUserFlagVideoAsync(string videoId, string userId);
-        Task<ProcessResult> UploadVideoAsync(UploadingVideoDto video, string userName);
+        Task<ProcessResult> UploadVideoAsync(UploadingVideoDto video, string userName , string userId);
         Task<ProcessResult> LikeVideoAsync(string id , string userId);
         Task<ProcessResult> DislikeVideoAsync(string id , string userId);
         Task<ProcessResult> FlagVideoAsync(string id , string userId);

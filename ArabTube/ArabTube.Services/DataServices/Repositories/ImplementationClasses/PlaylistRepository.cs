@@ -61,6 +61,8 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             {
                 return false;
             }
+            var childrens = await _dbSet.Where(pl => pl.ParentPlaylistId == playlistId).ToListAsync();
+            _dbSet.RemoveRange(childrens);
             _dbSet.Remove(entity);
             return true;
         }
@@ -70,5 +72,16 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             var playlist = await _dbSet.FirstOrDefaultAsync(p => p.Title == title && p.IsDefult == IsDefult && p.UserId == userId);
             return playlist.Id;
         }
+    
+        public async Task<bool> IsPlaylistNotSaved(string parentPlaylistId, string userId)
+        {
+            var playlist = await _dbSet.SingleOrDefaultAsync(p => p.ParentPlaylistId == parentPlaylistId && p.UserId == userId);
+            if(playlist == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

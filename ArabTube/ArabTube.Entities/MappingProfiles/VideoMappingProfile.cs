@@ -23,7 +23,7 @@ namespace ArabTube.Entities.MappingProfiles
                 .AfterMap(async (src, dest) =>
                 {
                     using var stream = new MemoryStream();
-                    await src.Thumbnail.CopyToAsync(stream);
+                    await src.UploadThumbnail.CopyToAsync(stream);
                     dest.Thumbnail = stream.ToArray();
                 });
                 
@@ -31,9 +31,10 @@ namespace ArabTube.Entities.MappingProfiles
                 .AfterMap(async (src, dest) =>
                 {
                     using var stream = new MemoryStream();
-                    await src.Thumbnail.CopyToAsync(stream);
+                    await src.UpdateThumbnail.CopyToAsync(stream);
                     dest.Thumbnail = stream.ToArray();
                 });
+
         }
     }
     public class VideoUriListResolver : IValueResolver<Video, ViewVideoDto, List<string>>

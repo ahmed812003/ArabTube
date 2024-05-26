@@ -15,7 +15,7 @@ namespace ArabTube.Entities.DtoModels.VideoDTOs
         [Required, MaxLength(2000)]
         public string Description { get; set; } = string.Empty;
         [Required]
-        public IFormFile Thumbnail { get; set; }
+        public IFormFile UploadThumbnail { get; set; }
         [Required]
         public IFormFile Video { get; set; }
     }

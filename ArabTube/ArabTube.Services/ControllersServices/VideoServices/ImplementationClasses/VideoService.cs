@@ -102,7 +102,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 return new GetVideoResult { Message = $"No user exist with id = {userId}" };
             }
             var videos = await _unitOfWork.Video.GetUserVideos(userId);
-            if (videos.Any())
+            if (!videos.Any())
             {
                 return new GetVideoResult { Message = "User Dosn't upload any videos" };
             }
@@ -159,7 +159,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             };
         }
 
-        public async Task<ProcessResult> UploadVideoAsync(UploadingVideoDto model, string userName)
+        public async Task<ProcessResult> UploadVideoAsync(UploadingVideoDto model, string userName , string userId)
         {
             if (model.Video.ContentType != "video/mp4")
             {
@@ -177,7 +177,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             //await _cloudService.UploadToCloudAsync(encodedVideos);
 
             var video = _mapper.Map<Video>(model);
-
+            video.UserId = userId;
             string uri = new Uri(_configuration["BlobStorage:ConnectionString"]).ToString();
             video.VideoUri = $"{uri}{userName}/{video.Id}-";
 
@@ -325,8 +325,9 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 return new ProcessResult { Message = $"Unauthorized to update this video" };
             }
 
-            var updatedVideo = _mapper.Map<Video>(updateDto);
-            _unitOfWork.Video.Update(updatedVideo);
+            //var updatedVideo = _mapper.Map<Video>(updateDto);
+            _mapper.Map(updateDto , video);
+            _unitOfWork.Video.Update(video);
             await _unitOfWork.Complete();
             return new ProcessResult{ IsSuccesed = true};
         }

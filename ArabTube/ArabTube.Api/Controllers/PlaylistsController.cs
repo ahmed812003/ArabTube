@@ -120,6 +120,28 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
+        [HttpPost("Save")]
+        public async Task<IActionResult> SavePlaylist(string playlistId)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _playlistService.SavePlaylistAsync(playlistId, user.Id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+                    return Ok("Playlist Saved!");
+                }
+            }
+            return Unauthorized();
+        }
+
+
+        [Authorize]
         [HttpPost("AddVideo")]
         public async Task<IActionResult> AddVideoToPlaylist(AddPlaylistVideoDto model)
         {

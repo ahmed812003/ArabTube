@@ -196,7 +196,7 @@ namespace ArabTube.Api.Controllers
                 return Unauthorized();
             }
 
-            var result = await _videoService.UploadVideoAsync(model,userName);
+            var result = await _videoService.UploadVideoAsync(model,userName , user.Id);
             if (!result.IsSuccesed)
             {
                 return BadRequest(result.Message);
@@ -323,7 +323,7 @@ namespace ArabTube.Api.Controllers
 
         [Authorize]
         [HttpPut("Update")]
-        public async Task<IActionResult> UpdateVideo(UpdatingVideoDto model, string id)
+        public async Task<IActionResult> UpdateVideo([FromForm]UpdatingVideoDto model, string id)
         {
             if (!ModelState.IsValid)
             {

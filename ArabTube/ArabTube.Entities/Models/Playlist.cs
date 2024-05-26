@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace ArabTube.Entities.Models
         {
             Videos = new List<Video>();
             PlaylistVideos = new List<PlaylistVideo>();
+            Childrens = new List<Playlist>();
         }
 
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -27,6 +29,13 @@ namespace ArabTube.Entities.Models
         public string UserId { get; set; }
 
         public virtual AppUser User { get; set; }
+
+        [Required]
+        public string ParentPlaylistId { get; set; }
+
+        public virtual Playlist ParentPlaylist { get; set; }
+        public virtual ICollection<Playlist> Childrens { get; set; }
+
 
         public virtual ICollection<Video> Videos { get; set; }
         public virtual ICollection<PlaylistVideo> PlaylistVideos { get; set; }

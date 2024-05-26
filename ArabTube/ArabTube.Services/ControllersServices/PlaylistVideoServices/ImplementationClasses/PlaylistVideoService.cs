@@ -37,6 +37,11 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
                 return new ProcessResult { Message = $"Unauthorized to Add videos to this playlist" };
             }
 
+            if(playlist.Id != playlist.ParentPlaylistId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to Add videos to this playlist" };
+            }
+
             var result = await _unitOfWork.PlaylistVideo.AddVideoToPlayListAsync(videoId, playlistId);
             if (!result)
             {
@@ -55,7 +60,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
                 return new GetPlaylistVideosResult { Message = $"No Playlist With Id = {playlistId}" };
             }
 
-            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync(playlistId);
+            var playlistVideos = await _unitOfWork.PlaylistVideo.GetPlaylistVideosAsync((playlistId == playlist.ParentPlaylistId) ? playlistId : playlist.ParentPlaylistId);
 
             if (!playlistVideos.Any())
                 return new GetPlaylistVideosResult { Message = $"The Playlist With Id = {playlistId} Dosn't Has Any Videos" };
@@ -93,6 +98,11 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
                 return new ProcessResult { Message = $"Unauthorized to remove videos from this playlist" };
             }
 
+            if (playlist.Id != playlist.ParentPlaylistId)
+            {
+                return new ProcessResult { Message = $"Unauthorized to remove videos to this playlist" };
+            }
+
             var result = await _unitOfWork.PlaylistVideo.RemoveVideoFromPlayListAsync(videoId, playlistId);
             if (!result)
             {
@@ -102,5 +112,6 @@ namespace ArabTube.Services.ControllersServices.PlaylistVideoServices.Implementa
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }
+    
     }
 }

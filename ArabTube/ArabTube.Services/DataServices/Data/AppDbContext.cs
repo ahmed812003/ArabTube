@@ -96,7 +96,7 @@ namespace ArabTube.Services.DataServices.Data
             .UsingEntity<VideoLike>();
 
             builder.Entity<VideoLike>()
-                .HasOne(vl => vl.AppUser)
+                .HasOne(vl => vl.User)
                 .WithMany(u => u.VideosLikes);
 
             builder.Entity<VideoLike>()
@@ -158,6 +158,11 @@ namespace ArabTube.Services.DataServices.Data
             builder.Entity<CommentDislike>()
                 .HasOne(cl => cl.Comment)
                 .WithMany(c => c.CommentsDislikes);
+
+            builder.Entity<Playlist>()
+            .HasOne(pl => pl.ParentPlaylist)
+            .WithMany(pl => pl.Childrens)
+            .HasForeignKey(pl => pl.ParentPlaylistId);
 
         }
 

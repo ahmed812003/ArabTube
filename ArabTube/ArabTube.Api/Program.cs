@@ -11,6 +11,8 @@ using ArabTube.Services.ControllersServices.PlaylistServices.ImplementationClass
 using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
 using ArabTube.Services.ControllersServices.PlaylistVideoServices.ImplementationClasses;
 using ArabTube.Services.ControllersServices.PlaylistVideoServices.Interfaces;
+using ArabTube.Services.ControllersServices.SubscriptionServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.SubscriptionServices.Interfaces;
 using ArabTube.Services.ControllersServices.UserServices.ImplementationClasses;
 using ArabTube.Services.ControllersServices.UserServices.Interfaces;
 using ArabTube.Services.ControllersServices.VideoServices.ImplementationClasses;
@@ -61,6 +63,7 @@ namespace ArabTube.Api
             builder.Services.AddScoped<IPlaylistVideoService, PlaylistVideoService>();
             builder.Services.AddScoped<IWatchedVideoService, WatchedVideoService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
+            builder.Services.AddScoped<ISubscriptionService , SubscriptionService>();
             
             builder.Services.AddAuthentication(options =>
             {

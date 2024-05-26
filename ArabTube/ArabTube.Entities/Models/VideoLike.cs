@@ -12,7 +12,7 @@ namespace ArabTube.Entities.Models
 
         public string VideoId { get; set; }
 
-        public virtual AppUser AppUser { get; set; }
+        public virtual AppUser User { get; set; }
 
         public virtual Video Video { get; set; }
     }

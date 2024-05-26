@@ -211,6 +211,10 @@ namespace ArabTube.Services.Migrations
                     b.Property<bool>("IsPrivate")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ParentPlaylistId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -220,6 +224,8 @@ namespace ArabTube.Services.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentPlaylistId");
 
                     b.HasIndex("UserId");
 
@@ -326,17 +332,13 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.VideoLike", b =>
                 {
-                    b.Property<string>("AppUserId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("VideoId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AppUserId", "VideoId");
+                    b.HasKey("UserId", "VideoId");
 
                     b.HasIndex("VideoId");
 
@@ -580,11 +582,19 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
+                    b.HasOne("ArabTube.Entities.Models.Playlist", "ParentPlaylist")
+                        .WithMany("Childrens")
+                        .HasForeignKey("ParentPlaylistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ArabTube.Entities.Models.AppUser", "User")
                         .WithMany("Playlists")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ParentPlaylist");
 
                     b.Navigation("User");
                 });
@@ -659,9 +669,9 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.VideoLike", b =>
                 {
-                    b.HasOne("ArabTube.Entities.Models.AppUser", "AppUser")
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "User")
                         .WithMany("VideosLikes")
-                        .HasForeignKey("AppUserId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -671,7 +681,7 @@ namespace ArabTube.Services.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.Navigation("User");
 
                     b.Navigation("Video");
                 });
@@ -782,6 +792,8 @@ namespace ArabTube.Services.Migrations
 
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
+                    b.Navigation("Childrens");
+
                     b.Navigation("PlaylistVideos");
                 });
 

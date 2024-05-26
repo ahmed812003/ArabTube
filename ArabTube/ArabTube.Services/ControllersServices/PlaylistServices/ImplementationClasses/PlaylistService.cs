@@ -21,7 +21,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             _userManager = userManager;
             _mapper = mapper;
         }
-
+        
         public async Task<SearchPlaylistsTitlesResult> SearchPlaylistsTitlesAsync(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
@@ -100,10 +100,58 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
         public async Task<ProcessResult> CreatePlaylistAsync(CreatePlaylistDto model, string userId)
         {
             Playlist playlist = _mapper.Map<Playlist>(model);
+            playlist.ParentPlaylistId = playlist.Id;
+            playlist.UserId = userId;
 
             var result = await _unitOfWork.Playlist.AddAsync(playlist);
             if (!result)
                 return new ProcessResult { Message = "Error While Try To Create new Playlist" };
+            await _unitOfWork.Complete();
+
+            return new ProcessResult { IsSuccesed = true };
+        }
+
+        public async Task<ProcessResult> SavePlaylistAsync(string playlistId , string userId)
+        {
+            var playlist = await _unitOfWork.Playlist.FindByIdAsync(playlistId);
+            if(playlist == null)
+            {
+                return new ProcessResult { Message = $"No playlist exists with id = {playlistId}" };
+            }
+
+            if(playlist.Id != playlist.ParentPlaylistId)
+            {
+                return new ProcessResult { Message = $"Unable to save playlist with id = {playlistId}" };
+            }
+
+            if(playlist.IsDefult)
+            {
+                return new ProcessResult { Message = $"Unable to save playlist with id = {playlistId}" };
+            }
+
+            if(playlist.UserId == userId)
+            {
+                return new ProcessResult { Message = $"Unable to save playlist with id = {playlistId}" };
+            }
+
+            var isNotSaved = await _unitOfWork.Playlist.IsPlaylistNotSaved(playlist.Id, userId);
+            if(!isNotSaved)
+            {
+                return new ProcessResult { Message = $"You already saved it" };
+            }
+
+            var savedPlaylist = new Playlist
+            {
+                Title = playlist.Title,
+                Description = playlist.Description,
+                IsPrivate = true,
+                ParentPlaylistId = playlist.Id,
+                UserId = userId
+            };
+
+            var result = await _unitOfWork.Playlist.AddAsync(savedPlaylist);
+            if (!result)
+                return new ProcessResult { Message = "Error While Try To save Playlist" };
             await _unitOfWork.Complete();
 
             return new ProcessResult { IsSuccesed = true };
@@ -125,6 +173,11 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
             if (playlist.IsDefult)
             {
                 return new ProcessResult { Message = "Can't Update Defult Playlists" };
+            }
+
+            if(playlist.Id != playlist.ParentPlaylistId)
+            {
+                return new ProcessResult { Message = "Can't Update Saved Playlists" };
             }
 
             _mapper.Map(model, playlist);
@@ -174,6 +227,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.ImplementationC
                         UserId = userId,
                         IsDefult = true
                     };
+                    entity.ParentPlaylistId = entity.Id;
                     var result = await _unitOfWork.Playlist.AddAsync(entity);
                     if (!result)
                     {

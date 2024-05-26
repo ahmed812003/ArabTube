@@ -11,6 +11,7 @@ namespace ArabTube.Services.ControllersServices.PlaylistServices.Interfaces
         Task<GetPlaylistsResult> GetMyPlaylistsAsync(string userId);
         Task<GetPlaylistsResult> GetPlaylistsAsync(string userId);
         Task<ProcessResult> CreatePlaylistAsync(CreatePlaylistDto model, string userId);
+        Task<ProcessResult> SavePlaylistAsync(string playlistId, string userId);
         Task<ProcessResult> UpdatePlaylistAsync(UpdatePlaylistDto model , string userId);
         Task<ProcessResult> DeletePlaylistAsync(string playlistId , string userId);
         Task<ProcessResult> CreateDefultPlaylistsAsync(string userId);
