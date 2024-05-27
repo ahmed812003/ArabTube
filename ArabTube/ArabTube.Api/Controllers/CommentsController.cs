@@ -107,7 +107,7 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _commentService.AddCommentAsync(model, user.Id);
+                    var result = await _commentService.AddCommentAsync(model, user.Id , $"{user.FirstName} {user.LastName}");
                     
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);

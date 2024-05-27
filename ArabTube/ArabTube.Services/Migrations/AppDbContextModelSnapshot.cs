@@ -196,6 +196,29 @@ namespace ArabTube.Services.Migrations
                     b.ToTable("CommentsLikes");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Notification", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.Property<string>("Id")
@@ -580,6 +603,17 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.Notification", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "User")
+                        .WithMany("Notifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.Playlist", "ParentPlaylist")
@@ -769,6 +803,8 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Following");
 
                     b.Navigation("History");
+
+                    b.Navigation("Notifications");
 
                     b.Navigation("Playlists");
 

@@ -164,6 +164,11 @@ namespace ArabTube.Services.DataServices.Data
             .WithMany(pl => pl.Childrens)
             .HasForeignKey(pl => pl.ParentPlaylistId);
 
+            builder.Entity<Notification>()
+            .HasOne(n => n.User)
+            .WithMany(u => u.Notifications)
+            .HasForeignKey(n => n.UserId);
+
         }
 
 
@@ -178,5 +183,6 @@ namespace ArabTube.Services.DataServices.Data
         public DbSet<VideoFlag> VideosFlags { get; set; }
         public DbSet<CommentLike> CommentsLikes { get; set; }
         public DbSet<CommentDislike> CommentsDislikes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     }
 }

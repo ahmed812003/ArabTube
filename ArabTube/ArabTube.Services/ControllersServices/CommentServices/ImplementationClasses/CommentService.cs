@@ -93,7 +93,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
-        public async Task<ProcessResult> AddCommentAsync(AddCommentDto model , string userId)
+        public async Task<ProcessResult> AddCommentAsync(AddCommentDto model , string userId , string channelTitle)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
             if (video == null)
@@ -106,15 +106,29 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             {
                 return new ProcessResult { Message = $"No Comment Wiht Id = {model.ParentCommentId}" };
             }
-
             var comment = _mapper.Map<Comment>(model);
             comment.UserId = userId;
             
             if (string.IsNullOrEmpty(model.ParentCommentId))
+            {
                 comment.ParentCommentId = comment.Id;
+                var notification = new Notification
+                {
+                    Message = $"{channelTitle} comment in your video",
+                    UserId = video.UserId
+                };
+                await _unitOfWork.Notification.AddAsync(notification);
+            } 
             else
+            {
                 comment.ParentCommentId = parentComment.ParentCommentId;
-
+                var notification = new Notification
+                {
+                    Message = $"{channelTitle} reply to your comment",
+                    UserId = parentComment.UserId
+                };
+                await _unitOfWork.Notification.AddAsync(notification);
+            }
             await _unitOfWork.Comment.AddAsync(comment);
             await _unitOfWork.Complete();
 

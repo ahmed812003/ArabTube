@@ -30,6 +30,8 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public IcommentDislikeRepository CommentDislike { get; }
 
+        public INotificationRepository Notification { get; }
+
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -47,6 +49,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             VideoFlag = new VideoFlagRepository(_context);
             CommentLike = new CommentLikeRepository(_context);
             CommentDislike = new CommentDislikeRepository(_context);
+            Notification = new NotificationRepository(_context);
         }
 
         public void Dispose()

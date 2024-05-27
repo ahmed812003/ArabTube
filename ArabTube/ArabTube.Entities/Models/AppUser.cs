@@ -24,6 +24,7 @@ namespace ArabTube.Entities.Models
             LikedComments = new List<Comment>();
             CommentsDislikes = new List<CommentDislike>();
             DislikedComments = new List<Comment>();
+            Notifications = new List<Notification>();
         }
 
         [Required, MaxLength(250)]
@@ -64,5 +65,7 @@ namespace ArabTube.Entities.Models
 
         public virtual ICollection<CommentDislike> CommentsDislikes { get; set; }
         public virtual ICollection<Comment> DislikedComments { get; set; }
+
+        public ICollection<Notification> Notifications { get; set; }
     }
 }
