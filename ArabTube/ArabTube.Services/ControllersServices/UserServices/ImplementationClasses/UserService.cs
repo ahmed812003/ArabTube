@@ -18,10 +18,11 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
         public async Task<GetChannelsNameResult> GetChannelsNameAsync(string query)
         {
@@ -81,7 +82,7 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
             var channel = new GetChannelDto
             {
                 ChannelTitle = $"{user.FirstName} {user.LastName}",
-                ProfilePic = (user.ProfilePic == null) ? new byte[1] : user.ProfilePic,
+                ProfilePic = (user.ProfilePic == null) ? new byte[0] : user.ProfilePic,
                 UserId = user.Id,
                 Username = user.UserName
             };

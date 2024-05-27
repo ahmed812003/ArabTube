@@ -112,22 +112,30 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             if (string.IsNullOrEmpty(model.ParentCommentId))
             {
                 comment.ParentCommentId = comment.Id;
-                var notification = new Notification
+                if(userId != video.UserId)
                 {
-                    Message = $"{channelTitle} comment in your video",
-                    UserId = video.UserId
-                };
-                await _unitOfWork.Notification.AddAsync(notification);
+                    var notification = new Notification
+                    {
+                        Message = $"{channelTitle} comment in your video",
+                        UserId = video.UserId,
+                        SenderId = userId
+                    };
+                    await _unitOfWork.Notification.AddAsync(notification);
+                }
             } 
             else
             {
                 comment.ParentCommentId = parentComment.ParentCommentId;
-                var notification = new Notification
+                if(userId != parentComment.UserId)
                 {
-                    Message = $"{channelTitle} reply to your comment",
-                    UserId = parentComment.UserId
-                };
-                await _unitOfWork.Notification.AddAsync(notification);
+                    var notification = new Notification
+                    {
+                        Message = $"{channelTitle} reply to your comment",
+                        UserId = parentComment.UserId,
+                        SenderId = userId
+                    };
+                    await _unitOfWork.Notification.AddAsync(notification);
+                }
             }
             await _unitOfWork.Comment.AddAsync(comment);
             await _unitOfWork.Complete();

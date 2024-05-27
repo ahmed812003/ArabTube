@@ -75,6 +75,22 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.AccountController",
+    "Method": "SetProfilePic",
+    "RelativePath": "api/Account/ProfilePic",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Pic",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.AccountController",
     "Method": "Register",
     "RelativePath": "api/Account/Register",
     "HttpMethod": "POST",
@@ -147,6 +163,22 @@
     "Parameters": [
       {
         "Name": "query",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.AccountController",
+    "Method": "GetUser",
+    "RelativePath": "api/Account/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
         "Type": "System.String",
         "IsRequired": false
       }

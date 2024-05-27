@@ -7,6 +7,8 @@ using ArabTube.Services.ControllersServices.CloudServices.Interfaces;
 using ArabTube.Services.ControllersServices.CommentServices.ImplementationClasses;
 using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
 using ArabTube.Services.ControllersServices.EmailServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.NotificationServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.NotificationServices.Interfaces;
 using ArabTube.Services.ControllersServices.PlaylistServices.ImplementationClasses;
 using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
 using ArabTube.Services.ControllersServices.PlaylistVideoServices.ImplementationClasses;
@@ -64,7 +66,8 @@ namespace ArabTube.Api
             builder.Services.AddScoped<IWatchedVideoService, WatchedVideoService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<ISubscriptionService , SubscriptionService>();
-            
+            builder.Services.AddScoped<INotificationService, NotificationService>();
+
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

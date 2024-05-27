@@ -1,8 +1,10 @@
 ﻿using ArabTube.Entities.DtoModels.NotificationsDTOs;
+using ArabTube.Entities.Models;
 using ArabTube.Entities.NotificationModels;
 using ArabTube.Services.ControllersServices.NotificationServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace ArabTube.Services.ControllersServices.NotificationServices.ImplementationClasses
@@ -11,11 +13,13 @@ namespace ArabTube.Services.ControllersServices.NotificationServices.Implementat
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
 
-        public NotificationService(IUnitOfWork unitOfWork, IMapper mapper)
+        public NotificationService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<GetNotificationResult> NotificationsAsync(string userId)
@@ -30,7 +34,7 @@ namespace ArabTube.Services.ControllersServices.NotificationServices.Implementat
             {
                 Message = n.Message,
                 SendTime = n.Date,
-                ChannelTitle = $"{n.User.FirstName} {n.User.LastName}",
+                ChannelId = n.SenderId,
                 UserId = n.User.Id
             }) ;
             return new GetNotificationResult
@@ -39,7 +43,5 @@ namespace ArabTube.Services.ControllersServices.NotificationServices.Implementat
                 NotificationsDtos = notificationsDto
             };
         }
-
-
     }
 }
