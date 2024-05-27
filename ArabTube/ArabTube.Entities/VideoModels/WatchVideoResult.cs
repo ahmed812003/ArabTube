@@ -10,6 +10,6 @@ namespace ArabTube.Entities.VideoModels
 {
     public class WatchVideoResult : ProcessResult
     {
-        public ViewVideoDto Video { get; set; }
+        public ViewVideoDto Video { get; set; } = new ViewVideoDto();
     }
 }

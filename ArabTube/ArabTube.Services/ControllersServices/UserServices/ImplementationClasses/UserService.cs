@@ -1,4 +1,5 @@
 ﻿using ArabTube.Entities.DtoModels.UserDTOs;
+using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.Models;
 using ArabTube.Entities.UserModels;
 using ArabTube.Services.ControllersServices.UserServices.ImplementationClasses;
@@ -15,6 +16,7 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -55,6 +57,39 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
 
             IEnumerable<UserViewDto> userViewDtoList = _mapper.Map<IEnumerable<UserViewDto>>(users);
             return new GetUsersResult { IsSuccesed = true , users = userViewDtoList};
+        }
+    
+        public async Task<ProcessResult> SetProfilePicAsync(SetProfilePicDto model , AppUser user)
+        {
+            using var stream = new MemoryStream();
+            await model.Pic.CopyToAsync(stream);
+            user.ProfilePic = stream.ToArray();
+            await _unitOfWork.Complete();
+            return new ProcessResult
+            {
+                IsSuccesed = true
+            };
+        }
+    
+        public async Task<GetChannelResult> GetChannelsAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if(user == null)
+            {
+                return new GetChannelResult { Message = "Invalid userId" };
+            }
+            var channel = new GetChannelDto
+            {
+                ChannelTitle = $"{user.FirstName} {user.LastName}",
+                ProfilePic = (user.ProfilePic == null) ? new byte[1] : user.ProfilePic,
+                UserId = user.Id,
+                Username = user.UserName
+            };
+            return new GetChannelResult
+            {
+                IsSuccesed = true,
+                user = channel
+            };
         }
     }
 }

@@ -6,9 +6,11 @@ using ArabTube.Services.ControllersServices.PlaylistServices.Interfaces;
 using ArabTube.Services.ControllersServices.UserServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ArabTube.Api.Controllers
 {
@@ -56,6 +58,43 @@ namespace ArabTube.Api.Controllers
             }
 
             return Ok(result.users);
+        }
+
+        [HttpGet("User")]
+        public async Task<IActionResult> GetUser(string userId)
+        {
+            var result = await _userService.GetChannelsAsync(userId);
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+            return Ok(result.user);
+        }
+
+        [Authorize]
+        [HttpPost("ProfilePic")]
+        public async Task<IActionResult> SetProfilePic([FromForm] SetProfilePicDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _userService.SetProfilePicAsync(model , user);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+                    return Ok("Your pic set sucessfully");
+                }
+            }
+            return Unauthorized();
         }
 
         //AutoMapped

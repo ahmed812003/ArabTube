@@ -123,7 +123,7 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.AccountController",
-    "Method": "SearchVideos",
+    "Method": "SearchUsers",
     "RelativePath": "api/Account/search",
     "HttpMethod": "GET",
     "IsController": true,
@@ -266,6 +266,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "IsUserDisLikeComment",
+    "RelativePath": "api/Comments/UserDisLike",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "IsUserLikeComment",
+    "RelativePath": "api/Comments/UserLike",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.NotificationsController",
+    "Method": "Notifications",
+    "RelativePath": "api/Notifications/Notifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
     "Method": "AddVideoToPlaylist",
     "RelativePath": "api/Playlists/AddVideo",
@@ -351,6 +393,22 @@
         "Name": "model",
         "Type": "ArabTube.Entities.DtoModels.PlaylistDTOs.RemovePlaylistVideoDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.PlaylistsController",
+    "Method": "SavePlaylist",
+    "RelativePath": "api/Playlists/Save",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "playlistId",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -576,7 +634,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Thumbnail",
+        "Name": "UpdateThumbnail",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       },
@@ -607,13 +665,77 @@
         "IsRequired": false
       },
       {
-        "Name": "Thumbnail",
+        "Name": "UploadThumbnail",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       },
       {
         "Name": "Video",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "IsUserDisLikeVideo",
+    "RelativePath": "api/Videos/UserDisLike",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "IsUserFlagVideo",
+    "RelativePath": "api/Videos/UserFlag",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "IsUserLikeVideo",
+    "RelativePath": "api/Videos/UserLike",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "UserVideos",
+    "RelativePath": "api/Videos/UserVideo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],

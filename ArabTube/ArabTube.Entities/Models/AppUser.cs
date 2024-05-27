@@ -39,6 +39,8 @@ namespace ArabTube.Entities.Models
         [Required]
         public DateTime BirthDate { get; set; }
 
+        public byte[]? ProfilePic { get; set; }
+
         public virtual ICollection<Video> Videos { get; set; }
 
         public virtual ICollection<Video> WatchedVideos { get; set; }

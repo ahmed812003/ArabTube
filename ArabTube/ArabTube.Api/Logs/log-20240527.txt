@@ -506,3 +506,49 @@ CREATE INDEX [IX_Notifications_UserId] ON [Notifications] ([UserId]);
 2024-05-27 21:46:30.172 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20240527184446_AddingNotificationTable', N'8.0.3');
+2024-05-27 22:29:05.067 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-05-27 22:29:06.913 +03:00 [INF] Now listening on: https://localhost:7204
+2024-05-27 22:29:06.914 +03:00 [INF] Now listening on: http://localhost:5178
+2024-05-27 22:29:07.134 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-27 22:29:07.135 +03:00 [INF] Hosting environment: Development
+2024-05-27 22:29:07.136 +03:00 [INF] Content root path: F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api
+2024-05-27 22:29:09.789 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger - null null
+2024-05-27 22:29:11.135 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger - 301 0 null 1372.8056ms
+2024-05-27 22:29:11.182 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-05-27 22:29:11.496 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 314.0789ms
+2024-05-27 22:29:11.845 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/swagger-ui.css - null null
+2024-05-27 22:29:11.874 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/swagger-ui-bundle.js - null null
+2024-05-27 22:29:11.888 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-05-27 22:29:11.903 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/swagger-ui-standalone-preset.js - null null
+2024-05-27 22:29:11.968 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 92.842ms
+2024-05-27 22:29:12.081 +03:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-05-27 22:29:12.081 +03:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-05-27 22:29:12.082 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 180.5933ms
+2024-05-27 22:29:12.082 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/swagger-ui.css - 200 143943 text/css 237.4852ms
+2024-05-27 22:29:12.108 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-05-27 22:29:12.109 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 235.4964ms
+2024-05-27 22:29:12.421 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-05-27 22:29:12.687 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 265.8131ms
+2024-05-27 22:29:14.914 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-05-27 22:29:15.111 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/favicon-32x32.png - null null
+2024-05-27 22:29:15.129 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-05-27 22:29:15.129 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/favicon-32x32.png - 200 628 image/png 18.4075ms
+2024-05-27 22:29:15.725 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 810.7098ms
+2024-05-27 22:32:12.280 +03:00 [INF] Executed DbCommand (81ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-27 22:32:12.479 +03:00 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-27 22:32:12.487 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-05-27 22:32:12.490 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-05-27 22:32:12.580 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-05-27 22:32:12.634 +03:00 [INF] Applying migration '20240527193128_addingUserProfilePic'.
+2024-05-27 22:32:13.001 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [AspNetUsers] ADD [ProfilePic] varbinary(max) NULL;
+2024-05-27 22:32:13.010 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240527193128_addingUserProfilePic', N'8.0.3');
