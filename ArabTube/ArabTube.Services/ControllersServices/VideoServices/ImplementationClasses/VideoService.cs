@@ -32,6 +32,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             _cloudService = cloudService;
             _userManager = userManager;
             //this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
+            this._ffmpegEngine = new Engine("C:\\ffmpeg\\ffmpeg.exe");
         }
 
         public async Task<SearchVideoTitlesResult> SearchVideoTitlesAsync(string query)
@@ -159,25 +160,25 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             };
         }
 
-        public async Task<ProcessResult> UploadVideoAsync(UploadingVideoDto model, string userName , string userId)
+        public async Task<ProcessResult> UploadVideoAsync(UploadingVideoDto model, string userName , AppUser user)
         {
             if (model.Video.ContentType != "video/mp4")
             {
                 return new ProcessResult { Message = "Video Type is Not Mp4" };
             }
-
+            var video = _mapper.Map<Video>(model);
             var processingVideo = new ProcessingVideo
             {
                 Username = userName,
                 Video = model.Video,
-                Title = model.Title
+                Title = video.Id
             };
 
-            //var encodedVideos = await ProcessVideoAsync(processingVideo);
-            //await _cloudService.UploadToCloudAsync(encodedVideos);
+            /*var encodedVideos = await ProcessVideoAsync(processingVideo);
+            await _cloudService.UploadToCloudAsync(encodedVideos);*/
 
-            var video = _mapper.Map<Video>(model);
-            video.UserId = userId;
+            
+            video.UserId = user.Id;
             string uri = new Uri(_configuration["BlobStorage:ConnectionString"]).ToString();
             video.VideoUri = $"{uri}{userName}/{video.Id}-";
 
@@ -186,6 +187,22 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new ProcessResult { Message = "Failed to Upload video" };
             }
+            user.NumberOfvideos += 1;
+            
+            var followers = await _unitOfWork.AppUserConnection.GetFollowersAsync(user.Id);
+            foreach (var follower in followers)
+            {
+                var notification = new Notification
+                {
+                    Message = $"{user.FirstName} {user.LastName} Upload new video",
+                    UserId = follower.FollowerId,
+                    SenderId = user.Id,
+                    VideoId = video.Id
+                };
+                await _unitOfWork.Notification.AddAsync(notification);
+            }
+
+            await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }
 
@@ -332,7 +349,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             return new ProcessResult{ IsSuccesed = true};
         }
         
-        public async Task<ProcessResult> DeleteAsync(string id, string userId)
+        public async Task<ProcessResult> DeleteAsync(string id, AppUser user)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(id);
             if (video == null)
@@ -340,7 +357,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 return new ProcessResult { Message = $"No Video exists with id = {id}" };
             }
 
-            if(video.UserId != userId)
+            if(video.UserId != user.Id)
             {
                 return new ProcessResult { Message = $"Unauthorized to delete this video" };
             }
@@ -350,6 +367,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new ProcessResult { Message = "Error While Deleting video"};
             }
+            user.NumberOfvideos -= 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
         }

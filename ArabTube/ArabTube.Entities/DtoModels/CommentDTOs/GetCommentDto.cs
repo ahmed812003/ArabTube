@@ -11,6 +11,7 @@ namespace ArabTube.Entities.DtoModels.CommentDTOs
     {
         public string CommentId { get; set; }
         public string Username { get; set; }
+        public string UserId { get; set; }
 
         public string Content { get; set; }
 
@@ -26,6 +27,7 @@ namespace ArabTube.Entities.DtoModels.CommentDTOs
 
         public List<GetCommentDto> Childrens { get; set; } = new List<GetCommentDto>();
 
+        public byte[] ProfilePic { get; set; }
 
     }
 }

@@ -10,6 +10,7 @@ namespace ArabTube.Services.ControllersServices.UserServices.Interfaces
         Task<GetChannelsNameResult> GetChannelsNameAsync(string query);
         Task<GetUsersResult> GetUsersAsync(string query);
         Task<ProcessResult> SetProfilePicAsync(SetProfilePicDto model, AppUser user);
-        Task<GetChannelResult> GetChannelsAsync(string userId);
+        Task<GetChannelResult> GetChannelAsync(string userId);
+        Task<GetChannelsResult> GetChannelsAsync();
     }
 }

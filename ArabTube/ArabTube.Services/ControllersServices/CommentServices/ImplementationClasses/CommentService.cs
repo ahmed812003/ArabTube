@@ -118,7 +118,8 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                     {
                         Message = $"{channelTitle} comment in your video",
                         UserId = video.UserId,
-                        SenderId = userId
+                        SenderId = userId,
+                        VideoId = video.Id
                     };
                     await _unitOfWork.Notification.AddAsync(notification);
                 }
@@ -132,7 +133,8 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                     {
                         Message = $"{channelTitle} reply to your comment",
                         UserId = parentComment.UserId,
-                        SenderId = userId
+                        SenderId = userId,
+                        VideoId = video.Id
                     };
                     await _unitOfWork.Notification.AddAsync(notification);
                 }

@@ -46,6 +46,10 @@ namespace ArabTube.Services.ControllersServices.SubscriptionServices.Implementat
     
         public async Task<ProcessResult> SubscribeAsync(string ownerId , string userId)
         {
+            if (ownerId == userId)
+            {
+                return new ProcessResult { Message = $"User Cannot Subscribe to it self" };
+            }
             var owner = await _userManager.FindByIdAsync(ownerId);
             if (owner == null)
             {
@@ -55,15 +59,20 @@ namespace ArabTube.Services.ControllersServices.SubscriptionServices.Implementat
             var result = await _unitOfWork.AppUserConnection.SubscribeAsync(ownerId, userId);
             if (!result)
             {
-                return new ProcessResult { IsSuccesed = true, Message = "You Already Subscriber To This User" };
+                return new ProcessResult { IsSuccesed = true, Message = $"You Already Subscriber To This User with Id = {ownerId}" };
             }
-
+            owner.NumberOfFollowers += 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true, Message = "Subscribe Succesfully" };
         }
 
         public async Task<ProcessResult> UnScbscribeAsync(string ownerId, string userId)
         {
+            if(ownerId == userId)
+            {
+                return new ProcessResult { Message = $"User Cannot UnSubscribe from it self" };
+            }
+
             var owner = await _userManager.FindByIdAsync(ownerId);
             if (owner == null)
             {
@@ -75,10 +84,52 @@ namespace ArabTube.Services.ControllersServices.SubscriptionServices.Implementat
             {
                 return new ProcessResult { Message = $"You Already Not A Follower To User With Id = {ownerId}" };
             }
-
+            owner.NumberOfFollowers -= 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }
 
+
+        public async Task<ProcessResult> GetNotificationsAsync(string ownerId, string userId)
+        {
+            if (ownerId == userId)
+            {
+                return new ProcessResult { Message = $"User Cannot Subscribe from it self" };
+            }
+
+            var owner = await _userManager.FindByIdAsync(ownerId);
+            if (owner == null)
+            {
+                return new ProcessResult { Message = $"No User With Id = {ownerId}" };
+            }
+
+            var result = await _unitOfWork.AppUserConnection.GetNotificationsAsync(ownerId, userId);
+            if (!result)
+            {
+                return new ProcessResult { Message = $"You are Not A Follower To User With Id = {ownerId}" };
+            }
+
+            await _unitOfWork.Complete();
+            return new ProcessResult { IsSuccesed = true };
+
+        }
+
+        public async Task<ProcessResult> IsUserGetAllNotificationsAsync(string ownerId, string userId)
+        {
+            if (ownerId == userId)
+            {
+                return new ProcessResult { Message = $"User Cannot Subscribe from it self" };
+            }
+
+            var owner = await _userManager.FindByIdAsync(ownerId);
+            if (owner == null)
+            {
+                return new ProcessResult { Message = $"No User With Id = {ownerId}" };
+            }
+
+            var result = await _unitOfWork.AppUserConnection.IsUserGetAllNotificationsAsync(ownerId, userId);
+            return new ProcessResult { IsSuccesed = true , Message = result ? "YES" : "NO" };
+
+        }
     }
 }

@@ -14,5 +14,7 @@ namespace ArabTube.Entities.Models
         public string FollowingId { get; set; }
         public AppUser Following { get; set; }
 
+        public bool GetNotifications { get; set; } = false;
+
     }
 }

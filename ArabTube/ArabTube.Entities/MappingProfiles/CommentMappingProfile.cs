@@ -11,6 +11,8 @@ namespace ArabTube.Entities.MappingProfiles
             CreateMap<Comment, GetCommentDto>()
                 .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.AppUser.UserName))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.AppUser.Id))
+                .ForMember(dest => dest.ProfilePic, opt => opt.MapFrom(src => src.AppUser.ProfilePic))
                 .ForMember(dest => dest.Childrens, opt => opt.MapFrom(src => src.Childrens.Where(cc => cc.Id != src.Id).OrderBy(cc => cc.CreatedOn)));
 
             CreateMap<AddCommentDto, Comment>()

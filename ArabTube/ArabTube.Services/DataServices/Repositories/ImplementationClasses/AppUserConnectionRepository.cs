@@ -23,6 +23,13 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return appUserConnections;
         }
 
+        public async Task<IEnumerable<AppUserConnection>> GetFollowersAsync(string id)
+        {
+            var appUserConnections = await _dbSet.Where(auc => auc.FollowingId == id && auc.GetNotifications)
+                .ToListAsync();
+            return appUserConnections;
+        }
+
         public async Task<bool> SubscribeAsync(string ownerId, string userId)
         {
             var entity = await _dbSet.FindAsync(userId, ownerId);
@@ -45,6 +52,27 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             {
                 _dbSet.Remove(entity);
                 return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> GetNotificationsAsync(string ownerId, string userId)
+        {
+            var entity = await _dbSet.FindAsync(userId, ownerId);
+            if (entity != null)
+            {
+                entity.GetNotifications = (entity.GetNotifications ^ true);
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> IsUserGetAllNotificationsAsync(string ownerId, string userId)
+        {
+            var entity = await _dbSet.FindAsync(userId, ownerId);
+            if (entity != null)
+            {
+                return entity.GetNotifications;
             }
             return false;
         }

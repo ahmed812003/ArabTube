@@ -28,5 +28,7 @@ namespace ArabTube.Entities.DtoModels.VideoDTOs
         public DateTime CreatedOn { get; set; }
         
         public byte[] Thumbnail { get; set; }
+
+        public byte[] ProfilePic { get; set; }
     }
 }

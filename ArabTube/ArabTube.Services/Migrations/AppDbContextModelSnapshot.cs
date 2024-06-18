@@ -30,9 +30,6 @@ namespace ArabTube.Services.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -48,9 +45,6 @@ namespace ArabTube.Services.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -70,6 +64,12 @@ namespace ArabTube.Services.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("NumberOfFollowers")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfvideos")
+                        .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -113,6 +113,9 @@ namespace ArabTube.Services.Migrations
 
                     b.Property<string>("FollowingId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("GetNotifications")
+                        .HasColumnType("bit");
 
                     b.HasKey("FollowerId", "FollowingId");
 
@@ -218,6 +221,10 @@ namespace ArabTube.Services.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VideoId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

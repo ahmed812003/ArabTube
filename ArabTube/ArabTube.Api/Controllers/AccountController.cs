@@ -63,13 +63,25 @@ namespace ArabTube.Api.Controllers
         [HttpGet("User")]
         public async Task<IActionResult> GetUser(string userId)
         {
-            var result = await _userService.GetChannelsAsync(userId);
+            var result = await _userService.GetChannelAsync(userId);
             if (!result.IsSuccesed)
             {
                 return BadRequest(result.Message);
             }
             return Ok(result.user);
         }
+
+        [HttpGet("Users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var result = await _userService.GetChannelsAsync();
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+            return Ok(result.Channels);
+        }
+
 
         [Authorize]
         [HttpPost("ProfilePic")]

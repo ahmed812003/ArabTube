@@ -72,7 +72,7 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
             };
         }
     
-        public async Task<GetChannelResult> GetChannelsAsync(string userId)
+        public async Task<GetChannelResult> GetChannelAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if(user == null)
@@ -84,7 +84,9 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
                 ChannelTitle = $"{user.FirstName} {user.LastName}",
                 ProfilePic = (user.ProfilePic == null) ? new byte[0] : user.ProfilePic,
                 UserId = user.Id,
-                Username = user.UserName
+                Username = user.UserName,
+                NumOfSubscripers = user.NumberOfFollowers,
+                NumOfVidoes = user.NumberOfvideos
             };
             return new GetChannelResult
             {
@@ -92,5 +94,32 @@ namespace ArabTube.Services.ControllersServices.UserServices.ImplementationClass
                 user = channel
             };
         }
+
+        public async Task<GetChannelsResult> GetChannelsAsync()
+        {
+            var users = _userManager.Users.ToList();
+            if (users == null || !users.Any())
+            {
+                return new GetChannelsResult { Message = "No Channels have been found" };
+            }
+
+            var channels = users.Select(u => new GetChannelDto
+            {
+                ChannelTitle = $"{u.FirstName} {u.LastName}",
+                ProfilePic = (u.ProfilePic == null) ? new byte[0] : u.ProfilePic,
+                UserId = u.Id,
+                Username = u.UserName,
+                NumOfSubscripers = u.NumberOfFollowers,
+                NumOfVidoes = u.NumberOfvideos
+            }).ToList();
+
+            return new GetChannelsResult
+            {
+                IsSuccesed = true,
+                Channels = channels
+            };
+        }
+
+
     }
 }

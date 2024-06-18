@@ -12,5 +12,8 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
         Task<IEnumerable<AppUserConnection>> GetFollowingAsync(string id);
         Task<bool> SubscribeAsync(string ownerId, string userId);
         Task<bool> UnSubscribeAsync(string ownerId, string userId);
+        Task<bool> GetNotificationsAsync(string ownerId, string userId);
+        Task<bool> IsUserGetAllNotificationsAsync(string ownerId, string userId);
+        Task<IEnumerable<AppUserConnection>> GetFollowersAsync(string id);
     }
 }

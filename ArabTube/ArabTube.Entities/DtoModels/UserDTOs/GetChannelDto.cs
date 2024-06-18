@@ -11,6 +11,8 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
         public string ChannelTitle { get; set; }
         public string Username { get; set; }
         public string UserId { get; set; }
+        public int NumOfVidoes {  get; set; }
+        public int NumOfSubscripers {  get; set; }
         public byte[] ProfilePic { get; set; }
 
     }

@@ -33,13 +33,11 @@ namespace ArabTube.Entities.Models
         [Required, MaxLength(250)]
         public string LastName { get; set; } = string.Empty;
 
-        [Required]
-        public bool Gender { get; set; }
-
-        [Required]
-        public DateTime BirthDate { get; set; }
-
         public byte[]? ProfilePic { get; set; }
+
+        public int NumberOfvideos { get; set; }
+
+        public int NumberOfFollowers { get; set; }
 
         public virtual ICollection<Video> Videos { get; set; }
 

@@ -22,7 +22,6 @@ namespace ArabTube.Api.Controllers
     [ApiController]
     public class VideosController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IVideoService _videoService;
         private readonly IPlaylistService _playlistService;
         private readonly ICommentService _commentService;
@@ -32,12 +31,11 @@ namespace ArabTube.Api.Controllers
         private readonly IConfiguration _configuration;
 
 
-        public VideosController(IUnitOfWork unitOfWork, IVideoService videoService, IPlaylistService playlistService,
+        public VideosController(IVideoService videoService, IPlaylistService playlistService,
                                 ICommentService commentService, IPlaylistVideoService playlistVideoService,
                                 IWatchedVideoService watchedVideoService, UserManager<AppUser> userManager,
                                 IConfiguration configuration)
         {
-            _unitOfWork = unitOfWork;
             _videoService = videoService;
             _playlistService = playlistService;
             _commentService = commentService;
@@ -196,13 +194,12 @@ namespace ArabTube.Api.Controllers
                 return Unauthorized();
             }
 
-            var result = await _videoService.UploadVideoAsync(model,userName , user.Id);
+            var result = await _videoService.UploadVideoAsync(model,userName , user);
             if (!result.IsSuccesed)
             {
                 return BadRequest(result.Message);
             }
 
-            await _unitOfWork.Complete();
             return Ok("Video Uploaded Sucessfully");
         }
 
@@ -364,7 +361,7 @@ namespace ArabTube.Api.Controllers
                         return BadRequest(result.Message);
                     }
 
-                    result = await _videoService.DeleteAsync(id , user.Id);
+                    result = await _videoService.DeleteAsync(id , user);
                     if (!result.IsSuccesed)
                     {
                         return BadRequest(result.Message);

@@ -35,7 +35,8 @@ namespace ArabTube.Services.ControllersServices.NotificationServices.Implementat
                 Message = n.Message,
                 SendTime = n.Date,
                 ChannelId = n.SenderId,
-                UserId = n.User.Id
+                UserId = n.User.Id,
+                VideoId = n.VideoId
             }) ;
             return new GetNotificationResult
             {

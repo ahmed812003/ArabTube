@@ -20,13 +20,13 @@ namespace ArabTube.Entities.DtoModels.VideoDTOs
         public int DisLikes { get; set; }
         public int Views { get; set; }
         public int Flags { get; set; }
-        public byte[] Thumbnail { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public string ChannelTitle { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
-
+        public byte[] Thumbnail { get; set; }
+        public byte[] ProfilePic { get; set; }
 
     }
 }

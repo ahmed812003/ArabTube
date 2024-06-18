@@ -13,5 +13,7 @@ namespace ArabTube.Services.ControllersServices.SubscriptionServices.Interfaces
         Task<GetFollowingResult> GetFollowingAsync(string userId);
         Task<ProcessResult> SubscribeAsync(string ownerId, string userId);
         Task<ProcessResult> UnScbscribeAsync(string ownerId, string userId);
+        Task<ProcessResult> GetNotificationsAsync(string ownerId, string userId);
+        Task<ProcessResult> IsUserGetAllNotificationsAsync(string ownerId, string userId);
     }
 }

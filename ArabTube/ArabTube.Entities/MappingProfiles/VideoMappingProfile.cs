@@ -10,13 +10,15 @@ namespace ArabTube.Entities.MappingProfiles
         public VideoMappingProfile()
         {
             CreateMap<Video, VideoPreviewDto>()
-                .ForMember(dest => dest.ChannelTitle, opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}"));
+                .ForMember(dest => dest.ChannelTitle, opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}"))
+                .ForMember(dest => dest.ProfilePic , opt => opt.MapFrom(src => src.AppUser.ProfilePic));
 
 
             CreateMap<Video, ViewVideoDto>()
                 .ForMember(dest => dest.ChannelTitle, opt => opt.MapFrom(src => $"{src.AppUser.FirstName} {src.AppUser.LastName}"))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.AppUser.UserName))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.AppUser.Id))
+                .ForMember(dest => dest.ProfilePic , opt => opt.MapFrom(src => src.AppUser.ProfilePic))
                 .ForMember(dest => dest.VideoUriList, opt => opt.MapFrom<VideoUriListResolver>());
 
             CreateMap<UploadingVideoDto, Video>()

@@ -14,6 +14,7 @@ namespace ArabTube.Entities.Models
         public string Message { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public string SenderId { get; set; }
+        public string VideoId { get; set; }
         public string UserId { get; set; }
         public AppUser User { get; set; }
     }

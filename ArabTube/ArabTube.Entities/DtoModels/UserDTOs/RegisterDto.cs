@@ -14,10 +14,7 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
         
         [Required, MaxLength(50)]
         public string LastName { get; set; }
-        
-        [Required, MaxLength(20)]
-        public string PhoneNumber { get; set; }
-
+  
         [EmailAddress]
         [Required, MaxLength(255)]
         public string Email { get; set; }
@@ -27,11 +24,5 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
 
         [Required, MaxLength(50)]
         public string Password { get; set; }
-
-        [Required]
-        public bool Gender { get; set; }
-
-        [Required]
-        public DateTime BirthDate { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace ArabTube.Api.Controllers
             _subscriptionService = subscriptionService;
         }
 
-        [HttpGet()]
+        [HttpGet("Follwoing")]
         public async Task<IActionResult> Following()
         {
             var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -39,6 +39,28 @@ namespace ArabTube.Api.Controllers
                     }
 
                     return Ok(result.Followings);
+                }
+            }
+            return Unauthorized();
+        }
+
+        [HttpGet("IsRing")]
+        public async Task<IActionResult> IsUserGetAllNotifications(string ownerId)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _subscriptionService.IsUserGetAllNotificationsAsync(ownerId, user.Id);
+
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok(result.Message);
                 }
             }
             return Unauthorized();
@@ -61,6 +83,28 @@ namespace ArabTube.Api.Controllers
                     }
 
                     return Ok(result.Message);
+                }
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost("Ring")]
+        public async Task<IActionResult> GetNotifications(string ownerId)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _subscriptionService.GetNotificationsAsync(ownerId, user.Id);
+
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok(result.IsSuccesed);
                 }
             }
             return Unauthorized();
