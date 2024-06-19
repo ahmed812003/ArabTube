@@ -2,6 +2,7 @@
 using ArabTube.Entities.DtoModels.UserDTOs;
 using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.Models;
+using ArabTube.Entities.UserModels;
 using ArabTube.Services.ControllersServices.AuthServices.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -32,16 +33,16 @@ namespace ArabTube.Services.ControllersServices.AuthServices.ImplementationClass
 
         //done
         // Register new user without authentication
-        public async Task<ProcessResult> RegisterAsync(RegisterDto model)
+        public async Task<SecurityResult> RegisterAsync(RegisterDto model)
         {
             if (await _userManager.FindByEmailAsync(model.Email) != null)
-                return new ProcessResult { Message = "This Email Already Registered!" };
+                return new SecurityResult { Message = "This Email Already Registered!" };
 
             if (await _userManager.FindByNameAsync(model.UserName) != null)
-                return new ProcessResult { Message = "This Username Already Registered!" };
+                return new SecurityResult { Message = "This Username Already Registered!" };
 
             if (!(char.ToLower(model.UserName[0]) >= 'a' && char.ToLower(model.UserName[0]) <= 'z'))
-                return new ProcessResult { Message = "Invalid username!" };
+                return new SecurityResult { Message = "Invalid username!" };
 
             var user = _mapper.Map<AppUser>(model);
 
@@ -51,14 +52,20 @@ namespace ArabTube.Services.ControllersServices.AuthServices.ImplementationClass
                 string Error = string.Empty;
                 foreach (var error in Result.Errors)
                     Error += $"{error.Description} , ";
-                return new ProcessResult { Message = Error };
+                return new SecurityResult { Message = Error };
             }
 
             await _userManager.AddToRoleAsync(user, "User");
 
-            return new ProcessResult
+            var securityResponse = new SecurityResponse
             {
-                Message = user.Id,
+                Code = GenerateOTP(),
+                UserId = user.Id
+            };
+
+            return new SecurityResult
+            {
+                SecurityResponse = securityResponse,
                 IsSuccesed = true
             };
         }
@@ -125,23 +132,49 @@ namespace ArabTube.Services.ControllersServices.AuthServices.ImplementationClass
             return processResult;
         }
 
+        public async Task<SecurityResult> ResendEmailConfirmationAsync(ResendEmailConfirmationDto model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return new SecurityResult { Message = "No User With This Email" };
+            }
+
+            var securityResponse = new SecurityResponse
+            {
+                Code = GenerateOTP(),
+                UserId = user.Id
+            };
+
+            return new SecurityResult
+            {
+                SecurityResponse = securityResponse,
+                IsSuccesed = true
+            };
+        }
         //done
-        public async Task<ProcessResult> ForgetPasswordAsync(string email)
+        public async Task<SecurityResult> ForgetPasswordAsync(string email)
         {
             if (string.IsNullOrEmpty(email))
-                return new ProcessResult { Message = "Email Is Not Found" };
+                return new SecurityResult { Message = "Email Is Not Found" };
 
             var user = await _userManager.FindByEmailAsync(email);
 
             if (user == null)
-                return new ProcessResult { Message = "No User With This Email" };
+                return new SecurityResult { Message = "No User With This Email" };
 
             if (!user.EmailConfirmed)
-                return new ProcessResult { Message = "Please Confirm Email" };
-
-            return new ProcessResult
+                return new SecurityResult { Message = "Please Confirm Email" };
+            
+            var securityResponse = new SecurityResponse
             {
-                Message = user.Id,
+                Code = GenerateOTP(),
+                UserId = user.Id
+            };
+
+            return new SecurityResult
+            {
+                SecurityResponse = securityResponse,
                 IsSuccesed = true
             };
         }

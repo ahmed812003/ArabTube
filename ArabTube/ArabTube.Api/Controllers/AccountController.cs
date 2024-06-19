@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Security.Claims;
 
 namespace ArabTube.Api.Controllers
@@ -144,14 +145,12 @@ namespace ArabTube.Api.Controllers
 
             if (!result.IsSuccesed)
                 return BadRequest(result.Message);
-
-            string userId = result.Message;
-            var code = _authService.GenerateOTP();
+            
 
             await _emailSender.SendEmailAsync(model.Email, EmailCotent.ConfirmEmailSubject,
-                $"{EmailCotent.ConfirmEmailHtmlMessage}{code}.");
+                $"{EmailCotent.ConfirmEmailHtmlMessage}{result.SecurityResponse.Code}.");
 
-            return Ok($"{userId}+{code}");
+            return Ok(result.SecurityResponse);
         }
         
         //AutoMapped
@@ -184,18 +183,17 @@ namespace ArabTube.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if ( user == null)
+            var result = await _authService.ResendEmailConfirmationAsync(model);
+
+            if (!result.IsSuccesed)
             {
-                return BadRequest("No User With This Email");
+                return BadRequest(result.Message);
             }
 
-            var code = _authService.GenerateOTP();
-
             await _emailSender.SendEmailAsync(model.Email, EmailCotent.ConfirmEmailSubject,
-               $"{EmailCotent.ConfirmEmailHtmlMessage}{code}.");
+               $"{EmailCotent.ConfirmEmailHtmlMessage}{result.SecurityResponse.Code}.");
 
-            return Ok($"{user.Id}+{code}");
+            return Ok(result.SecurityResponse);
         }
 
         [HttpPost("ForgetPassword")]
@@ -209,13 +207,10 @@ namespace ArabTube.Api.Controllers
             if (!result.IsSuccesed)
                 return BadRequest(result.Message);
 
-            string userId = result.Message;
-            var code = _authService.GenerateOTP();
-
             await _emailSender.SendEmailAsync(model.Email, EmailCotent.ResetPasswordSubject,
-                $"{EmailCotent.ResetPasswordHtmlMessage}{code}.");
+                $"{EmailCotent.ResetPasswordHtmlMessage}{result.SecurityResponse.Code}.");
 
-            return Ok($"{userId}+{code}");
+            return Ok(result.SecurityResponse);
         }
 
         [HttpPost("ResetPassword")]
