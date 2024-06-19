@@ -128,7 +128,7 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _commentService.LikeCommentAsync(id , user.Id);
+                    var result = await _commentService.LikeCommentAsync(id , user.Id, $"{user.FirstName} {user.LastName}");
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
 
@@ -148,7 +148,7 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _commentService.DislikeCommentAsync(id , user.Id);
+                    var result = await _commentService.DislikeCommentAsync(id , user.Id, $"{user.FirstName} {user.LastName}");
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
                     return Ok(result.Message);

@@ -13,5 +13,9 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
         public string newPassword { get; set; }
 
         public string UserCode { get; set; }
+
+        public string ValidCode { get; set; }
+
+        public string UserId { get; set; }
     }
 }

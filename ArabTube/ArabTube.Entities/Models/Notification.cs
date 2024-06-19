@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArabTube.Entities.Models
+namespace ArabTube.Entities.Models    
 {
     public class Notification
     {
@@ -15,6 +15,8 @@ namespace ArabTube.Entities.Models
         public DateTime Date { get; set; } = DateTime.Now;
         public string SenderId { get; set; }
         public string VideoId { get; set; }
+        public string CommentId { get; set; }
+        public string Category { get; set; }
         public string UserId { get; set; }
         public AppUser User { get; set; }
     }

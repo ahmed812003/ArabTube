@@ -113,8 +113,8 @@ namespace ArabTube.Api.Controllers
         [HttpPost("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(EmailConfirmationDto model)
         {
-            var userId = Request.Cookies["UserId"];
-            var validCode = Request.Cookies["Code"];
+            var userId = model.UserId;
+            var validCode = model.ValidCode;
 
             var result = await _authService.EmailConfirmationAsync(userId , validCode , model.UserCode);
 
@@ -148,26 +148,10 @@ namespace ArabTube.Api.Controllers
             string userId = result.Message;
             var code = _authService.GenerateOTP();
 
-            Response.Cookies.Append("UserId", userId, new CookieOptions
-            {
-                Secure = true,
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
-
-            });
-
-            Response.Cookies.Append("Code", code, new CookieOptions
-            {
-                Secure = true,
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
-
-            });
-
             await _emailSender.SendEmailAsync(model.Email, EmailCotent.ConfirmEmailSubject,
                 $"{EmailCotent.ConfirmEmailHtmlMessage}{code}.");
 
-            return Ok("Please confirm your account");
+            return Ok($"{userId}+{code}");
         }
         
         //AutoMapped
@@ -208,26 +192,10 @@ namespace ArabTube.Api.Controllers
 
             var code = _authService.GenerateOTP();
 
-            Response.Cookies.Append("UserId", user.Id, new CookieOptions
-            {
-                Secure = true,
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
-
-            });
-
-            Response.Cookies.Append("Code", code, new CookieOptions
-            {
-                Secure = true,
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
-
-            });
-
             await _emailSender.SendEmailAsync(model.Email, EmailCotent.ConfirmEmailSubject,
                $"{EmailCotent.ConfirmEmailHtmlMessage}{code}.");
 
-            return Ok("Check Your E-mail");
+            return Ok($"{user.Id}+{code}");
         }
 
         [HttpPost("ForgetPassword")]
@@ -244,33 +212,17 @@ namespace ArabTube.Api.Controllers
             string userId = result.Message;
             var code = _authService.GenerateOTP();
 
-            Response.Cookies.Append("UserId", userId, new CookieOptions
-            {
-                Secure = true,
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
-
-            });
-
-            Response.Cookies.Append("Code", code, new CookieOptions
-            {
-                Secure = true,
-                HttpOnly = true,
-                Expires = DateTime.UtcNow.AddMinutes(10).ToLocalTime()
-
-            });
-
             await _emailSender.SendEmailAsync(model.Email, EmailCotent.ResetPasswordSubject,
                 $"{EmailCotent.ResetPasswordHtmlMessage}{code}.");
 
-            return Ok("Check Your Email To Reset Password");
+            return Ok($"{userId}+{code}");
         }
 
         [HttpPost("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
         {
-            var userId = Request.Cookies["UserId"];
-            var validCode = Request.Cookies["Code"];
+            var userId = model.UserId;
+            var validCode = model.ValidCode;
 
             var result = await _authService.ResetPasswordAsync(userId, validCode , model.UserCode, model.newPassword);
 

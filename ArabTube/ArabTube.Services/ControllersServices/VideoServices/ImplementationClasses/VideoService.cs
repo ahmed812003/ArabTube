@@ -197,7 +197,9 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                     Message = $"{user.FirstName} {user.LastName} Upload new video",
                     UserId = follower.FollowerId,
                     SenderId = user.Id,
-                    VideoId = video.Id
+                    VideoId = video.Id,
+                    Category = "Video",
+                    CommentId = string.Empty
                 };
                 await _unitOfWork.Notification.AddAsync(notification);
             }

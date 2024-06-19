@@ -11,6 +11,10 @@ namespace ArabTube.Entities.DtoModels.UserDTOs
     {
         [Required]
         public string UserCode { get; set; }
+        [Required]
+        public string ValidCode { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
     }
 }

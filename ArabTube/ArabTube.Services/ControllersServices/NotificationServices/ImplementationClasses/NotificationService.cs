@@ -35,8 +35,10 @@ namespace ArabTube.Services.ControllersServices.NotificationServices.Implementat
                 Message = n.Message,
                 SendTime = n.Date,
                 ChannelId = n.SenderId,
-                UserId = n.User.Id,
-                VideoId = n.VideoId
+                VideoId = n.VideoId,
+                CommentId = n.CommentId,
+                Category = n.Category,
+                ProfilePic = (n.User.ProfilePic is null ? new byte[0] : n.User.ProfilePic)
             }) ;
             return new GetNotificationResult
             {

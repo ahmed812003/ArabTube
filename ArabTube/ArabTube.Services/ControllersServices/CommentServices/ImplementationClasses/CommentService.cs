@@ -7,6 +7,7 @@ using ArabTube.Services.DataServices.Repositories.Interfaces;
 using AutoMapper;
 using System.ComponentModel.Design;
 using System.Xml.Linq;
+using static FFmpeg.NET.MetaData;
 
 namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationClasses
 {
@@ -119,7 +120,9 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                         Message = $"{channelTitle} comment in your video",
                         UserId = video.UserId,
                         SenderId = userId,
-                        VideoId = video.Id
+                        VideoId = video.Id,
+                        Category = "Comment",
+                        CommentId = comment.Id
                     };
                     await _unitOfWork.Notification.AddAsync(notification);
                 }
@@ -134,7 +137,9 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                         Message = $"{channelTitle} reply to your comment",
                         UserId = parentComment.UserId,
                         SenderId = userId,
-                        VideoId = video.Id
+                        VideoId = video.Id,
+                        Category = "Comment",
+                        CommentId = comment.Id
                     };
                     await _unitOfWork.Notification.AddAsync(notification);
                 }
@@ -145,7 +150,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             return new ProcessResult { IsSuccesed = true};
         }
 
-        public async Task<ProcessResult> LikeCommentAsync(string commentId , string userId)
+        public async Task<ProcessResult> LikeCommentAsync(string commentId , string userId , string channelTitle)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
 
@@ -177,6 +182,16 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                     return new ProcessResult { Message = $"Cannot add like comment with id = {commentId}" };
                 }
                 comment.Likes += 1;
+                var notification = new Notification
+                {
+                    Message = $"{channelTitle} like your comment",
+                    UserId = comment.UserId,
+                    SenderId = userId,
+                    VideoId = string.Empty,
+                    Category = "Comment",
+                    CommentId = comment.Id
+                };
+                await _unitOfWork.Notification.AddAsync(notification);
             }
 
             await _unitOfWork.Complete();
@@ -188,7 +203,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
-        public async Task<ProcessResult> DislikeCommentAsync(string commentId, string userId)
+        public async Task<ProcessResult> DislikeCommentAsync(string commentId, string userId, string channelTitle)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
 
@@ -220,6 +235,16 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                     return new ProcessResult { Message = $"Cannot add Dislike comment with id = {commentId}" };
                 }
                 comment.DisLikes += 1;
+                var notification = new Notification
+                {
+                    Message = $"{channelTitle} Dislike your comment",
+                    UserId = comment.UserId,
+                    SenderId = userId,
+                    VideoId = string.Empty,
+                    Category = "Comment",
+                    CommentId = comment.Id
+                };
+                await _unitOfWork.Notification.AddAsync(notification);
             }
 
             await _unitOfWork.Complete();
