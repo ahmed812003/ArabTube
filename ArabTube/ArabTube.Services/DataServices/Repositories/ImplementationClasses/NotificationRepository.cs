@@ -18,7 +18,7 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
 
         public async Task<IEnumerable<Notification>> GetNotificationsAsync(string userId)
         {
-            var notifications =await _dbSet.Include(n => n.User).Where(n => n.UserId == userId).ToListAsync();
+            var notifications =await _dbSet.Where(n => n.UserId == userId).ToListAsync();
             return notifications;
         }
     }

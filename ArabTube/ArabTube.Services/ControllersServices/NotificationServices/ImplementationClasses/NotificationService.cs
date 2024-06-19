@@ -30,16 +30,24 @@ namespace ArabTube.Services.ControllersServices.NotificationServices.Implementat
                 return new GetNotificationResult { Message = "You don't have any notification"};
             }
 
-            var notificationsDto = notifications.Select(n => new GetNotificationsDto
+            List<GetNotificationsDto> notificationsDto = new List<GetNotificationsDto>();
+
+            foreach (var n in notifications)
             {
-                Message = n.Message,
-                SendTime = n.Date,
-                ChannelId = n.SenderId,
-                VideoId = n.VideoId,
-                CommentId = n.CommentId,
-                Category = n.Category,
-                ProfilePic = (n.User.ProfilePic is null ? new byte[0] : n.User.ProfilePic)
-            }) ;
+                var user =await _userManager.FindByIdAsync(n.SenderId);
+                var notificationDto =new GetNotificationsDto
+                {
+                    Message = n.Message,
+                    SendTime = n.Date,
+                    ChannelId = n.SenderId,
+                    VideoId = n.VideoId,
+                    CommentId = n.CommentId,
+                    Category = n.Category,
+                    ProfilePic = (user.ProfilePic is null ? new byte[0] : user.ProfilePic)
+                };
+                notificationsDto.Add(notificationDto);
+            }
+            
             return new GetNotificationResult
             {
                 IsSuccesed = true,
