@@ -50,3 +50,17 @@ CREATE INDEX [IX_CommentsFlags_UserId] ON [CommentsFlags] ([UserId]);
 2024-06-20 18:39:05.891 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20240620153802_addingFlagComment', N'8.0.3');
+2024-06-20 18:53:37.622 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 18:53:37.849 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 18:53:37.849 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 18:53:37.850 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 18:53:37.851 +03:00 [INF] Hosting environment: Development
+2024-06-20 18:53:37.851 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 18:53:40.858 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 18:53:41.108 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 253.6564ms
+2024-06-20 18:53:41.194 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 18:53:41.194 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 18:53:41.203 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 8.8302ms
+2024-06-20 18:53:41.242 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.142ms
+2024-06-20 18:53:41.483 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 18:53:41.611 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 128.2561ms

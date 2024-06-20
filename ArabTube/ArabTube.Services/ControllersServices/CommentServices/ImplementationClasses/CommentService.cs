@@ -48,7 +48,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
         public async Task<GetCommentResult> GetCommentAsync(string commentId)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
-            if (comment == null || comment.Id != comment.ParentCommentId)
+            if (comment == null)
             {
                 return new GetCommentResult {Message = "Invalid Comment Id " };
             }
@@ -378,5 +378,6 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }
+
     }
 }
