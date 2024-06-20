@@ -94,6 +94,21 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
+        public async Task<ProcessResult> IsUserFlagCommentAsync(string commentId, string userId)
+        {
+            var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
+            if (comment == null)
+            {
+                return new ProcessResult { Message = $"No comment exists wiht id = {commentId}" };
+            }
+            var isUserFlagComment = await _unitOfWork.CommentFlag.CheckUserFlagCommentOrNotAsync(commentId, userId);
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = isUserFlagComment ? "Yes" : "No"
+            };
+        }
+
         public async Task<ProcessResult> AddCommentAsync(AddCommentDto model , string userId , string channelTitle)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(model.VideoId);
@@ -253,6 +268,49 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             {
                 IsSuccesed = true,
                 Message = $"Comment Dislikes = {comment.DisLikes}"
+            };
+        }
+
+        public async Task<ProcessResult> FlagCommentAsync(string commentId, string userId)
+        {
+            var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
+
+            if (comment == null)
+            {
+                return new ProcessResult { Message = $"Comment With id {commentId} does not exist!" };
+            }
+
+            var isUserFlagComment = await _unitOfWork.CommentFlag.CheckUserFlagCommentOrNotAsync(commentId, userId);
+            if (isUserFlagComment)
+            {
+                var isRemovedFlag = await _unitOfWork.CommentFlag.RemoveUserCommentFlagAsync(commentId, userId);
+                if (!isRemovedFlag)
+                {
+                    return new ProcessResult { Message = $"Cannot remove flag comment with id = {commentId}" };
+                }
+                comment.Flags -= 1;
+            }
+            else
+            {
+                var commentFlag = new CommentFlag
+                {
+                    UserId = userId,
+                    CommentId = commentId,
+                };
+                var isFlagAdded = await _unitOfWork.CommentFlag.AddAsync(commentFlag);
+                if (!isFlagAdded)
+                {
+                    return new ProcessResult { Message = $"Cannot add flag comment with id = {commentId}" };
+                }
+                comment.Flags += 1;
+            }
+
+            await _unitOfWork.Complete();
+
+            return new ProcessResult
+            {
+                IsSuccesed = true,
+                Message = $"Comment Flags = {comment.Flags}"
             };
         }
 

@@ -139,6 +139,9 @@ namespace ArabTube.Services.Migrations
                     b.Property<int>("DisLikes")
                         .HasColumnType("int");
 
+                    b.Property<int>("Flags")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsUpdated")
                         .HasColumnType("bit");
 
@@ -185,6 +188,21 @@ namespace ArabTube.Services.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CommentsDislikes");
+                });
+
+            modelBuilder.Entity("ArabTube.Entities.Models.CommentFlag", b =>
+                {
+                    b.Property<string>("CommentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CommentId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CommentsFlags");
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.CommentLike", b =>
@@ -606,6 +624,25 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ArabTube.Entities.Models.CommentFlag", b =>
+                {
+                    b.HasOne("ArabTube.Entities.Models.Comment", "Comment")
+                        .WithMany("CommentsFlags")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ArabTube.Entities.Models.AppUser", "User")
+                        .WithMany("CommentsFlags")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ArabTube.Entities.Models.CommentLike", b =>
                 {
                     b.HasOne("ArabTube.Entities.Models.Comment", "Comment")
@@ -818,6 +855,8 @@ namespace ArabTube.Services.Migrations
 
                     b.Navigation("CommentsDislikes");
 
+                    b.Navigation("CommentsFlags");
+
                     b.Navigation("CommentsLikes");
 
                     b.Navigation("Followers");
@@ -844,6 +883,8 @@ namespace ArabTube.Services.Migrations
                     b.Navigation("Childrens");
 
                     b.Navigation("CommentsDislikes");
+
+                    b.Navigation("CommentsFlags");
 
                     b.Navigation("CommentsLikes");
                 });

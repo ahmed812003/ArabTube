@@ -21,6 +21,9 @@ namespace ArabTube.Entities.Models
             UsersLikedComment = new List<AppUser>();
             CommentsDislikes = new List<CommentDislike>();
             UsersDislikedComment = new List<AppUser>();
+            CommentsFlags = new List<CommentFlag>();
+            UsersFlagedComment = new List<AppUser>();
+
         }
 
         [Key]
@@ -39,6 +42,8 @@ namespace ArabTube.Entities.Models
         public int Likes { get; set; }
 
         public int DisLikes { get; set; }
+
+        public int Flags { get; set; }
 
         [Required]
         public string UserId { get; set; } = string.Empty;
@@ -60,6 +65,9 @@ namespace ArabTube.Entities.Models
 
         public virtual ICollection<CommentDislike> CommentsDislikes { get; set; }
         public virtual ICollection<AppUser> UsersDislikedComment { get; set; }
+
+        public virtual ICollection<CommentFlag> CommentsFlags { get; set; }
+        public virtual ICollection<AppUser> UsersFlagedComment { get; set; }
 
     }
 }

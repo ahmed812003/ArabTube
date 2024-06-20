@@ -159,6 +159,20 @@ namespace ArabTube.Services.DataServices.Data
                 .HasOne(cl => cl.Comment)
                 .WithMany(c => c.CommentsDislikes);
 
+            builder.Entity<AppUser>()
+            .HasMany(u => u.FlagedComments)
+            .WithMany(c => c.UsersFlagedComment)
+            .UsingEntity<CommentFlag>();
+
+            builder.Entity<CommentFlag>()
+                .HasOne(cl => cl.User)
+                .WithMany(u => u.CommentsFlags);
+
+            builder.Entity<CommentFlag>()
+                .HasOne(cl => cl.Comment)
+                .WithMany(c => c.CommentsFlags);
+
+
             builder.Entity<Playlist>()
             .HasOne(pl => pl.ParentPlaylist)
             .WithMany(pl => pl.Childrens)
@@ -183,6 +197,7 @@ namespace ArabTube.Services.DataServices.Data
         public DbSet<VideoFlag> VideosFlags { get; set; }
         public DbSet<CommentLike> CommentsLikes { get; set; }
         public DbSet<CommentDislike> CommentsDislikes { get; set; }
+        public DbSet<CommentFlag> CommentsFlags { get; set; }
         public DbSet<Notification> Notifications { get; set; }
     }
 }

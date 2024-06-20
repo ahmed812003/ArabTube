@@ -93,6 +93,27 @@ namespace ArabTube.Api.Controllers
         }
 
         [Authorize]
+        [HttpGet("UserFlag")]
+        public async Task<IActionResult> IsUserFlagComment(string commentId)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.IsUserFlagCommentAsync(commentId, user.Id);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+                    return Ok(result.Message);
+                }
+            }
+            return Unauthorized();
+        }
+
+        [Authorize]
         [HttpPost("Add")]
         public async Task<IActionResult> AddComment (AddCommentDto model)
         {
@@ -149,6 +170,25 @@ namespace ArabTube.Api.Controllers
                 if (user != null)
                 {
                     var result = await _commentService.DislikeCommentAsync(id , user.Id, $"{user.FirstName} {user.LastName}");
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.Message);
+                    return Ok(result.Message);
+                }
+            }
+            return Unauthorized();
+        }
+
+        [Authorize]
+        [HttpPost("Flag")]
+        public async Task<IActionResult> FlagComment(string id)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.FlagCommentAsync(id, user.Id);
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
                     return Ok(result.Message);

@@ -66,6 +66,9 @@ namespace ArabTube.Entities.Models
         public virtual ICollection<CommentDislike> CommentsDislikes { get; set; }
         public virtual ICollection<Comment> DislikedComments { get; set; }
 
+        public virtual ICollection<CommentFlag> CommentsFlags { get; set; }
+        public virtual ICollection<Comment> FlagedComments { get; set; }
+
         public ICollection<Notification> Notifications { get; set; }
     }
 }
