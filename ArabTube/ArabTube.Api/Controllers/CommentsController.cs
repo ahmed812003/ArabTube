@@ -50,6 +50,21 @@ namespace ArabTube.Api.Controllers
             return Ok(result.Comment);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("FlagedComment")]
+        public async Task<IActionResult> GetFlagedComment()
+        {
+            var result = await _commentService.GetFlagedCommentsAsync();
+
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.getCommentDtos);
+        }
+
+
         [Authorize]
         [HttpGet("UserLike")]
         public async Task<IActionResult> IsUserLikeComment(string commentId)
@@ -226,7 +241,7 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _commentService.DeleteCommentAsync(id , user.Id);
+                    var result = await _commentService.DeleteCommentAsync(id , user);
                     if (!result.IsSuccesed)
                         return BadRequest(result.IsSuccesed);
                     return Ok("Comment Deleted Successfully");

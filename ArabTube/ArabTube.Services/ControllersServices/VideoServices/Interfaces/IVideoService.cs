@@ -11,6 +11,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.Interfaces
         Task<GetVideoResult> SearchVideoAsync(string query);
         Task<GetVideoResult> PreviewVideoAsync();
         Task<WatchVideoResult> WatchVideoAsync(string id);
+        Task<GetFlagedVideosResult> GetFlagedVideosAsync();
         Task<GetVideoResult> UserVideosAsync(string userId);
         Task<ProcessResult> IsUserLikeVideoAsync(string videoId, string userId);
         Task<ProcessResult> IsUserDisLikeVideoAsync(string videoId, string userId);

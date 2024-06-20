@@ -64,3 +64,891 @@ VALUES (N'20240620153802_addingFlagComment', N'8.0.3');
 2024-06-20 18:53:41.242 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.142ms
 2024-06-20 18:53:41.483 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
 2024-06-20 18:53:41.611 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 128.2561ms
+2024-06-20 19:01:50.277 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 19:01:50.438 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 19:01:50.438 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 19:01:50.439 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 19:01:50.439 +03:00 [INF] Hosting environment: Development
+2024-06-20 19:01:50.439 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 19:01:50.792 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 19:01:50.961 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 172.7056ms
+2024-06-20 19:01:50.998 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 19:01:51.002 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.4257ms
+2024-06-20 19:01:51.037 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 19:01:51.072 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 34.1799ms
+2024-06-20 19:01:51.352 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 19:01:51.456 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 104.1486ms
+2024-06-20 19:01:56.796 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 19:01:57.086 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 19:01:57.107 +03:00 [INF] Route matched with {action = "GetVideoComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVideoComments(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 19:01:58.670 +03:00 [INF] Executed DbCommand (87ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 19:01:58.850 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__videoId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[FirstName], [t].[LastName], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[NumberOfFollowers], [t].[NumberOfvideos], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[ProfilePic], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+FROM [Comments] AS [c]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t] ON [c].[Id] = [t].[ParentCommentId]
+WHERE [c].[VideoId] = @__videoId_0 AND [c].[ParentCommentId] = [c].[Id]
+ORDER BY [c].[Id], [t].[Id]
+2024-06-20 19:01:58.900 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.OrderedEnumerable`2[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-20 19:01:58.917 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api) in 1807.0545ms
+2024-06-20 19:01:58.917 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 19:01:58.919 +03:00 [INF] HTTP GET /api/Comments/Comments responded 200 in 2117.9730 ms
+2024-06-20 19:01:58.925 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 2128.9567ms
+2024-06-20 19:02:17.644 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - null null
+2024-06-20 19:02:17.657 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 19:02:17.665 +03:00 [INF] Route matched with {action = "GetComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 19:02:17.724 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 19:02:17.741 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 19:02:17.746 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto'.
+2024-06-20 19:02:17.747 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api) in 81.4116ms
+2024-06-20 19:02:17.747 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 19:02:17.747 +03:00 [INF] HTTP GET /api/Comments/Comment responded 200 in 100.7716 ms
+2024-06-20 19:02:17.747 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - 200 null application/json; charset=utf-8 103.4129ms
+2024-06-20 19:02:28.139 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=bdd593af-f63a-478a-af6a-14e787b6baae - null null
+2024-06-20 19:02:28.140 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 19:02:28.140 +03:00 [INF] Route matched with {action = "GetComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 19:02:28.164 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 19:02:28.166 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 19:02:28.167 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto'.
+2024-06-20 19:02:28.170 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api) in 29.0122ms
+2024-06-20 19:02:28.170 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 19:02:28.170 +03:00 [INF] HTTP GET /api/Comments/Comment responded 200 in 30.7282 ms
+2024-06-20 19:02:28.170 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=bdd593af-f63a-478a-af6a-14e787b6baae - 200 null application/json; charset=utf-8 31.2266ms
+2024-06-20 20:06:44.305 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 20:06:44.477 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 20:06:44.477 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 20:06:44.478 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 20:06:44.479 +03:00 [INF] Hosting environment: Development
+2024-06-20 20:06:44.479 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 20:06:47.194 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 20:06:47.354 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 163.3786ms
+2024-06-20 20:06:47.413 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 20:06:47.422 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 8.9589ms
+2024-06-20 20:06:47.436 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 20:06:47.467 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.5806ms
+2024-06-20 20:06:47.744 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 20:06:47.858 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 113.5787ms
+2024-06-20 20:07:09.608 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Login - application/json 65
+2024-06-20 20:07:09.641 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-06-20 20:07:09.660 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ArabTube.Entities.DtoModels.UserDTOs.LoginDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-06-20 20:07:11.989 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-06-20 20:07:12.288 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-06-20 20:07:12.307 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-06-20 20:07:12.315 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-06-20 20:07:12.359 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.AuthModels.AuthResult'.
+2024-06-20 20:07:12.368 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api) in 2705.1782ms
+2024-06-20 20:07:12.369 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-06-20 20:07:12.371 +03:00 [INF] HTTP POST /api/Account/Login responded 200 in 2757.7685 ms
+2024-06-20 20:07:12.375 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Login - 200 null application/json; charset=utf-8 2767.2714ms
+2024-06-20 20:07:31.256 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/Videos - null null
+2024-06-20 20:07:31.292 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-06-20 20:07:31.296 +03:00 [INF] Route matched with {action = "PreviewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PreviewVideo() on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 20:07:31.373 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+2024-06-20 20:07:31.417 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.VideoDTOs.VideoPreviewDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 20:07:31.427 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api) in 131.1603ms
+2024-06-20 20:07:31.427 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-06-20 20:07:31.427 +03:00 [INF] HTTP GET /api/Videos/Videos responded 200 in 170.2035 ms
+2024-06-20 20:07:31.428 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/Videos - 200 null application/json; charset=utf-8 171.9204ms
+2024-06-20 20:07:57.197 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 20:07:57.424 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 20:07:57.424 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 20:07:57.425 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 20:07:57.425 +03:00 [INF] Hosting environment: Development
+2024-06-20 20:07:57.425 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 20:08:00.780 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 20:08:00.938 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 163.2435ms
+2024-06-20 20:08:00.982 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 20:08:00.986 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 3.9457ms
+2024-06-20 20:08:01.014 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 20:08:01.043 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.4349ms
+2024-06-20 20:08:01.306 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 20:08:01.412 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 106.1211ms
+2024-06-20 20:08:13.408 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/Videos - null null
+2024-06-20 20:08:13.500 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-06-20 20:08:13.511 +03:00 [INF] Route matched with {action = "PreviewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PreviewVideo() on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 20:08:14.896 +03:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+2024-06-20 20:08:15.051 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.VideoDTOs.VideoPreviewDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 20:08:15.068 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api) in 1553.709ms
+2024-06-20 20:08:15.068 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-06-20 20:08:15.070 +03:00 [INF] HTTP GET /api/Videos/Videos responded 200 in 1646.5468 ms
+2024-06-20 20:08:15.074 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/Videos - 200 null application/json; charset=utf-8 1666.4716ms
+2024-06-20 20:08:31.130 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Videos/Flag?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null 0
+2024-06-20 20:08:31.140 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.FlagVideo (ArabTube.Api)'
+2024-06-20 20:08:31.147 +03:00 [INF] Route matched with {action = "FlagVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FlagVideo(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 20:08:31.243 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-06-20 20:08:31.256 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 20:08:31.273 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[UserId], [v].[VideoId]
+FROM [VideosFlags] AS [v]
+WHERE [v].[UserId] = @__p_0 AND [v].[VideoId] = @__p_1
+2024-06-20 20:08:31.449 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.FlagVideo (ArabTube.Api) in 302.4207ms
+2024-06-20 20:08:31.450 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.FlagVideo (ArabTube.Api)'
+2024-06-20 20:08:31.450 +03:00 [ERR] HTTP POST /api/Videos/Flag responded 500 in 317.1592 ms
+System.InvalidOperationException: Cannot create a DbSet for 'FlagedVideo' because this type is not included in the model for the context.
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.AddAsync(TEntity entity, CancellationToken cancellationToken)
+   at ArabTube.Services.DataServices.Repositories.ImplementationClasses.GenericRepository`1.AddAsync(T entity) in E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\DataServices\Repositories\ImplementationClasses\GenericRepository.cs:line 31
+   at ArabTube.Services.ControllersServices.VideoServices.ImplementationClasses.VideoService.FlagVideoAsync(String id, String userId) in E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\ControllersServices\VideoServices\ImplementationClasses\VideoService.cs:line 362
+   at ArabTube.Api.Controllers.VideosController.FlagVideo(String id) in E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\Controllers\VideosController.cs:line 296
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2024-06-20 20:08:31.470 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Cannot create a DbSet for 'FlagedVideo' because this type is not included in the model for the context.
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.get_EntityType()
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.EntryWithoutDetectChanges(TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.AddAsync(TEntity entity, CancellationToken cancellationToken)
+   at ArabTube.Services.DataServices.Repositories.ImplementationClasses.GenericRepository`1.AddAsync(T entity) in E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\DataServices\Repositories\ImplementationClasses\GenericRepository.cs:line 31
+   at ArabTube.Services.ControllersServices.VideoServices.ImplementationClasses.VideoService.FlagVideoAsync(String id, String userId) in E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Services\ControllersServices\VideoServices\ImplementationClasses\VideoService.cs:line 362
+   at ArabTube.Api.Controllers.VideosController.FlagVideo(String id) in E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\Controllers\VideosController.cs:line 296
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-06-20 20:08:31.476 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Videos/Flag?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 500 null text/plain; charset=utf-8 346.7977ms
+2024-06-20 20:09:10.014 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-06-20 20:09:10.054 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-06-20 20:09:10.061 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-06-20 20:09:56.030 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-06-20 20:09:56.066 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-06-20 20:09:56.068 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-06-20 20:09:56.068 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-06-20 20:09:56.077 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-06-20 20:09:56.087 +03:00 [INF] Applying migration '20240620170945_AddingFlagedVideoTable'.
+2024-06-20 20:09:56.141 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [flagedVideos] (
+    [Id] nvarchar(450) NOT NULL,
+    [VideoId] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_flagedVideos] PRIMARY KEY ([Id])
+);
+2024-06-20 20:09:56.143 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240620170945_AddingFlagedVideoTable', N'8.0.3');
+2024-06-20 20:10:17.727 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 20:10:17.887 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 20:10:17.887 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 20:10:17.888 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 20:10:17.889 +03:00 [INF] Hosting environment: Development
+2024-06-20 20:10:17.889 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 20:10:21.116 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 20:10:21.288 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 175.6699ms
+2024-06-20 20:10:21.343 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 20:10:21.347 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.4659ms
+2024-06-20 20:10:21.375 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 20:10:21.415 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.0534ms
+2024-06-20 20:10:21.684 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 20:10:21.795 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 111.3192ms
+2024-06-20 20:10:50.446 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Videos/Flag?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null 0
+2024-06-20 20:10:50.541 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.FlagVideo (ArabTube.Api)'
+2024-06-20 20:10:50.556 +03:00 [INF] Route matched with {action = "FlagVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FlagVideo(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 20:10:51.929 +03:00 [INF] Executed DbCommand (41ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-06-20 20:10:52.084 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 20:10:52.133 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[UserId], [v].[VideoId]
+FROM [VideosFlags] AS [v]
+WHERE [v].[UserId] = @__p_0 AND [v].[VideoId] = @__p_1
+2024-06-20 20:10:52.291 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p1='?' (Size = 450), @p0='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (Size = 450), @p4='?' (Size = 450), @p5='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Videos] SET [Flags] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [VideosFlags] ([UserId], [VideoId])
+VALUES (@p2, @p3);
+INSERT INTO [flagedVideos] ([Id], [VideoId])
+VALUES (@p4, @p5);
+2024-06-20 20:10:52.315 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-06-20 20:10:52.318 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.FlagVideo (ArabTube.Api) in 1759.2836ms
+2024-06-20 20:10:52.319 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.FlagVideo (ArabTube.Api)'
+2024-06-20 20:10:52.321 +03:00 [INF] HTTP POST /api/Videos/Flag responded 200 in 1857.3538 ms
+2024-06-20 20:10:52.326 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Videos/Flag?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null text/plain; charset=utf-8 1880.226ms
+2024-06-20 20:11:00.079 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/Video?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 20:11:00.083 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.WatchVideo (ArabTube.Api)'
+2024-06-20 20:11:00.088 +03:00 [INF] Route matched with {action = "WatchVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] WatchVideo(System.String) on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 20:11:00.143 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 20:11:00.157 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.VideoDTOs.ViewVideoDto'.
+2024-06-20 20:11:00.170 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.WatchVideo (ArabTube.Api) in 82.344ms
+2024-06-20 20:11:00.170 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.WatchVideo (ArabTube.Api)'
+2024-06-20 20:11:00.170 +03:00 [INF] HTTP GET /api/Videos/Video responded 200 in 88.4486 ms
+2024-06-20 20:11:00.171 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/Video?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 91.1707ms
+2024-06-20 20:11:10.883 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/FlagedVideos - null null
+2024-06-20 20:11:10.886 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.GetFlagedVideos (ArabTube.Api)'
+2024-06-20 20:11:10.892 +03:00 [INF] Route matched with {action = "GetFlagedVideos", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedVideos() on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 20:11:10.921 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[VideoId]
+FROM [flagedVideos] AS [f]
+2024-06-20 20:11:10.925 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 20:11:10.927 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.VideoDTOs.ViewVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 20:11:10.928 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.GetFlagedVideos (ArabTube.Api) in 36.4057ms
+2024-06-20 20:11:10.928 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.GetFlagedVideos (ArabTube.Api)'
+2024-06-20 20:11:10.929 +03:00 [INF] HTTP GET /api/Videos/FlagedVideos responded 200 in 45.4257 ms
+2024-06-20 20:11:10.929 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/FlagedVideos - 200 null application/json; charset=utf-8 46.3761ms
+2024-06-20 20:32:29.790 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-06-20 20:32:29.825 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-06-20 20:32:29.827 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-06-20 20:32:29.827 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-06-20 20:32:29.837 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-06-20 20:32:29.846 +03:00 [INF] Applying migration '20240620173218_AddingFlagedCommentTable'.
+2024-06-20 20:32:29.916 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [flagedComments] (
+    [Id] nvarchar(450) NOT NULL,
+    [CommentId] nvarchar(max) NOT NULL,
+    [VideoId] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_flagedComments] PRIMARY KEY ([Id])
+);
+2024-06-20 20:32:29.917 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20240620173218_AddingFlagedCommentTable', N'8.0.3');
+2024-06-20 20:56:20.572 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 20:56:20.731 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 20:56:20.732 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 20:56:20.733 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 20:56:20.733 +03:00 [INF] Hosting environment: Development
+2024-06-20 20:56:20.733 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 20:56:28.167 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 20:56:28.421 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 261.2885ms
+2024-06-20 20:56:28.476 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 20:56:28.484 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 7.8383ms
+2024-06-20 20:56:28.499 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 20:56:28.540 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 41.6501ms
+2024-06-20 20:56:28.818 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 20:56:28.923 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 105.6588ms
+2024-06-20 20:56:59.810 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 20:56:59.969 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 20:56:59.969 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 20:56:59.970 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 20:56:59.971 +03:00 [INF] Hosting environment: Development
+2024-06-20 20:56:59.971 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 20:57:00.263 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 20:57:00.425 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 166.2397ms
+2024-06-20 20:57:00.474 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 20:57:00.478 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 3.38ms
+2024-06-20 20:57:00.508 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 20:57:00.563 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.6573ms
+2024-06-20 20:57:00.809 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 20:57:00.915 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 105.6094ms
+2024-06-20 20:57:14.573 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Addrole - application/json 52
+2024-06-20 20:57:14.610 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.AddRoleAsync (ArabTube.Api)'
+2024-06-20 20:57:14.625 +03:00 [INF] Route matched with {action = "AddRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddRoleAsync(ArabTube.Entities.DtoModels.UserDTOs.RoleDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-06-20 20:57:16.071 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-06-20 20:57:16.178 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2024-06-20 20:57:16.194 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2024-06-20 20:57:16.221 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2024-06-20 20:57:16.225 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2024-06-20 20:57:16.226 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[RoleId] = @__p_1
+2024-06-20 20:57:16.229 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2024-06-20 20:57:16.254 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-06-20 20:57:16.364 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p21='?' (Size = 450), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p22='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 250), @p7='?' (Size = 250), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (DbType = Int32), @p13='?' (DbType = Int32), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = -1) (DbType = Binary), @p18='?' (Size = 4000), @p19='?' (DbType = Boolean), @p20='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([RoleId], [UserId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [LastName] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [NumberOfFollowers] = @p12, [NumberOfvideos] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [ProfilePic] = @p17, [SecurityStamp] = @p18, [TwoFactorEnabled] = @p19, [UserName] = @p20
+OUTPUT 1
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+2024-06-20 20:57:16.387 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.GenericModels.ProcessResult'.
+2024-06-20 20:57:16.392 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.AddRoleAsync (ArabTube.Api) in 1764.3753ms
+2024-06-20 20:57:16.392 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.AddRoleAsync (ArabTube.Api)'
+2024-06-20 20:57:16.394 +03:00 [INF] HTTP POST /api/Account/Addrole responded 200 in 1815.9693 ms
+2024-06-20 20:57:16.399 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Addrole - 200 null application/json; charset=utf-8 1825.7419ms
+2024-06-20 20:57:44.261 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 20:57:44.323 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 20:57:44.328 +03:00 [INF] Route matched with {action = "GetVideoComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVideoComments(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 20:57:44.419 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 20:57:44.486 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__videoId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[FirstName], [t].[LastName], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[NumberOfFollowers], [t].[NumberOfvideos], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[ProfilePic], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+FROM [Comments] AS [c]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t] ON [c].[Id] = [t].[ParentCommentId]
+WHERE [c].[VideoId] = @__videoId_0 AND [c].[ParentCommentId] = [c].[Id]
+ORDER BY [c].[Id], [t].[Id]
+2024-06-20 20:57:44.530 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.OrderedEnumerable`2[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-20 20:57:44.547 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api) in 218.096ms
+2024-06-20 20:57:44.547 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 20:57:44.547 +03:00 [INF] HTTP GET /api/Comments/Comments responded 200 in 269.3511 ms
+2024-06-20 20:57:44.547 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 287.3125ms
+2024-06-20 20:58:05.065 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Comments/Flag?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - null 0
+2024-06-20 20:58:05.083 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.FlagComment (ArabTube.Api)'
+2024-06-20 20:58:05.086 +03:00 [INF] Route matched with {action = "FlagComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FlagComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 20:58:05.106 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-06-20 20:58:05.113 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 20:58:05.119 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CommentId], [c].[UserId]
+FROM [CommentsFlags] AS [c]
+WHERE [c].[CommentId] = @__p_0 AND [c].[UserId] = @__p_1
+2024-06-20 20:58:05.160 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (Size = 450), @p0='?' (DbType = Int32), @p2='?' (Size = 450), @p3='?' (Size = 450), @p4='?' (Size = 450), @p5='?' (Size = 4000), @p6='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Comments] SET [Flags] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [CommentsFlags] ([CommentId], [UserId])
+VALUES (@p2, @p3);
+INSERT INTO [flagedComments] ([Id], [CommentId], [VideoId])
+VALUES (@p4, @p5, @p6);
+2024-06-20 20:58:05.162 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-06-20 20:58:05.162 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.FlagComment (ArabTube.Api) in 76.3101ms
+2024-06-20 20:58:05.162 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.FlagComment (ArabTube.Api)'
+2024-06-20 20:58:05.162 +03:00 [INF] HTTP POST /api/Comments/Flag responded 200 in 96.1181 ms
+2024-06-20 20:58:05.162 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Comments/Flag?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - 200 null text/plain; charset=utf-8 98.5901ms
+2024-06-20 20:58:08.857 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 20:58:08.857 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 20:58:08.857 +03:00 [INF] Route matched with {action = "GetVideoComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVideoComments(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 20:58:08.861 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 20:58:08.867 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__videoId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[FirstName], [t].[LastName], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[NumberOfFollowers], [t].[NumberOfvideos], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[ProfilePic], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+FROM [Comments] AS [c]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t] ON [c].[Id] = [t].[ParentCommentId]
+WHERE [c].[VideoId] = @__videoId_0 AND [c].[ParentCommentId] = [c].[Id]
+ORDER BY [c].[Id], [t].[Id]
+2024-06-20 20:58:08.868 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.OrderedEnumerable`2[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-20 20:58:08.869 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api) in 11.8264ms
+2024-06-20 20:58:08.869 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 20:58:08.869 +03:00 [INF] HTTP GET /api/Comments/Comments responded 200 in 12.2878 ms
+2024-06-20 20:58:08.869 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 12.7381ms
+2024-06-20 20:58:16.699 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - null null
+2024-06-20 20:58:16.701 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-06-20 20:58:16.703 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2024-06-20 20:58:16.703 +03:00 [INF] HTTP GET /api/Comments/FlagedComment responded 403 in 4.2557 ms
+2024-06-20 20:58:16.703 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - 403 0 null 4.6977ms
+2024-06-20 20:59:24.855 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/FlagedVideos - null null
+2024-06-20 20:59:24.861 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-06-20 20:59:24.861 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2024-06-20 20:59:24.861 +03:00 [INF] HTTP GET /api/Videos/FlagedVideos responded 403 in 1.6730 ms
+2024-06-20 20:59:24.861 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/FlagedVideos - 403 0 null 7.2824ms
+2024-06-20 21:01:50.741 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7204/api/Account/Login - application/json 65
+2024-06-20 21:01:50.744 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-06-20 21:01:50.747 +03:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ArabTube.Entities.DtoModels.UserDTOs.LoginDto) on controller ArabTube.Api.Controllers.AccountController (ArabTube.Api).
+2024-06-20 21:01:50.761 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2024-06-20 21:01:50.857 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2024-06-20 21:01:50.871 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-06-20 21:01:50.876 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2024-06-20 21:01:50.882 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.AuthModels.AuthResult'.
+2024-06-20 21:01:50.884 +03:00 [INF] Executed action ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api) in 137.0819ms
+2024-06-20 21:01:50.884 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.AccountController.Login (ArabTube.Api)'
+2024-06-20 21:01:50.884 +03:00 [INF] HTTP POST /api/Account/Login responded 200 in 140.1709 ms
+2024-06-20 21:01:50.884 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7204/api/Account/Login - 200 null application/json; charset=utf-8 145.1803ms
+2024-06-20 21:02:06.392 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - null null
+2024-06-20 21:02:06.394 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:02:06.396 +03:00 [INF] Route matched with {action = "GetFlagedComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedComment() on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:02:06.405 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[CommentId], [f].[VideoId]
+FROM [flagedComments] AS [f]
+2024-06-20 21:02:06.407 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 21:02:06.411 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 21:02:06.411 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api) in 15.5933ms
+2024-06-20 21:02:06.411 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:02:06.412 +03:00 [INF] HTTP GET /api/Comments/FlagedComment responded 200 in 19.0792 ms
+2024-06-20 21:02:06.412 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - 200 null application/json; charset=utf-8 19.4256ms
+2024-06-20 21:02:37.079 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 21:02:37.079 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 21:02:37.080 +03:00 [INF] Route matched with {action = "GetVideoComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVideoComments(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:02:37.082 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 21:02:37.084 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__videoId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[FirstName], [t].[LastName], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[NumberOfFollowers], [t].[NumberOfvideos], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[ProfilePic], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+FROM [Comments] AS [c]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t] ON [c].[Id] = [t].[ParentCommentId]
+WHERE [c].[VideoId] = @__videoId_0 AND [c].[ParentCommentId] = [c].[Id]
+ORDER BY [c].[Id], [t].[Id]
+2024-06-20 21:02:37.084 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.OrderedEnumerable`2[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-20 21:02:37.086 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api) in 6.1754ms
+2024-06-20 21:02:37.086 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 21:02:37.086 +03:00 [INF] HTTP GET /api/Comments/Comments responded 200 in 6.7099 ms
+2024-06-20 21:02:37.086 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 7.6172ms
+2024-06-20 21:03:54.351 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 21:03:54.367 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 16.6213ms
+2024-06-20 21:03:54.461 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 21:03:54.461 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.57ms
+2024-06-20 21:03:54.498 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 21:03:54.522 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.9994ms
+2024-06-20 21:03:54.868 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 21:03:54.881 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.8888ms
+2024-06-20 21:04:06.938 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - null null
+2024-06-20 21:04:06.939 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:04:06.941 +03:00 [INF] Route matched with {action = "GetFlagedComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedComment() on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:04:06.949 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[CommentId], [f].[VideoId]
+FROM [flagedComments] AS [f]
+2024-06-20 21:04:06.966 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 21:04:06.967 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 21:04:06.968 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api) in 27.0012ms
+2024-06-20 21:04:06.968 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:04:06.968 +03:00 [INF] HTTP GET /api/Comments/FlagedComment responded 200 in 30.0913 ms
+2024-06-20 21:04:06.969 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - 200 null application/json; charset=utf-8 31.2742ms
+2024-06-20 21:09:10.751 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 21:09:10.912 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 21:09:10.912 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 21:09:10.913 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 21:09:10.913 +03:00 [INF] Hosting environment: Development
+2024-06-20 21:09:10.913 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 21:09:11.125 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 21:09:11.281 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 159.873ms
+2024-06-20 21:09:11.328 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 21:09:11.332 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.4005ms
+2024-06-20 21:09:11.366 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 21:09:11.409 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 43.288ms
+2024-06-20 21:09:11.681 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 21:09:11.837 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 156.5111ms
+2024-06-20 21:09:39.466 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - null null
+2024-06-20 21:09:39.555 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:09:39.567 +03:00 [INF] Route matched with {action = "GetFlagedComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedComment() on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:09:40.876 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[CommentId], [f].[VideoId]
+FROM [flagedComments] AS [f]
+2024-06-20 21:09:41.066 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 21:09:41.147 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 21:09:41.158 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api) in 1588.9534ms
+2024-06-20 21:09:41.159 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:09:41.161 +03:00 [INF] HTTP GET /api/Comments/FlagedComment responded 200 in 1685.4620 ms
+2024-06-20 21:09:41.165 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - 200 null application/json; charset=utf-8 1699.8122ms
+2024-06-20 21:10:33.990 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 21:10:34.009 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 19.3637ms
+2024-06-20 21:10:34.103 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 21:10:34.104 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 0.7483ms
+2024-06-20 21:10:34.112 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 21:10:34.135 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.9331ms
+2024-06-20 21:10:34.495 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 21:10:34.508 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.6287ms
+2024-06-20 21:11:05.846 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - null null
+2024-06-20 21:11:05.854 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:11:05.857 +03:00 [INF] Route matched with {action = "GetFlagedComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedComment() on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:11:05.905 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[CommentId], [f].[VideoId]
+FROM [flagedComments] AS [f]
+2024-06-20 21:11:14.285 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 21:19:06.698 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 21:19:06.862 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 21:19:06.863 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 21:19:06.864 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 21:19:06.864 +03:00 [INF] Hosting environment: Development
+2024-06-20 21:19:06.864 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 21:19:09.732 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 21:19:09.879 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 150.205ms
+2024-06-20 21:19:09.932 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 21:19:09.940 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 8.0731ms
+2024-06-20 21:19:09.964 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 21:19:09.999 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.5385ms
+2024-06-20 21:19:10.268 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 21:19:10.380 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 112.0979ms
+2024-06-20 21:19:34.202 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - null null
+2024-06-20 21:19:34.294 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:19:34.309 +03:00 [INF] Route matched with {action = "GetComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:19:35.674 +03:00 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 21:19:35.820 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 21:19:35.848 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto'.
+2024-06-20 21:19:35.859 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api) in 1547.0199ms
+2024-06-20 21:19:35.859 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:19:35.861 +03:00 [INF] HTTP GET /api/Comments/Comment responded 200 in 1644.5664 ms
+2024-06-20 21:19:35.865 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - 200 null application/json; charset=utf-8 1663.5579ms
+2024-06-20 21:20:01.902 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 21:20:01.912 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 21:20:01.916 +03:00 [INF] Route matched with {action = "GetVideoComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVideoComments(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:20:01.975 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 21:20:02.068 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__videoId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[FirstName], [t].[LastName], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[NumberOfFollowers], [t].[NumberOfvideos], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[ProfilePic], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+FROM [Comments] AS [c]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t] ON [c].[Id] = [t].[ParentCommentId]
+WHERE [c].[VideoId] = @__videoId_0 AND [c].[ParentCommentId] = [c].[Id]
+ORDER BY [c].[Id], [t].[Id]
+2024-06-20 21:20:02.080 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.OrderedEnumerable`2[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-20 21:20:02.086 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api) in 170.3624ms
+2024-06-20 21:20:02.087 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 21:20:02.088 +03:00 [INF] HTTP GET /api/Comments/Comments responded 200 in 177.1366 ms
+2024-06-20 21:20:02.088 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 187.1606ms
+2024-06-20 21:21:31.942 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=bdd593af-f63a-478a-af6a-14e787b6baae - null null
+2024-06-20 21:21:31.947 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:21:31.947 +03:00 [INF] Route matched with {action = "GetComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:21:31.974 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 21:21:31.975 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 21:21:31.976 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto'.
+2024-06-20 21:21:31.982 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api) in 34.961ms
+2024-06-20 21:21:31.982 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:21:31.982 +03:00 [INF] HTTP GET /api/Comments/Comment responded 200 in 37.5420 ms
+2024-06-20 21:21:31.983 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=bdd593af-f63a-478a-af6a-14e787b6baae - 200 null application/json; charset=utf-8 41.5919ms
+2024-06-20 21:24:51.825 +03:00 [INF] User profile is available. Using 'C:\Users\AHMD YASSER\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-20 21:24:52.007 +03:00 [INF] Now listening on: https://localhost:7204
+2024-06-20 21:24:52.008 +03:00 [INF] Now listening on: http://localhost:5178
+2024-06-20 21:24:52.009 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-20 21:24:52.009 +03:00 [INF] Hosting environment: Development
+2024-06-20 21:24:52.009 +03:00 [INF] Content root path: E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api
+2024-06-20 21:24:54.765 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/index.html - null null
+2024-06-20 21:24:54.940 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/index.html - 200 null text/html;charset=utf-8 178.8208ms
+2024-06-20 21:24:54.987 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-20 21:24:54.993 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 6.1035ms
+2024-06-20 21:24:55.017 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/_vs/browserLink - null null
+2024-06-20 21:24:55.048 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.1085ms
+2024-06-20 21:24:55.320 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - null null
+2024-06-20 21:24:55.434 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 113.5005ms
+2024-06-20 21:25:18.810 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/FlagedVideos - null null
+2024-06-20 21:25:18.902 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.GetFlagedVideos (ArabTube.Api)'
+2024-06-20 21:25:18.914 +03:00 [INF] Route matched with {action = "GetFlagedVideos", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedVideos() on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 21:25:20.230 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[VideoId]
+FROM [flagedVideos] AS [f]
+2024-06-20 21:25:20.397 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 21:25:20.540 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.VideoDTOs.ViewVideoDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 21:25:20.560 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.GetFlagedVideos (ArabTube.Api) in 1644.407ms
+2024-06-20 21:25:20.561 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.GetFlagedVideos (ArabTube.Api)'
+2024-06-20 21:25:20.563 +03:00 [INF] HTTP GET /api/Videos/FlagedVideos responded 200 in 1740.3910 ms
+2024-06-20 21:25:20.567 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/FlagedVideos - 200 null application/json; charset=utf-8 1757.9899ms
+2024-06-20 21:25:36.693 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Videos/Videos - null null
+2024-06-20 21:25:36.696 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-06-20 21:25:36.700 +03:00 [INF] Route matched with {action = "PreviewVideo", controller = "Videos"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PreviewVideo() on controller ArabTube.Api.Controllers.VideosController (ArabTube.Api).
+2024-06-20 21:25:36.752 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+2024-06-20 21:25:36.789 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.VideoDTOs.VideoPreviewDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 21:25:36.797 +03:00 [INF] Executed action ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api) in 97.3096ms
+2024-06-20 21:25:36.797 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.VideosController.PreviewVideo (ArabTube.Api)'
+2024-06-20 21:25:36.798 +03:00 [INF] HTTP GET /api/Videos/Videos responded 200 in 102.4999 ms
+2024-06-20 21:25:36.798 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Videos/Videos - 200 null application/json; charset=utf-8 105.4284ms
+2024-06-20 21:25:51.884 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - null null
+2024-06-20 21:25:51.886 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 21:25:51.893 +03:00 [INF] Route matched with {action = "GetVideoComments", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVideoComments(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:25:51.925 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [v].[Id], [v].[CreatedOn], [v].[Description], [v].[DisLikes], [v].[Flags], [v].[Likes], [v].[Thumbnail], [v].[Title], [v].[UpdatedOn], [v].[UserId], [v].[VideoUri], [v].[Views], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Videos] AS [v]
+INNER JOIN [AspNetUsers] AS [a] ON [v].[UserId] = [a].[Id]
+WHERE [v].[Id] = @__id_0
+2024-06-20 21:25:51.967 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@__videoId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t].[Id0], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[Email], [t].[EmailConfirmed], [t].[FirstName], [t].[LastName], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[NumberOfFollowers], [t].[NumberOfvideos], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[ProfilePic], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UserName]
+FROM [Comments] AS [c]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t] ON [c].[Id] = [t].[ParentCommentId]
+WHERE [c].[VideoId] = @__videoId_0 AND [c].[ParentCommentId] = [c].[Id]
+ORDER BY [c].[Id], [t].[Id]
+2024-06-20 21:25:52.006 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.OrderedEnumerable`2[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2024-06-20 21:25:52.010 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api) in 116.7562ms
+2024-06-20 21:25:52.010 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetVideoComments (ArabTube.Api)'
+2024-06-20 21:25:52.010 +03:00 [INF] HTTP GET /api/Comments/Comments responded 200 in 125.8673 ms
+2024-06-20 21:25:52.010 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comments?id=1543d7ec-68ff-40a5-9c15-cb35242bca41 - 200 null application/json; charset=utf-8 126.4841ms
+2024-06-20 21:26:03.510 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=bdd593af-f63a-478a-af6a-14e787b6baae - null null
+2024-06-20 21:26:03.512 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:26:03.516 +03:00 [INF] Route matched with {action = "GetComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:26:03.531 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 21:26:03.547 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Content], [t].[CreatedOn], [t].[DisLikes], [t].[Flags], [t].[IsUpdated], [t].[Likes], [t].[Mention], [t].[ParentCommentId], [t].[UserId], [t].[VideoId], [t0].[Id], [t0].[Content], [t0].[CreatedOn], [t0].[DisLikes], [t0].[Flags], [t0].[IsUpdated], [t0].[Likes], [t0].[Mention], [t0].[ParentCommentId], [t0].[UserId], [t0].[VideoId], [t0].[Id0], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[Email], [t0].[EmailConfirmed], [t0].[FirstName], [t0].[LastName], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[NumberOfFollowers], [t0].[NumberOfvideos], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[ProfilePic], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+    FROM [Comments] AS [c]
+    WHERE [c].[Id] = @__commentId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [c0].[Id], [c0].[Content], [c0].[CreatedOn], [c0].[DisLikes], [c0].[Flags], [c0].[IsUpdated], [c0].[Likes], [c0].[Mention], [c0].[ParentCommentId], [c0].[UserId], [c0].[VideoId], [a].[Id] AS [Id0], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+    FROM [Comments] AS [c0]
+    INNER JOIN [AspNetUsers] AS [a] ON [c0].[UserId] = [a].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ParentCommentId]
+ORDER BY [t].[Id], [t0].[Id]
+2024-06-20 21:26:03.552 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto'.
+2024-06-20 21:26:03.553 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api) in 36.3504ms
+2024-06-20 21:26:03.553 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:26:03.553 +03:00 [INF] HTTP GET /api/Comments/Comment responded 200 in 41.0434 ms
+2024-06-20 21:26:03.553 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=bdd593af-f63a-478a-af6a-14e787b6baae - 200 null application/json; charset=utf-8 42.6834ms
+2024-06-20 21:26:13.481 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - null null
+2024-06-20 21:26:13.481 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:26:13.481 +03:00 [INF] Route matched with {action = "GetComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetComment(System.String) on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:26:13.484 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId]
+FROM [Comments] AS [c]
+WHERE [c].[Id] = @__p_0
+2024-06-20 21:26:13.493 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Comments] AS [c]
+INNER JOIN [AspNetUsers] AS [a] ON [c].[UserId] = [a].[Id]
+WHERE [c].[Id] = @__commentId_0
+2024-06-20 21:26:13.493 +03:00 [INF] Executing OkObjectResult, writing value of type 'ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto'.
+2024-06-20 21:26:13.493 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api) in 12.1651ms
+2024-06-20 21:26:13.493 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetComment (ArabTube.Api)'
+2024-06-20 21:26:13.493 +03:00 [INF] HTTP GET /api/Comments/Comment responded 200 in 12.7116 ms
+2024-06-20 21:26:13.494 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/Comment?id=3f3aecad-732c-4fac-a5ba-ea9fd2ef7f53 - 200 null application/json; charset=utf-8 13.1236ms
+2024-06-20 21:26:19.278 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - null null
+2024-06-20 21:26:19.279 +03:00 [INF] Executing endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:26:19.281 +03:00 [INF] Route matched with {action = "GetFlagedComment", controller = "Comments"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetFlagedComment() on controller ArabTube.Api.Controllers.CommentsController (ArabTube.Api).
+2024-06-20 21:26:19.292 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[CommentId], [f].[VideoId]
+FROM [flagedComments] AS [f]
+2024-06-20 21:26:19.298 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__commentId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[Content], [c].[CreatedOn], [c].[DisLikes], [c].[Flags], [c].[IsUpdated], [c].[Likes], [c].[Mention], [c].[ParentCommentId], [c].[UserId], [c].[VideoId], [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[NumberOfFollowers], [a].[NumberOfvideos], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfilePic], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [Comments] AS [c]
+INNER JOIN [AspNetUsers] AS [a] ON [c].[UserId] = [a].[Id]
+WHERE [c].[Id] = @__commentId_0
+2024-06-20 21:26:19.306 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArabTube.Entities.DtoModels.CommentDTOs.GetCommentDto, ArabTube.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-20 21:26:19.307 +03:00 [INF] Executed action ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api) in 25.2465ms
+2024-06-20 21:26:19.307 +03:00 [INF] Executed endpoint 'ArabTube.Api.Controllers.CommentsController.GetFlagedComment (ArabTube.Api)'
+2024-06-20 21:26:19.307 +03:00 [INF] HTTP GET /api/Comments/FlagedComment responded 200 in 28.9416 ms
+2024-06-20 21:26:19.307 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7204/api/Comments/FlagedComment - 200 null application/json; charset=utf-8 29.4164ms

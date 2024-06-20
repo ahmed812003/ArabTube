@@ -30,7 +30,6 @@ namespace ArabTube.Api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
 
-
         public VideosController(IVideoService videoService, IPlaylistService playlistService,
                                 ICommentService commentService, IPlaylistVideoService playlistVideoService,
                                 IWatchedVideoService watchedVideoService, UserManager<AppUser> userManager,
@@ -97,6 +96,20 @@ namespace ArabTube.Api.Controllers
             }
 
             return Ok(result.Video);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("FlagedVideos")]
+        public async Task<IActionResult> GetFlagedVideos()
+        {
+            var result = await _videoService.GetFlagedVideosAsync();
+
+            if (!result.IsSuccesed)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.viewVideoDtos);
         }
 
         [HttpGet("UserVideo")]
@@ -355,7 +368,7 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
-                    var result = await _commentService.DeleteVideoCommentsAsync(id , user.Id);
+                    var result = await _commentService.DeleteVideoCommentsAsync(id , user);
                     if (!result.IsSuccesed)
                     {
                         return BadRequest(result.Message);

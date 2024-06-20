@@ -199,5 +199,7 @@ namespace ArabTube.Services.DataServices.Data
         public DbSet<CommentDislike> CommentsDislikes { get; set; }
         public DbSet<CommentFlag> CommentsFlags { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<FlagedComment> flagedComments { get; set; }
+        public DbSet<FlagedVideo> flagedVideos { get; set; }
     }
 }

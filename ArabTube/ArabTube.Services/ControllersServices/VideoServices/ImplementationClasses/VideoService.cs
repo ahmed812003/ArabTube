@@ -32,7 +32,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             _cloudService = cloudService;
             _userManager = userManager;
             //this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
-            this._ffmpegEngine = new Engine("C:\\ffmpeg\\ffmpeg.exe");
+            //this._ffmpegEngine = new Engine("C:\\ffmpeg\\ffmpeg.exe");
         }
 
         public async Task<SearchVideoTitlesResult> SearchVideoTitlesAsync(string query)
@@ -93,6 +93,39 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
 
             var viewVideo = _mapper.Map<ViewVideoDto>(video);
             return new WatchVideoResult { IsSuccesed = true , Video = viewVideo};
+        }
+
+        public async Task<GetFlagedVideosResult> GetFlagedVideosAsync()
+        {
+            var flagedVideos = await _unitOfWork.FlagedVideo.GetAllAsync();
+
+            if(flagedVideos == null || !flagedVideos.Any())
+            {
+                return new GetFlagedVideosResult { Message = "No Videos Found " };
+            }
+
+            var videos = new List<ViewVideoDto>();
+            foreach(var flagedVideo in flagedVideos)
+            {
+                var video = await _unitOfWork.Video.FindByIdAsync(flagedVideo.VideoId);
+
+                if (video == null)
+                {
+                    await _unitOfWork.FlagedVideo.RemoveAsync(flagedVideo.VideoId);
+                }
+                else
+                {
+
+                    var viewVideo = _mapper.Map<ViewVideoDto>(video);
+                    videos.Add(viewVideo);
+                }  
+            }
+            await _unitOfWork.Complete();
+            return new GetFlagedVideosResult
+            {
+                IsSuccesed = true,
+                viewVideoDtos = videos
+            };
         }
 
         public async Task<GetVideoResult> UserVideosAsync(string userId)
@@ -291,6 +324,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new ProcessResult { Message = $"Video With id {id} does not exist!" };
             }
+            bool addToFlagVideos;
             var isuserFlagVideo = await _unitOfWork.VideoFlag.CheckUserFlagVideoOrNotAsync(userId, id);
             if(isuserFlagVideo)
             {
@@ -300,6 +334,8 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                     return new ProcessResult { Message = $"Failed to remove flag video With id {id}!" };
                 }
                 video.Flags -= 1;
+
+                addToFlagVideos = (video.Flags > 0);
             }
             else
             {
@@ -314,7 +350,30 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                     return new ProcessResult { Message = $"Failed to flag video With id {id}!" };
                 }
                 video.Flags += 1;
+                addToFlagVideos = true;
             }
+            
+            if(addToFlagVideos)
+            {
+                var flagedVideo = new FlagedVideo 
+                { 
+                    VideoId = video.Id 
+                };
+                var isVideoAdded = await _unitOfWork.FlagedVideo.AddAsync(flagedVideo);
+                if (!isVideoAdded)
+                {
+                    return new ProcessResult { Message = $"Failed to add video to flaged videos table!" };
+                }
+            }
+            else
+            {
+                var isVideoRemoved = await _unitOfWork.FlagedVideo.RemoveAsync(video.Id);
+                if (!isVideoRemoved)
+                {
+                    return new ProcessResult { Message = $"Failed to remove video from flaged videos table!" };
+                }
+            }
+
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
         }
@@ -359,7 +418,10 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 return new ProcessResult { Message = $"No Video exists with id = {id}" };
             }
 
-            if(video.UserId != user.Id)
+            var roles =await _userManager.GetRolesAsync(user);
+            var admin = roles.Any(r => r == "Admin");
+
+            if(video.UserId != user.Id && !admin)
             {
                 return new ProcessResult { Message = $"Unauthorized to delete this video" };
             }
@@ -369,6 +431,19 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new ProcessResult { Message = "Error While Deleting video"};
             }
+
+            isDeleted = await _unitOfWork.FlagedVideo.DeleteAsync(id);
+            if (!isDeleted)
+            {
+                return new ProcessResult { Message = "Error While Deleting video from flaged Videos" };
+            }
+
+            isDeleted = await _unitOfWork.FlagedComment.RemoveRangeAsync(id);
+            if (!isDeleted)
+            {
+                return new ProcessResult { Message = "Error While Deleting comments from flaged comments" };
+            }
+
             user.NumberOfvideos -= 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};

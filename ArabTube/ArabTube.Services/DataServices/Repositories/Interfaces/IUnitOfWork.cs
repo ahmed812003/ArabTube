@@ -16,6 +16,8 @@
         IcommentDislikeRepository CommentDislike { get; }
         ICommentFlagRepository CommentFlag { get; }
         INotificationRepository Notification { get; }
+        IFlagedVideoRepository FlagedVideo { get; }
+        IFlagedCommentRepository FlagedComment { get; }
         Task Complete();
     }
 }

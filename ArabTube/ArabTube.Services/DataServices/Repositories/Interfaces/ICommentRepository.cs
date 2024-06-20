@@ -8,6 +8,7 @@ namespace ArabTube.Services.DataServices.Repositories.Interfaces
     public interface ICommentRepository : IGenericRepository<Comment>
     {
         Task<IEnumerable<Comment>> GetVideoCommentsAsync(string videoId);
+        Task<Comment> GetParentCommentAsync(string commentId);
         Task<Comment> GetCommentAsync(string commentId);
         Task DeleteCommentAsync(string commentId);
         Task DeleteVideoCommentsAsync(string videoId);

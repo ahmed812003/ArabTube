@@ -1,10 +1,13 @@
 ﻿using ArabTube.Entities.CommentModels;
 using ArabTube.Entities.DtoModels.CommentDTOs;
+using ArabTube.Entities.DtoModels.VideoDTOs;
 using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.Models;
+using ArabTube.Entities.VideoModels;
 using ArabTube.Services.ControllersServices.CommentServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.Design;
 using System.Xml.Linq;
 using static FFmpeg.NET.MetaData;
@@ -15,11 +18,13 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
 
-        public CommentService(IUnitOfWork unitOfWork, IMapper mapper)
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<GetVideoCommentsResult> GetVideoCommentsAsync(string videoId)
@@ -52,8 +57,10 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             {
                 return new GetCommentResult {Message = "Invalid Comment Id " };
             }
-
-            comment = await _unitOfWork.Comment.GetCommentAsync(commentId);
+            if(comment.Id == comment.ParentCommentId)
+                comment = await _unitOfWork.Comment.GetParentCommentAsync(commentId);
+            else
+                comment = await _unitOfWork.Comment.GetCommentAsync(commentId);
 
             var commentDto = _mapper.Map<GetCommentDto>(comment);
                                
@@ -61,6 +68,38 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             {
                 IsSuccesed = true,
                 Comment = commentDto
+            };
+        }
+
+        public async Task<GetFlagedCommentsResult> GetFlagedCommentsAsync()
+        {
+            var flagedComments = await _unitOfWork.FlagedComment.GetAllAsync();
+
+            if (flagedComments == null || !flagedComments.Any())
+            {
+                return new GetFlagedCommentsResult { Message = "No Comments Found " };
+            }
+
+            var comments = new List<GetCommentDto>();
+            foreach (var flagedComment in flagedComments)
+            {
+                var comment = await _unitOfWork.Comment.GetCommentAsync(flagedComment.CommentId);
+
+                if (comment == null)
+                {
+                    await _unitOfWork.FlagedVideo.RemoveAsync(flagedComment.CommentId);
+                }
+                else
+                {
+                    var viewComment = _mapper.Map<GetCommentDto>(comment);
+                    comments.Add(viewComment);
+                }
+            }
+            await _unitOfWork.Complete();
+            return new GetFlagedCommentsResult
+            {
+                IsSuccesed = true,
+                getCommentDtos = comments
             };
         }
 
@@ -279,7 +318,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             {
                 return new ProcessResult { Message = $"Comment With id {commentId} does not exist!" };
             }
-
+            bool addToFlagComments;
             var isUserFlagComment = await _unitOfWork.CommentFlag.CheckUserFlagCommentOrNotAsync(commentId, userId);
             if (isUserFlagComment)
             {
@@ -289,6 +328,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                     return new ProcessResult { Message = $"Cannot remove flag comment with id = {commentId}" };
                 }
                 comment.Flags -= 1;
+                addToFlagComments = (comment.Flags > 0);
             }
             else
             {
@@ -303,7 +343,32 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                     return new ProcessResult { Message = $"Cannot add flag comment with id = {commentId}" };
                 }
                 comment.Flags += 1;
+                addToFlagComments = true;
             }
+
+            if (addToFlagComments)
+            {
+                var flagedComment = new FlagedComment
+                {
+                    VideoId = comment.VideoId,
+                    CommentId = comment.Id
+                };
+
+                var isCommentAdded = await _unitOfWork.FlagedComment.AddAsync(flagedComment);
+                if (!isCommentAdded)
+                {
+                    return new ProcessResult { Message = $"Failed to add video to flaged videos table!" };
+                }
+            }
+            else
+            {
+                var isCommentRemoved = await _unitOfWork.FlagedVideo.RemoveAsync(comment.Id);
+                if (!isCommentRemoved)
+                {
+                    return new ProcessResult { Message = $"Failed to remove video from flaged videos table!" };
+                }
+            }
+
 
             await _unitOfWork.Complete();
 
@@ -336,15 +401,16 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             };
         }
 
-        public async Task<ProcessResult> DeleteCommentAsync(string commentId , string userId)
+        public async Task<ProcessResult> DeleteCommentAsync(string commentId , AppUser user)
         {
             var comment = await _unitOfWork.Comment.FindByIdAsync(commentId);
             if (comment == null)
             {
                 return new ProcessResult { Message = $"Comment With id {commentId} does not exist!" };
             }
-
-            if (comment.UserId != userId)
+            var roles = await _userManager.GetRolesAsync(user);
+            var admin = roles.Any(r => r == "Admin");
+            if (comment.UserId != user.Id && !admin)
             {
                 return new ProcessResult { Message = $"Unauthorized to delete this comment" };
             }
@@ -361,7 +427,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             return new ProcessResult { IsSuccesed = true};
         }
 
-        public async Task<ProcessResult> DeleteVideoCommentsAsync(string videoId , string userId)
+        public async Task<ProcessResult> DeleteVideoCommentsAsync(string videoId , AppUser user)
         {
             var video = await _unitOfWork.Video.FindByIdAsync(videoId);
             if(video == null)
@@ -369,7 +435,10 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                 return new ProcessResult { Message = $"No video Exists wiht id {videoId}" };
             }
 
-            if(video.UserId != userId)
+            var roles = await _userManager.GetRolesAsync(user);
+            var admin = roles.Any(r => r == "Admin");
+
+            if (video.UserId != user.Id && !admin)
             {
                 return new ProcessResult { Message = $"Unauthorized to delete comments of this video" };
             }

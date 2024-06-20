@@ -18,12 +18,20 @@ namespace ArabTube.Services.DataServices.Repositories.ImplementationClasses
             return comments;
         }
 
-        public async Task<Comment> GetCommentAsync(string commentId)
+        public async Task<Comment> GetParentCommentAsync(string commentId)
         {
             var comment = await _dbSet.Include(c => c.Childrens).ThenInclude(c => c.AppUser)
                                         .FirstOrDefaultAsync(c => c.Id == commentId);
             return comment;
         }
+
+        public async Task<Comment> GetCommentAsync(string commentId)
+        {
+            var comment = await _dbSet.Include(c => c.AppUser)
+                                        .FirstOrDefaultAsync(c => c.Id == commentId);
+            return comment;
+        }
+
 
         public void DeleteComment(Comment comment)
         {
