@@ -415,6 +415,15 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
                 return new ProcessResult { Message = $"Unauthorized to delete this comment" };
             }
 
+            if (admin) user.NumberOfFlags += 1;
+
+            if (user.NumberOfFlags > 10)
+            {
+                user.Isbaneed = true;
+                user.BannedTime = DateTime.Now;
+                user.NumberOfFlags = 0;
+            }
+
             if (comment.ParentCommentId == commentId)
             {
                 await _unitOfWork.Comment.DeleteCommentAsync(comment.Id);
@@ -425,6 +434,18 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             }
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
+        }
+
+        public async Task<ProcessResult> DeleteFlagCommentAsync(string commentId, AppUser user)
+        {
+            var result = await _unitOfWork.FlagedComment.RemoveAsync(commentId);
+            if (!result)
+            {
+                return new ProcessResult { Message = "Error while removing comment" };
+            }
+            
+            await _unitOfWork.Complete();
+            return new ProcessResult { IsSuccesed = true };
         }
 
         public async Task<ProcessResult> DeleteVideoCommentsAsync(string videoId , AppUser user)

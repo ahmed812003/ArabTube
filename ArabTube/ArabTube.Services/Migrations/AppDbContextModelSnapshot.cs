@@ -30,6 +30,9 @@ namespace ArabTube.Services.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("BannedTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -45,6 +48,9 @@ namespace ArabTube.Services.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("Isbaneed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -64,6 +70,9 @@ namespace ArabTube.Services.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("NumberOfFlags")
+                        .HasColumnType("int");
 
                     b.Property<int>("NumberOfFollowers")
                         .HasColumnType("int");
@@ -121,7 +130,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("FollowingId");
 
-                    b.ToTable("Subscribers");
+                    b.ToTable("Subscribers", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.Comment", b =>
@@ -172,7 +181,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.CommentDislike", b =>
@@ -187,7 +196,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CommentsDislikes");
+                    b.ToTable("CommentsDislikes", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.CommentFlag", b =>
@@ -202,7 +211,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CommentsFlags");
+                    b.ToTable("CommentsFlags", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.CommentLike", b =>
@@ -217,7 +226,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CommentsLikes");
+                    b.ToTable("CommentsLikes", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.FlagedComment", b =>
@@ -235,7 +244,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("flagedComments");
+                    b.ToTable("flagedComments", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.FlagedVideo", b =>
@@ -249,7 +258,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("flagedVideos");
+                    b.ToTable("flagedVideos", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.Notification", b =>
@@ -288,7 +297,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.Playlist", b =>
@@ -324,7 +333,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Playlists");
+                    b.ToTable("Playlists", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.PlaylistVideo", b =>
@@ -339,7 +348,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("PlaylistVideos");
+                    b.ToTable("PlaylistVideos", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.Video", b =>
@@ -392,7 +401,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Videos");
+                    b.ToTable("Videos", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.VideoDislike", b =>
@@ -407,7 +416,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("VideosDislikes");
+                    b.ToTable("VideosDislikes", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.VideoFlag", b =>
@@ -422,7 +431,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("VideosFlags");
+                    b.ToTable("VideosFlags", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.VideoLike", b =>
@@ -437,7 +446,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("VideosLikes");
+                    b.ToTable("VideosLikes", (string)null);
                 });
 
             modelBuilder.Entity("ArabTube.Entities.Models.WatchedVideo", b =>
@@ -455,7 +464,7 @@ namespace ArabTube.Services.Migrations
 
                     b.HasIndex("VideoId");
 
-                    b.ToTable("WatchedVideos");
+                    b.ToTable("WatchedVideos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -23,5 +23,6 @@ namespace ArabTube.Services.ControllersServices.VideoServices.Interfaces
         Task<ProcessResult> ViewVideoAsync(string id);
         Task<ProcessResult> UpdateVideoAsync(UpdatingVideoDto updateDto, string videoId , string userId);
         Task<ProcessResult> DeleteAsync(string id , AppUser user);
+        Task<ProcessResult> DeleteFlagVideoAsync(string id, AppUser user);
     }
 }

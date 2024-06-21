@@ -250,5 +250,23 @@ namespace ArabTube.Api.Controllers
             return Unauthorized();    
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("FlagComment")]
+        public async Task<IActionResult> DeleteFlagComment(string id)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _commentService.DeleteFlagCommentAsync(id, user);
+                    if (!result.IsSuccesed)
+                        return BadRequest(result.IsSuccesed);
+                    return Ok("Comment Deleted Successfully");
+                }
+            }
+            return Unauthorized();
+        }
     }
 }

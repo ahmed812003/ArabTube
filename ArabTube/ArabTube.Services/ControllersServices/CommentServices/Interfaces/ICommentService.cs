@@ -20,5 +20,6 @@ namespace ArabTube.Services.ControllersServices.CommentServices.Interfaces
         Task<ProcessResult> FlagCommentAsync(string commentId, string userId);
         Task<ProcessResult> UpdateCommentAsync(UpdateCommentDto model, string userId);
         Task<ProcessResult> DeleteCommentAsync(string commentId, AppUser user);
+        Task<ProcessResult> DeleteFlagCommentAsync(string commentId, AppUser user);
     }
 }

@@ -39,6 +39,12 @@ namespace ArabTube.Entities.Models
 
         public int NumberOfFollowers { get; set; }
 
+        public int NumberOfFlags { get; set; }
+
+        public bool Isbaneed { get; set; } = false;
+
+        public DateTime? BannedTime { get; set; }
+
         public virtual ICollection<Video> Videos { get; set; }
 
         public virtual ICollection<Video> WatchedVideos { get; set; }

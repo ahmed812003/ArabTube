@@ -426,6 +426,15 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 return new ProcessResult { Message = $"Unauthorized to delete this video" };
             }
 
+            if (admin) user.NumberOfFlags += 1;
+
+            if (user.NumberOfFlags > 10)
+            {
+                user.Isbaneed = true;
+                user.BannedTime = DateTime.Now;
+                user.NumberOfFlags = 0;
+            }
+
             var isDeleted = await _unitOfWork.Video.DeleteAsync(id);
             if (!isDeleted)
             {
@@ -448,6 +457,18 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};
         }
+
+        public async Task<ProcessResult> DeleteFlagVideoAsync(string id , AppUser user)
+        {
+            var isDeleted = await _unitOfWork.FlagedVideo.RemoveAsync(id);
+            if (!isDeleted)
+            {
+                return new ProcessResult { Message = "Error while removing video" };
+            }
+            await _unitOfWork.Complete();
+            return new ProcessResult { IsSuccesed = true };
+        }
+
 
         private async Task<IEnumerable<VideoQuality>> ProcessVideoAsync(ProcessingVideo model)
         {

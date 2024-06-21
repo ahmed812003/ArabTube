@@ -385,7 +385,29 @@ namespace ArabTube.Api.Controllers
             }
             return Unauthorized();
         }
-    
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("FlagVideo")]
+        public async Task<IActionResult> DeleteFlagVideos(string videoId)
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userName != null)
+            {
+                var user = await _userManager.FindByNameAsync(userName);
+                if (user != null)
+                {
+                    var result = await _videoService.DeleteFlagVideoAsync(videoId, user);
+                    if (!result.IsSuccesed)
+                    {
+                        return BadRequest(result.Message);
+                    }
+
+                    return Ok("Video Deleted Successfully");
+                }
+            }
+            return Unauthorized();
+        }
+
     }
 }
   
