@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KXp1+/mQtu/4yuCNT9CkskmqU2kAyjdUtzwDSc68uOU=",
+  "Hash": "Je/cRN5MN8TnmmwRI+3HNHuoWVVW3lIgL+x7plV1K5I=",
   "Source": "ArabTube.Api",
   "BasePath": "_content/ArabTube.Api",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "ArabTube.Api\\wwwroot",
       "Source": "ArabTube.Api",
-      "ContentRoot": "E:\\Software Engineering\\ArabTube Final Project\\ArabTube\\ArabTube\\ArabTube.Api\\wwwroot\\",
+      "ContentRoot": "F:\\Software Engineering\\Graduation Project\\ArabTube\\ArabTube\\ArabTube.Api\\wwwroot\\",
       "BasePath": "_content/ArabTube.Api",
       "Pattern": "**"
     }
