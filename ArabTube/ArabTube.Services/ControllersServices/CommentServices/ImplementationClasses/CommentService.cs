@@ -443,7 +443,7 @@ namespace ArabTube.Services.ControllersServices.CommentServices.ImplementationCl
             {
                 return new ProcessResult { Message = "Error while removing comment" };
             }
-            
+            user.NumberOfFlags -= 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }

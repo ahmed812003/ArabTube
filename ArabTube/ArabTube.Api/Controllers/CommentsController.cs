@@ -143,6 +143,11 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
+
                     var result = await _commentService.AddCommentAsync(model, user.Id , $"{user.FirstName} {user.LastName}");
                     
                     if (!result.IsSuccesed)
@@ -164,6 +169,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _commentService.LikeCommentAsync(id , user.Id, $"{user.FirstName} {user.LastName}");
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
@@ -184,6 +193,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _commentService.DislikeCommentAsync(id , user.Id, $"{user.FirstName} {user.LastName}");
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
@@ -203,6 +216,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _commentService.FlagCommentAsync(id, user.Id);
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
@@ -222,6 +239,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _commentService.UpdateCommentAsync(model , user.Id);
                     if (!result.IsSuccesed)
                         return BadRequest(result.Message);
@@ -241,6 +262,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _commentService.DeleteCommentAsync(id , user);
                     if (!result.IsSuccesed)
                         return BadRequest(result.IsSuccesed);

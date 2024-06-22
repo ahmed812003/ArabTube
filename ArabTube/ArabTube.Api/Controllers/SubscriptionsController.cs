@@ -75,6 +75,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _subscriptionService.SubscribeAsync(ownerId, user.Id);
 
                     if (!result.IsSuccesed)
@@ -97,6 +101,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _subscriptionService.GetNotificationsAsync(ownerId, user.Id);
 
                     if (!result.IsSuccesed)
@@ -119,6 +127,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _subscriptionService.UnScbscribeAsync(ownerId, user.Id);
 
                     if (!result.IsSuccesed)

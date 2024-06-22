@@ -55,6 +55,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _watchedVideoService.RemoveFromHistoryAsync(videoId, user.Id);
                     if (!result.IsSuccesed)
                     {

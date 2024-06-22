@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using static FFmpeg.NET.MetaData;
 
 namespace ArabTube.Api.Controllers
 {
@@ -206,7 +205,10 @@ namespace ArabTube.Api.Controllers
             {
                 return Unauthorized();
             }
-
+            if (user.Isbaneed)
+            {
+                return BadRequest("You Are banned");
+            }
             var result = await _videoService.UploadVideoAsync(model,userName , user);
             if (!result.IsSuccesed)
             {
@@ -228,6 +230,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _videoService.LikeVideoAsync(id , user.Id);
 
                     if (!result.IsSuccesed)
@@ -269,6 +275,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _videoService.DislikeVideoAsync(videoId , user.Id);
 
                     if (!result.IsSuccesed)
@@ -292,6 +302,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _videoService.FlagVideoAsync(id , user.Id);
                     if (!result.IsSuccesed)
                     {
@@ -346,6 +360,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _videoService.UpdateVideoAsync(model, id , user.Id);
                     if (!result.IsSuccesed)
                     {
@@ -368,6 +386,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _commentService.DeleteVideoCommentsAsync(id , user);
                     if (!result.IsSuccesed)
                     {

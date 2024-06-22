@@ -465,6 +465,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new ProcessResult { Message = "Error while removing video" };
             }
+            user.NumberOfFlags -= 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }

@@ -106,6 +106,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _playlistService.CreatePlaylistAsync(model, user.Id);
                     
                     if (!result.IsSuccesed)
@@ -129,6 +133,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _playlistService.SavePlaylistAsync(playlistId, user.Id);
                     if (!result.IsSuccesed)
                     {
@@ -155,6 +163,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _playlistVideoService.AddVideoToPlayListAsync(model.VideoId, model.PlaylistId , user.Id);
 
                     if (!result.IsSuccesed)
@@ -183,6 +195,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _playlistService.UpdatePlaylistAsync(model , user.Id);
 
                     if (!result.IsSuccesed)
@@ -204,6 +220,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _playlistService.DeletePlaylistAsync(id , user.Id);
                     
                     if (!result.IsSuccesed)
@@ -232,6 +252,10 @@ namespace ArabTube.Api.Controllers
                 var user = await _userManager.FindByNameAsync(userName);
                 if (user != null)
                 {
+                    if (user.Isbaneed)
+                    {
+                        return BadRequest("You Are banned");
+                    }
                     var result = await _playlistVideoService.RemoveVideoFromPlaylistAsync(model.VideoId, model.PlaylistId , user.Id);
 
                     if (!result.IsSuccesed)
