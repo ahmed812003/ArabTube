@@ -186,6 +186,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ArabTube.Api.Controllers.AccountController",
+    "Method": "GetUsers",
+    "RelativePath": "api/Account/Users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "AddComment",
     "RelativePath": "api/Comments/Add",
@@ -267,6 +277,48 @@
   },
   {
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "FlagComment",
+    "RelativePath": "api/Comments/Flag",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "DeleteFlagComment",
+    "RelativePath": "api/Comments/FlagComment",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "GetFlagedComment",
+    "RelativePath": "api/Comments/FlagedComment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "LikeComment",
     "RelativePath": "api/Comments/Like",
     "HttpMethod": "POST",
@@ -301,6 +353,22 @@
     "ContainingType": "ArabTube.Api.Controllers.CommentsController",
     "Method": "IsUserDisLikeComment",
     "RelativePath": "api/Comments/UserDisLike",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.CommentsController",
+    "Method": "IsUserFlagComment",
+    "RelativePath": "api/Comments/UserFlag",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -512,11 +580,43 @@
   {
     "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
     "Method": "Following",
-    "RelativePath": "api/Subscriptions",
+    "RelativePath": "api/Subscriptions/Follwoing",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
+    "Method": "IsUserGetAllNotifications",
+    "RelativePath": "api/Subscriptions/IsRing",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.SubscriptionsController",
+    "Method": "GetNotifications",
+    "RelativePath": "api/Subscriptions/Ring",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -593,6 +693,32 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "GetFlagedVideos",
+    "RelativePath": "api/Videos/FlagedVideos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ArabTube.Api.Controllers.VideosController",
+    "Method": "DeleteFlagVideos",
+    "RelativePath": "api/Videos/FlagVideo",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "videoId",
         "Type": "System.String",
         "IsRequired": false
       }

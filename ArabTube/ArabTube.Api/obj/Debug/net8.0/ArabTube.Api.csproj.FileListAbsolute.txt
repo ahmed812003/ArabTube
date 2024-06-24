@@ -868,7 +868,6 @@ F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\De
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Mono.TextTemplating.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\NuGet.Common.dll
@@ -890,15 +889,12 @@ F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\De
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Composition.Runtime.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Composition.TypedParts.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Drawing.Common.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.IO.Hashing.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Memory.Data.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Runtime.Caching.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Security.Permissions.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\System.Windows.Extensions.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\FFmpeg.NET.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\af\Humanizer.resources.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\ar\Humanizer.resources.dll
@@ -1045,11 +1041,6 @@ F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\De
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
-F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\ArabTube.Entities.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\ArabTube.Services.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\ArabTube.Services.pdb
@@ -1645,3 +1636,4 @@ E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bi
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
 E:\Software Engineering\ArabTube Final Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\Serilog.Sinks.File.dll
 F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\obj\Debug\net8.0\ArabTube.Api.MvcApplicationPartsAssemblyInfo.cs
+F:\Software Engineering\Graduation Project\ArabTube\ArabTube\ArabTube.Api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Runtime.Caching.dll

@@ -2,13 +2,13 @@
 using ArabTube.Entities.GenericModels;
 using ArabTube.Entities.Models;
 using ArabTube.Entities.VideoModels;
+using ArabTube.Services.ControllersServices.CacheServices.Interfaces;
 using ArabTube.Services.ControllersServices.CloudServices.Interfaces;
 using ArabTube.Services.ControllersServices.VideoServices.Interfaces;
 using ArabTube.Services.DataServices.Repositories.Interfaces;
 using AutoMapper;
 using FFmpeg.NET;
 using FFmpeg.NET.Enums;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
@@ -23,7 +23,8 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
         private readonly string _tempPath;
         private readonly Engine _ffmpegEngine;
         private readonly UserManager<AppUser> _userManager;
-        public VideoService(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper, ICloudService cloudService, UserManager<AppUser> userManager)
+        private readonly ICacheService _cacheService;
+        public VideoService(IUnitOfWork unitOfWork, IConfiguration configuration, IMapper mapper, ICloudService cloudService, UserManager<AppUser> userManager, ICacheService cacheService = null)
         {
             _configuration = configuration;
             _tempPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Videos");
@@ -31,6 +32,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             _mapper = mapper;
             _cloudService = cloudService;
             _userManager = userManager;
+            _cacheService = cacheService;
             //this._ffmpegEngine = new Engine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ffmpeg", "ffmpeg.exe"));
             //this._ffmpegEngine = new Engine("C:\\ffmpeg\\ffmpeg.exe");
         }
@@ -77,7 +79,17 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new GetVideoResult { Message = "No Videos Found " };
             }
+
+            var cacheData = _cacheService.GetData<IEnumerable<VideoPreviewDto>>("AllVideos");
+            if (cacheData != null)
+            {
+                return new GetVideoResult { IsSuccesed = true , Videos = cacheData };
+            }
+            var expirationTime = DateTimeOffset.Now.AddMinutes(30.0);
+
             IEnumerable<VideoPreviewDto> viewVideosDtoList = _mapper.Map<IEnumerable<VideoPreviewDto>>(videos);
+
+            _cacheService.SetData<IEnumerable<VideoPreviewDto>>("AllVideos", viewVideosDtoList, expirationTime);
 
             return new GetVideoResult { IsSuccesed = true , Videos = viewVideosDtoList};
         }
@@ -236,7 +248,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
                 };
                 await _unitOfWork.Notification.AddAsync(notification);
             }
-
+            _cacheService.RemoveData("AllVideos");
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true };
         }
@@ -406,6 +418,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             //var updatedVideo = _mapper.Map<Video>(updateDto);
             _mapper.Map(updateDto , video);
             _unitOfWork.Video.Update(video);
+            _cacheService.RemoveData("AllVideos");
             await _unitOfWork.Complete();
             return new ProcessResult{ IsSuccesed = true};
         }
@@ -452,7 +465,7 @@ namespace ArabTube.Services.ControllersServices.VideoServices.ImplementationClas
             {
                 return new ProcessResult { Message = "Error While Deleting comments from flaged comments" };
             }
-
+            _cacheService.RemoveData("AllVideos");
             user.NumberOfvideos -= 1;
             await _unitOfWork.Complete();
             return new ProcessResult { IsSuccesed = true};

@@ -183,6 +183,10 @@
               "target": "Package",
               "version": "[7.4.1, )"
             },
+            "System.Runtime.Caching": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "xFFmpeg.NET": {
               "target": "Package",
               "version": "[7.2.0, )"

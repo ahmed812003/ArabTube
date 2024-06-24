@@ -1,7 +1,8 @@
 using ArabTube.Entities.Models;
-using ArabTube.Services.ControllersServices;
 using ArabTube.Services.ControllersServices.AuthServices.ImplementationClasses;
 using ArabTube.Services.ControllersServices.AuthServices.Interfaces;
+using ArabTube.Services.ControllersServices.CacheServices.ImplementationClasses;
+using ArabTube.Services.ControllersServices.CacheServices.Interfaces;
 using ArabTube.Services.ControllersServices.CloudServices.ImplementationClasses;
 using ArabTube.Services.ControllersServices.CloudServices.Interfaces;
 using ArabTube.Services.ControllersServices.CommentServices.ImplementationClasses;
@@ -67,6 +68,7 @@ namespace ArabTube.Api
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<ISubscriptionService , SubscriptionService>();
             builder.Services.AddScoped<INotificationService, NotificationService>();
+            builder.Services.AddScoped<ICacheService, CacheService>();
 
             builder.Services.AddAuthentication(options =>
             {
