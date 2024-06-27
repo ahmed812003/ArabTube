@@ -7,38 +7,49 @@ Welcome to **ArabTube**, a unique video streaming platform designed to filter ou
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Architecture](#architecture)
+- [Documentation](#documentation)
 - [Setup and Installation](#setup-and-installation)
 
 ## Features
 
 ArabTube provides almost all the functionalities of a typical video streaming platform, with additional features aimed at enhancing security and content filtering:
 
-1. **User Authentication and Account Management**
-   - Register / Login / Confirm Email / Forget Password / Reset Password
+1. User Authentication
+   - Register / Login
+   - Email confirmation
+   - Password recovery (Forget/Reset)
 
-2. **Video Management**
-   - Upload Video / Like Video / Dislike Video / Flag Video / Add Video to Playlist / Update Video / Delete Video
+2. Video Management
+   - Upload, update, and delete videos
+   - Like/Dislike videos
+   - Flag inappropriate content
+   - Add videos to playlists
 
-3. **Comment Management**
-   - Write Comment / Like Comment / Dislike Comment / Flag Comment / Update Comment / Delete Comment
+3. Comment System
+   - Write, update, and delete comments
+   - Like/Dislike comments
+   - Flag inappropriate comments
 
-4. **Playlist Management**
-   - Create Playlist / Add Video to Playlist / Save Another Playlist / Default Playlists (Liked Videos, Watch Later) / Public and Private Playlists / Update Playlist / Delete Playlist
+4. Playlist Functionality
+   - Create, update, and delete playlists
+   - Public and private playlist options
+   - Default playlists: Liked Videos and Watch Later
+   - Save playlists from other users
 
-5. **User History**
-   - Track and display the history of watched videos sorted by the last watch time
+5. User History
+   - Track and sort watched videos
 
-6. **Notifications**
-   - Notify users when tagged in a comment, when a subscribed user uploads a video, and when someone likes or dislikes their comment
+6. Notifications
+   - User mentions in comments
+   - New video uploads from subscribed channels
+   - Likes/Dislikes on user's comments
 
-7. **Subscriptions**
-   - Subscribe to other users
+7. Subscriptions
+   - Subscribe to other users' channels
 
-8. **User Banning**
-   - Users flagged 50 times are banned for 30 days
-
-9. **Admin Controls**
-   - Review and delete flagged videos and comments, with the ability to increase the flag count for users
+8. Content Moderation
+   - User flagging system (50 flags result in a 30-day ban)
+   - Admin review system for flagged content
 
 ## Technologies Used
 
@@ -56,17 +67,20 @@ ArabTube provides almost all the functionalities of a typical video streaming pl
 
 ## Architecture
 
-ArabTube is built using the N-Tier Architecture, which includes 4 layers:
+- N-tier Architecture (4 layers: Presentation, Logic, Data Access, Data)
+- Repository Pattern
+- Unit of Work Pattern
+- Dependency Injection
+- SOLID Principles applied:
+  - Single Responsibility Principle
+  - Interface Segregation Principle
+  - Dependency Inversion Principle
 
-1. **Presentation Layer**
-2. **Logic Layer**
-3. **Data Access Layer**
-4. **Data Layer**
+## API Documentation
 
-We also employ several design patterns and principles:
+For detailed API documentation and testing, please visit our Swagger UI:
+[ArabTube API Documentation](https://arabtubedemo1.runasp.net/swagger/index.html)
 
-- **Design Patterns**: Repository Pattern, Unit of Work Pattern, Dependency Injection Pattern
-- **SOLID Principles**: Single Responsibility Principle, Interface Segregation Principle, Dependency Inversion Principle
 
 ## Setup and Installation
 
