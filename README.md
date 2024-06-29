@@ -1,6 +1,6 @@
 # ArabTube: A Safe Video Streaming Platform
 
-Welcome to **ArabTube**, a unique video streaming platform designed to filter out sexual content in videos and photos and eliminate hate speech in comments and video text. This project is a collaborative effort by Me and Ahmed Awad. We have focused on building a secure, user-friendly backend using ASP.NET and various modern tools and principles.
+Welcome to **ArabTube**, a unique video streaming platform designed to filter out sexual content in videos and photos and eliminate hate speech in comments and video text. This project is a collaborative effort by Me and [Ahmed Awad](https://github.com/ahmedawad72). We have focused on building a secure, user-friendly backend using ASP.NET and various modern tools and principles.
 
 ## Table of Contents
 
